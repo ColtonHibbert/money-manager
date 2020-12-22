@@ -9,7 +9,7 @@ function Login() {
             "http://localhost:3001/login",
             {
                 method: "POST",
-                headers: "Content-Type", "application/json",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     email: email,
                     password: password
@@ -23,7 +23,11 @@ function Login() {
 
     return(
         <div>
-
+            <input type="text" onChange={(event) => setEmail(event.target.value)}/>
+            <input type="text" onChange={(event) => setPassword(event.target.value)}/>
+            <button onClick={() => sendLogin()}>Submit Login</button>
         </div>
     )
 }
+
+export default Login;
