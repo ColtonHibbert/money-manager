@@ -32,7 +32,7 @@ function SignUp(props) {
             <input type="text" onChange={(event) => setEmail(event.target.value)}/>
             <input type="text" onChange={(event) => setPassword(event.target.value)}/>
             <button onClick={() => sendSignUp()}>Sign Up</button>
-            <div>{user.user_name, userfirst_name}</div>
+            <div>{user.first_name}</div>
         </div>
     )
 }
