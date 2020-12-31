@@ -5,7 +5,7 @@ function Transactions(props) {
     
     const [ transactions , setTransactions ] = useState(null);
 
-    const getTransactions = fetch(
+    const getTransactions = () => fetch(
         "http://localhost:3001/transactions",
         {
             method: "GET",
@@ -23,13 +23,13 @@ function Transactions(props) {
             <div>{user.first_name}</div>
             <div>
             {
-                transactions.map(transaction => {
+                (transactions !== null) ? transactions.map(transaction => {
                     return (
                         <div key={transaction.transaction_id}>
                             <div>{transaction.transaction_id, transaction.amount, transaction.date, transaction.memo_note}</div>
                         </div>
                     )
-                })
+                }) : ""
             }    
             </div>
             <button onClick={() => setRoute("home")}>Home</button>
