@@ -31,7 +31,7 @@ function Login(props) {
             <input type="text" onChange={(event) => setEmail(event.target.value)}/>
             <input type="text" onChange={(event) => setPassword(event.target.value)}/>
             <button onClick={() => sendLogin()}>Submit Login</button>
-            <div>{user.user_name, userfirst_name}</div>
+            <div>{user.first_name}</div>
             <button onClick={() => setRoute("home")}>Home</button>
         </div>
     )
