@@ -5,8 +5,8 @@ function Transactions(props) {
 
     return (
         <div>
-            <div>{user}</div>
-            <button onClick={setRoute("home")}>Home</button>
+            <div>{user.user_name, userfirst_name}</div>
+            <button onClick={() => setRoute("home")}>Home</button>
         </div>
     );
 
