@@ -1,6 +1,6 @@
-import React, {useState, useEffect}  from "react";
+import React, {useState, useEffect} from "react";
 
-function Accounts(props) {
+function Transactions(props) {
     const { user, setRoute } = props;
 
     return (
@@ -9,6 +9,7 @@ function Accounts(props) {
             <button onClick={setRoute("home")}>Home</button>
         </div>
     );
+
 }
 
-export default Accounts;
+export default Transactions;

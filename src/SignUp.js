@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-function SignUp() {
-
+function SignUp(props) {
+    const { user, setRoute, setUser } = props;
     
     const [email, setEmail ] = useState(null);
     const [password, setPassword ]  = useState(null);
@@ -18,8 +18,11 @@ function SignUp() {
                 })
             }
         )
-        .then(res => res.json)
-        .then(res => console.log(res))
+        .then(res => res.json())
+        .then(data => {
+            setUser(data);
+            setRoute("home");
+        })
         .catch(err => console.log(err))
 
     }
@@ -29,6 +32,7 @@ function SignUp() {
             <input type="text" onChange={(event) => setEmail(event.target.value)}/>
             <input type="text" onChange={(event) => setPassword(event.target.value)}/>
             <button onClick={() => sendSignUp()}>submit</button>
+            <div>{user}</div>
         </div>
     )
 }
