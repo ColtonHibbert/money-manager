@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 
-function Login() {
+function Login(props) {
+    const { user, setUser, setRoute } = props;
+
     const [email, setEmail ] = useState(null);
     const [password, setPassword ] = useState(null);
 
@@ -17,7 +19,10 @@ function Login() {
             }
         )
         .then(res => res.json())
-        .then(res => console.log(res))
+        .then(data => {
+            setUser(data);
+            setRoute("home");
+        })
         .catch(err => console.log(err))
     }
 
@@ -26,6 +31,7 @@ function Login() {
             <input type="text" onChange={(event) => setEmail(event.target.value)}/>
             <input type="text" onChange={(event) => setPassword(event.target.value)}/>
             <button onClick={() => sendLogin()}>Submit Login</button>
+            <div>{user}</div>
         </div>
     )
 }
