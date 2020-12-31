@@ -5,7 +5,7 @@ function Accounts(props) {
 
     const [accounts, setAccounts ] = useState(null);
 
-    const getAccounts = fetch(
+    const getAccounts = () => fetch(
         "http://localhost:3001/accounts",
         {
             method: "GET",
@@ -24,13 +24,13 @@ function Accounts(props) {
             <button onClick={ () => setRoute("home")}>Home</button>
             <button onClick={ () => getAccounts()}>Get Accounts</button>
             {
-                accounts.map(account => {
+                (accounts !== null) ? accounts.map(account => {
                     return (
                         <div key={account.account_id}>
                             <div>{account.account_id, account.account_name, account.account_balance }</div>
                         </div>
                     )
-                })
+                }) : ""
             }
         </div>
     );
