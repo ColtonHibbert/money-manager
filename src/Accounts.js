@@ -6,10 +6,11 @@ function Accounts(props) {
     const [accounts, setAccounts ] = useState(null);
 
     const getAccounts = () => fetch(
-        "http://localhost:3001/accounts",
+        "http://127.0.0.1:3001/accounts",
         {
             method: "GET",
-            headers: {"Content-Type": "application/json"}
+            headers: {"Content-Type": "application/json"},
+            credentials: "include"
         }
     )
     .then(res => res.json())
