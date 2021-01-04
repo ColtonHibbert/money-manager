@@ -8,7 +8,7 @@ function Login(props) {
  
     const sendLogin = () => {
         fetch(
-            "http://127.0.0.1:3001/login",
+            "http://localhost:3001/login",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
