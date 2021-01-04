@@ -5,7 +5,7 @@ function Login(props) {
 
     const [email, setEmail ] = useState(null);
     const [password, setPassword ] = useState(null);
-
+ 
     const sendLogin = () => {
         fetch(
             "http://localhost:3001/login",
@@ -15,7 +15,8 @@ function Login(props) {
                 body: JSON.stringify({
                     email: email,
                     password: password
-                })
+                }),
+                credentials : "include"
             }
         )
         .then(res => res.json())
