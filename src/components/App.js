@@ -4,39 +4,41 @@ import Login from "./Login.js";
 import Home from "./Home.js";
 import Accounts from "./Accounts.js";
 import Transactions from "./Transactions.js";
+import { useSelector } from "react-redux";
 
 function App() {
 
-  const [route, setRoute ] = useState("home");
-  const [user, setUser ] = useState("");
-
+  //const [route, setRoute ] = useState("home");
+  //const [user, setUser ] = useState("");
   
+  const route = useSelector((state) => state.route );
 
   return (
     <div className="App">
       {
-        (route === "home") ? <Home user={user} setRoute={setRoute} /> : ""
+        //(route === "home") ? <Home user={user} setRoute={setRoute} /> : ""
+        (route === "home") ? <Home /> : ""
       }
       {
         (route === "login") ? 
-        <Login user={user} setUser={setUser} setRoute={setRoute} />
+        <Login />
         : ""
       }
       {
         (route === "signup") ? 
-        <SignUp user={user} setUser={setUser} setRoute={setRoute} />
+        <SignUp  />
         : ""
       }
       {
         (route === "accounts") ?
           <div>
-            <Accounts user={user} setRoute={setRoute} />
+            <Accounts  />
           </div> 
           : ""
       }
       {
         (route === "transactions") ?
-        <Transactions user={user} setRoute={setRoute} />
+        <Transactions />
         : ""
       }
     </div>
