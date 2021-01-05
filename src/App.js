@@ -17,10 +17,12 @@ function App() {
       }
       {
         (route === "login") ? 
-        <div>
-          <SignUp user={user} setUser={setUser} setRoute={setRoute} />
-          <Login user={user} setUser={setUser} setRoute={setRoute} />
-        </div>
+        <Login user={user} setUser={setUser} setRoute={setRoute} />
+        : ""
+      }
+      {
+        (route === "signup") ? 
+        <SignUp user={user} setUser={setUser} setRoute={setRoute} />
         : ""
       }
       {
