@@ -1,5 +1,4 @@
 import React, { useState, useEffect }from "react";
-import "./App.css";
 import SignUp from "./SignUp.js";
 import Login from "./Login.js";
 import Home from "./Home.js";
@@ -10,6 +9,7 @@ function App() {
 
   const [route, setRoute ] = useState("home");
   const [user, setUser ] = useState("");
+
   return (
     <div className="App">
       {
