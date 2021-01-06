@@ -3,8 +3,6 @@ import React from "react";
 function Accounts(props) {
     const { user, setRoute } = props;
 
-    //const [accounts, setAccounts ] = useState(null);
-
     const getAccounts = () => fetch(
         "http://localhost:3001/accounts",
         {
