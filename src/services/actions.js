@@ -3,10 +3,10 @@ import {
 } from "./constants.js";
 
 
-export const changeRoute = (payload) => {
+export const setRoute = (payload) => {
     return {
-        type: CHANGE_ROUTE,
-        changeRoutePayload: payload
+        type: SET_ROUTE,
+        setRoutePayload: payload
     }
 }
 
