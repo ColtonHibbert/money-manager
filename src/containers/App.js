@@ -7,21 +7,29 @@ import Home from "../components/Home.js";
 //import Transactions from "../components/Transactions.js";
 import {
   setRoute,
-  setUser
+  setUser,
+  setLoginEmail,
+  setLoginPassword
 } from "../services/actions.js";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
     route: state.route,
-    user: state.user
+    user: state.user,
+    login: {
+      loginEmail: state.login.loginEmail,
+      loginPassword: state.login.loginPassword
+    }
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setRoute: (value) => dispatch(setRoute(value)),
-    setUser: (value) => dispatch(setUser(value))
+    setUser: (value) => dispatch(setUser(value)),
+    setLoginEmail: (value) => dispatch(setLoginEmail(value)),
+    setLoginPassword: (value) => dispatch(setLoginPassword(value))
   }
 }
 

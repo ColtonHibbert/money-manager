@@ -1,9 +1,9 @@
 import React from "react";
-import { setLoginEmail, setLoginPassword } from "../services/actions.js";
+//import { setLoginEmail, setLoginPassword } from "../services/actions.js";
 
 
 function Login(props) {
-    const { user, setRoute, setUser } = props;
+    const { user, setRoute, setUser, setLoginEmail, setLoginPassword } = props;
  
     const sendLogin = () => {
         fetch(
