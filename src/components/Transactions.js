@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 function Transactions(props) {
     const { user, setRoute } = props;
     
-    const [ transactions , setTransactions ] = useState(null);
+    //const [ transactions , setTransactions ] = useState(null);
 
     const getTransactions = () => fetch(
         "http://localhost:3001/transactions",
