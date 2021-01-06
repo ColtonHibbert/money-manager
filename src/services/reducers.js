@@ -19,5 +19,11 @@ export const reducer = (state=initialState, action={}) => {
             route: action.setRoutePayload
         }
     }
+    if(action.type === SET_USER) {
+        return {
+            ...state,
+            user: action.setUserPayload
+        }
+    }
     return state;
 }

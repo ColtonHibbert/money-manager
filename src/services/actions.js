@@ -1,5 +1,6 @@
 import {
-    CHANGE_ROUTE
+    SET_ROUTE,
+    SET_USER
 } from "./constants.js";
 
 
@@ -9,4 +10,13 @@ export const setRoute = (payload) => {
         setRoutePayload: payload
     }
 }
+
+export const setUser = (payload) => {
+    return {
+        type: SET_USER,
+        setUserPayload: payload
+    }
+}
+
+
 

@@ -1,4 +1,5 @@
-import React, { useState, useEffect }from "react";
+import React from "react";
+import "redux";
 import SignUp from "../components/SignUp.js";
 import Login from "../components/Login.js";
 import Home from "../components/Home.js";
@@ -29,7 +30,9 @@ function App() {
   return (
     <div className="App">
       {
-        (route === "home") ? <Home /> : ""
+        (route === "home") ? 
+        <Home />
+        : ""
       }
       {
         (route === "login") ? 

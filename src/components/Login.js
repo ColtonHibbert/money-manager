@@ -1,10 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 
 function Login(props) {
     const { user, setRoute } = props;
-
-    //const [email, setEmail ] = useState(null);
-    //const [password, setPassword ] = useState(null);
  
     const sendLogin = () => {
         fetch(
