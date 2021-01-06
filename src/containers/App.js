@@ -1,60 +1,58 @@
 import React from "react";
 import "redux";
-import SignUp from "../components/SignUp.js";
+//import SignUp from "../components/SignUp.js";
 import Login from "../components/Login.js";
 import Home from "../components/Home.js";
-import Accounts from "../components/Accounts.js";
-import Transactions from "../components/Transactions.js";
+//import Accounts from "../components/Accounts.js";
+//import Transactions from "../components/Transactions.js";
 import {
   setRoute,
   setUser
 } from "../services/actions.js";
 import { connect } from "react-redux";
 
-function App() {
-
-  const mapStateToProps = (state) => {
-    return({
-      route: state.route,
-      user: state.user
-    })
+const mapStateToProps = (state) => {
+  return {
+    route: state.route,
+    user: state.user
   }
+}
 
-  const mapDispatchToProps = (dispatch) => {
-    return({
-      setRoute: (value) => dispatch(setRoute(value)),
-      setUser: (value) => dispatch(setUser(value))
-    }) 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setRoute: (value) => dispatch(setRoute(value)),
+    setUser: (value) => dispatch(setUser(value))
   }
+}
+
+function App(props) {
 
   return (
     <div className="App">
       {
-        (route === "home") ? 
-        <Home />
+        (props.route === "home") ? 
+        <Home {...props} />
         : ""
       }
       {
-        (route === "login") ? 
-        <Login />
+        (props.route === "login") ? 
+        <Login {...props} />
         : ""
       }
       {
-        (route === "signup") ? 
-        <SignUp  />
-        : ""
+        //(route === "signup") ? 
+        //<SignUp  />
+        //: ""
       }
       {
-        (route === "accounts") ?
-          <div>
-            <Accounts  />
-          </div> 
-          : ""
+        //(route === "accounts") ?
+        //<Accounts  />
+        //: ""
       }
       {
-        (route === "transactions") ?
-        <Transactions />
-        : ""
+        //(route === "transactions") ?
+        //<Transactions />
+        //: ""
       }
     </div>
   );
