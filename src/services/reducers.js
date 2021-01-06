@@ -36,7 +36,9 @@ export const reducer = (state=initialState, action={}) => {
         return {
             ...state,
             login: {
-               loginEmail: action.setLoginEmailPayload 
+                ...state.login,
+                loginEmail: action.setLoginEmailPayload
+               
             }
         }
     }
@@ -44,6 +46,7 @@ export const reducer = (state=initialState, action={}) => {
         return {
             ...state,
             login: {
+                ...state.login,
                 loginPassword: action.setLoginPasswordPayload
             }
         }
