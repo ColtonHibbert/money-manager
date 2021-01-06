@@ -5,16 +5,12 @@ import Home from "../components/Home.js";
 import Accounts from "../components/Accounts.js";
 import Transactions from "../components/Transactions.js";
 import {
-  changeRoute
+  setRoute,
+  setUser
 } from "../services/actions.js";
 import { connect } from "react-redux";
 
 function App() {
-
-  //const [route, setRoute ] = useState("home");
-  //const [user, setUser ] = useState("");
-  
-  //const route = useSelector((state) => state.route );
 
   const mapStateToProps = (state) => {
     return({
@@ -25,15 +21,15 @@ function App() {
 
   const mapDispatchToProps = (dispatch) => {
     return({
-      changeRoute: () => dispatch(changeRoute("login"))
+      setRoute: (value) => dispatch(setRoute(value)),
+      setUser: (value) => dispatch(setUser(value))
     }) 
   }
 
   return (
     <div className="App">
       {
-        //(route === "home") ? <Home user={user} setRoute={setRoute} /> : ""
-        //(route === "home") ? <Home /> : ""
+        (route === "home") ? <Home /> : ""
       }
       {
         (route === "login") ? 

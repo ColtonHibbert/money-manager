@@ -2,6 +2,7 @@ import React, {useState, useEffect } from "react";
 
 function Home(props) {
     const { setRoute, user } = props;
+    
     return (
         <div>
             <h1>Home Page</h1>
