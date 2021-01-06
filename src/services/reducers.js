@@ -1,5 +1,5 @@
 import {
-    CHANGE_ROUTE
+    SET_ROUTE
 } from "./constants.js";
 
 const initialState = {
@@ -13,10 +13,10 @@ const initialState = {
 }
 
 export const reducer = (state=initialState, action={}) => {
-    if(action.type === CHANGE_ROUTE ) {
+    if(action.type === SET_ROUTE ) {
         return {
             ...state,
-            route: action.changeRoutePayload
+            route: action.setRoutePayload
         }
     }
     return state;
