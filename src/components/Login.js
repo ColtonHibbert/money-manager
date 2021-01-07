@@ -1,9 +1,23 @@
 import React from "react";
-//import { setLoginEmail, setLoginPassword } from "../services/actions.js";
+import { connect } from "react-redux";
+import "redux";
+import { setLoginEmail, setLoginPassword } from "../services/actions.js";
 
+const mapStateToProps = (state) => {
+    return {
+        login: state.login
+    }
+} 
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setLoginEmail: (value) => dispatch(setLoginEmail(value)),
+        setLoginPassword: (value) => dispatch(setLoginPassword(value))
+    }
+}
 
 function Login(props) {
-    const { user, setRoute, setUser, setLoginEmail, setLoginPassword } = props;
+    const { setRoute, setUser } = props;
  
     const sendLogin = () => {
         fetch(
@@ -31,10 +45,9 @@ function Login(props) {
             <input type="text" onChange={(event) => setLoginEmail(event.target.value)}/>
             <input type="text" onChange={(event) => setLoginPassword(event.target.value)}/>
             <button onClick={() => sendLogin()}>Submit Login</button>
-            <div>{user.first_name}</div>
-            <button onClick={() => setRoute("home")}>Home</button>
+            <button onClick={() => setRoute("signup")}>Sign up</button>
         </div>
     )
 }
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
