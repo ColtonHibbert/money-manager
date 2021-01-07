@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function Login(props) {
-    const { setRoute, setUser } = props;
+    const { setRoute, setUser, login } = props;
  
     const sendLogin = () => {
         fetch(
@@ -26,8 +26,8 @@ function Login(props) {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    email: props.login.loginEmail,
-                    password: props.login.loginPassword
+                    email: login.loginEmail,
+                    password: login.loginPassword
                 }),
                 credentials : "include"
             }
