@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function Login(props) {
-    const { setRoute, setUser, login } = props;
+    const { setRoute, setUser, login, setLoginEmail, setLoginPassword } = props;
  
     const sendLogin = () => {
         fetch(
