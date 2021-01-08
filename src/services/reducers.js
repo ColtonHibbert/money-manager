@@ -38,8 +38,26 @@ const initialState = {
         signupPassword: "",
         signupConfirmPassword: ""
     },
-    transactions: [],
-    accounts: []
+    transactions: [
+        {
+            transactionId: "",
+            amount: "",
+            date: "",
+            memoNote: "",
+            userId: "",
+            accountTypeId: ""
+        }
+    ],
+    accounts: [
+        {
+            accountId: "",
+            accountName: "",
+            currentBalance: "",
+            lowAlertBalance: "",
+            userId: "",
+            accountTypeId: ""
+        }
+    ]
 }
 
 export const reducer = (state=initialState, action={}) => {

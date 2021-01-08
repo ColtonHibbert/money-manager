@@ -19,7 +19,7 @@ function Transactions(props) {
 
     return (
         <div>
-            <div>{user.first_name}</div>
+            <div>{user.firstName}</div>
             <div>
             {
                 (transactions !== null) ? transactions.map(transaction => {
