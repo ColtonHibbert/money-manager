@@ -19,7 +19,7 @@ function Accounts(props) {
 
     return (
         <div>
-            <div>{user.first_name}</div>
+            <div>{user.firstName}</div>
             <div>
             {
                 (accounts !== null) ? accounts.map(account => {

@@ -6,7 +6,7 @@ function Home(props) {
     return (
         <div>
             <h1>Home Page</h1>
-             <div>{user.first_name}</div>
+             <div>{user.firstName}</div>
              <button onClick={() => setRoute("login")}>Login</button>
              <button onClick={() => setRoute("signup")}>Sign up</button>
              <button onClick={() => setRoute("accounts")}>Accounts</button>
