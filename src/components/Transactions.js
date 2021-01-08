@@ -1,9 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 
 function Transactions(props) {
-    const { user, setRoute } = props;
-    
-    //const [ transactions , setTransactions ] = useState(null);
+    const { user, transactions, setTransactions, setRoute } = props;
 
     const getTransactions = () => fetch(
         "http://localhost:3001/transactions",
@@ -27,7 +25,10 @@ function Transactions(props) {
                 (transactions !== null) ? transactions.map(transaction => {
                     return (
                         <div key={transaction.transaction_id}>
-                            <div>{transaction.transaction_id, transaction.amount, transaction.date, transaction.memo_note}</div>
+                            <div>{transaction.transaction_id}</div>
+                            <div>{transaction.amount}</div>
+                            <div>{transaction.date}</div>
+                            <div>{transaction.memo_note}</div>
                         </div>
                     )
                 }) : ""

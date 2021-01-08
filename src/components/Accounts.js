@@ -20,17 +20,22 @@ function Accounts(props) {
     return (
         <div>
             <div>{user.first_name}</div>
-            <button onClick={ () => setRoute("home")}>Home</button>
-            <button onClick={ () => getAccounts()}>Get Accounts</button>
+            <div>
             {
                 (accounts !== null) ? accounts.map(account => {
+                    console.log(account);
                     return (
                         <div key={account.account_id}>
-                            <div>{account.account_id, account.account_name, account.account_balance }</div>
+                            <div>{account.account_id}</div>
+                            <div>{account.account_name}</div>
+                            <div>{account.account_balance}</div>
                         </div>
                     )
                 }) : ""
             }
+            </div>
+            <button onClick={ () => setRoute("home")}>Home</button>
+            <button onClick={ () => getAccounts()}>Get Accounts</button>
         </div>
     );
 }

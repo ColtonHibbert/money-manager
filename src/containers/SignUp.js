@@ -50,14 +50,29 @@ function SignUp(props) {
     }
 
     return (
-        <div>
-            <div >
+        <div className="flex flex-column">
+            <div className="flex flex-row">
+                <label>First Name: </label>
                 <input type="text" onChange={(event) => setSignUpFirstName(event.target.value)} />
-                
             </div>
-            <input type="text" onChange={(event) => setSignUpLastName(event.target.value)} />
-            <input type="text" onChange={(event) => setPassword(event.target.value)} />
+            <div className="flex flex-row">
+                <label>Last Name: </label>
+                <input type="text" onChange={(event) => setSignUpLastName(event.target.value)} />
+            </div>
+            <div className="flex flex-row">
+                <label>Email: </label>
+                <input type="text" onChange={(event) => setSignUpEmail(event.target.value)} />
+            </div>
+            <div className="flex flex-row">
+                <label>Password: </label>
+                <input type="text" onChange={(event) => setSignUpPassword(event.target.value)} />
+            </div>
+            <div className="flex flex-row">
+                <label>Confirm Password: </label>
+                <input type="text" onChange={(event) => setSignUpConfirmPassword(event.target.value)} />
+            </div>
             <button onClick={() => sendSignUp()}>Sign Up</button>
+            <button onClick={() => setRoute("login")}>Go to Login</button>
         </div>
     )
 }
