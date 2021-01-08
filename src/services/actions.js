@@ -8,7 +8,8 @@ import {
     SET_SIGNUP_EMAIL,
     SET_SIGNUP_PASSWORD,
     SET_SIGNUP_CONFIRM_PASSWORD, 
-    SET_ACCOUNTS
+    SET_ACCOUNTS,
+    SET_TRANSACTIONS
 } from "./constants.js";
 
 
@@ -79,6 +80,13 @@ export const setAccounts = (payload) => {
     return {
         type: SET_ACCOUNTS,
         setAccountsPayload: payload
+    }
+}
+
+export const setTransactions = (payload) => {
+    return {
+        type: SET_TRANSACTIONS,
+        setTransactionsPayload: payload
     }
 }
 

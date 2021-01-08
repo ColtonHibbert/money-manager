@@ -8,7 +8,8 @@ import {
     SET_SIGNUP_EMAIL,
     SET_SIGNUP_PASSWORD,
     SET_SIGNUP_CONFIRM_PASSWORD,
-    SET_ACCOUNTS
+    SET_ACCOUNTS,
+    SET_TRANSACTIONS
 } from "./constants.js";
 
 const initialState = {
@@ -112,6 +113,12 @@ export const reducer = (state=initialState, action={}) => {
         return {
             ...state,
             accounts: action.setAccountsPayload
+        }
+    }
+    if(action.type === SET_TRANSACTIONS ) {
+        return {
+            ...state,
+            transactions: action.setTransactionsPayload
         }
     }
     return state;
