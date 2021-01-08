@@ -28,7 +28,7 @@ function Accounts(props) {
                         <div key={account.account_id}>
                             <div>{account.account_id}</div>
                             <div>{account.account_name}</div>
-                            <div>{account.account_balance}</div>
+                            <div>{account.current_balance}</div>
                         </div>
                     )
                 }) : ""
