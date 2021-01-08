@@ -2,7 +2,13 @@ import {
     SET_ROUTE,
     SET_USER, 
     SET_LOGIN_EMAIL,
-    SET_LOGIN_PASSWORD
+    SET_LOGIN_PASSWORD,
+    SET_SIGNUP_FIRST_NAME,
+    SET_SIGNUP_LAST_NAME,
+    SET_SIGNUP_EMAIL,
+    SET_SIGNUP_PASSWORD,
+    SET_SIGNUP_CONFIRM_PASSWORD, 
+    SET_ACCOUNTS
 } from "./constants.js";
 
 
@@ -34,5 +40,45 @@ export const setLoginPassword = (payload) => {
     }
 }
 
+export const setSignUpFirstName = (payload) => {
+    return {
+        type: SET_SIGNUP_FIRST_NAME,
+        setSignUpFirstNamePayload: payload
+    }
+}
 
+export const setSignUpLastName = (payload) => {
+    return {
+        type: SET_SIGNUP_LAST_NAME,
+        setSignUpLastNamePayload: payload
+    }
+}
+
+export const setSignUpEmail = (payload) => {
+    return {
+        type: SET_SIGNUP_EMAIL,
+        setSignUpEmailPayload: payload
+    }
+}
+
+export const setSignUpPassword = (payload) => {
+    return {
+        type: SET_SIGNUP_PASSWORD,
+        setSignUpPasswordPayload: payload
+    }
+}
+
+export const setSignUpConfirmPassword = (payload) => {
+    return {
+        type: SET_SIGNUP_CONFIRM_PASSWORD,
+        setSignUpConfirmPasswordPayload: payload
+    }
+}
+
+export const setAccounts = (payload) => {
+    return {
+        type: SET_ACCOUNTS,
+        setAccountsPayload: payload
+    }
+}
 

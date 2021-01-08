@@ -1,15 +1,14 @@
 import React from "react";
 import "redux";
-//import SignUp from "../components/SignUp.js";
-import Login from "../components/Login.js";
+import SignUp from "./SignUp.js";
+import Login from "./Login.js";
 import Home from "../components/Home.js";
-//import Accounts from "../components/Accounts.js";
+import Accounts from "../components/Accounts.js";
 //import Transactions from "../components/Transactions.js";
 import {
   setRoute,
   setUser,
-  setLoginEmail,
-  setLoginPassword
+  setAccounts
 } from "../services/actions.js";
 import { connect } from "react-redux";
 
@@ -28,12 +27,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setRoute: (value) => dispatch(setRoute(value)),
     setUser: (value) => dispatch(setUser(value)),
-    setLoginEmail: (value) => dispatch(setLoginEmail(value)),
-    setLoginPassword: (value) => dispatch(setLoginPassword(value))
+    setAccounts: (value) => dispatch(setAccounts(value))
   }
 }
 
 function App(props) {
+  const { route } = props;
 
   return (
     <div className="App">
@@ -48,14 +47,14 @@ function App(props) {
         : ""
       }
       {
-        //(route === "signup") ? 
-        //<SignUp  />
-        //: ""
+        (route === "signup") ? 
+        <SignUp  />
+        : ""
       }
       {
-        //(route === "accounts") ?
-        //<Accounts  />
-        //: ""
+        (route === "accounts") ?
+        <Accounts  />
+        : ""
       }
       {
         //(route === "transactions") ?
