@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function App(props) {
-  const { route } = props;
+  const { route, setRoute } = props;
 
   return (
     <div className="App">
@@ -62,6 +62,7 @@ function App(props) {
         <Transactions {...props} />
         : ""
       }
+      <button onClick={() => setRoute("home")}>Home Page</button>
     </div>
   );
 }

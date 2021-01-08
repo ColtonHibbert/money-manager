@@ -15,7 +15,17 @@ import {
 const initialState = {
     route: "login",
     user: {
-        first_name: ""
+        userId: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        address: "",
+        phone: "",
+        about: "",
+        joined: "",
+        householdMemberId: "",
+        householdId: "",
+        roleId: ""
     },
     login: {
        loginEmail: "",
