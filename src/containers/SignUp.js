@@ -6,12 +6,16 @@ import {
     setSignUpLastName,
     setSignUpEmail,
     setSignUpPassword,
-    setSignUpConfirmPassword
+    setSignUpConfirmPassword,
+    setSignUpError,
+    setSignUpErrorMessage,
+    displaySignUpError
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
     return {
-        signup: state.signup
+        signUp: state.signUp,
+        errors: state.errors
     }
 }
 
@@ -21,20 +25,27 @@ const mapDispatchToProps = (dispatch) => {
         setSignUpLastName: (value) => dispatch(setSignUpLastName(value)),
         setSignUpEmail: (value) => dispatch(setSignUpEmail(value)),
         setSignUpPassword: (value) => dispatch(setSignUpPassword(value)),
-        setSignUpConfirmPassword: (value) => dispatch(setSignUpConfirmPassword(value))
+        setSignUpConfirmPassword: (value) => dispatch(setSignUpConfirmPassword(value)),
+        setSignUpError: (value) => dispatch(setSignUpError(value)),
+        setSignUpErrorMessage: (value) => dispatch(setSignUpErrorMessage(value)),
+        displaySignUpError: (value) => dispatch(displaySignUpError(value))
     }
 }
 
 function SignUp(props) {
     const { 
+        signUp,
+        errors,
         setUser, 
         setRoute, 
-        signup,
         setSignUpFirstName,
         setSignUpLastName,
         setSignUpEmail,
         setSignUpPassword,
-        setSignUpConfirmPassword
+        setSignUpConfirmPassword,
+        setSignUpError,
+        setSignUpErrorMessage,
+        displaySignUpError
     } = props;
 
     const sendSignUp = () => { 
@@ -44,40 +55,42 @@ function SignUp(props) {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
-                    email: signup.signupEmail,
-                    password: signup.signupPassword
+                    firstName: signUp.signUpFirstName,
+                    lastName: signUp.signUpLastName,
+                    email: signUp.signUpEmail,
+                    password: signUp.signUpPassword
                 })
             }
         )
         .then(res => res.json())
         .then(data => {
-            if(data.error === "MISSING_EMAIL_OR_PASSWORD") {
-                //setSignUpError(true);
-                //displaySignUpError(true);
-                //setSignUpErrorMessage("Missing Email or Password.")
+            if(data.error === "MISSING_EMAIL_OR_PASSWORD_OR_NAME") {
+                setSignUpError(true);
+                setSignUpErrorMessage("Missing Email or Password or Name.");
+                displaySignUpError(true);
             }
             if(data.error === "INVALID_PASSWORD") {
-                //setSignUpError(true);
-                //displaySignUpError(true);
-                //setSignUpErrorMessage("Invalid Password. Your Email must be between 8 and 72 characters.")
+                setSignUpError(true);
+                setSignUpErrorMessage("Invalid Password. Your Email must be between 8 and 72 characters.");
+                displaySignUpError(true);
             }
             if(data.error === "EMAIL_TAKEN") {
-                //setSignUpError(true);
-                //displaySignUpError(true);
-                //setSignUpErrorMessage("Email is already in use. Please submit another email address.")
+                setSignUpError(true);
+                setSignUpErrorMessage("Email is already in use. Please submit another email address.");
+                displaySignUpError(true);
             }
             if(!data.error) {
-                //setSignUpError(false);
-                //displaySignUpError(false);
-                //setSignUpErrorMessage("");
+                setSignUpError(false);
+                setSignUpErrorMessage("");
+                displaySignUpError(false);
                 setUser(data);
                 setRoute("home");
             } 
         })
         .catch(err => {
-            //setSignUpError(true);
-            //displaySignUpError(true);
-            //setSignUpErrorMessage("Error Signing Up, please try again.")
+            setSignUpError(true);
+            setSignUpErrorMessage("Error Signing Up, please try again.");
+            displaySignUpError(true);
         })
 
     }
@@ -104,6 +117,13 @@ function SignUp(props) {
                 <label>Confirm Password: </label>
                 <input type="text" onChange={(event) => setSignUpConfirmPassword(event.target.value)} />
             </div>
+            {
+                (errors.signUpError) ? 
+                <div>
+                    {errors.signUpErrorMessage}
+                </div>
+                : ""
+            }
             <button onClick={() => sendSignUp()}>Sign Up</button>
             <button onClick={() => setRoute("login")}>Go to Login</button>
         </div>

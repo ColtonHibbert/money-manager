@@ -34,12 +34,12 @@ const initialState = {
        loginEmail: "",
        loginPassword: "" 
     },
-    signup: {
-        signupFirstName: "",
-        signupLastName: "",
-        signupEmail: "",
-        signupPassword: "",
-        signupConfirmPassword: ""
+    signUp: {
+        signUpFirstName: "",
+        signUpLastName: "",
+        signUpEmail: "",
+        signUpPassword: "",
+        signUpConfirmPassword: ""
     },
     transactions: [
         {
@@ -103,45 +103,72 @@ export const reducer = (state=initialState, action={}) => {
     if(action.type === SET_SIGNUP_FIRST_NAME) {
         return {
             ...state,
-            signup: {
-                ...state.signup,
-                signupFirstName: action.setSignUpFirstNamePayload
+            signUp: {
+                ...state.signUp,
+                signUpFirstName: action.setSignUpFirstNamePayload
             }
         }
     }
     if(action.type === SET_SIGNUP_LAST_NAME ) {
         return {
             ...state,
-            signup: {
-                ...state.signup,
-                signupLastName: action.setSignUpLastNamePayload
+            signUp: {
+                ...state.signUp,
+                signUpLastName: action.setSignUpLastNamePayload
             }
         }
     }
     if(action.type === SET_SIGNUP_EMAIL) {
         return {
             ...state,
-            signup: {
-                ...state.signup,
-                signupEmail: action.setSignUpEmailPayload
+            signUp: {
+                ...state.signUp,
+                signUpEmail: action.setSignUpEmailPayload
             }
         }
     }
     if(action.type === SET_SIGNUP_PASSWORD) {
         return {
             ...state,
-            signup: {
-                ...state.signup,
-                signupPassword: action.setSignUpPasswordPayload
+            signUp: {
+                ...state.signUp,
+                signUpPassword: action.setSignUpPasswordPayload
             }
         }
     }
     if(action.type === SET_SIGNUP_CONFIRM_PASSWORD ) {
         return {
             ...state,
-            signup: {
-                ...state.signup,
-                signupConfirmPassword: action.setSignUpConfirmPasswordPayload
+            signUp: {
+                ...state.signUp,
+                signUpConfirmPassword: action.setSignUpConfirmPasswordPayload
+            }
+        }
+    }
+    if(action.type === SET_SIGNUP_ERROR ) {
+        return {
+            ...state,
+            errors: {
+                ...state.errors,
+                signUpError: action.setSignUpErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_SIGNUP_ERROR_MESSAGE ) {
+        return {
+            ...state,
+            errors: {
+                ...state.errors,
+                signUpErrorMessage: action.setSignUpErrorMessagePayload
+            }
+        }
+    }
+    if(action.type === DISPLAY_SIGNUP_ERROR ) {
+        return {
+            ...state,
+            errors: {
+                ...state.errors,
+                displaySignUpError: action.displaySignUpErrorPayload
             }
         }
     }
@@ -155,33 +182,6 @@ export const reducer = (state=initialState, action={}) => {
         return {
             ...state,
             transactions: action.setTransactionsPayload
-        }
-    }
-    if(action.type === SET_SIGNUP_ERROR ) {
-        return {
-            ...state,
-            errors: {
-                ...state.errors,
-                setSignUpError: action.setSignUpErrorPayload
-            }
-        }
-    }
-    if(action.type === SET_SIGNUP_ERROR_MESSAGE ) {
-        return {
-            ...state,
-            errors: {
-                ...state.errors,
-                setSignUpErrorMessage: action.setSignUpErrorMessagePayload
-            }
-        }
-    }
-    if(action.type === DISPLAY_SIGNUP_ERROR ) {
-        return {
-            ...state,
-            errors: {
-                ...state.errors,
-                displaySignUpError: action.displaySignUpErrorPayload
-            }
         }
     }
     return state;
