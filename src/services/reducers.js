@@ -9,7 +9,10 @@ import {
     SET_SIGNUP_PASSWORD,
     SET_SIGNUP_CONFIRM_PASSWORD,
     SET_ACCOUNTS,
-    SET_TRANSACTIONS
+    SET_TRANSACTIONS,
+    SET_SIGNUP_ERROR,
+    SET_SIGNUP_ERROR_MESSAGE,
+    DISPLAY_SIGNUP_ERROR
 } from "./constants.js";
 
 const initialState = {
@@ -57,7 +60,12 @@ const initialState = {
             userId: "",
             accountTypeId: ""
         }
-    ]
+    ],
+    errors: {
+        signUpError: false,
+        signUpErrorMessage: "",
+        displaySignUpError: false
+    }
 }
 
 export const reducer = (state=initialState, action={}) => {
@@ -147,6 +155,33 @@ export const reducer = (state=initialState, action={}) => {
         return {
             ...state,
             transactions: action.setTransactionsPayload
+        }
+    }
+    if(action.type === SET_SIGNUP_ERROR ) {
+        return {
+            ...state,
+            errors: {
+                ...state.errors,
+                setSignUpError: action.setSignUpErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_SIGNUP_ERROR_MESSAGE ) {
+        return {
+            ...state,
+            errors: {
+                ...state.errors,
+                setSignUpErrorMessage: action.setSignUpErrorMessagePayload
+            }
+        }
+    }
+    if(action.type === DISPLAY_SIGNUP_ERROR ) {
+        return {
+            ...state,
+            errors: {
+                ...state.errors,
+                displaySignUpError: action.displaySignUpErrorPayload
+            }
         }
     }
     return state;
