@@ -64,6 +64,7 @@ function SignUp(props) {
         )
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             if(data.error === "MISSING_EMAIL_OR_PASSWORD_OR_NAME") {
                 setSignUpError(true);
                 setSignUpErrorMessage("Missing Email or Password or Name.");
@@ -75,6 +76,7 @@ function SignUp(props) {
                 displaySignUpError(true);
             }
             if(data.error === "EMAIL_TAKEN") {
+                console.log(data.error)
                 setSignUpError(true);
                 setSignUpErrorMessage("Email is already in use. Please submit another email address.");
                 displaySignUpError(true);
