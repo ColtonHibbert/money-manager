@@ -9,7 +9,10 @@ import {
     SET_SIGNUP_PASSWORD,
     SET_SIGNUP_CONFIRM_PASSWORD, 
     SET_ACCOUNTS,
-    SET_TRANSACTIONS
+    SET_TRANSACTIONS,
+    SET_SIGNUP_ERROR,
+    SET_SIGNUP_ERROR_MESSAGE,
+    DISPLAY_SIGNUP_ERROR
 } from "./constants.js";
 
 
@@ -87,6 +90,27 @@ export const setTransactions = (payload) => {
     return {
         type: SET_TRANSACTIONS,
         setTransactionsPayload: payload
+    }
+}
+
+export const setSignUpError = (payload) => {
+    return {
+        type: SET_SIGNUP_ERROR,
+        setSignUpErrorPayload: payload
+    }
+}
+
+export const setSignUpErrorMessage = (payload) => {
+    return {
+        type: SET_SIGNUP_ERROR_MESSAGE,
+        setSignUpErrorMessagePayload: payload
+    }
+}
+
+export const displaySignUpError = (payload) => {
+    return {
+        type: DISPLAY_SIGNUP_ERROR,
+        displaySignUpErrorPayload: payload
     }
 }
 

@@ -51,13 +51,33 @@ function SignUp(props) {
         )
         .then(res => res.json())
         .then(data => {
-            //check email, check valid data
-            setUser(data);
-            setRoute("home");
+            if(data.error === "MISSING_EMAIL_OR_PASSWORD") {
+                //setSignUpError(true);
+                //displaySignUpError(true);
+                //setSignUpErrorMessage("Missing Email or Password.")
+            }
+            if(data.error === "INVALID_PASSWORD") {
+                //setSignUpError(true);
+                //displaySignUpError(true);
+                //setSignUpErrorMessage("Invalid Password. Your Email must be between 8 and 72 characters.")
+            }
+            if(data.error === "EMAIL_TAKEN") {
+                //setSignUpError(true);
+                //displaySignUpError(true);
+                //setSignUpErrorMessage("Email is already in use. Please submit another email address.")
+            }
+            if(!data.error) {
+                //setSignUpError(false);
+                //displaySignUpError(false);
+                //setSignUpErrorMessage("");
+                setUser(data);
+                setRoute("home");
+            } 
         })
         .catch(err => {
-            //updateSignUpError();
-            //displaySignUpError();
+            //setSignUpError(true);
+            //displaySignUpError(true);
+            //setSignUpErrorMessage("Error Signing Up, please try again.")
         })
 
     }
