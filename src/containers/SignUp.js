@@ -26,7 +26,16 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function SignUp(props) {
-    const { setUser, setRoute, signup } = props;
+    const { 
+        setUser, 
+        setRoute, 
+        signup,
+        setSignUpFirstName,
+        setSignUpLastName,
+        setSignUpEmail,
+        setSignUpPassword,
+        setSignUpConfirmPassword
+    } = props;
 
     const sendSignUp = () => { 
         fetch(
@@ -35,17 +44,21 @@ function SignUp(props) {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
-                    email: signup.email,
-                    password: signup.password
+                    email: signup.signupEmail,
+                    password: signup.signupPassword
                 })
             }
         )
         .then(res => res.json())
         .then(data => {
+            //check email, check valid data
             setUser(data);
             setRoute("home");
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            //updateSignUpError();
+            //displaySignUpError();
+        })
 
     }
 

@@ -25,10 +25,10 @@ function Accounts(props) {
                 (accounts !== null) ? accounts.map(account => {
                     console.log(account);
                     return (
-                        <div key={account.account_id}>
-                            <div>{account.account_id}</div>
-                            <div>{account.account_name}</div>
-                            <div>{account.current_balance}</div>
+                        <div key={account.accountId} >
+                            <div>{account.accountId}</div>
+                            <div>{account.accountName}</div>
+                            <div>{account.currentBalance}</div>
                         </div>
                     )
                 }) : ""

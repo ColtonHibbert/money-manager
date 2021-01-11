@@ -24,11 +24,11 @@ function Transactions(props) {
             {
                 (transactions !== null) ? transactions.map(transaction => {
                     return (
-                        <div key={transaction.transaction_id}>
-                            <div>{transaction.transaction_id}</div>
+                        <div key={transaction.transactionId}>
+                            <div>{transaction.transactionId}</div>
                             <div>{transaction.amount}</div>
                             <div>{transaction.date}</div>
-                            <div>{transaction.memo_note}</div>
+                            <div>{transaction.memoNote}</div>
                         </div>
                     )
                 }) : ""
