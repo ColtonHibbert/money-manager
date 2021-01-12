@@ -12,11 +12,55 @@ import {
     SET_TRANSACTIONS,
     SET_SIGNUP_ERROR,
     SET_SIGNUP_ERROR_MESSAGE,
-    DISPLAY_SIGNUP_ERROR
+    DISPLAY_SIGNUP_ERROR,
+    SET_LOGIN_ERROR,
+    SET_LOGIN_ERROR_MESSAGE,
+    DISPLAY_LOGIN_ERROR
 } from "./constants.js";
 
 const initialState = {
+    accounts: [
+        {
+            accountId: "",
+            accountName: "",
+            accountTypeId: "",
+            currentBalance: "",
+            lowAlertBalance: "",
+            userId: ""
+        }
+    ],
+    login: {
+        loginEmail: "",
+        loginPassword: "" 
+     },
+    loginErrors: {
+        loginError: false,
+        loginErrorMessage: "",
+        displayLoginError: false
+    },
     route: "login",
+    signUp: {
+        signUpFirstName: "",
+        signUpLastName: "",
+        signUpEmail: "",
+        signUpPassword: "",
+        signUpConfirmPassword: ""
+    },
+    signUpErrors: {
+        signUpError: false,
+        signUpErrorMessage: "",
+        displaySignUpError: false,
+    },
+    transactions: [
+        {
+            transactionId: "",
+            amount: "",
+            date: "",
+            memoNote: "",
+            userId: "",
+            accountTypeId: ""
+        }
+    ],
     user: {
         userId: "",
         firstName: "",
@@ -29,43 +73,8 @@ const initialState = {
         householdMemberId: "",
         householdId: "",
         roleId: ""
-    },
-    login: {
-       loginEmail: "",
-       loginPassword: "" 
-    },
-    signUp: {
-        signUpFirstName: "",
-        signUpLastName: "",
-        signUpEmail: "",
-        signUpPassword: "",
-        signUpConfirmPassword: ""
-    },
-    transactions: [
-        {
-            transactionId: "",
-            amount: "",
-            date: "",
-            memoNote: "",
-            userId: "",
-            accountTypeId: ""
-        }
-    ],
-    accounts: [
-        {
-            accountId: "",
-            accountName: "",
-            currentBalance: "",
-            lowAlertBalance: "",
-            userId: "",
-            accountTypeId: ""
-        }
-    ],
-    errors: {
-        signUpError: false,
-        signUpErrorMessage: "",
-        displaySignUpError: false
     }
+    
 }
 
 export const reducer = (state=initialState, action={}) => {
@@ -148,8 +157,8 @@ export const reducer = (state=initialState, action={}) => {
     if(action.type === SET_SIGNUP_ERROR ) {
         return {
             ...state,
-            errors: {
-                ...state.errors,
+            signUpErrors: {
+                ...state.signUpErrors,
                 signUpError: action.setSignUpErrorPayload
             }
         }
@@ -157,8 +166,8 @@ export const reducer = (state=initialState, action={}) => {
     if(action.type === SET_SIGNUP_ERROR_MESSAGE ) {
         return {
             ...state,
-            errors: {
-                ...state.errors,
+            signUpErrors: {
+                ...state.signUpErrors,
                 signUpErrorMessage: action.setSignUpErrorMessagePayload
             }
         }
@@ -166,9 +175,36 @@ export const reducer = (state=initialState, action={}) => {
     if(action.type === DISPLAY_SIGNUP_ERROR ) {
         return {
             ...state,
-            errors: {
-                ...state.errors,
+            signUpErrors: {
+                ...state.signUpErrors,
                 displaySignUpError: action.displaySignUpErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_LOGIN_ERROR) {
+        return {
+            ...state,
+            loginErrors: {
+                ...state.loginErrors,
+                loginError: action.setLoginErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_LOGIN_ERROR_MESSAGE) {
+        return {
+            ...state,
+            loginErrors: {
+                ...state.loginErrors,
+                loginErrorMessage: action.setLoginErrorMessagePayload
+            }
+        }
+    }
+    if(action.type === DISPLAY_LOGIN_ERROR) {
+        return {
+            ...state,
+            loginErrors: {
+                ...state.loginErrors,
+                displayLoginError: action.displayLoginErrorPayload
             }
         }
     }
@@ -184,5 +220,6 @@ export const reducer = (state=initialState, action={}) => {
             transactions: action.setTransactionsPayload
         }
     }
+    
     return state;
 }

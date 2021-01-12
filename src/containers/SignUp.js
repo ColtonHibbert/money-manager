@@ -15,7 +15,7 @@ import {
 const mapStateToProps = (state) => {
     return {
         signUp: state.signUp,
-        errors: state.errors
+        signUpErrors: state.signUpErrors
     }
 }
 
@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
 function SignUp(props) {
     const { 
         signUp,
-        errors,
+        signUpErrors,
         setUser, 
         setRoute, 
         setSignUpFirstName,
@@ -65,20 +65,9 @@ function SignUp(props) {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            if(data.error === "MISSING_EMAIL_OR_PASSWORD_OR_NAME") {
+            if(data.error) {
                 setSignUpError(true);
-                setSignUpErrorMessage("Missing Email or Password or Name.");
-                displaySignUpError(true);
-            }
-            if(data.error === "INVALID_PASSWORD") {
-                setSignUpError(true);
-                setSignUpErrorMessage("Invalid Password. Your Email must be between 8 and 72 characters.");
-                displaySignUpError(true);
-            }
-            if(data.error === "EMAIL_TAKEN") {
-                console.log(data.error)
-                setSignUpError(true);
-                setSignUpErrorMessage("Email is already in use. Please submit another email address.");
+                setSignUpErrorMessage(data.error);
                 displaySignUpError(true);
             }
             if(!data.error) {
@@ -120,9 +109,9 @@ function SignUp(props) {
                 <input type="text" onChange={(event) => setSignUpConfirmPassword(event.target.value)} />
             </div>
             {
-                (errors.signUpError) ? 
+                (signUpErrors.signUpError) ? 
                 <div>
-                    {errors.signUpErrorMessage}
+                    {signUpErrors.signUpErrorMessage}
                 </div>
                 : ""
             }
