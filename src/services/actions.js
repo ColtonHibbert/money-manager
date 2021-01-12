@@ -12,7 +12,10 @@ import {
     SET_TRANSACTIONS,
     SET_SIGNUP_ERROR,
     SET_SIGNUP_ERROR_MESSAGE,
-    DISPLAY_SIGNUP_ERROR
+    DISPLAY_SIGNUP_ERROR, 
+    SET_LOGIN_ERROR, 
+    SET_LOGIN_ERROR_MESSAGE, 
+    DISPLAY_LOGIN_ERROR
 } from "./constants.js";
 
 
@@ -114,3 +117,23 @@ export const displaySignUpError = (payload) => {
     }
 }
 
+export const setLoginError = (payload) => {
+    return {
+        type: SET_LOGIN_ERROR,
+        setLoginErrorPayload: payload
+    }
+}
+
+export const setLoginErrorMessage = (payload) => {
+    return {
+        type: SET_LOGIN_ERROR_MESSAGE,
+        setLoginErrorMessagePayload: payload
+    }
+}
+
+export const displayLoginError = (payload) => {
+    return {
+        type: DISPLAY_LOGIN_ERROR,
+        displayLoginErrorPayload: payload
+    }
+}
