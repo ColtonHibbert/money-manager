@@ -59,7 +59,8 @@ function SignUp(props) {
                     lastName: signUp.signUpLastName,
                     email: signUp.signUpEmail,
                     password: signUp.signUpPassword
-                })
+                }),
+                credentials: "include"
             }
         )
         .then(res => res.json())
