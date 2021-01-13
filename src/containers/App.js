@@ -35,9 +35,45 @@ const mapDispatchToProps = (dispatch) => {
 function App(props) {
   const { route, setRoute, user } = props;
 
+  const loadUser = () => {
+    const user = fetch()
+  }
+
+  //load user get request, then update user and also csrf
+  const loadCsrf = () => {
+    const csrf = 
+      fetch(
+        "http://localhost:3001/loaduser",
+        {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+            credentials : "include"
+        }
+    )
+    .then(res => res.json())
+    .then(data => {
+        if(data.error) {
+            //setLoginError(true);
+            //setLoginErrorMessage(data.error);
+            //displayLoginError(true);
+        }
+        if(!data.error) {
+            //setLoginError(false);
+            //setLoginErrorMessage("");
+            //displayLoginError(false)
+            //setUser(data);
+            //setRoute("home");
+        }
+        
+    })
+    .catch(err => console.log(err)) 
+  }
+ 
   useEffect(() => {
 
-  }, [user.userId]); 
+  },[]); //run once, get user, set csrf
+
+
 
   return (
     <div className="App">
