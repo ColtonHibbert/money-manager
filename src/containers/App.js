@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "redux";
 import SignUp from "./SignUp.js";
 import Login from "./Login.js";
@@ -33,7 +33,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function App(props) {
-  const { route, setRoute } = props;
+  const { route, setRoute, user } = props;
+
+  useEffect(() => {
+
+  }, [user.userId]); 
 
   return (
     <div className="App">
