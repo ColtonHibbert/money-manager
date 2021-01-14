@@ -6,7 +6,7 @@ const Logout = (props) => {
 
     const logoutUser = () => {
         fetch(
-        "http://localhost:3000/logout", 
+        "http://localhost:3001/logout", 
         {
             method: "POST",
             headers: {
@@ -27,7 +27,9 @@ const Logout = (props) => {
 
     return (
         <div>
-            <button onClick={() => logoutUser()}></button>
+            <button onClick={() => logoutUser()}>Submit Logout</button>
         </div>
     )
 }
+
+export default Logout;
