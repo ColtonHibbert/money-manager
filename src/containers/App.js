@@ -4,6 +4,7 @@ import "tachyons";
 import { connect } from "react-redux";
 import SignUp from "./SignUp.js";
 import Login from "./Login.js";
+import Logout from '../components/Logout.js';
 import Home from "../components/Home.js";
 import Accounts from "../components/Accounts.js";
 import Transactions from "../components/Transactions.js";
@@ -12,7 +13,8 @@ import {
   setUser,
   setAccounts,
   setTransactions,
-  setCSRF
+  setCSRF,
+  resetState
 } from "../services/actions.js";
 
 
@@ -31,12 +33,13 @@ const mapDispatchToProps = (dispatch) => {
     setUser: (value) => dispatch(setUser(value)),
     setAccounts: (value) => dispatch(setAccounts(value)),
     setTransactions: (value) => dispatch(setTransactions(value)),
-    setCSRF: (value) => dispatch(setCSRF(value))
+    setCSRF: (value) => dispatch(setCSRF(value)),
+    resetState: () => dispatch(resetState())
   }
 }
 
 function App(props) {
-  const { route, setRoute, setCSRF, user, setUser } = props;
+  const { route, setRoute, setCSRF, user, setUser, resetState } = props;
 
   const loadUser = () => {
       return fetch(
@@ -95,13 +98,18 @@ function App(props) {
   return (
     <div className="App">
       {
-        (props.route === "home") ? 
+        (route === "home") ? 
         <Home {...props} />
         : ""
       }
       {
-        (props.route === "login") ? 
+        (route === "login") ? 
         <Login {...props} />
+        : ""
+      }
+      {
+        (route === "logout") ?
+        <Logout {...props} />
         : ""
       }
       {

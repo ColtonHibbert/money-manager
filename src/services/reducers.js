@@ -16,7 +16,8 @@ import {
     SET_LOGIN_ERROR,
     SET_LOGIN_ERROR_MESSAGE,
     DISPLAY_LOGIN_ERROR, 
-    SET_CSRF
+    SET_CSRF,
+    RESET_STATE
 } from "./constants.js";
 
 const initialState = {
@@ -230,6 +231,9 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             transactions: action.setTransactionsPayload
         }
+    }
+    if(action.type === RESET_STATE) {
+        return initialState;
     }
     
     return state;
