@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
 import "redux";
+import "tachyons";
+import { connect } from "react-redux";
 import SignUp from "./SignUp.js";
 import Login from "./Login.js";
 import Home from "../components/Home.js";
 import Accounts from "../components/Accounts.js";
-import "tachyons";
 import Transactions from "../components/Transactions.js";
 import {
   setRoute,
   setUser,
   setAccounts,
-  setTransactions
+  setTransactions,
+  setCSRF
 } from "../services/actions.js";
-import { connect } from "react-redux";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -28,20 +30,15 @@ const mapDispatchToProps = (dispatch) => {
     setRoute: (value) => dispatch(setRoute(value)),
     setUser: (value) => dispatch(setUser(value)),
     setAccounts: (value) => dispatch(setAccounts(value)),
-    setTransactions: (value) => dispatch(setTransactions(value))
+    setTransactions: (value) => dispatch(setTransactions(value)),
+    setCSRF: (value) => dispatch(setCSRF(value))
   }
 }
 
 function App(props) {
-  const { route, setRoute, user } = props;
+  const { route, setRoute, user, setCSRF } = props;
 
   const loadUser = () => {
-    const user = fetch()
-  }
-
-  //load user get request, then update user and also csrf
-  const loadCsrf = () => {
-    const csrf = 
       fetch(
         "http://localhost:3001/loaduser",
         {
@@ -53,25 +50,44 @@ function App(props) {
     .then(res => res.json())
     .then(data => {
         if(data.error) {
-            //setLoginError(true);
-            //setLoginErrorMessage(data.error);
-            //displayLoginError(true);
+            setRoute("login");
+            console.log(data.error);
         }
         if(!data.error) {
-            //setLoginError(false);
-            //setLoginErrorMessage("");
-            //displayLoginError(false)
-            //setUser(data);
-            //setRoute("home");
+            setUser(data);
+            setRoute("home");
         }
         
     })
-    .catch(err => console.log(err)) 
+    .catch(err => {
+      console.log("Error with retrieving user");
+    }) 
   }
+
+  const getCsrf = () => {
+    fetch(
+      "http://localhost:3000/", 
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json"},
+        credentials: "include"
+      })
+      .then(data => data.json())
+      .then(data => {
+        setCSRF(data);
+      })
+      .catch(err => {
+        console.log("Error retrieving CSRF Token.")
+        setRoute("login");
+      })
+  }
+  useEffect(() => {
+    getCsrf();
+  }, []);
  
   useEffect(() => {
-
-  },[]); //run once, get user, set csrf
+    loadUser();
+  },[]); 
 
 
 
