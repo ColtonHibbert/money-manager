@@ -11,6 +11,7 @@ function Home(props) {
              <button onClick={() => setRoute("signup")}>Sign up</button>
              <button onClick={() => setRoute("accounts")}>Accounts</button>
              <button onClick={() => setRoute("transactions")}>Transactions</button>
+             <button onClick={() => setRoute("logout")}>Logout</button>
         </div>
     )
 }
