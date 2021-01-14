@@ -36,14 +36,13 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function App(props) {
-  const { route, setRoute, user, setCSRF } = props;
+  const { route, setRoute, setCSRF, user, setUser } = props;
 
   const loadUser = () => {
-      fetch(
+      return fetch(
         "http://localhost:3001/loaduser",
         {
             method: "GET",
-            headers: { "Content-Type": "application/json" },
             credentials : "include"
         }
     )
@@ -51,13 +50,12 @@ function App(props) {
     .then(data => {
         if(data.error) {
             setRoute("login");
-            console.log(data.error);
+            
         }
         if(!data.error) {
             setUser(data);
             setRoute("home");
         }
-        
     })
     .catch(err => {
       console.log("Error with retrieving user");
@@ -65,31 +63,34 @@ function App(props) {
   }
 
   const getCsrf = () => {
-    fetch(
-      "http://localhost:3000/", 
+    return fetch(
+      "http://localhost:3001/csrf", 
       {
         method: "GET",
-        headers: { "Content-Type": "application/json"},
         credentials: "include"
       })
       .then(data => data.json())
       .then(data => {
-        setCSRF(data);
+        if(!data.error) {
+          setCSRF(data.csrf);
+        }
+        if(data.error) {
+          console.log(data.error);
+        }
       })
       .catch(err => {
         console.log("Error retrieving CSRF Token.")
         setRoute("login");
       })
   }
-  useEffect(() => {
-    getCsrf();
+
+  useEffect( () => {
+    async function loadInitialData() {
+      await getCsrf();
+      await loadUser();
+    }
+    loadInitialData();
   }, []);
- 
-  useEffect(() => {
-    loadUser();
-  },[]); 
-
-
 
   return (
     <div className="App">
