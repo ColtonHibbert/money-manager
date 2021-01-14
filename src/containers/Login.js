@@ -28,6 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 
 function Login(props) {
     const { 
+        user,
         setRoute, 
         setUser, 
         login,
@@ -44,7 +45,10 @@ function Login(props) {
             "http://localhost:3001/login",
             {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    "CSRF-Token": user.csrf
+                },
                 body: JSON.stringify({
                     email: login.loginEmail,
                     password: login.loginPassword

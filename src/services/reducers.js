@@ -15,7 +15,8 @@ import {
     DISPLAY_SIGNUP_ERROR,
     SET_LOGIN_ERROR,
     SET_LOGIN_ERROR_MESSAGE,
-    DISPLAY_LOGIN_ERROR
+    DISPLAY_LOGIN_ERROR, 
+    SET_CSRF
 } from "./constants.js";
 
 const initialState = {
@@ -72,7 +73,8 @@ const initialState = {
         joined: "",
         householdMemberId: "",
         householdId: "",
-        roleId: ""
+        roleId: "",
+        csrf: ""
     }
     
 }
@@ -205,6 +207,15 @@ export const reducer = (state=initialState, action={}) => {
             loginErrors: {
                 ...state.loginErrors,
                 displayLoginError: action.displayLoginErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_CSRF) {
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                csrf: action.setCSRFPayload
             }
         }
     }

@@ -15,7 +15,8 @@ import {
     DISPLAY_SIGNUP_ERROR, 
     SET_LOGIN_ERROR, 
     SET_LOGIN_ERROR_MESSAGE, 
-    DISPLAY_LOGIN_ERROR
+    DISPLAY_LOGIN_ERROR, 
+    SET_CSRF
 } from "./constants.js";
 
 
@@ -135,5 +136,12 @@ export const displayLoginError = (payload) => {
     return {
         type: DISPLAY_LOGIN_ERROR,
         displayLoginErrorPayload: payload
+    }
+}
+
+export const setCSRF = (payload) => {
+    return {
+        type: SET_CSRF,
+        setCSRFPayload: payload
     }
 }
