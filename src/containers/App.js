@@ -128,7 +128,6 @@ function App(props) {
         <Transactions {...props} />
         : ""
       }
-      <button onClick={() => setRoute("home")}>Home Page</button>
     </div>
   );
 }
