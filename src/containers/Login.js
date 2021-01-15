@@ -76,7 +76,7 @@ function Login(props) {
     }
 
     return(
-        <div>
+        <div className="vw-100 vh-100 money-background ">
             <input type="text" onChange={(event) => setLoginEmail(event.target.value)}/>
             <input type="text" onChange={(event) => setLoginPassword(event.target.value)}/>
             {
