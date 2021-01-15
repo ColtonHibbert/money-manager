@@ -17,7 +17,8 @@ import {
     SET_LOGIN_ERROR_MESSAGE, 
     DISPLAY_LOGIN_ERROR, 
     SET_CSRF,
-    RESET_STATE
+    RESET_STATE,
+    SET_PASSWORD_RESET_EMAIL
 } from "./constants.js";
 
 
@@ -150,5 +151,12 @@ export const setCSRF = (payload) => {
 export const resetState = () => {
     return {
         type: RESET_STATE
+    }
+}
+
+export const setPasswordResetEmail = (payload) => {
+    return {
+        type: SET_PASSWORD_RESET_EMAIL,
+        setPasswordResetEmailPayload: payload
     }
 }

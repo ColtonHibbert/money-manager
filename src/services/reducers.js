@@ -17,7 +17,8 @@ import {
     SET_LOGIN_ERROR_MESSAGE,
     DISPLAY_LOGIN_ERROR, 
     SET_CSRF,
-    RESET_STATE
+    RESET_STATE,
+    SET_PASSWORD_RESET_EMAIL
 } from "./constants.js";
 
 const initialState = {
@@ -39,6 +40,14 @@ const initialState = {
         loginError: false,
         loginErrorMessage: "",
         displayLoginError: false
+    },
+    passwordReset: {
+        passwordResetEmail: ""
+    },
+    passwordResetErrors: {
+        displayResetError: false,
+        resetError: false,
+        resetErrorMessage: "",
     },
     route: "login",
     signUp: {
@@ -235,6 +244,15 @@ export const reducer = (state=initialState, action={}) => {
     if(action.type === RESET_STATE) {
         return initialState;
     }
+    if(action.type === SET_PASSWORD_RESET_EMAIL) {
+        return {
+            ...state,
+            passwordReset: {
+                ...state.passwordReset,
+                passwordResetEmail: action.setPasswordResetEmailPayload
+            }
+        }
+    } 
     
     return state;
 }
