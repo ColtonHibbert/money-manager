@@ -5,6 +5,7 @@ import "../styles/styles.css";
 import { connect } from "react-redux";
 import SignUp from "./SignUp.js";
 import Login from "./Login.js";
+import PasswordReset from "./PasswordReset.js";
 import Logout from '../components/Logout.js';
 import Home from "../components/Home.js";
 import Accounts from "../components/Accounts.js";
@@ -99,11 +100,6 @@ function App(props) {
   return (
     <div className="App">
       {
-        (route === "home") ? 
-        <Home {...props} />
-        : ""
-      }
-      {
         (route === "login") ? 
         <Login {...props} />
         : ""
@@ -116,6 +112,16 @@ function App(props) {
       {
         (route === "signup") ? 
         <SignUp  {...props} />
+        : ""
+      }
+      {
+        (route === "passwordreset") ?
+        <PasswordReset {...props} />
+        : ""
+      }
+      {
+        (route === "home") ? 
+        <Home {...props} />
         : ""
       }
       {

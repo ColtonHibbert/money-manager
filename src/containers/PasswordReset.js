@@ -3,15 +3,24 @@ import { setPasswordResetEmail } from "../services/actions.js";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
-    passwordResetData: state.passwordResetData
+    return {
+        passwordReset: state.passwordReset,
+        passwordResetErrors: state.passwordResetErrors
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    setPasswordResetEmail: (value) => dispatch(setPasswordResetEmail(value))
+    return {
+        setPasswordResetEmail: (value) => dispatch(setPasswordResetEmail(value))
+    }
 }
 
 const PasswordReset = (props) => {
-    const {setRoute, passwordReset, setPasswordResetEmail } = props;
+    const {setRoute, passwordReset, passwordResetErrors, setPasswordResetEmail } = props;
+
+    const sendLink = () => {
+
+    }
 
     return(
         <div className="
@@ -31,12 +40,12 @@ const PasswordReset = (props) => {
                     <div>Money is a good servant but a terrible master. Get in control of your finances and sign up today!</div>
                 </div>
                 <div className="
-                w-100 flex flex-column pv3 bg-dark-color ph3
+                w-100 flex flex-column pv3 bg-dark-color ph3 justify-center
                 vh-75-l 
                 ">
                     <div className="
-                    white 
-                    mb2-l mt4-l
+                    white f3 lh-copy
+                    mb2-l mt4-l f2-l
                     ">Forgot Your Password?
                     </div>
                     <hr className="w-90"/>
@@ -51,13 +60,9 @@ const PasswordReset = (props) => {
                         </div>
                         : ""
                     }
-                    <div className="flex flex-row items-center">
-                        <div className="white pr2 mt2 mb1">Remember Sign Up?</div>
-                        <input type="checkbox" className="flex mt2"></input>
-                    </div>
-                    <div onClick={() => sendSignUp()} className="width-80-px ph1 pv2 mv3 bg-money-color br2 tc white pointer grow">Sign Up</div>   
+                    <div onClick={() => sendLink()} className="width-120-px ph1 pv2 mv3 bg-money-color br2 tc white pointer grow">Send Reset Link</div>   
                     <div className="flex flex-row mb3">
-                        <div className="white">Already have an account?</div>
+                        <div className="white">Remember your password?</div>
                         <div onClick={() => setRoute("login")} className="pl1 money-color pointer underline-hover">Log in</div>
                     </div>
                 </div>
