@@ -132,7 +132,7 @@ function Login(props) {
                         <input type="checkbox" className="flex mt2"></input>
                     </div>
                     <div onClick={() => sendLogin()} className="width-60-px ph1 pv2 mv3 bg-money-color br2 tc white pointer grow">Log in</div>   
-                    <div className="money-color mt3 mb1 pointer underline-hover">Reset Password?</div>
+                    <div onClick={() => setRoute("passwordreset")} className="money-color mt3 mb1 pointer underline-hover">Reset Password?</div>
                     <div className="flex flex-row mb3">
                         <div className="white">Don't have an account?</div>
                         <div onClick={() => setRoute("signup")} className="pl1 money-color pointer underline-hover">Sign up!</div>
