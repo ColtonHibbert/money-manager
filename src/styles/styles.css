@@ -4,3 +4,43 @@
     background-size: cover;
     background-image: url("../images/money_background_1.jpg");
 }
+
+.bg-money-color-see-through {
+    background-color: rgba(66, 146, 68, 0.95);
+}
+
+.bg-money-color {
+    background-color: rgb(66, 146, 68);
+}
+
+.bg-dark-color {
+    background-color: rgb(45,48,53);
+}
+
+.money-color {
+    color: rgb(66, 146, 68);
+}
+
+.width-60-px {
+    width: 60px;
+}
+
+.width-80-px {
+    width: 80px;
+}
+
+.width-120-px {
+    width: 120px;
+}
+
+.min-vh-50-m {
+    min-height: 50vh;
+}
+
+.min-vh-50-l {
+    min-height: 50vh;
+}
+
+/*
+
+*/

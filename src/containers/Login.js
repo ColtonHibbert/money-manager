@@ -76,18 +76,56 @@ function Login(props) {
     }
 
     return(
-        <div className="vw-100 vh-100 money-background ">
-            <input type="text" onChange={(event) => setLoginEmail(event.target.value)}/>
-            <input type="text" onChange={(event) => setLoginPassword(event.target.value)}/>
-            {
-                (loginErrors.loginError) ? 
-                <div>
-                    {loginErrors.loginErrorMessage}
+        <div className="
+        vw-100 min-vh-100 money-background flex flex-row justify-center 
+        ">
+            <div className="
+            flex flex-column w-80 items-center mv3 br2 
+            flex-column-ns
+            flex-row-m min-vh-50-m
+            flex-row-l min-vh-50-l
+            ">
+                <div className="
+                w-100 flex white ph2 pt2 pb5 flex-column bg-money-color-see-through tc
+                h-100-m
+                h-100-l
+                ">
+                    <h1>Money Manager</h1>
+                    <div>Money is a good servant but a terrible master. Get in control of your finances and sign up today!</div>
                 </div>
-                : ""
-            }
-            <button onClick={() => sendLogin()}>Submit Login</button>
-            <button onClick={() => setRoute("signup")}>Sign up</button>
+                <div className="
+                w-100 flex flex-column pv3 bg-dark-color ph3
+                ">
+                    <div className="white tc">Try Money Manage with a demo account!</div>
+                    <div className="flex flex-row">
+                        <div className="w4 h3 mv1 mh1 ph1 pv2 bg-money-color white tc br1">Personal</div>
+                        <div className="w4 h3 mv1 mh1 ph1 pv2 bg-money-color white tc br1">Household Member</div>
+                        <div className="w4 h3 mv1 mh1 ph1 pv2 bg-money-color white tc br1">Household Owner</div> 
+                    </div>
+                    <hr className="w-90"/>
+                    <div className="flex flex-column pv2">
+                        <label className="pl1 white">Email:</label>
+                        <input type="text" onChange={(event) => setLoginEmail(event.target.value)}  className="br2"/>
+                    </div>
+                    <div className="flex flex-column pv2">
+                        <label className="pl1 white">Password:</label>
+                        <input type="text" onChange={(event) => setLoginPassword(event.target.value)}  className="br2"/>
+                    </div>
+                    {
+                        (loginErrors.loginError) ? 
+                        <div>
+                            {loginErrors.loginErrorMessage}
+                        </div>
+                        : ""
+                    }
+                    <div onClick={() => sendLogin()} className="width-60-px ph1 pv2 mv3 bg-money-color br2 tc white">Log in</div>
+                    <div className="money-color mt3 mb1">Reset Password?</div>
+                    <div className="flex flex-row mb3">
+                        <div className="white">Don't have an account?</div>
+                        <div onClick={() => setRoute("signup")} className="pl1 money-color">Sign up!</div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
