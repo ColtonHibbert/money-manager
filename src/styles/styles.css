@@ -33,14 +33,18 @@
     width: 120px;
 }
 
-.min-vh-50-m {
-    min-height: 50vh;
+@media screen and (min-width: 30em) {
+
 }
 
-.min-vh-50-l {
-    min-height: 50vh;
+@media screen and (min-width: 30em) and (max-width: 60em) {
+    .min-vh-75-m {
+        min-height: 75vh;
+    }
 }
 
-/*
-
-*/
+@media screen and (min-width: 60em) {
+    .min-vh-75-l {
+        min-height: 75vh;
+    }
+}
