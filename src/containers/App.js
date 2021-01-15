@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "redux";
 import "tachyons";
+import "../styles/styles.css";
 import { connect } from "react-redux";
 import SignUp from "./SignUp.js";
 import Login from "./Login.js";
