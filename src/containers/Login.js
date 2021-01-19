@@ -6,13 +6,15 @@ import {
     setLoginPassword,
     setLoginError,
     setLoginErrorMessage,
-    displayLoginError
+    displayLoginError,
+    setRememberLogin
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
     return {
         login: state.login,
-        loginErrors: state.loginErrors
+        loginErrors: state.loginErrors,
+        user: state.user
     }
 } 
 
@@ -22,7 +24,8 @@ const mapDispatchToProps = (dispatch) => {
         setLoginPassword: (value) => dispatch(setLoginPassword(value)),
         setLoginError: (value) => dispatch(setLoginError(value)),
         setLoginErrorMessage: (value) => dispatch(setLoginErrorMessage(value)),
-        displayLoginError: (value) => dispatch(displayLoginError(value))
+        displayLoginError: (value) => dispatch(displayLoginError(value)),
+        setRememberLogin: () => dispatch(setRememberLogin())
     }
 }
 
@@ -129,7 +132,7 @@ function Login(props) {
                     }
                     <div className="flex flex-row items-center">
                         <div className="white pr2 mt2 mb1">Remember Log in?</div>
-                        <input type="checkbox" className="flex mt2"></input>
+                        <input type="checkbox" onClick={() => setRememberLogin()} className="flex mt2"></input>
                     </div>
                     <div onClick={() => sendLogin()} className="width-60-px ph1 pv2 mv3 bg-money-color br2 tc white pointer grow">Log in</div>   
                     <div onClick={() => setRoute("passwordreset")} className="money-color mt3 mb1 pointer underline-hover">Reset Password?</div>
