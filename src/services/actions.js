@@ -18,7 +18,8 @@ import {
     DISPLAY_LOGIN_ERROR, 
     SET_CSRF,
     RESET_STATE,
-    SET_PASSWORD_RESET_EMAIL
+    SET_PASSWORD_RESET_EMAIL,
+    SET_REMEMBER_LOGIN,
 } from "./constants.js";
 
 
@@ -160,3 +161,11 @@ export const setPasswordResetEmail = (payload) => {
         setPasswordResetEmailPayload: payload
     }
 }
+
+export const setRememberLogin = () => {
+    return {
+        type: SET_REMEMBER_LOGIN
+    }
+}
+
+

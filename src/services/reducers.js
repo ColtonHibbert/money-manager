@@ -18,7 +18,8 @@ import {
     DISPLAY_LOGIN_ERROR, 
     SET_CSRF,
     RESET_STATE,
-    SET_PASSWORD_RESET_EMAIL
+    SET_PASSWORD_RESET_EMAIL,
+    SET_REMEMBER_LOGIN
 } from "./constants.js";
 
 const initialState = {
@@ -84,7 +85,8 @@ const initialState = {
         householdMemberId: "",
         householdId: "",
         roleId: "",
-        csrf: ""
+        csrf: "",
+        rememberLogin: false,
     }
     
 }
@@ -253,6 +255,16 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     } 
+    if(action.type === SET_REMEMBER_LOGIN ) {
+        console.log("set remember");
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                rememberLogin: !state.user.rememberLogin
+            }
+        }
+    }
     
     return state;
 }
