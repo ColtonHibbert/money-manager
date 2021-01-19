@@ -19,7 +19,8 @@ import {
     SET_CSRF,
     RESET_STATE,
     SET_PASSWORD_RESET_EMAIL,
-    SET_REMEMBER_LOGIN
+    SET_LOGIN_REMEMBER_ME,
+    SET_SIGNUP_REMEMBER_ME
 } from "./constants.js";
 
 const initialState = {
@@ -35,7 +36,8 @@ const initialState = {
     ],
     login: {
         loginEmail: "",
-        loginPassword: "" 
+        loginPassword: "",
+        loginRememberMe: false,
      },
     loginErrors: {
         loginError: false,
@@ -56,7 +58,8 @@ const initialState = {
         signUpLastName: "",
         signUpEmail: "",
         signUpPassword: "",
-        signUpConfirmPassword: ""
+        signUpConfirmPassword: "",
+        signUpRememberMe: false
     },
     signUpErrors: {
         signUpError: false,
@@ -86,7 +89,6 @@ const initialState = {
         householdId: "",
         roleId: "",
         csrf: "",
-        rememberLogin: false,
     }
     
 }
@@ -255,13 +257,21 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     } 
-    if(action.type === SET_REMEMBER_LOGIN ) {
-        console.log("set remember");
+    if(action.type === SET_LOGIN_REMEMBER_ME ) {
         return {
             ...state,
-            user: {
-                ...state.user,
-                rememberLogin: !state.user.rememberLogin
+            login: {
+                ...state.login,
+                loginRememberMe: !state.login.loginRememberMe
+            }
+        }
+    }
+    if(action.type === SET_SIGNUP_REMEMBER_ME) {
+        return {
+            ...state,
+            signUp: {
+                ...state.signUp,
+                signUpRememberMe: !state.signUp.signUpRememberMe
             }
         }
     }

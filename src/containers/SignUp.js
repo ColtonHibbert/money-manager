@@ -9,13 +9,14 @@ import {
     setSignUpConfirmPassword,
     setSignUpError,
     setSignUpErrorMessage,
-    displaySignUpError
+    displaySignUpError,
+    setSignUpRememberMe
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
     return {
         signUp: state.signUp,
-        signUpErrors: state.signUpErrors
+        signUpErrors: state.signUpErrors,
     }
 }
 
@@ -28,12 +29,14 @@ const mapDispatchToProps = (dispatch) => {
         setSignUpConfirmPassword: (value) => dispatch(setSignUpConfirmPassword(value)),
         setSignUpError: (value) => dispatch(setSignUpError(value)),
         setSignUpErrorMessage: (value) => dispatch(setSignUpErrorMessage(value)),
-        displaySignUpError: (value) => dispatch(displaySignUpError(value))
+        displaySignUpError: (value) => dispatch(displaySignUpError(value)),
+        setSignUpRememberMe: () => dispatch(setSignUpRememberMe())
     }
 }
 
 function SignUp(props) {
     const { 
+        user,
         signUp,
         signUpErrors,
         setUser, 
@@ -45,7 +48,8 @@ function SignUp(props) {
         setSignUpConfirmPassword,
         setSignUpError,
         setSignUpErrorMessage,
-        displaySignUpError
+        displaySignUpError,
+        setSignUpRememberMe
     } = props;
 
     const sendSignUp = () => { 
@@ -53,7 +57,10 @@ function SignUp(props) {
             "http://localhost:3001/signup",
             {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: {
+                    "Content-Type": "application/json",
+                    "CSRF-TOKEN":  user.csrf
+                },
                 body: JSON.stringify({
                     firstName: signUp.signUpFirstName,
                     lastName: signUp.signUpLastName,
@@ -143,7 +150,7 @@ function SignUp(props) {
                     }
                     <div className="flex flex-row items-center">
                         <div className="white pr2 mt2 mb1">Remember Sign Up?</div>
-                        <input type="checkbox" className="flex mt2"></input>
+                        <input type="checkbox" onClick={() => setSignUpRememberMe()} className="flex mt2"></input>
                     </div>
                     <div onClick={() => sendSignUp()} className="width-80-px ph1 pv2 mv3 bg-money-color br2 tc white pointer grow">Sign Up</div>   
                     <div className="flex flex-row mb3">
