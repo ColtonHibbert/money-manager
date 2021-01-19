@@ -40,7 +40,8 @@ function Login(props) {
         setLoginPassword,
         setLoginError,
         setLoginErrorMessage,
-        displayLoginError
+        displayLoginError,
+        setRememberLogin
     } = props;
  
     const sendLogin = () => {
