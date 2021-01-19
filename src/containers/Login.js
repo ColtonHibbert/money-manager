@@ -76,7 +76,12 @@ function Login(props) {
             }
             
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log("Error retrieving user.");
+            setLoginError(true);
+            setLoginErrorMessage("Error retrieving user.");
+            displayLoginError(true);
+        })
     }
 
     return(

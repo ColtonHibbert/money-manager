@@ -73,7 +73,6 @@ function SignUp(props) {
         )
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             if(data.error) {
                 setSignUpError(true);
                 setSignUpErrorMessage(data.error);
