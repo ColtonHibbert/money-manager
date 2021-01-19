@@ -143,7 +143,7 @@ function SignUp(props) {
                     </div>
                     {
                         (signUpErrors.signUpError) ? 
-                        <div>
+                        <div className="white">
                             {signUpErrors.signUpErrorMessage}
                         </div>
                         : ""
