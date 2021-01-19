@@ -19,7 +19,8 @@ import {
     SET_CSRF,
     RESET_STATE,
     SET_PASSWORD_RESET_EMAIL,
-    SET_REMEMBER_LOGIN,
+    SET_LOGIN_REMEMBER_ME,
+    SET_SIGNUP_REMEMBER_ME
 } from "./constants.js";
 
 
@@ -162,10 +163,14 @@ export const setPasswordResetEmail = (payload) => {
     }
 }
 
-export const setRememberLogin = () => {
+export const setLoginRememberMe = () => {
     return {
-        type: SET_REMEMBER_LOGIN
+        type: SET_LOGIN_REMEMBER_ME
     }
 }
 
-
+export const setSignUpRememberMe = () => {
+    return {
+        type: SET_SIGNUP_REMEMBER_ME
+    }
+}
