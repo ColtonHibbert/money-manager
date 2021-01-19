@@ -54,7 +54,8 @@ function Login(props) {
                 },
                 body: JSON.stringify({
                     email: login.loginEmail,
-                    password: login.loginPassword
+                    password: login.loginPassword,
+                    rememberMe: login.loginRememberMe
                 }),
                 credentials : "include"
             }

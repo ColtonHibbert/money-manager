@@ -20,6 +20,7 @@ const Logout = (props) => {
             console.log(data)
             if(data.logoutAttempt === "success") {
                 resetState();
+                window.location.reload();
             }
         })
         .catch(err => console.log("logout failed"))
