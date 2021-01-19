@@ -20,7 +20,11 @@ import {
     RESET_STATE,
     SET_PASSWORD_RESET_EMAIL,
     SET_LOGIN_REMEMBER_ME,
-    SET_SIGNUP_REMEMBER_ME
+    SET_SIGNUP_REMEMBER_ME,
+    SET_LOGIN_EMAIL_ERROR,
+    DISPLAY_LOGIN_EMAIL_ERROR,
+    SET_LOGIN_PASSWORD_ERROR,
+    DISPLAY_LOGIN_PASSWORD_ERROR,
 } from "./constants.js";
 
 const initialState = {
@@ -42,7 +46,11 @@ const initialState = {
     loginErrors: {
         loginError: false,
         loginErrorMessage: "",
-        displayLoginError: false
+        displayLoginError: false,
+        loginEmailError: false,
+        displayLoginEmailError: false,
+        loginPasswordError: false,
+        displayLoginPasswordError: false
     },
     passwordReset: {
         passwordResetEmail: ""
@@ -275,6 +283,26 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
+    if(action.type === SET_LOGIN_EMAIL_ERROR ) {
+        return {
+            ...state,
+            loginErrors: {
+                ...state.loginErrors,
+                loginEmailError: action.setLoginEmailErrorPayload
+            }
+        }
+    }
+    if(action.type === DISPLAY_LOGIN_EMAIL_ERROR) {
+        return {
+            ...state,
+            loginErrors: {
+                ...state.loginErrors,
+                displayLoginEmailError: action.displayLoginEmailErrorPayload
+            }
+        }
+    }
+
+    /// login password error and display
     
     return state;
 }

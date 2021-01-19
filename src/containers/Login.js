@@ -7,7 +7,9 @@ import {
     setLoginError,
     setLoginErrorMessage,
     displayLoginError,
-    setLoginRememberMe
+    setLoginRememberMe,
+    setLoginEmailError,
+    displayLoginEmailError
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -24,7 +26,9 @@ const mapDispatchToProps = (dispatch) => {
         setLoginError: (value) => dispatch(setLoginError(value)),
         setLoginErrorMessage: (value) => dispatch(setLoginErrorMessage(value)),
         displayLoginError: (value) => dispatch(displayLoginError(value)),
-        setLoginRememberMe: () => dispatch(setLoginRememberMe())
+        setLoginRememberMe: () => dispatch(setLoginRememberMe()),
+        setLoginEmailError: (value) => dispatch(setLoginEmailError(value)),
+        displayLoginEmailError: (value) => dispatch(displayLoginEmailError(value))
     }
 }
 
@@ -40,7 +44,9 @@ function Login(props) {
         setLoginError,
         setLoginErrorMessage,
         displayLoginError,
-        setLoginRememberMe
+        setLoginRememberMe,
+        setLoginEmailError,
+        displayLoginEmailError
     } = props;
  
     const sendLogin = () => {
@@ -84,6 +90,19 @@ function Login(props) {
         })
     }
 
+    const handleEmail = (value) => {
+        const emailRegex = /@/;
+        const validEmail = value.search(emailRegex);
+        if(validEmail !== -1) {
+            setLoginEmail(value);
+            setLoginEmailError(false)
+            displayLoginEmailError(false)
+        }
+        if(validEmail === -1) {
+            setLoginEmailError(true)
+            displayLoginEmailError(true)
+        }
+    }
     return(
         <div className="
         vw-100 min-vh-100 money-background flex flex-row justify-center 
@@ -123,11 +142,16 @@ function Login(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Email:</label>
-                        <input type="text" onChange={(event) => setLoginEmail(event.target.value)}  className="br2"/>
+                        <input type="text" onBlur={(event) => handleEmail(event.target.value)}  className="br2"/>
+                        {
+                            (loginErrors.loginEmailError) ? 
+                            <div className="white">Please enter a valid email.</div>
+                            : ""
+                        }
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Password:</label>
-                        <input type="text" onChange={(event) => setLoginPassword(event.target.value)}  className="br2"/>
+                        <input id="login_password" type="text" onChange={(event) => setLoginPassword(event.target.value)}  className="br2"/>
                     </div>
                     {
                         (loginErrors.loginError) ? 
