@@ -52,7 +52,7 @@ const initialState = {
         resetError: false,
         resetErrorMessage: "",
     },
-    route: "login",
+    route: "loading",
     signUp: {
         signUpFirstName: "",
         signUpLastName: "",
