@@ -65,7 +65,8 @@ function SignUp(props) {
                     firstName: signUp.signUpFirstName,
                     lastName: signUp.signUpLastName,
                     email: signUp.signUpEmail,
-                    password: signUp.signUpPassword
+                    password: signUp.signUpPassword,
+                    rememberMe: signUp.signUpRememberMe
                 }),
                 credentials: "include"
             }
