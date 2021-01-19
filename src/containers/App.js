@@ -56,7 +56,6 @@ function App(props) {
     .then(data => {
         if(data.error) {
             setRoute("login");
-            
         }
         if(!data.error) {
             setUser(data);
