@@ -6,12 +6,9 @@ import {
     setLoginPassword,
     setLoginError,
     setLoginErrorMessage,
-    displayLoginError,
     setLoginRememberMe,
     setLoginEmailError,
-    displayLoginEmailError, 
-    setLoginPasswordError, 
-    displayLoginPasswordError
+    setLoginPasswordError
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -27,12 +24,9 @@ const mapDispatchToProps = (dispatch) => {
         setLoginPassword: (value) => dispatch(setLoginPassword(value)),
         setLoginError: (value) => dispatch(setLoginError(value)),
         setLoginErrorMessage: (value) => dispatch(setLoginErrorMessage(value)),
-        displayLoginError: (value) => dispatch(displayLoginError(value)),
         setLoginRememberMe: () => dispatch(setLoginRememberMe()),
         setLoginEmailError: (value) => dispatch(setLoginEmailError(value)),
-        displayLoginEmailError: (value) => dispatch(displayLoginEmailError(value)),
         setLoginPasswordError: (value) => dispatch(setLoginPasswordError(value)),
-        displayLoginPasswordError: (value) => dispatch(displayLoginPasswordError(value))
     }
 }
 
@@ -47,12 +41,9 @@ function Login(props) {
         setLoginPassword,
         setLoginError,
         setLoginErrorMessage,
-        displayLoginError,
         setLoginRememberMe,
         setLoginEmailError,
-        displayLoginEmailError,
         setLoginPasswordError,
-        displayLoginPasswordError
     } = props;
  
     const sendLogin = () => {
@@ -78,12 +69,10 @@ function Login(props) {
                 if(data.error) {
                     setLoginError(true);
                     setLoginErrorMessage(data.error);
-                    displayLoginError(true);
                 }
                 if(!data.error) {
                     setLoginError(false);
                     setLoginErrorMessage("");
-                    displayLoginError(false)
                     setUser(data);
                     setRoute("home");
                 }
@@ -93,7 +82,6 @@ function Login(props) {
                 console.log("Error retrieving user.");
                 setLoginError(true);
                 setLoginErrorMessage("Error retrieving user.");
-                displayLoginError(true);
             })
         }
     }
@@ -103,13 +91,11 @@ function Login(props) {
         const validEmail = value.search(emailRegex);
         if(validEmail !== -1) {
             setLoginEmail(value);
-            setLoginEmailError(false)
-            displayLoginEmailError(false)
+            setLoginEmailError(false);
         }
         if(validEmail === -1) {
             setLoginEmail(value);
-            setLoginEmailError(true)
-            displayLoginEmailError(true)
+            setLoginEmailError(true);
         }
     }
 
@@ -119,12 +105,10 @@ function Login(props) {
         if(validPassword !== -1) {
             setLoginPassword(value);
             setLoginPasswordError(false);
-            displayLoginPasswordError(false);
         }
         if(validPassword === -1) {
             setLoginPassword(value);
             setLoginPasswordError(true);
-            displayLoginPasswordError(true);
         }
     }
 
@@ -176,7 +160,7 @@ function Login(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Password:</label>
-                        <input id="login_password" type="text" onBlur={(event) => handlePassword(event.target.value)}  className="br2"/>
+                        <input id="login_password" type="password" onBlur={(event) => handlePassword(event.target.value)}  className="br2"/>
                         {
                             (loginErrors.loginPasswordError) ?
                             <div className="white" >Please enter a password between 8 and 72 characters.</div>
