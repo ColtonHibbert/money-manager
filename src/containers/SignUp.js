@@ -114,31 +114,30 @@ function SignUp(props) {
         }
     }
 
-    const handleFirstName = (value) => {
-        setSignUpFirstName(value);
-        if(value !== "") {
+    const handleFirstName = () => {
+        
+        if(signUp.signUpFirstName !== "") {
             setSignUpFirstNameError(false);
         }
-        if(value === "") {
+        if(signUp.signUpFirstName === "") {
             setSignUpFirstNameError(true);
         }
     }
 
-    const handleLastName = (value) => {
-        setSignUpLastName(value);
-        if(value !== "") {
+    const handleLastName = () => {
+        
+        if(signUp.signUpLastName !== "") {
             setSignUpLastNameError(false);
         }
-        if(value === "") {
+        if(signUp.signUpLastName === "") {
             setSignUpLastNameError(true);
         }
     }
 
-    const handleEmail = (value) => {
-        setSignUpEmail(value);
+    const handleEmail = () => {
 
         const emailRegex = /@/;
-        const validEmail = value.search(emailRegex);
+        const validEmail = signUp.signUpEmail.search(emailRegex);
 
         if(validEmail !== -1) {
             setSignUpEmailError(false);
@@ -148,11 +147,10 @@ function SignUp(props) {
         }
     }
 
-    const handlePassword = (value) => {
-        setSignUpPassword(value);
+    const handlePassword = () => {
 
         const passwordRegex = /.{8,72}/;
-        const validPassword = value.search(passwordRegex);
+        const validPassword = signUp.signUpPassword.search(passwordRegex);
 
         if(validPassword !== -1) {
             setSignUpPasswordError(false);
@@ -160,13 +158,21 @@ function SignUp(props) {
         if(validPassword === -1) {
             setSignUpPasswordError(true);
         }
+
+        if(signUp.signUpPassword === signUp.signUpConfirmPassword) {
+            console.log("pass and confirm pass match, error false")
+            setSignUpPasswordsMatchError(false);
+        }
+        if(signUp.signUpPassword !== signUp.signUpConfirmPassword) {
+            setSignUpPasswordsMatchError(true);
+        }
+
     }
 
-    const handleConfirmPassword = (value) => {
-        setSignUpConfirmPassword(value);
+    const handleConfirmPassword = () => {
 
         const passwordRegex = /.{8,72}/;
-        const validPassword = value.search(passwordRegex);
+        const validPassword = signUp.signUpConfirmPassword.search(passwordRegex);
 
         if(validPassword !== -1) {
             setSignUpConfirmPasswordError(false);
@@ -214,7 +220,11 @@ function SignUp(props) {
                     <hr className="w-90"/>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">First Name:</label>
-                        <input type="text" onInput={(event) => handleFirstName(event.target.value)}  className="br2"/>
+                        <input type="text" 
+                            onInput={(event) => setSignUpFirstName(event.target.value)}  
+                            onBlur={() => handleFirstName()}
+                            className="br2"
+                        />
                         {
                             (signUpErrors.signUpFirstNameError) ?
                             <div className="white">Please enter a name.</div>
@@ -223,7 +233,11 @@ function SignUp(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Last Name:</label>
-                        <input type="text" onInput={(event) => handleLastName(event.target.value)}  className="br2"/>
+                        <input type="text" 
+                            onInput={(event) => setSignUpLastName(event.target.value)}  
+                            onBlur={() => handleLastName()}
+                            className="br2"
+                        />
                         {
                             (signUpErrors.signUpLastNameError) ?
                             <div className="white">Please enter a name.</div>
@@ -232,7 +246,10 @@ function SignUp(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Email:</label>
-                        <input type="text" onInput={(event) => handleEmail(event.target.value)}  className="br2"/>
+                        <input type="text" 
+                            onInput={(event) => setSignUpEmail(event.target.value)}  
+                            onBlur={() => handleEmail()}
+                            className="br2"/>
                         {
                             (signUpErrors.signUpEmailError) ?
                             <div className="white">Please enter a valid email.</div>
@@ -241,7 +258,11 @@ function SignUp(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Password:</label>
-                        <input type="password" onInput={(event) => handlePassword(event.target.value)}  className="br2"/>
+                        <input type="password"
+                            onInput={(event) => setSignUpPassword(event.target.value)}  
+                            onBlur={() => handlePassword()}
+                            className="br2"
+                         />
                         {
                             (signUpErrors.signUpPasswordError) ?
                             <div className="white">Please enter a password between 8 and 72 characters.</div>
@@ -250,7 +271,11 @@ function SignUp(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Confirm Password:</label>
-                        <input type="password" onInput={(event) => handleConfirmPassword(event.target.value)}  className="br2"/>
+                        <input type="password" 
+                            onInput={(event) => setSignUpConfirmPassword(event.target.value)} 
+                            onBlur={() => handleConfirmPassword()} 
+                            className="br2"
+                        />
                         {
                             (signUpErrors.signUpConfirmPasswordError) ?
                             <div className="white">Please enter a password between 8 and 72 characters.</div>
