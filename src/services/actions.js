@@ -20,7 +20,13 @@ import {
     SET_LOGIN_REMEMBER_ME,
     SET_SIGNUP_REMEMBER_ME,
     SET_LOGIN_EMAIL_ERROR,
-    SET_LOGIN_PASSWORD_ERROR
+    SET_LOGIN_PASSWORD_ERROR,
+    SET_SIGNUP_FIRST_NAME_ERROR,
+    SET_SIGNUP_LAST_NAME_ERROR,
+    SET_SIGNUP_EMAIL_ERROR,
+    SET_SIGNUP_PASSWORD_ERROR,
+    SET_SIGNUP_CONFIRM_PASSWORD_ERROR,
+    SET_SIGNUP_PASSWORDS_MATCH_ERROR
 } from "./constants.js";
 
 
@@ -175,5 +181,47 @@ export const setLoginPasswordError = (payload) => {
     return {
         type: SET_LOGIN_PASSWORD_ERROR,
         setLoginPasswordErrorPayload: payload
+    }
+}
+
+export const setSignUpFirstNameError = (payload) => {
+    return {
+        type: SET_SIGNUP_FIRST_NAME_ERROR,
+        setSignUpFirstNameErrorPayload: payload
+    }
+}
+
+export const setSignUpLastNameError = (payload) => {
+    return {
+        type: SET_SIGNUP_LAST_NAME_ERROR,
+        setSignUpLastNameErrorPayload: payload
+    }
+}
+
+export const setSignUpEmailError = (payload) => {
+    return {
+        type: SET_SIGNUP_EMAIL_ERROR,
+        setSignUpEmailErrorPayload: payload
+    }
+}
+
+export const setSignUpPasswordError = (payload) => {
+    return {
+        type: SET_SIGNUP_PASSWORD_ERROR,
+        setSignUpPasswordErrorPayload: payload
+    }
+}
+
+export const setSignUpConfirmPasswordError = (payload) => {
+    return {
+        type: SET_SIGNUP_CONFIRM_PASSWORD_ERROR,
+        setSignUpConfirmPasswordErrorPayload: payload
+    }
+}
+
+export const setSignUpPasswordsMatchError = (payload) => {
+    return {
+        type: SET_SIGNUP_PASSWORDS_MATCH_ERROR,
+        setSignUpPasswordsMatchErrorPayload: payload
     }
 }
