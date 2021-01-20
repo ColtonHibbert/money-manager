@@ -9,7 +9,13 @@ import {
     setSignUpConfirmPassword,
     setSignUpError,
     setSignUpErrorMessage,
-    setSignUpRememberMe
+    setSignUpRememberMe,
+    setSignUpFirstNameError,
+    setSignUpLastNameError,
+    setSignUpEmailError,
+    setSignUpPasswordError,
+    setSignUpConfirmPasswordError,
+    setSignUpPasswordsMatchError
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -28,7 +34,13 @@ const mapDispatchToProps = (dispatch) => {
         setSignUpConfirmPassword: (value) => dispatch(setSignUpConfirmPassword(value)),
         setSignUpError: (value) => dispatch(setSignUpError(value)),
         setSignUpErrorMessage: (value) => dispatch(setSignUpErrorMessage(value)),
-        setSignUpRememberMe: () => dispatch(setSignUpRememberMe())
+        setSignUpRememberMe: () => dispatch(setSignUpRememberMe()),
+        setSignUpFirstNameError: (value) => dispatch(setSignUpFirstNameError(value)),
+        setSignUpLastNameError: (value) => dispatch(setSignUpLastNameError(value)),
+        setSignUpEmailError: (value) => dispatch(setSignUpEmailError(value)),
+        setSignUpPasswordError: (value) => dispatch(setSignUpPasswordError(value)),
+        setSignUpConfirmPasswordError: (value) => dispatch(setSignUpConfirmPasswordError(value)),
+        setSignUpPasswordsMatchError: (value) => dispatch(setSignUpPasswordsMatchError(value))
     }
 }
 
@@ -46,47 +58,131 @@ function SignUp(props) {
         setSignUpConfirmPassword,
         setSignUpError,
         setSignUpErrorMessage,
-        setSignUpRememberMe
+        setSignUpRememberMe,
+        setSignUpFirstNameError,
+        setSignUpLastNameError,
+        setSignUpEmailError,
+        setSignUpPasswordError,
+        setSignUpConfirmPasswordError,
+        setSignUpPasswordsMatchError
     } = props;
 
     const sendSignUp = () => { 
-        fetch(
-            "http://localhost:3001/signup",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "CSRF-TOKEN":  user.csrf
-                },
-                body: JSON.stringify({
-                    firstName: signUp.signUpFirstName,
-                    lastName: signUp.signUpLastName,
-                    email: signUp.signUpEmail,
-                    password: signUp.signUpPassword,
-                    rememberMe: signUp.signUpRememberMe
-                }),
-                credentials: "include"
-            }
-        )
-        .then(res => res.json())
-        .then(data => {
-            if(data.error) {
+        if(
+            signUpErrors.signUpFirstNameError === false &&
+            signUpErrors.signUpLastNameError === false &&
+            signUpErrors.signUpEmailError === false &&
+            signUpErrors.signUpPasswordError === false &&
+            signUpErrors.signUpConfirmPasswordError === false &&
+            signUpErrors.signUpPasswordsMatchError === false
+        ) {
+            fetch(
+                "http://localhost:3001/signup",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "CSRF-TOKEN":  user.csrf
+                    },
+                    body: JSON.stringify({
+                        firstName: signUp.signUpFirstName,
+                        lastName: signUp.signUpLastName,
+                        email: signUp.signUpEmail,
+                        password: signUp.signUpPassword,
+                        rememberMe: signUp.signUpRememberMe
+                    }),
+                    credentials: "include"
+                }
+            )
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    setSignUpError(true);
+                    setSignUpErrorMessage(data.error);
+                }
+                if(!data.error) {
+                    setSignUpError(false);
+                    setSignUpErrorMessage("");
+                    setUser(data);
+                    setRoute("home");
+                } 
+            })
+            .catch(err => {
                 setSignUpError(true);
-                setSignUpErrorMessage(data.error);
-            }
-            if(!data.error) {
-                setSignUpError(false);
-                setSignUpErrorMessage("");
-                setUser(data);
-                setRoute("home");
-            } 
-        })
-        .catch(err => {
-            setSignUpError(true);
-            setSignUpErrorMessage("Error Signing Up, please try again.");
-        })
-
+                setSignUpErrorMessage("Error Signing Up, please try again.");
+            })
+        }
     }
+
+    const handleFirstName = (value) => {
+        setSignUpFirstName(value);
+        if(value !== "") {
+            setSignUpFirstNameError(false);
+        }
+        if(value === "") {
+            setSignUpFirstNameError(true);
+        }
+    }
+
+    const handleLastName = (value) => {
+        setSignUpLastName(value);
+        if(value !== "") {
+            setSignUpLastNameError(false);
+        }
+        if(value === "") {
+            setSignUpLastNameError(true);
+        }
+    }
+
+    const handleEmail = (value) => {
+        setSignUpEmail(value);
+
+        const emailRegex = /@/;
+        const validEmail = value.search(emailRegex);
+
+        if(validEmail !== -1) {
+            setSignUpEmailError(false);
+        }
+        if(validEmail === -1) {
+            setSignUpEmailError(true);
+        }
+    }
+
+    const handlePassword = (value) => {
+        setSignUpPassword(value);
+
+        const passwordRegex = /.{8,72}/;
+        const validPassword = value.search(passwordRegex);
+
+        if(validPassword !== -1) {
+            setSignUpPasswordError(false);
+        }
+        if(validPassword === -1) {
+            setSignUpPasswordError(true);
+        }
+    }
+
+    const handleConfirmPassword = (value) => {
+        setSignUpConfirmPassword(value);
+
+        const passwordRegex = /.{8,72}/;
+        const validPassword = value.search(passwordRegex);
+
+        if(validPassword !== -1) {
+            setSignUpConfirmPasswordError(false);
+        }
+        if(validPassword === -1) {
+            setSignUpConfirmPasswordError(true);
+        }
+
+        if(signUp.signUpPassword === signUp.signUpConfirmPassword) {
+            setSignUpPasswordsMatchError(false);
+        }
+        if(signUp.signUpPassword !== signUp.signUpConfirmPassword) {
+            setSignUpPasswordsMatchError(true);
+        }
+    }
+
 
     return (
         <div className="
@@ -117,23 +213,53 @@ function SignUp(props) {
                     <hr className="w-90"/>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">First Name:</label>
-                        <input type="text" onChange={(event) => setSignUpFirstName(event.target.value)}  className="br2"/>
+                        <input type="text" onBlur={(event) => handleFirstName(event.target.value)}  className="br2"/>
+                        {
+                            (signUpErrors.signUpFirstNameError) ?
+                            <div className="white">Please enter a name.</div>
+                            : ""
+                        }
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Last Name:</label>
-                        <input type="text" onChange={(event) => setSignUpLastName(event.target.value)}  className="br2"/>
+                        <input type="text" onBlur={(event) => handleLastName(event.target.value)}  className="br2"/>
+                        {
+                            (signUpErrors.signUpLastNameError) ?
+                            <div className="white">Please enter a name.</div>
+                            : ""
+                        }
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Email:</label>
-                        <input type="text" onChange={(event) => setSignUpEmail(event.target.value)}  className="br2"/>
+                        <input type="text" onBlur={(event) => handleEmail(event.target.value)}  className="br2"/>
+                        {
+                            (signUpErrors.signUpEmailError) ?
+                            <div className="white">Please enter a valid email.</div>
+                            : ""
+                        }
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Password:</label>
-                        <input type="password" onChange={(event) => setSignUpPassword(event.target.value)}  className="br2"/>
+                        <input type="password" onBlur={(event) => handlePassword(event.target.value)}  className="br2"/>
+                        {
+                            (signUpErrors.signUpPasswordError) ?
+                            <div className="white">Please enter a password between 8 and 72 characters.</div>
+                            : ""
+                        }
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Confirm Password:</label>
-                        <input type="password" onChange={(event) => setSignUpConfirmPassword(event.target.value)}  className="br2"/>
+                        <input type="password" onBlur={(event) => handleConfirmPassword(event.target.value)}  className="br2"/>
+                        {
+                            (signUpErrors.signUpConfirmPasswordError) ?
+                            <div className="white">Please enter a password between 8 and 72 characters.</div>
+                            : ""
+                        }
+                        {
+                            (signUpErrors.signUpPasswordsMatchError) ?
+                            <div className="white">Passwords must match.</div>
+                            : ""
+                        }
                     </div>
                     {
                         (signUpErrors.signUpError) ? 

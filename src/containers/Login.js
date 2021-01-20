@@ -87,27 +87,29 @@ function Login(props) {
     }
 
     const handleEmail = (value) => {
+        setLoginEmail(value);
+
         const emailRegex = /@/;
         const validEmail = value.search(emailRegex);
+
         if(validEmail !== -1) {
-            setLoginEmail(value);
             setLoginEmailError(false);
         }
         if(validEmail === -1) {
-            setLoginEmail(value);
             setLoginEmailError(true);
         }
     }
 
     const handlePassword = (value) => {
+        setLoginPassword(value);
+
         const passwordRegex = /.{8,72}/;
         const validPassword = value.search(passwordRegex);
+
         if(validPassword !== -1) {
-            setLoginPassword(value);
             setLoginPasswordError(false);
         }
         if(validPassword === -1) {
-            setLoginPassword(value);
             setLoginPasswordError(true);
         }
     }
