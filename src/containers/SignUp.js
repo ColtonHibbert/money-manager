@@ -9,7 +9,6 @@ import {
     setSignUpConfirmPassword,
     setSignUpError,
     setSignUpErrorMessage,
-    displaySignUpError,
     setSignUpRememberMe
 } from "../services/actions.js";
 
@@ -29,7 +28,6 @@ const mapDispatchToProps = (dispatch) => {
         setSignUpConfirmPassword: (value) => dispatch(setSignUpConfirmPassword(value)),
         setSignUpError: (value) => dispatch(setSignUpError(value)),
         setSignUpErrorMessage: (value) => dispatch(setSignUpErrorMessage(value)),
-        displaySignUpError: (value) => dispatch(displaySignUpError(value)),
         setSignUpRememberMe: () => dispatch(setSignUpRememberMe())
     }
 }
@@ -48,7 +46,6 @@ function SignUp(props) {
         setSignUpConfirmPassword,
         setSignUpError,
         setSignUpErrorMessage,
-        displaySignUpError,
         setSignUpRememberMe
     } = props;
 
@@ -76,12 +73,10 @@ function SignUp(props) {
             if(data.error) {
                 setSignUpError(true);
                 setSignUpErrorMessage(data.error);
-                displaySignUpError(true);
             }
             if(!data.error) {
                 setSignUpError(false);
                 setSignUpErrorMessage("");
-                displaySignUpError(false);
                 setUser(data);
                 setRoute("home");
             } 
@@ -89,7 +84,6 @@ function SignUp(props) {
         .catch(err => {
             setSignUpError(true);
             setSignUpErrorMessage("Error Signing Up, please try again.");
-            displaySignUpError(true);
         })
 
     }
@@ -135,11 +129,11 @@ function SignUp(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Password:</label>
-                        <input type="text" onChange={(event) => setSignUpPassword(event.target.value)}  className="br2"/>
+                        <input type="password" onChange={(event) => setSignUpPassword(event.target.value)}  className="br2"/>
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Confirm Password:</label>
-                        <input type="text" onChange={(event) => setSignUpConfirmPassword(event.target.value)}  className="br2"/>
+                        <input type="password" onChange={(event) => setSignUpConfirmPassword(event.target.value)}  className="br2"/>
                     </div>
                     {
                         (signUpErrors.signUpError) ? 

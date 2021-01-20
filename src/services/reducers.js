@@ -12,19 +12,16 @@ import {
     SET_TRANSACTIONS,
     SET_SIGNUP_ERROR,
     SET_SIGNUP_ERROR_MESSAGE,
-    DISPLAY_SIGNUP_ERROR,
     SET_LOGIN_ERROR,
     SET_LOGIN_ERROR_MESSAGE,
-    DISPLAY_LOGIN_ERROR, 
     SET_CSRF,
     RESET_STATE,
     SET_PASSWORD_RESET_EMAIL,
     SET_LOGIN_REMEMBER_ME,
     SET_SIGNUP_REMEMBER_ME,
     SET_LOGIN_EMAIL_ERROR,
-    DISPLAY_LOGIN_EMAIL_ERROR,
     SET_LOGIN_PASSWORD_ERROR,
-    DISPLAY_LOGIN_PASSWORD_ERROR,
+    
 } from "./constants.js";
 
 const initialState = {
@@ -46,17 +43,13 @@ const initialState = {
     loginErrors: {
         loginError: false,
         loginErrorMessage: "",
-        displayLoginError: false,
         loginEmailError: false,
-        displayLoginEmailError: false,
         loginPasswordError: false,
-        displayLoginPasswordError: false
     },
     passwordReset: {
         passwordResetEmail: ""
     },
     passwordResetErrors: {
-        displayResetError: false,
         resetError: false,
         resetErrorMessage: "",
     },
@@ -72,7 +65,6 @@ const initialState = {
     signUpErrors: {
         signUpError: false,
         signUpErrorMessage: "",
-        displaySignUpError: false,
     },
     transactions: [
         {
@@ -196,15 +188,6 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === DISPLAY_SIGNUP_ERROR ) {
-        return {
-            ...state,
-            signUpErrors: {
-                ...state.signUpErrors,
-                displaySignUpError: action.displaySignUpErrorPayload
-            }
-        }
-    }
     if(action.type === SET_LOGIN_ERROR) {
         return {
             ...state,
@@ -220,15 +203,6 @@ export const reducer = (state=initialState, action={}) => {
             loginErrors: {
                 ...state.loginErrors,
                 loginErrorMessage: action.setLoginErrorMessagePayload
-            }
-        }
-    }
-    if(action.type === DISPLAY_LOGIN_ERROR) {
-        return {
-            ...state,
-            loginErrors: {
-                ...state.loginErrors,
-                displayLoginError: action.displayLoginErrorPayload
             }
         }
     }
@@ -292,15 +266,6 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === DISPLAY_LOGIN_EMAIL_ERROR) {
-        return {
-            ...state,
-            loginErrors: {
-                ...state.loginErrors,
-                displayLoginEmailError: action.displayLoginEmailErrorPayload
-            }
-        }
-    }
     if(action.type === SET_LOGIN_PASSWORD_ERROR ) {
         return {
             ...state,
@@ -310,15 +275,5 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === DISPLAY_LOGIN_PASSWORD_ERROR ){
-        return {
-            ...state,
-            loginErrors: {
-                ...state.loginErrors,
-                displayLoginPasswordError: action.displayLoginPasswordErrorPayload
-            }
-        }
-    }
-
     return state;
 }

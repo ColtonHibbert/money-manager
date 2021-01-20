@@ -12,19 +12,15 @@ import {
     SET_TRANSACTIONS,
     SET_SIGNUP_ERROR,
     SET_SIGNUP_ERROR_MESSAGE,
-    DISPLAY_SIGNUP_ERROR, 
     SET_LOGIN_ERROR, 
     SET_LOGIN_ERROR_MESSAGE, 
-    DISPLAY_LOGIN_ERROR, 
     SET_CSRF,
     RESET_STATE,
     SET_PASSWORD_RESET_EMAIL,
     SET_LOGIN_REMEMBER_ME,
     SET_SIGNUP_REMEMBER_ME,
     SET_LOGIN_EMAIL_ERROR,
-    DISPLAY_LOGIN_EMAIL_ERROR,
-    SET_LOGIN_PASSWORD_ERROR,
-    DISPLAY_LOGIN_PASSWORD_ERROR
+    SET_LOGIN_PASSWORD_ERROR
 } from "./constants.js";
 
 
@@ -119,12 +115,6 @@ export const setSignUpErrorMessage = (payload) => {
     }
 }
 
-export const displaySignUpError = (payload) => {
-    return {
-        type: DISPLAY_SIGNUP_ERROR,
-        displaySignUpErrorPayload: payload
-    }
-}
 
 export const setLoginError = (payload) => {
     return {
@@ -140,12 +130,6 @@ export const setLoginErrorMessage = (payload) => {
     }
 }
 
-export const displayLoginError = (payload) => {
-    return {
-        type: DISPLAY_LOGIN_ERROR,
-        displayLoginErrorPayload: payload
-    }
-}
 
 export const setCSRF = (payload) => {
     return {
@@ -186,23 +170,10 @@ export const setLoginEmailError = (payload) => {
     }
 }
 
-export const displayLoginEmailError = (payload) => {
-    return {
-        type: DISPLAY_LOGIN_EMAIL_ERROR,
-        displayLoginEmailErrorPayload: payload
-    }
-}
 
 export const setLoginPasswordError = (payload) => {
     return {
         type: SET_LOGIN_PASSWORD_ERROR,
         setLoginPasswordErrorPayload: payload
-    }
-}
-
-export const displayLoginPasswordError = (payload) => {
-    return {
-        type: DISPLAY_LOGIN_PASSWORD_ERROR,
-        displayLoginPasswordErrorPayload: payload
     }
 }
