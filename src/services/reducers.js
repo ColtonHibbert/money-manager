@@ -21,7 +21,12 @@ import {
     SET_SIGNUP_REMEMBER_ME,
     SET_LOGIN_EMAIL_ERROR,
     SET_LOGIN_PASSWORD_ERROR,
-    
+    SET_SIGNUP_FIRST_NAME_ERROR,
+    SET_SIGNUP_LAST_NAME_ERROR,
+    SET_SIGNUP_EMAIL_ERROR,
+    SET_SIGNUP_PASSWORD_ERROR,
+    SET_SIGNUP_CONFIRM_PASSWORD_ERROR,
+    SET_SIGNUP_PASSWORDS_MATCH_ERROR
 } from "./constants.js";
 
 const initialState = {
@@ -65,6 +70,12 @@ const initialState = {
     signUpErrors: {
         signUpError: false,
         signUpErrorMessage: "",
+        signUpFirstNameError: false,
+        signUpLastNameError: false,
+        signUpEmailError: false,
+        signUpPasswordError: false,
+        signUpConfirmPasswordError: false,
+        signUpPasswordsMatchError: false
     },
     transactions: [
         {
@@ -272,6 +283,60 @@ export const reducer = (state=initialState, action={}) => {
             loginErrors: {
                 ...state.loginErrors,
                 loginPasswordError: action.setLoginPasswordErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_SIGNUP_FIRST_NAME_ERROR) {
+        return {
+            ...state,
+            signUpErrors: {
+                ...state.signUpErrors,
+                signUpFirstNameError: action.setSignUpFirstNameErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_SIGNUP_LAST_NAME_ERROR) {
+        return {
+            ...state,
+            signUpErrors: {
+                ...state.signUpErrors,
+                signUpLastNameError: action.setSignUpLastNameErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_SIGNUP_EMAIL_ERROR) {
+        return {
+            ...state,
+            signUpErrors: {
+                ...state.signUpErrors,
+                signUpEmailError: action.setSignUpEmailErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_SIGNUP_PASSWORD_ERROR) {
+        return {
+            ...state,
+            signUpErrors: {
+                ...state.signUpErrors,
+                signUpPasswordError: action.setSignUpPasswordErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_SIGNUP_CONFIRM_PASSWORD_ERROR) {
+        return {
+            ...state,
+            signUpErrors: {
+                ...state.signUpErrors,
+                signUpConfirmPasswordError: action.setSignUpConfirmPasswordErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_SIGNUP_PASSWORDS_MATCH_ERROR) {
+        return {
+            ...state,
+            signUpErrors: {
+                ...state.signUpErrors,
+                signUpPasswordsMatchError: action.setSignUpPasswordsMatchErrorPayload
             }
         }
     }
