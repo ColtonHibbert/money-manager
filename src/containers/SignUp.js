@@ -176,6 +176,7 @@ function SignUp(props) {
         }
 
         if(signUp.signUpPassword === signUp.signUpConfirmPassword) {
+            console.log("pass and confirm pass match, error false")
             setSignUpPasswordsMatchError(false);
         }
         if(signUp.signUpPassword !== signUp.signUpConfirmPassword) {
@@ -213,7 +214,7 @@ function SignUp(props) {
                     <hr className="w-90"/>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">First Name:</label>
-                        <input type="text" onBlur={(event) => handleFirstName(event.target.value)}  className="br2"/>
+                        <input type="text" onInput={(event) => handleFirstName(event.target.value)}  className="br2"/>
                         {
                             (signUpErrors.signUpFirstNameError) ?
                             <div className="white">Please enter a name.</div>
@@ -222,7 +223,7 @@ function SignUp(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Last Name:</label>
-                        <input type="text" onBlur={(event) => handleLastName(event.target.value)}  className="br2"/>
+                        <input type="text" onInput={(event) => handleLastName(event.target.value)}  className="br2"/>
                         {
                             (signUpErrors.signUpLastNameError) ?
                             <div className="white">Please enter a name.</div>
@@ -231,7 +232,7 @@ function SignUp(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Email:</label>
-                        <input type="text" onBlur={(event) => handleEmail(event.target.value)}  className="br2"/>
+                        <input type="text" onInput={(event) => handleEmail(event.target.value)}  className="br2"/>
                         {
                             (signUpErrors.signUpEmailError) ?
                             <div className="white">Please enter a valid email.</div>
@@ -240,7 +241,7 @@ function SignUp(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Password:</label>
-                        <input type="password" onBlur={(event) => handlePassword(event.target.value)}  className="br2"/>
+                        <input type="password" onInput={(event) => handlePassword(event.target.value)}  className="br2"/>
                         {
                             (signUpErrors.signUpPasswordError) ?
                             <div className="white">Please enter a password between 8 and 72 characters.</div>
@@ -249,7 +250,7 @@ function SignUp(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Confirm Password:</label>
-                        <input type="password" onBlur={(event) => handleConfirmPassword(event.target.value)}  className="br2"/>
+                        <input type="password" onInput={(event) => handleConfirmPassword(event.target.value)}  className="br2"/>
                         {
                             (signUpErrors.signUpConfirmPasswordError) ?
                             <div className="white">Please enter a password between 8 and 72 characters.</div>

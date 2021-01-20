@@ -86,11 +86,10 @@ function Login(props) {
         }
     }
 
-    const handleEmail = (value) => {
-        setLoginEmail(value);
+    const handleEmail = () => {
 
         const emailRegex = /@/;
-        const validEmail = value.search(emailRegex);
+        const validEmail = login.loginEmail.search(emailRegex);
 
         if(validEmail !== -1) {
             setLoginEmailError(false);
@@ -100,11 +99,10 @@ function Login(props) {
         }
     }
 
-    const handlePassword = (value) => {
-        setLoginPassword(value);
+    const handlePassword = () => {
 
         const passwordRegex = /.{8,72}/;
-        const validPassword = value.search(passwordRegex);
+        const validPassword = login.loginPassword.search(passwordRegex);
 
         if(validPassword !== -1) {
             setLoginPasswordError(false);
@@ -153,7 +151,12 @@ function Login(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Email:</label>
-                        <input type="text" onBlur={(event) => handleEmail(event.target.value)}  className="br2"/>
+                        <input 
+                            type="text"   
+                            className="br2"
+                            onInput={(event) => setLoginEmail(event.target.value)}
+                            onBlur={() => handleEmail()}
+                        />
                         {
                             (loginErrors.loginEmailError) ? 
                             <div className="white">Please enter a valid email.</div>
@@ -162,7 +165,11 @@ function Login(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Password:</label>
-                        <input id="login_password" type="password" onBlur={(event) => handlePassword(event.target.value)}  className="br2"/>
+                        <input id="login_password" type="password" 
+                            className="br2"
+                            onInput={(event) => setLoginPassword(event.target.value)}  
+                            onBlur={() => handlePassword()}
+                        />
                         {
                             (loginErrors.loginPasswordError) ?
                             <div className="white" >Please enter a password between 8 and 72 characters.</div>
