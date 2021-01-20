@@ -9,7 +9,9 @@ import {
     displayLoginError,
     setLoginRememberMe,
     setLoginEmailError,
-    displayLoginEmailError
+    displayLoginEmailError, 
+    setLoginPasswordError, 
+    displayLoginPasswordError
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -28,7 +30,9 @@ const mapDispatchToProps = (dispatch) => {
         displayLoginError: (value) => dispatch(displayLoginError(value)),
         setLoginRememberMe: () => dispatch(setLoginRememberMe()),
         setLoginEmailError: (value) => dispatch(setLoginEmailError(value)),
-        displayLoginEmailError: (value) => dispatch(displayLoginEmailError(value))
+        displayLoginEmailError: (value) => dispatch(displayLoginEmailError(value)),
+        setLoginPasswordError: (value) => dispatch(setLoginPasswordError(value)),
+        displayLoginPasswordError: (value) => dispatch(displayLoginPasswordError(value))
     }
 }
 
@@ -46,48 +50,52 @@ function Login(props) {
         displayLoginError,
         setLoginRememberMe,
         setLoginEmailError,
-        displayLoginEmailError
+        displayLoginEmailError,
+        setLoginPasswordError,
+        displayLoginPasswordError
     } = props;
  
     const sendLogin = () => {
-        fetch(
-            "http://localhost:3001/login",
-            {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "CSRF-Token": user.csrf
-                },
-                body: JSON.stringify({
-                    email: login.loginEmail,
-                    password: login.loginPassword,
-                    rememberMe: login.loginRememberMe
-                }),
-                credentials : "include"
-            }
-        )
-        .then(res => res.json())
-        .then(data => {
-            if(data.error) {
+        if(loginErrors.loginEmailError === false && loginErrors.loginPasswordError === false) {
+            fetch(
+                "http://localhost:3001/login",
+                {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "CSRF-Token": user.csrf
+                    },
+                    body: JSON.stringify({
+                        email: login.loginEmail,
+                        password: login.loginPassword,
+                        rememberMe: login.loginRememberMe
+                    }),
+                    credentials : "include"
+                }
+            )
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    setLoginError(true);
+                    setLoginErrorMessage(data.error);
+                    displayLoginError(true);
+                }
+                if(!data.error) {
+                    setLoginError(false);
+                    setLoginErrorMessage("");
+                    displayLoginError(false)
+                    setUser(data);
+                    setRoute("home");
+                }
+                
+            })
+            .catch(err => {
+                console.log("Error retrieving user.");
                 setLoginError(true);
-                setLoginErrorMessage(data.error);
+                setLoginErrorMessage("Error retrieving user.");
                 displayLoginError(true);
-            }
-            if(!data.error) {
-                setLoginError(false);
-                setLoginErrorMessage("");
-                displayLoginError(false)
-                setUser(data);
-                setRoute("home");
-            }
-            
-        })
-        .catch(err => {
-            console.log("Error retrieving user.");
-            setLoginError(true);
-            setLoginErrorMessage("Error retrieving user.");
-            displayLoginError(true);
-        })
+            })
+        }
     }
 
     const handleEmail = (value) => {
@@ -99,10 +107,27 @@ function Login(props) {
             displayLoginEmailError(false)
         }
         if(validEmail === -1) {
+            setLoginEmail(value);
             setLoginEmailError(true)
             displayLoginEmailError(true)
         }
     }
+
+    const handlePassword = (value) => {
+        const passwordRegex = /.{8,72}/;
+        const validPassword = value.search(passwordRegex);
+        if(validPassword !== -1) {
+            setLoginPassword(value);
+            setLoginPasswordError(false);
+            displayLoginPasswordError(false);
+        }
+        if(validPassword === -1) {
+            setLoginPassword(value);
+            setLoginPasswordError(true);
+            displayLoginPasswordError(true);
+        }
+    }
+
     return(
         <div className="
         vw-100 min-vh-100 money-background flex flex-row justify-center 
@@ -151,7 +176,12 @@ function Login(props) {
                     </div>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Password:</label>
-                        <input id="login_password" type="text" onChange={(event) => setLoginPassword(event.target.value)}  className="br2"/>
+                        <input id="login_password" type="text" onBlur={(event) => handlePassword(event.target.value)}  className="br2"/>
+                        {
+                            (loginErrors.loginPasswordError) ?
+                            <div className="white" >Please enter a password between 8 and 72 characters.</div>
+                            : ""
+                        }
                     </div>
                     {
                         (loginErrors.loginError) ? 
