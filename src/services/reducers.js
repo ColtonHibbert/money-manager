@@ -301,8 +301,24 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
+    if(action.type === SET_LOGIN_PASSWORD_ERROR ) {
+        return {
+            ...state,
+            loginErrors: {
+                ...state.loginErrors,
+                loginPasswordError: action.setLoginPasswordErrorPayload
+            }
+        }
+    }
+    if(action.type === DISPLAY_LOGIN_PASSWORD_ERROR ){
+        return {
+            ...state,
+            loginErrors: {
+                ...state.loginErrors,
+                displayLoginPasswordError: action.displayLoginPasswordErrorPayload
+            }
+        }
+    }
 
-    /// login password error and display
-    
     return state;
 }
