@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const PasswordReset = (props) => {
+const ForgotPassword = (props) => {
     const {setRoute, passwordReset, passwordResetErrors, setPasswordResetEmail } = props;
 
     const sendLink = () => {
@@ -71,4 +71,4 @@ const PasswordReset = (props) => {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PasswordReset);
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
