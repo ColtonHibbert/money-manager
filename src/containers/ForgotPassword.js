@@ -1,5 +1,10 @@
 import React from "react";
-import { setForgotPasswordEmail } from "../services/actions.js";
+import { 
+    setForgotPasswordEmail, 
+    setForgotPasswordError, 
+    setForgotPasswordErrorMessage,
+    setForgotPasswordEmailError
+} from "../services/actions.js";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
@@ -11,12 +16,24 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setForgotPasswordEmail: (value) => dispatch(setForgotPasswordEmail(value))
+        setForgotPasswordEmail: (value) => dispatch(setForgotPasswordEmail(value)),
+        setForgotPasswordError: (value) => dispatch(setForgotPasswordError(value)),
+        setForgotPasswordErrorMessage: (value) => dispatch(setForgotPasswordErrorMessage(value)),
+        setForgotPasswordEmailError: (value) => dispatch(setForgotPasswordEmailError(value))
     }
 }
 
 const ForgotPassword = (props) => {
-    const { user, setRoute, forgotPassword, forgotPasswordErrors, setForgotPasswordEmail } = props;
+    const { 
+        user, 
+        setRoute, 
+        forgotPassword, 
+        forgotPasswordErrors, 
+        setForgotPasswordEmail, 
+        setForgotPasswordError,
+        setForgotPasswordErrorMessage, 
+        setForgotPasswordEmailError 
+    } = props;
 
     const sendLink = () => {
         if(forgotPasswordErrors.forgotPasswordEmailError === false) {
@@ -34,6 +51,18 @@ const ForgotPassword = (props) => {
                     credentials: "include"
                 }
             )
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    setForgotPasswordError(true);
+                    setForgotPasswordErrorMessage(data.error);
+                }
+                if(!data.error) {
+                    setForgotPasswordError(false);
+                    setForgotPasswordErrorMessage("");
+                    setRoute("passwordreset");
+                }
+            })
         }
     }
 
