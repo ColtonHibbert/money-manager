@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import SignUp from "./SignUp.js";
 import Login from "./Login.js";
 import ForgotPassword from "./ForgotPassword.js";
+import PasswordReset from "./PasswordReset.js";
 import Logout from '../components/Logout.js';
 import Loading from "../components/Loading.js";
 import Home from "../components/Home.js";
@@ -117,6 +118,11 @@ function App(props) {
       {
         (route === "forgotpassword") ?
         <ForgotPassword {...props} />
+        : ""
+      }
+      {
+        (route === "passwordreset") ?
+        <PasswordReset {...props} />
         : ""
       }
       {
