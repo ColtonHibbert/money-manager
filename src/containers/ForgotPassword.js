@@ -1,5 +1,11 @@
 import React from "react";
-import { setForgotPasswordEmail } from "../services/actions.js";
+import { 
+    setForgotPasswordEmail, 
+    setForgotPasswordError, 
+    setForgotPasswordErrorMessage,
+    setForgotPasswordEmailError,
+    setForgotPasswordEmailSent
+} from "../services/actions.js";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
@@ -11,12 +17,26 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setForgotPasswordEmail: (value) => dispatch(setForgotPasswordEmail(value))
+        setForgotPasswordEmail: (value) => dispatch(setForgotPasswordEmail(value)),
+        setForgotPasswordError: (value) => dispatch(setForgotPasswordError(value)),
+        setForgotPasswordErrorMessage: (value) => dispatch(setForgotPasswordErrorMessage(value)),
+        setForgotPasswordEmailError: (value) => dispatch(setForgotPasswordEmailError(value)),
+        setForgotPasswordEmailSent: (value) => dispatch(setForgotPasswordEmailSent(value))
     }
 }
 
 const ForgotPassword = (props) => {
-    const { user, setRoute, forgotPassword, forgotPasswordErrors, setForgotPasswordEmail } = props;
+    const { 
+        user, 
+        setRoute, 
+        forgotPassword, 
+        forgotPasswordErrors, 
+        setForgotPasswordEmail, 
+        setForgotPasswordError,
+        setForgotPasswordErrorMessage, 
+        setForgotPasswordEmailError,
+        setForgotPasswordEmailSent
+    } = props;
 
     const sendLink = () => {
         if(forgotPasswordErrors.forgotPasswordEmailError === false) {
@@ -34,6 +54,18 @@ const ForgotPassword = (props) => {
                     credentials: "include"
                 }
             )
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    setForgotPasswordError(true);
+                    setForgotPasswordErrorMessage(data.error);
+                }
+                if(!data.error) {
+                    setForgotPasswordError(false);
+                    setForgotPasswordErrorMessage("");
+                    setForgotPasswordEmailSent(true);
+                }
+            })
         }
     }
 
@@ -94,9 +126,14 @@ const ForgotPassword = (props) => {
                     }
                     {
                         (forgotPasswordErrors.forgotPasswordError) ? 
-                        <div>
+                        <div className="white">
                             {forgotPasswordErrors.forgotPasswordErrorMessage}
                         </div>
+                        : ""
+                    }
+                    {
+                        (forgotPassword.forgotPasswordEmailSent) ?
+                            <div className="white">Email Successfully sent. Please click on the link sent to your email to reset your password.</div>
                         : ""
                     }
                     <div onClick={() => sendLink()} className="width-120-px ph1 pv2 mv3 bg-money-color br2 tc white pointer grow">Send Reset Link</div>   
