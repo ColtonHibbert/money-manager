@@ -30,8 +30,9 @@ import {
     SET_FORGOT_PASSWORD_ERROR,
     SET_FORGOT_PASSWORD_ERROR_MESSAGE,
     SET_FORGOT_PASSWORD_EMAIL_ERROR,
+    SET_FORGOT_PASSWORD_EMAIL_SENT,
 
-    SET_PASSWORD_RESET_EMAIL,
+    SET_PASSWORD_RESET_EMAIL
 } from "./constants.js";
 
 
@@ -249,6 +250,13 @@ export const setForgotPasswordEmailError = (payload) => {
     return {
         type: SET_FORGOT_PASSWORD_EMAIL_ERROR,
         setForgotPasswordEmailErrorPayload: payload
+    }
+}
+
+export const setForgotPasswordEmailSent = (payload) => {
+    return {
+        type: SET_FORGOT_PASSWORD_EMAIL_SENT,
+        setForgotPasswordEmailSentPayload: payload
     }
 }
 

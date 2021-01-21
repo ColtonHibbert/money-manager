@@ -3,7 +3,8 @@ import {
     setForgotPasswordEmail, 
     setForgotPasswordError, 
     setForgotPasswordErrorMessage,
-    setForgotPasswordEmailError
+    setForgotPasswordEmailError,
+    setForgotPasswordEmailSent
 } from "../services/actions.js";
 import { connect } from "react-redux";
 
@@ -19,7 +20,8 @@ const mapDispatchToProps = (dispatch) => {
         setForgotPasswordEmail: (value) => dispatch(setForgotPasswordEmail(value)),
         setForgotPasswordError: (value) => dispatch(setForgotPasswordError(value)),
         setForgotPasswordErrorMessage: (value) => dispatch(setForgotPasswordErrorMessage(value)),
-        setForgotPasswordEmailError: (value) => dispatch(setForgotPasswordEmailError(value))
+        setForgotPasswordEmailError: (value) => dispatch(setForgotPasswordEmailError(value)),
+        setForgotPasswordEmailSent: (value) => dispatch(setForgotPasswordEmailSent(value))
     }
 }
 
@@ -32,7 +34,8 @@ const ForgotPassword = (props) => {
         setForgotPasswordEmail, 
         setForgotPasswordError,
         setForgotPasswordErrorMessage, 
-        setForgotPasswordEmailError 
+        setForgotPasswordEmailError,
+        setForgotPasswordEmailSent
     } = props;
 
     const sendLink = () => {
@@ -60,7 +63,7 @@ const ForgotPassword = (props) => {
                 if(!data.error) {
                     setForgotPasswordError(false);
                     setForgotPasswordErrorMessage("");
-                    setRoute("passwordreset");
+                    setForgotPasswordEmailSent(true);
                 }
             })
         }
@@ -123,9 +126,14 @@ const ForgotPassword = (props) => {
                     }
                     {
                         (forgotPasswordErrors.forgotPasswordError) ? 
-                        <div>
+                        <div className="white">
                             {forgotPasswordErrors.forgotPasswordErrorMessage}
                         </div>
+                        : ""
+                    }
+                    {
+                        (forgotPassword.forgotPasswordEmailSent) ?
+                            <div className="white">Email Successfully sent. Please click on the link sent to your email to reset your password.</div>
                         : ""
                     }
                     <div onClick={() => sendLink()} className="width-120-px ph1 pv2 mv3 bg-money-color br2 tc white pointer grow">Send Reset Link</div>   

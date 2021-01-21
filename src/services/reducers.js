@@ -30,8 +30,9 @@ import {
     SET_FORGOT_PASSWORD_ERROR,
     SET_FORGOT_PASSWORD_ERROR_MESSAGE,
     SET_FORGOT_PASSWORD_EMAIL_ERROR,
+    SET_FORGOT_PASSWORD_EMAIL_SENT,
 
-    SET_PASSWORD_RESET_EMAIL,
+    SET_PASSWORD_RESET_EMAIL 
 } from "./constants.js";
 
 const initialState = {
@@ -46,7 +47,8 @@ const initialState = {
         }
     ],
     forgotPassword: {
-        forgotPasswordEmail: ""
+        forgotPasswordEmail: "",
+        forgotPasswordEmailSent: false,
     },
     forgotPasswordErrors: {
         forgotPasswordError: false,
@@ -381,7 +383,7 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
 
-    
+
     if(action.type === SET_PASSWORD_RESET_EMAIL) {
         return {
             ...state,
@@ -391,5 +393,14 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     } 
+    if(action.type === SET_FORGOT_PASSWORD_EMAIL_SENT) {
+        return {
+            ...state,
+            forgotPassword: {
+                ...state.forgotPassword,
+                forgotPasswordEmailSent: action.setForgotPasswordEmailSentPayload
+            }
+        }
+    }
     return state;
 }
