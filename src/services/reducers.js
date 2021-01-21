@@ -16,7 +16,6 @@ import {
     SET_LOGIN_ERROR_MESSAGE,
     SET_CSRF,
     RESET_STATE,
-    SET_PASSWORD_RESET_EMAIL,
     SET_LOGIN_REMEMBER_ME,
     SET_SIGNUP_REMEMBER_ME,
     SET_LOGIN_EMAIL_ERROR,
@@ -26,7 +25,13 @@ import {
     SET_SIGNUP_EMAIL_ERROR,
     SET_SIGNUP_PASSWORD_ERROR,
     SET_SIGNUP_CONFIRM_PASSWORD_ERROR,
-    SET_SIGNUP_PASSWORDS_MATCH_ERROR
+    SET_SIGNUP_PASSWORDS_MATCH_ERROR,
+    SET_FORGOT_PASSWORD_EMAIL,
+    SET_FORGOT_PASSWORD_ERROR,
+    SET_FORGOT_PASSWORD_ERROR_MESSAGE,
+    SET_FORGOT_PASSWORD_EMAIL_ERROR,
+
+    SET_PASSWORD_RESET_EMAIL,
 } from "./constants.js";
 
 const initialState = {
@@ -40,6 +45,14 @@ const initialState = {
             userId: ""
         }
     ],
+    forgotPassword: {
+        forgotPasswordEmail: ""
+    },
+    forgotPasswordErrors: {
+        forgotPasswordError: false,
+        forgotPasswordErrorMessage: "",
+        forgotPasswordEmailError: ""
+    },
     login: {
         loginEmail: "",
         loginPassword: "",
@@ -241,15 +254,6 @@ export const reducer = (state=initialState, action={}) => {
     if(action.type === RESET_STATE) {
         return initialState;
     }
-    if(action.type === SET_PASSWORD_RESET_EMAIL) {
-        return {
-            ...state,
-            passwordReset: {
-                ...state.passwordReset,
-                passwordResetEmail: action.setPasswordResetEmailPayload
-            }
-        }
-    } 
     if(action.type === SET_LOGIN_REMEMBER_ME ) {
         return {
             ...state,
@@ -340,5 +344,52 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
+    if(action.type === SET_FORGOT_PASSWORD_EMAIL) {
+        return {
+            ...state,
+            forgotPassword: {
+                ...state.forgotPassword,
+                forgotPasswordEmail: action.setForgotPasswordEmailPayload
+            }
+        }
+    }
+    if(action.type === SET_FORGOT_PASSWORD_ERROR) {
+        return {
+            ...state,
+            forgotPasswordErrors: {
+                ...state.forgotPasswordErrors,
+                forgotPasswordError: action.setForgotPasswordErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_FORGOT_PASSWORD_ERROR_MESSAGE) {
+        return {
+            ...state,
+            forgotPasswordErrors: {
+                ...state.forgotPasswordErrors,
+                forgotPasswordErrorMessage: action.setForgotPasswordErrorMessagePayload
+            }
+        }
+    }
+    if(action.type === SET_FORGOT_PASSWORD_EMAIL_ERROR) {
+        return {
+            ...state,
+            forgotPasswordErrors: {
+                ...state.forgotPasswordErrors,
+                forgotPasswordEmailError: action.setForgotPasswordEmailErrorPayload
+            }
+        }
+    }
+
+    
+    if(action.type === SET_PASSWORD_RESET_EMAIL) {
+        return {
+            ...state,
+            passwordReset: {
+                ...state.passwordReset,
+                passwordResetEmail: action.setPasswordResetEmailPayload
+            }
+        }
+    } 
     return state;
 }
