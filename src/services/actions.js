@@ -16,7 +16,6 @@ import {
     SET_LOGIN_ERROR_MESSAGE, 
     SET_CSRF,
     RESET_STATE,
-    SET_PASSWORD_RESET_EMAIL,
     SET_LOGIN_REMEMBER_ME,
     SET_SIGNUP_REMEMBER_ME,
     SET_LOGIN_EMAIL_ERROR,
@@ -26,7 +25,13 @@ import {
     SET_SIGNUP_EMAIL_ERROR,
     SET_SIGNUP_PASSWORD_ERROR,
     SET_SIGNUP_CONFIRM_PASSWORD_ERROR,
-    SET_SIGNUP_PASSWORDS_MATCH_ERROR
+    SET_SIGNUP_PASSWORDS_MATCH_ERROR,
+    SET_FORGOT_PASSWORD_EMAIL,
+    SET_FORGOT_PASSWORD_ERROR,
+    SET_FORGOT_PASSWORD_ERROR_MESSAGE,
+    SET_FORGOT_PASSWORD_EMAIL_ERROR,
+
+    SET_PASSWORD_RESET_EMAIL,
 } from "./constants.js";
 
 
@@ -150,13 +155,6 @@ export const resetState = () => {
     }
 }
 
-export const setPasswordResetEmail = (payload) => {
-    return {
-        type: SET_PASSWORD_RESET_EMAIL,
-        setPasswordResetEmailPayload: payload
-    }
-}
-
 export const setLoginRememberMe = () => {
     return {
         type: SET_LOGIN_REMEMBER_ME
@@ -223,5 +221,43 @@ export const setSignUpPasswordsMatchError = (payload) => {
     return {
         type: SET_SIGNUP_PASSWORDS_MATCH_ERROR,
         setSignUpPasswordsMatchErrorPayload: payload
+    }
+}
+
+export const setForgotPasswordEmail = (payload) => {
+    return {
+        type: SET_FORGOT_PASSWORD_EMAIL,
+        setForgotPasswordEmailPayload: payload
+    }
+}
+
+export const setForgotPasswordError = (payload) => {
+    return {
+        type: SET_FORGOT_PASSWORD_ERROR,
+        setForgotPasswordErrorPayload: payload
+    }
+}
+
+export const setForgotPasswordErrorMessage = (payload) => {
+    return {
+        type: SET_FORGOT_PASSWORD_ERROR_MESSAGE,
+        setForgotPasswordErrorMessagePayload: payload
+    }
+}
+
+export const setForgotPasswordEmailError = (payload) => {
+    return {
+        type: SET_FORGOT_PASSWORD_EMAIL_ERROR,
+        setForgotPasswordEmailErrorPayload: payload
+    }
+}
+
+
+
+
+export const setPasswordResetEmail = (payload) => {
+    return {
+        type: SET_PASSWORD_RESET_EMAIL,
+        setPasswordResetEmailPayload: payload
     }
 }

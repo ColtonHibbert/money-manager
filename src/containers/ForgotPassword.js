@@ -1,17 +1,18 @@
 import React from "react";
 import { setPasswordResetEmail } from "../services/actions.js";
+import { setForgotPasswordEmail } from "../services/actions.js";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
     return {
-        passwordReset: state.passwordReset,
-        passwordResetErrors: state.passwordResetErrors
+        forgotPassword: state.forgotPassword,
+        forgotPasswordErrors: state.forgotPasswordErrors
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setPasswordResetEmail: (value) => dispatch(setPasswordResetEmail(value))
+        setForgotPasswordEmail: (value) => dispatch(setForgotPasswordEmail(value))
     }
 }
 
