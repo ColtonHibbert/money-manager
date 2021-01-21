@@ -1,5 +1,4 @@
 import React from "react";
-import { setPasswordResetEmail } from "../services/actions.js";
 import { setForgotPasswordEmail } from "../services/actions.js";
 import { connect } from "react-redux";
 
@@ -17,11 +16,41 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const ForgotPassword = (props) => {
-    const {setRoute, passwordReset, passwordResetErrors, setPasswordResetEmail } = props;
+    const { user, setRoute, forgotPassword, forgotPasswordErrors, setForgotPasswordEmail } = props;
 
     const sendLink = () => {
-
+        if(forgotPasswordErrors.forgotPasswordEmailError === false) {
+            fetch(
+                "http://localhost:3001/forgotpassword",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "CSRF-TOKEN": user.csrf
+                    },
+                    body: JSON.stringify({
+                        email: forgotPassword.forgotPasswordEmail
+                    }),
+                    credentials: "include"
+                }
+            )
+        }
     }
+
+    const handleEmail = () => {
+
+        const emailRegex = /@/;
+        const validEmail = forgotPassword.forgotPasswordEmail.search(emailRegex);
+
+        if(validEmail !== -1) {
+            setForgotPasswordEmailError(false);
+        }
+        if(validEmail === -1) {
+            setForgotPasswordEmailError(true);
+        }
+    }
+
+
 
     return(
         <div className="
@@ -52,12 +81,21 @@ const ForgotPassword = (props) => {
                     <hr className="w-90"/>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Email:</label>
-                        <input type="text" onChange={(event) => setPasswordResetEmail(event.target.value)}  className="br2"/>
+                        <input type="text" 
+                            onBlur={() => handleEmail()}
+                            onInput={(event) => setForgotPasswordEmail(event.target.value)}  
+                            className="br2"
+                        />
                     </div>
                     {
-                        (passwordResetErrors.resetError) ? 
+                        (forgotPasswordErrors.forgotPasswordEmailError) ?
+                        <div className="white">Please enter a valid email.</div>
+                        : ""
+                    }
+                    {
+                        (forgotPasswordErrors.forgotPasswordError) ? 
                         <div>
-                            {passwordResetErrors.resetErrorMessage}
+                            {forgotPasswordErrors.forgotPasswordErrorMessage}
                         </div>
                         : ""
                     }
