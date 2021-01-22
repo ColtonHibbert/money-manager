@@ -46,9 +46,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function App(props) {
-  const { route, setRoute, setCSRF, user, setUser, resetState } = props;
+  const { route, setRoute, setCSRF, user, setUser, resetState, setPasswordResetToken, passwordReset } = props;
 
-  const loadUser = () => {
+  const loadUser = (token) => {
+    console.log("token inside loadUser: ", token)
       return fetch(
         "http://localhost:3001/loaduser",
         {
@@ -59,7 +60,12 @@ function App(props) {
     .then(res => res.json())
     .then(data => {
         if(data.error) {
-            setRoute("login");
+          if(token === "") {
+            setRoute("login")
+          }
+          if(token !== "") {
+            setRoute("passwordreset")
+          }
         }
         if(!data.error) {
             setUser(data);
@@ -96,21 +102,26 @@ function App(props) {
   const getParams = () => {
     const searchParams = new URLSearchParams(window.location.search);
     
-      const token = searchParams.get('token') || '',
-    
+      const token = searchParams.get('token') || '';
+      console.log("searchParams.get(token): ", searchParams.get("token"));
+
       if(token !== '') {
         setPasswordResetToken(token);
+        
       }
+      return token;
   }
 
   useEffect( () => {
     async function loadInitialData() {
       await getCsrf();
-      getParams();
-      await loadUser();
+      const token = getParams();
+      await loadUser(token);
     }
     loadInitialData();
   }, []);
+
+  
 
   return (
     <div className="App">
@@ -134,7 +145,7 @@ function App(props) {
         <ForgotPassword {...props} />
         : ""
       }
-      {
+      { 
         (route === "passwordreset") ?
         <PasswordReset {...props} />
         : ""
