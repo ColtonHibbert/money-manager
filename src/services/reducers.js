@@ -31,8 +31,14 @@ import {
     SET_FORGOT_PASSWORD_ERROR_MESSAGE,
     SET_FORGOT_PASSWORD_EMAIL_ERROR,
     SET_FORGOT_PASSWORD_EMAIL_SENT,
-
-    SET_PASSWORD_RESET_TOKEN
+    SET_PASSWORD_RESET_PASSWORD,
+    SET_PASSWORD_RESET_CONFIRM_PASSWORD,
+    SET_PASSWORD_RESET_TOKEN,
+    SET_PASSWORD_RESET_PASSWORD_ERROR,
+    SET_PASSWORD_RESET_CONFIRM_PASSWORD_ERROR,
+    SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR,
+    SET_PASSWORD_RESET_ERROR,
+    SET_PASSWORD_RESET_ERROR_MESSAGE
 } from "./constants.js";
 
 const initialState = {
@@ -72,11 +78,11 @@ const initialState = {
         passwordResetToken: ""
     },
     passwordResetErrors: {
-        resetError: false,
-        resetErrorMessage: "",
-        resetEmailError: false,
-        resetConfirmEmailError: false,
-        resetPasswordsMatchError: false
+        passwordResetError: false,
+        passwordResetErrorMessage: "",
+        passwordResetPasswordError: false,
+        passwordResetConfirmPasswordError: false,
+        passwordResetPasswordsMatchError: false
     },
     route: "loading",
     signUp: {
@@ -397,13 +403,75 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-
+    if(action.type === SET_PASSWORD_RESET_PASSWORD) {
+        return {
+            ...state, 
+            passwordReset: {
+                ...state.passwordReset,
+                passwordResetPassword: action.setPasswordResetPasswordPayload
+            }
+        }
+    }
+    if(action.type === SET_PASSWORD_RESET_CONFIRM_PASSWORD) {
+        return {
+            ...state,
+            passwordReset: {
+                ...state.passwordReset,
+                passwordResetConfirmPassword: action.setPasswordResetConfirmPasswordPayload
+            }
+        }
+    }
     if(action.type === SET_PASSWORD_RESET_TOKEN) {
         return {
             ...state,
             passwordReset: {
                 ...state.passwordReset,
                 passwordResetToken: action.setPasswordResetTokenPayload
+            }
+        }
+    }
+    if(action.type === SET_PASSWORD_RESET_PASSWORD_ERROR) {
+        return {
+            ...state,
+            passwordResetErrors: {
+                ...state.passwordResetErrors,
+                passwordResetPasswordError: action.setPasswordResetPasswordErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PASSWORD_RESET_CONFIRM_PASSWORD_ERROR) {
+        return {
+            ...state, 
+            passwordResetErrors: {
+                ...state.passwordResetErrors,
+                passwordResetConfirmPasswordError: setPasswordResetConfirmPasswordErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR) {
+        return {
+            ...state,
+            passwordResetErrors: {
+                ...state.passwordResetErrors,
+                passwordResetPasswordsMatchError: setPasswordResetPasswordsMatchErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PASSWORD_RESET_ERROR) {
+        return {
+            ...state,
+            passwordResetErrors: {
+                ...state.passwordResetErrors,
+                passwordResetError: setPasswordResetErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PASSWORD_RESET_ERROR_MESSAGE) {
+        return {
+            ...state, 
+            passwordResetErrors: {
+                ...state.passwordResetErrors,
+                passwordResetErrorMessage: action.setPasswordResetErrorMessagePayload
             }
         }
     }
