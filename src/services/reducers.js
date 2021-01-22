@@ -32,7 +32,7 @@ import {
     SET_FORGOT_PASSWORD_EMAIL_ERROR,
     SET_FORGOT_PASSWORD_EMAIL_SENT,
 
-    SET_PASSWORD_RESET_EMAIL 
+    SET_PASSWORD_RESET_TOKEN
 } from "./constants.js";
 
 const initialState = {
@@ -67,11 +67,16 @@ const initialState = {
         loginPasswordError: false,
     },
     passwordReset: {
-        passwordResetEmail: ""
+        passwordResetPassword: "",
+        passwordResetConfirmPassword: "",
+        passwordResetToken: ""
     },
     passwordResetErrors: {
         resetError: false,
         resetErrorMessage: "",
+        resetEmailError: false,
+        resetConfirmEmailError: false,
+        resetPasswordsMatchError: false
     },
     route: "loading",
     signUp: {
@@ -382,23 +387,23 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-
-
-    if(action.type === SET_PASSWORD_RESET_EMAIL) {
-        return {
-            ...state,
-            passwordReset: {
-                ...state.passwordReset,
-                passwordResetEmail: action.setPasswordResetEmailPayload
-            }
-        }
-    } 
+ 
     if(action.type === SET_FORGOT_PASSWORD_EMAIL_SENT) {
         return {
             ...state,
             forgotPassword: {
                 ...state.forgotPassword,
                 forgotPasswordEmailSent: action.setForgotPasswordEmailSentPayload
+            }
+        }
+    }
+
+    if(action.type === SET_PASSWORD_RESET_TOKEN) {
+        return {
+            ...state,
+            passwordReset: {
+                ...state.passwordReset,
+                passwordResetToken: action.setPasswordResetTokenPayload
             }
         }
     }
