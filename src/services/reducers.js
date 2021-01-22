@@ -444,7 +444,7 @@ export const reducer = (state=initialState, action={}) => {
             ...state, 
             passwordResetErrors: {
                 ...state.passwordResetErrors,
-                passwordResetConfirmPasswordError: setPasswordResetConfirmPasswordErrorPayload
+                passwordResetConfirmPasswordError: action.setPasswordResetConfirmPasswordErrorPayload
             }
         }
     }
@@ -453,7 +453,7 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             passwordResetErrors: {
                 ...state.passwordResetErrors,
-                passwordResetPasswordsMatchError: setPasswordResetPasswordsMatchErrorPayload
+                passwordResetPasswordsMatchError: action.setPasswordResetPasswordsMatchErrorPayload
             }
         }
     }
@@ -462,7 +462,7 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             passwordResetErrors: {
                 ...state.passwordResetErrors,
-                passwordResetError: setPasswordResetErrorPayload
+                passwordResetError: action.setPasswordResetErrorPayload
             }
         }
     }
