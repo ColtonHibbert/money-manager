@@ -18,7 +18,8 @@ import {
   setAccounts,
   setTransactions,
   setCSRF,
-  resetState
+  resetState,
+  setPasswordResetToken
 } from "../services/actions.js";
 
 
@@ -27,7 +28,8 @@ const mapStateToProps = (state) => {
     route: state.route,
     user: state.user,
     accounts: state.accounts,
-    transactions: state.transactions
+    transactions: state.transactions,
+    passwordReset: state.passwordReset
   }
 }
 
@@ -38,7 +40,8 @@ const mapDispatchToProps = (dispatch) => {
     setAccounts: (value) => dispatch(setAccounts(value)),
     setTransactions: (value) => dispatch(setTransactions(value)),
     setCSRF: (value) => dispatch(setCSRF(value)),
-    resetState: () => dispatch(resetState())
+    resetState: () => dispatch(resetState()),
+    setPasswordResetToken: (value) => dispatch(setPasswordResetToken(value))
   }
 }
 
@@ -90,9 +93,20 @@ function App(props) {
       })
   }
 
+  const getParams = () => {
+    const searchParams = new URLSearchParams(window.location.search);
+    
+      const token = searchParams.get('token') || '',
+    
+      if(token !== '') {
+        setPasswordResetToken(token);
+      }
+  }
+
   useEffect( () => {
     async function loadInitialData() {
       await getCsrf();
+      getParams();
       await loadUser();
     }
     loadInitialData();
