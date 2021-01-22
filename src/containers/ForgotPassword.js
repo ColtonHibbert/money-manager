@@ -82,8 +82,6 @@ const ForgotPassword = (props) => {
         }
     }
 
-
-
     return(
         <div className="
         vw-100 min-vh-100 money-background flex flex-row justify-center 

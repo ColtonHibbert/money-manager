@@ -33,7 +33,12 @@ import {
     SET_FORGOT_PASSWORD_EMAIL_SENT,
     SET_PASSWORD_RESET_PASSWORD,
     SET_PASSWORD_RESET_CONFIRM_PASSWORD,
-    SET_PASSWORD_RESET_TOKEN
+    SET_PASSWORD_RESET_TOKEN,
+    SET_PASSWORD_RESET_PASSWORD_ERROR,
+    SET_PASSWORD_RESET_CONFIRM_PASSWORD_ERROR, 
+    SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR,
+    SET_PASSWORD_RESET_ERROR,
+    SET_PASSWORD_RESET_ERROR_MESSAGE
 } from "./constants.js";
 
 
@@ -275,11 +280,45 @@ export const setPasswordResetConfirmPassword = (payload) => {
     }
 }
 
-//export finish other consts
-
 export const setPasswordResetToken = (payload) => {
     return {
         type: SET_PASSWORD_RESET_TOKEN,
         setPasswordResetTokenPayload: payload
     }
 }
+
+export const setPasswordResetPasswordError = (payload) => {
+    return {
+        type: SET_PASSWORD_RESET_PASSWORD_ERROR,
+        setPasswordResetPasswordErrorPayload: payload
+    }
+}
+
+export const setPasswordResetConfirmPasswordError = (payload) => {
+    return {
+        type: SET_PASSWORD_RESET_CONFIRM_PASSWORD_ERROR,
+        setPasswordResetConfirmPasswordErrorPayload: payload
+    }
+}
+
+export const setPasswordResetPasswordsMatchError = (payload) => {
+    return {
+        type: SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR,
+        setPasswordResetPasswordsMatchErrorPayload: payload
+    }
+}
+
+export const setPasswordResetError = (payload) => {
+    return {
+        type: SET_PASSWORD_RESET_ERROR,
+        setPasswordResetErrorPayload: payload
+    }
+}
+
+export const setPasswordResetErrorMessage = (payload) => {
+    return {
+        type: SET_PASSWORD_RESET_ERROR_MESSAGE,
+        setPasswordResetErrorMessagePayload: payload
+    }
+}
+
