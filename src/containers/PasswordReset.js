@@ -5,8 +5,11 @@ import {
     setPasswordResetConfirmPassword,
     setPasswordResetPasswordError,
     setPasswordResetConfirmPasswordError,
-    setPasswordResetPasswordsMatchError
+    setPasswordResetPasswordsMatchError,
+    setPasswordResetError,
+    setPasswordResetErrorMessage
 } from "../services/actions";
+
 
 const mapStateToProps = (state) => {
     return {
@@ -21,7 +24,9 @@ const mapDispatchToProps = (dispatch) => {
         setPasswordResetConfirmPassword: (value) => dispatch(setPasswordResetConfirmPassword(value)),
         setPasswordResetPasswordError: (value) => dispatch(setPasswordResetPasswordError(value)),
         setPasswordResetConfirmPasswordError: (value) => dispatch(setPasswordResetConfirmPasswordError(value)),
-        setPasswordResetPasswordsMatchError: (value) => dispatch(setPasswordResetPasswordsMatchError(value))
+        setPasswordResetPasswordsMatchError: (value) => dispatch(setPasswordResetPasswordsMatchError(value)),
+        setPasswordResetError: (value) => dispatch(setPasswordResetError(value)),
+        setPasswordResetErrorMessage: (value) => dispatch(setPasswordResetErrorMessage(value))
     }
 }
 
@@ -29,31 +34,41 @@ const mapDispatchToProps = (dispatch) => {
 
 function PasswordReset(props) {
 
-    const { setPasswordResetPassword,
+    const { 
+    passwordReset,
+    passwordResetErrors,
+    setRoute,
+    setPasswordResetPassword,
     setPasswordResetConfirmPassword,
     setPasswordResetPasswordError,
     setPasswordResetConfirmPasswordError,
-    setPasswordResetPasswordsMatchError 
+    setPasswordResetPasswordsMatchError,
+    setPasswordResetError,
+    setPasswordResetErrorMessage
     } = props;
+
+    const sendLink = () => {
+
+    }
 
     const handlePassword = () => {
 
         const passwordRegex = /.{8,72}/;
-        const validPassword = signUp.signUpPassword.search(passwordRegex);
+        const validPassword = passwordReset.passwordResetPassword.search(passwordRegex);
 
         if(validPassword !== -1) {
-            setSignUpPasswordError(false);
+            setPasswordResetPasswordError(false);
         }
         if(validPassword === -1) {
-            setSignUpPasswordError(true);
+            setPasswordResetPasswordError(true);
         }
 
-        if(signUp.signUpPassword === signUp.signUpConfirmPassword) {
+        if(passwordReset.passwordResetPassword === passwordReset.passwordResetConfirmPassword) {
             console.log("pass and confirm pass match, error false")
-            setSignUpPasswordsMatchError(false);
+            setPasswordResetPasswordsMatchError(false);
         }
-        if(signUp.signUpPassword !== signUp.signUpConfirmPassword) {
-            setSignUpPasswordsMatchError(true);
+        if(passwordReset.passwordResetPassword !== passwordReset.passwordResetConfirmPassword) {
+            setPasswordResetPasswordsMatchError(true);
         }
 
     }
@@ -61,21 +76,21 @@ function PasswordReset(props) {
     const handleConfirmPassword = () => {
 
         const passwordRegex = /.{8,72}/;
-        const validPassword = signUp.signUpConfirmPassword.search(passwordRegex);
+        const validPassword = passwordReset.passwordResetConfirmPassword.search(passwordRegex);
 
         if(validPassword !== -1) {
-            setSignUpConfirmPasswordError(false);
+            setPasswordResetConfirmPasswordError(false);
         }
         if(validPassword === -1) {
-            setSignUpConfirmPasswordError(true);
+            setPasswordResetConfirmPasswordError(true);
         }
 
-        if(signUp.signUpPassword === signUp.signUpConfirmPassword) {
+        if(passwordReset.passwordResetPassword === passwordReset.passwordResetConfirmPassword) {
             console.log("pass and confirm pass match, error false")
-            setSignUpPasswordsMatchError(false);
+            setPasswordResetPasswordsMatchError(false);
         }
-        if(signUp.signUpPassword !== signUp.signUpConfirmPassword) {
-            setSignUpPasswordsMatchError(true);
+        if(passwordReset.passwordResetPassword !== passwordReset.passwordResetConfirmPassword) {
+            setPasswordResetPasswordsMatchError(true);
         }
     }
 
@@ -109,37 +124,36 @@ function PasswordReset(props) {
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Password:</label>
                         <input type="text" 
-                            onBlur={() => handleEmail()}
-                            onInput={(event) => setForgotPasswordEmail(event.target.value)}  
+                            onBlur={() => handlePassword()}
+                            onInput={(event) => setPasswordResetPassword(event.target.value)}  
                             className="br2"
                         />
                     </div>
                     {
-
+                        (passwordResetErrors.passwordResetPasswordError) ?
+                        <div className="white">Please enter a password between 8 and 72 characters</div>
+                        : ""
                     }
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Confirm Password:</label>
                         <input type="text" 
-                            onBlur={() => handleEmail()}
-                            onInput={(event) => setForgotPasswordEmail(event.target.value)}  
+                            onBlur={() => handleConfirmPassword()}
+                            onInput={(event) => setPasswordResetConfirmPassword(event.target.value)}  
                             className="br2"
                         />
                     </div>
                     {
-
-                    }
-                    {
-
-                    }
-                    {
-                        (forgotPasswordErrors.forgotPasswordEmailError) ?
-                        <div className="white">Please enter a valid email.</div>
+                        (passwordResetErrors.passwordResetConfirmPasswordError) ?
+                        <div className="white">Please enter a password between 8 and 72 characters</div>
                         : ""
                     }
                     {
-                        (forgotPasswordErrors.forgotPasswordError) ? 
+
+                    }
+                    {
+                        (passwordResetErrors.passwordResetError) ? 
                         <div className="white">
-                            {forgotPasswordErrors.forgotPasswordErrorMessage}
+                            {passwordResetErrors.passwordResetErrorMessage}
                         </div>
                         : ""
                     }
@@ -158,4 +172,4 @@ function PasswordReset(props) {
 }
 
 
-export default PasswordReset;
+export default connect(mapStateToProps, mapDispatchToProps)(PasswordReset);
