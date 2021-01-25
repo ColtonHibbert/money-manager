@@ -7,7 +7,7 @@ import {
     setPasswordResetConfirmPasswordError,
     setPasswordResetPasswordsMatchError,
     setPasswordResetError,
-    setPasswordResetErrorMessage
+    setPasswordResetErrorMessage, setUser
 } from "../services/actions";
 
 
@@ -34,7 +34,8 @@ const mapDispatchToProps = (dispatch) => {
 
 function PasswordReset(props) {
 
-    const { 
+    const {
+    user,
     passwordReset,
     passwordResetErrors,
     setRoute,
@@ -48,7 +49,41 @@ function PasswordReset(props) {
     } = props;
 
     const sendLink = () => {
+        if(passwordResetError === false && passwordResetPasswordError === false && passwordResetConfirmPasswordError === false) {
+            fetch(
+                "http:/localhost:3000/passwordreset",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "CSRF-Token": user.csrf
+                    },
+                    body: JSON.stringify({
+                        password: passwordReset.passwordResetPassword,
+                        confirmPassword: passwordReset.passwordResetConfirmPassword,
+                        token: passwordReset.passwordResetToken
+                    }),
+                    credentials: "include"
+                }
+            )
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    setPasswordResetError(true);
+                    setPasswordResetErrorMessage(data.error);
+                }
+                if(!data.error) {
+                    setPasswordResetError(false);
+                    setPasswordResetErrorMessage("");
+                    setRoute("home");
+                    setUser(data);
+                    //toaster notification after go to home
+                }
+            })
+            .catch(err => {
 
+            })
+        }
     }
 
     const handlePassword = () => {
