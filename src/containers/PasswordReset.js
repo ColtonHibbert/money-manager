@@ -51,7 +51,7 @@ function PasswordReset(props) {
     const sendLink = () => {
         if(passwordResetErrors.passwordResetError === false && passwordResetErrors.passwordResetPasswordError === false && passwordResetErrors.passwordResetConfirmPasswordError === false) {
             fetch(
-                "http:/localhost:3000/passwordreset",
+                "http://localhost:3001/passwordreset",
                 {
                     method: "POST",
                     headers: {
@@ -81,7 +81,7 @@ function PasswordReset(props) {
                 }
             })
             .catch(err => {
-                setPasswordResetError(true);
+                
             })
         }
     }
