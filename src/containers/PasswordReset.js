@@ -49,7 +49,7 @@ function PasswordReset(props) {
     } = props;
 
     const sendLink = () => {
-        if(passwordResetError === false && passwordResetPasswordError === false && passwordResetConfirmPasswordError === false) {
+        if(passwordResetErrors.passwordResetError === false && passwordResetErrors.passwordResetPasswordError === false && passwordResetErrors.passwordResetConfirmPasswordError === false) {
             fetch(
                 "http:/localhost:3000/passwordreset",
                 {
@@ -75,13 +75,13 @@ function PasswordReset(props) {
                 if(!data.error) {
                     setPasswordResetError(false);
                     setPasswordResetErrorMessage("");
-                    setRoute("home");
                     setUser(data);
+                    setRoute("home");
                     //toaster notification after go to home
                 }
             })
             .catch(err => {
-
+                setPasswordResetError(true);
             })
         }
     }
@@ -99,7 +99,6 @@ function PasswordReset(props) {
         }
 
         if(passwordReset.passwordResetPassword === passwordReset.passwordResetConfirmPassword) {
-            console.log("pass and confirm pass match, error false")
             setPasswordResetPasswordsMatchError(false);
         }
         if(passwordReset.passwordResetPassword !== passwordReset.passwordResetConfirmPassword) {
@@ -121,7 +120,6 @@ function PasswordReset(props) {
         }
 
         if(passwordReset.passwordResetPassword === passwordReset.passwordResetConfirmPassword) {
-            console.log("pass and confirm pass match, error false")
             setPasswordResetPasswordsMatchError(false);
         }
         if(passwordReset.passwordResetPassword !== passwordReset.passwordResetConfirmPassword) {
@@ -158,7 +156,7 @@ function PasswordReset(props) {
                     <hr className="w-90"/>
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Password:</label>
-                        <input type="text" 
+                        <input type="password" 
                             onBlur={() => handlePassword()}
                             onInput={(event) => setPasswordResetPassword(event.target.value)}  
                             className="br2"
@@ -171,7 +169,7 @@ function PasswordReset(props) {
                     }
                     <div className="flex flex-column pv2">
                         <label className="pl1 white">Confirm Password:</label>
-                        <input type="text" 
+                        <input type="password" 
                             onBlur={() => handleConfirmPassword()}
                             onInput={(event) => setPasswordResetConfirmPassword(event.target.value)}  
                             className="br2"
@@ -183,7 +181,9 @@ function PasswordReset(props) {
                         : ""
                     }
                     {
-
+                        (passwordResetErrors.setPasswordResetPasswordsMatchError) ?
+                        <div className="white">Passwords must match.</div>
+                        : ""
                     }
                     {
                         (passwordResetErrors.passwordResetError) ? 
