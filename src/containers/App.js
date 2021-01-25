@@ -19,7 +19,8 @@ import {
   setTransactions,
   setCSRF,
   resetState,
-  setPasswordResetToken
+  setPasswordResetToken,
+  setMobileMenu
 } from "../services/actions.js";
 
 
@@ -29,7 +30,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     accounts: state.accounts,
     transactions: state.transactions,
-    passwordReset: state.passwordReset
+    passwordReset: state.passwordReset,
   }
 }
 
@@ -41,7 +42,7 @@ const mapDispatchToProps = (dispatch) => {
     setTransactions: (value) => dispatch(setTransactions(value)),
     setCSRF: (value) => dispatch(setCSRF(value)),
     resetState: () => dispatch(resetState()),
-    setPasswordResetToken: (value) => dispatch(setPasswordResetToken(value))
+    setPasswordResetToken: (value) => dispatch(setPasswordResetToken(value)),
   }
 }
 

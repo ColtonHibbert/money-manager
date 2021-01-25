@@ -38,7 +38,9 @@ import {
     SET_PASSWORD_RESET_CONFIRM_PASSWORD_ERROR,
     SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR,
     SET_PASSWORD_RESET_ERROR,
-    SET_PASSWORD_RESET_ERROR_MESSAGE
+    SET_PASSWORD_RESET_ERROR_MESSAGE,
+    SET_MOBILE_MENU, 
+    TOGGLE_MOBILE_MENU
 } from "./constants.js";
 
 const initialState = {
@@ -85,6 +87,9 @@ const initialState = {
         passwordResetPasswordsMatchError: false
     },
     route: "loading",
+    navigation: {
+        mobileMenu: false,
+    },
     signUp: {
         signUpFirstName: "",
         signUpLastName: "",
@@ -472,6 +477,24 @@ export const reducer = (state=initialState, action={}) => {
             passwordResetErrors: {
                 ...state.passwordResetErrors,
                 passwordResetErrorMessage: action.setPasswordResetErrorMessagePayload
+            }
+        }
+    }
+    if(action.type === SET_MOBILE_MENU) {
+        return {
+            ...state,
+            navigation: {
+                ...state.navigation,
+                mobileMenu: action.setMobileMenuPayload
+            }
+        }
+    }
+    if(action.type === TOGGLE_MOBILE_MENU) {
+        return {
+            ...state, 
+            navigation: {
+                ...state.navigation,
+                mobileMenu: !state.navigation.mobileMenu
             }
         }
     }
