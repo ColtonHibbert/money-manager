@@ -38,7 +38,9 @@ import {
     SET_PASSWORD_RESET_CONFIRM_PASSWORD_ERROR, 
     SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR,
     SET_PASSWORD_RESET_ERROR,
-    SET_PASSWORD_RESET_ERROR_MESSAGE
+    SET_PASSWORD_RESET_ERROR_MESSAGE,
+    SET_MOBILE_MENU,
+    TOGGLE_MOBILE_MENU
 } from "./constants.js";
 
 
@@ -322,3 +324,15 @@ export const setPasswordResetErrorMessage = (payload) => {
     }
 }
 
+export const setMobileMenu = (payload) => {
+    return {
+        type: SET_MOBILE_MENU,
+        setMobileMenuPayload: payload
+    }
+}
+
+export const toggleMobileMenu = () => {
+    return {
+        type: TOGGLE_MOBILE_MENU
+    }
+}
