@@ -66,6 +66,9 @@ const ForgotPassword = (props) => {
                     setForgotPasswordEmailSent(true);
                 }
             })
+            .catch(err => {
+                setForgotPasswordError(true);
+            })
         }
     }
 
