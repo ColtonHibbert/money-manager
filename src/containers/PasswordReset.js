@@ -7,9 +7,8 @@ import {
     setPasswordResetConfirmPasswordError,
     setPasswordResetPasswordsMatchError,
     setPasswordResetError,
-    setPasswordResetErrorMessage, setUser
+    setPasswordResetErrorMessage, 
 } from "../services/actions";
-
 
 const mapStateToProps = (state) => {
     return {
@@ -31,7 +30,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-
 function PasswordReset(props) {
 
     const {
@@ -49,7 +47,7 @@ function PasswordReset(props) {
     } = props;
 
     const sendLink = () => {
-        if(passwordResetErrors.passwordResetError === false && passwordResetErrors.passwordResetPasswordError === false && passwordResetErrors.passwordResetConfirmPasswordError === false) {
+        if( passwordResetErrors.passwordResetPasswordError === false && passwordResetErrors.passwordResetConfirmPasswordError === false && passwordResetErrors.passwordResetPasswordsMatchError === false) {
             fetch(
                 "http://localhost:3001/passwordreset",
                 {
@@ -73,11 +71,8 @@ function PasswordReset(props) {
                     setPasswordResetErrorMessage(data.error);
                 }
                 if(!data.error) {
-                    setPasswordResetError(false);
-                    setPasswordResetErrorMessage("");
-                    setUser(data);
-                    setRoute("home");
-                    //toaster notification after go to home
+                    //use default behavior to remove token and load user
+                    window.location.href = "http://localhost:3000";
                 }
             })
             .catch(err => {
