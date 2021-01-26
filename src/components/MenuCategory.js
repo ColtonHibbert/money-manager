@@ -1,4 +1,7 @@
 import React from "react";
+import MenuItem from "./MenuItem.js";
+
+
 
 function MenuCategory(props) {
     return (
