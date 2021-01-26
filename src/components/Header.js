@@ -8,8 +8,7 @@ function Header(props) {
         <div className="h3 w100 flex flex-row bg-custom-lighter-gray bb-thin-gray">
             <div className="w-50">
                 <svg 
-                    className="w2 h2 fixed pa0 ma3 white money-color 
-                    display-none-m
+                    className="w2 h2 fixed pa0 ma3 money-color 
                     display-none-l
                     " 
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"

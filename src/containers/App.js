@@ -9,7 +9,7 @@ import ForgotPassword from "./ForgotPassword.js";
 import PasswordReset from "./PasswordReset.js";
 import Logout from '../components/Logout.js';
 import Loading from "../components/Loading.js";
-import Home from "../components/Home.js";
+import Home from "./Home.js";
 import Accounts from "../components/Accounts.js";
 import Transactions from "../components/Transactions.js";
 import {
@@ -20,7 +20,6 @@ import {
   setCSRF,
   resetState,
   setPasswordResetToken,
-  setMobileMenu
 } from "../services/actions.js";
 
 
@@ -125,7 +124,7 @@ function App(props) {
   
 
   return (
-    <div className="App">
+    <div className="App ">
       {
         (route === "login") ? 
         <Login {...props} />

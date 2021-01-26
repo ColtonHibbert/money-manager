@@ -140,7 +140,7 @@ function PasswordReset(props) {
                     <div>Money is a good servant but a terrible master. Get in control of your finances and sign up today!</div>
                 </div>
                 <div className="
-                w-100 flex flex-column pv3 bg-dark-color ph3 justify-center
+                w-100 flex flex-column pv3 bg-custom-lighter-gray ph3 justify-center
                 vh-75-l 
                 ">
                     <div className="

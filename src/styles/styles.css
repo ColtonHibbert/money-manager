@@ -30,13 +30,30 @@
 .bg-custom-gray {
     background-color: rgb(138,141,147);
 }
+/*#8a8d93*/
 
 .custom-gray {
     color: rgb(138,141,147);
 }
 
+.custom-lighter-gray {
+    color:  rgb(45,48,53);
+}
+
+.fill-custom-gray {
+    fill:  rgb(138,141,147);
+}
+
+.fill-lighter-gray {
+    fill:  rgb(45,48,53);
+}
+
 .money-color {
     color: rgb(66, 146, 68);
+}
+
+.fill-money-color {
+    fill:  rgb(66, 146, 68);
 }
 
 .width-60-px {
@@ -52,7 +69,17 @@
 }
 
 @media screen and (max-width: 30em) {
-    
+    .display-none-s {
+        display: none
+    }
+
+    .h1point5-s {
+        height: 1.5rem;
+    }
+
+    .w1point5-s {
+        width: 1.5rem;
+    }
 }
 
 @media screen and (min-width: 30em) and (max-width: 60em) {
