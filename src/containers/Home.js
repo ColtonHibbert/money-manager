@@ -29,12 +29,11 @@ function Home(props) {
             <Header {...props}></Header>
             {
                 (navigation.mobileMenu) ?
-                <MobileMenu></MobileMenu>
+                <MobileMenu {...props}></MobileMenu>
                 : ""
             }
-            
             <div>
-                <Menu ></Menu>
+                <Menu {...props}></Menu>
                 <div className="">{user.firstName}</div>
                 <button onClick={() => setRoute("login")}>Login</button>
                 <button onClick={() => setRoute("signup")}>Sign up</button>
