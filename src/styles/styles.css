@@ -68,6 +68,30 @@
     width: 120px;
 }
 
+  .money-hover:hover,
+  .money-hover:active,
+  .money-hover:focus {
+    color: rgb(66, 146, 68);
+  }
+
+  .fill-money-hover:hover,
+  .fill-money-hover:active,
+  .fill-money-hover:focus {
+    fill: rgb(66, 146, 68);
+  }
+
+  .darker-gray-hover:hover,
+  .darker-gray-hover:active,
+  .darker-gray-hover:focus{
+    background-color: rgb(34,37,42);
+  }
+
+  .lighter-gray-hover:hover,
+  .lighter-gray-hover:active,
+  .lighter-gray-hover:focus{
+    background-color: rgb(45,48,53);
+  }
+
 @media screen and (max-width: 30em) {
     .display-none-s {
         display: none
@@ -89,6 +113,14 @@
     .min-vh-75-m {
         min-height: 75vh;
     }
+
+    .h2point25-m {
+        height: 2.25rem;
+    }
+
+    .w2point25-m {
+        width: 2.25rem;
+    }
 }
 
 @media screen and (min-width: 60em) {
@@ -97,5 +129,12 @@
     }
     .min-vh-75-l {
         min-height: 75vh;
+    }
+    .h2point25-l {
+        height: 2.25rem;
+    }
+
+    .w2point25-l {
+        width: 2.25rem;
     }
 }
