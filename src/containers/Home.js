@@ -24,12 +24,13 @@ const mapDispatchToProps = (dispatch) => {
 
 function Home(props) {
     const { setRoute, user, navigation } = props;
-    console.log((window.innerWidth / parseFloat(getComputedStyle(document.querySelector('body'))['font-size'])) * 60)
+    //console.log((window.innerWidth / parseFloat(getComputedStyle(document.querySelector('body'))['font-size'])) );
+    console.log(document.querySelector('html')['font-size'])
     return (
         <div className="bg-custom-darker-gray min-vh-100">
             <Header {...props}></Header>
             {
-                (navigation.mobileMenu && window.innerWidth < (window.innerWidth / parseFloat(getComputedStyle(document.querySelector('body'))['font-size'])) * 60) ?
+                (navigation.mobileMenu) ?
                 <MobileMenu></MobileMenu>
                 : 
                 <div>
