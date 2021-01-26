@@ -89,6 +89,7 @@ const initialState = {
     route: "loading",
     navigation: {
         mobileMenu: false,
+        accountSelected: true
     },
     signUp: {
         signUpFirstName: "",
