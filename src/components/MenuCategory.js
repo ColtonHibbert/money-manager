@@ -4,8 +4,9 @@ function MenuCategory(props) {
     return (
         <div 
             className="
-            h2 f4 flex flex-row items-center pl2 bg-custom-lighter-gray custom-gray
-
+            f4 flex flex-row items-center pl2 bg-custom-lighter-gray custom-gray pointer money-hover darker-gray-hover 
+            h2point25-m
+            h2point25p-l
             "
         >
             <div>
