@@ -77,6 +77,34 @@ function App(props) {
     }) 
   }
 
+  const loadInitialData = (token) => {
+    return fetch(
+      "http://localhost:3001/loadinitialdata", 
+      {
+        method: "GET",
+        headers: {
+          "Content-Type":"application/json",
+          "CSRF-Token":user.csrf
+        },
+        credentials: "include"
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.error) {
+          if(token === "") {
+            setRoute("login");
+          }
+          if(token !== "") {
+            setRoute("passwordreset");
+          }
+        }
+        if(!data.error) {
+          setInitialData(data);
+          setRoute("home");
+        }
+      })
+  }
+
   const getCsrf = () => {
     return fetch(
       "http://localhost:3001/csrf", 
