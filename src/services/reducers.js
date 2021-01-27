@@ -40,7 +40,8 @@ import {
     SET_PASSWORD_RESET_ERROR,
     SET_PASSWORD_RESET_ERROR_MESSAGE,
     SET_MOBILE_MENU, 
-    TOGGLE_MOBILE_MENU
+    TOGGLE_MOBILE_MENU,
+    SET_INITIAL_DATA
 } from "./constants.js";
 
 const initialState = {
@@ -497,6 +498,13 @@ export const reducer = (state=initialState, action={}) => {
                 ...state.navigation,
                 mobileMenu: !state.navigation.mobileMenu
             }
+        }
+    }
+    if(action.type === SET_INITIAL_DATA) {
+        return {
+            ...state,
+            user: action.setInitialDataPayload.user,
+            accounts: action.setInitialDataPayload.accounts
         }
     }
     return state;
