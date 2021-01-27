@@ -2,6 +2,7 @@ import React from "react";
 import MenuItem from "./MenuItem.js";
 import SavingsIcon from "./SavingsIcon.js";
 import CheckingIcon from "./CheckingIcon.js";
+import DebtIcon from "./DebtIcon.js";
 
 function MenuCategory(props) {
     console.log(props.navigation)
@@ -58,7 +59,7 @@ function MenuCategory(props) {
                                             <CheckingIcon />
                                             : (account.accountTypeId === 2) ?
                                             <SavingsIcon />
-                                            : <div>Debt</div>
+                                            : <DebtIcon />
                                         }
                                         
                                         <div className="pl2">{account.accountName}</div>
