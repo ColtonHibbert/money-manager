@@ -503,8 +503,8 @@ export const reducer = (state=initialState, action={}) => {
     if(action.type === SET_INITIAL_DATA) {
         return {
             ...state,
-            user: action.setInitialDataPayload.user,
-            accounts: action.setInitialDataPayload.accounts
+            user: action.setInitialDataPayload.initialData.user,
+            accounts: action.setInitialDataPayload.initialData.accounts
         }
     }
     return state;

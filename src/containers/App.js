@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
 
 function App(props) {
   const { route, setRoute, setCSRF, user, setUser, resetState, setPasswordResetToken, passwordReset, setInitialData } = props;
-
+  console.log("state changed on app, pass in props)", props)
   const loadUser = (token) => {
     console.log("token inside loadUser: ", token)
       return fetch(
@@ -143,12 +143,14 @@ function App(props) {
   }
 
   useEffect( () => {
-    async function loadUser() {
+    console.log("useEffect, app")
+    async function getFirstData() {
+      console.log("loadUser")
       await getCsrf();
       const token = getParams();
-      await loadUser(token);
+      await loadInitialData(token);
     }
-    loadUser();
+    getFirstData();
   }, []);
 
   

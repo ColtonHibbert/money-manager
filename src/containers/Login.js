@@ -8,7 +8,7 @@ import {
     setLoginErrorMessage,
     setLoginRememberMe,
     setLoginEmailError,
-    setLoginPasswordError
+    setLoginPasswordError,
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -35,6 +35,7 @@ function Login(props) {
         user,
         setRoute,
         setUser, 
+        setInitialData,
         login,
         loginErrors, 
         setLoginEmail, 
@@ -73,7 +74,7 @@ function Login(props) {
                 if(!data.error) {
                     setLoginError(false);
                     setLoginErrorMessage("");
-                    setUser(data);
+                    setInitialData(data);
                     setRoute("home");
                 }
                 
