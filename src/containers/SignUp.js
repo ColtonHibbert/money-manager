@@ -50,6 +50,7 @@ function SignUp(props) {
         signUp,
         signUpErrors,
         setUser, 
+        setInitialData,
         setRoute, 
         setSignUpFirstName,
         setSignUpLastName,
@@ -103,7 +104,7 @@ function SignUp(props) {
                 if(!data.error) {
                     setSignUpError(false);
                     setSignUpErrorMessage("");
-                    setUser(data);
+                    setInitialData(data);
                     setRoute("home");
                 } 
             })
