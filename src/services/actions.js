@@ -40,7 +40,8 @@ import {
     SET_PASSWORD_RESET_ERROR,
     SET_PASSWORD_RESET_ERROR_MESSAGE,
     SET_MOBILE_MENU,
-    TOGGLE_MOBILE_MENU
+    TOGGLE_MOBILE_MENU, 
+    SET_INITIAL_DATA
 } from "./constants.js";
 
 
@@ -334,5 +335,12 @@ export const setMobileMenu = (payload) => {
 export const toggleMobileMenu = () => {
     return {
         type: TOGGLE_MOBILE_MENU
+    }
+}
+
+export const setInitialData = (payload) => {
+    return {
+        type: SET_INITIAL_DATA,
+        setInitialDataPayload: (payload)
     }
 }
