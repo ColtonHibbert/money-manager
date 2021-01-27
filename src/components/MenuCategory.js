@@ -1,8 +1,12 @@
 import React from "react";
 import MenuItem from "./MenuItem.js";
+import SavingsIcon from "./SavingsIcon.js";
+import CheckingIcon from "./CheckingIcon.js";
 
 function MenuCategory(props) {
     console.log(props.navigation)
+
+    const {navigation, accounts, name} = props;
     return (
         <div className="flex flex-column">
             <div 
@@ -20,7 +24,7 @@ function MenuCategory(props) {
                 </div>
             </div>
             {
-                (props.navigation.accountSelected && props.name === "Accounts") ?
+                (navigation.accountSelected && name === "Accounts") ?
                 <div>
                     <div 
                     className="
@@ -39,7 +43,29 @@ function MenuCategory(props) {
                         <div className="pl2">Summary of Accounts</div>
                     </div>
                     {
-
+                        accounts.map(account => {
+                            return (
+                                <div key={account.accountId}>
+                                    <div 
+                                        className="
+                                        f4 flex flex-row items-center pl4 bg-custom-lighter-gray custom-gray pointer money-hover darker-gray-hover 
+                                        h2point25-m
+                                        h2point25p-l
+                                        "
+                                    >
+                                        {
+                                            (account.accountTypeId === 1) ?
+                                            <CheckingIcon />
+                                            : (account.accountTypeId === 2) ?
+                                            <SavingsIcon />
+                                            : <div>Debt</div>
+                                        }
+                                        
+                                        <div className="pl2">{account.accountName}</div>
+                                    </div>
+                                </div>
+                            )
+                        })
                     }
                 </div>
                 : ""
