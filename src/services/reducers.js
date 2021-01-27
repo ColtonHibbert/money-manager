@@ -505,8 +505,6 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             user: action.setInitialDataPayload.user,
             accounts: action.setInitialDataPayload.accounts
-
-            
         }
     }
     return state;

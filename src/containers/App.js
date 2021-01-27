@@ -20,6 +20,7 @@ import {
   setCSRF,
   resetState,
   setPasswordResetToken,
+  setInitialData
 } from "../services/actions.js";
 
 
@@ -42,6 +43,7 @@ const mapDispatchToProps = (dispatch) => {
     setCSRF: (value) => dispatch(setCSRF(value)),
     resetState: () => dispatch(resetState()),
     setPasswordResetToken: (value) => dispatch(setPasswordResetToken(value)),
+    setInitialData: (value) => dispatch(setInitialData(value))
   }
 }
 
@@ -144,7 +146,7 @@ function App(props) {
     async function loadInitialData() {
       await getCsrf();
       const token = getParams();
-      await loadUser(token);
+      await loadInitialData(token);
     }
     loadInitialData();
   }, []);
