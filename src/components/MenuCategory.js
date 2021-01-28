@@ -3,11 +3,13 @@ import MenuItem from "./MenuItem.js";
 import SavingsIcon from "./SavingsIcon.js";
 import CheckingIcon from "./CheckingIcon.js";
 import DebtIcon from "./DebtIcon.js";
+import UpIcon from "./UpIcon.js";
+import DownIcon from "./DownIcon.js";
 
 function MenuCategory(props) {
     console.log(props.navigation)
 
-    const {navigation, accounts, name} = props;
+    const {navigation, accounts, name, setNavigationAccountSelected } = props;
     return (
         <div className="flex flex-column">
             <div 
@@ -16,12 +18,26 @@ function MenuCategory(props) {
                 h2point25-m
                 h2point25p-l
                 "
+                {...(name === "Accounts" && { onClick: setNavigationAccountSelected })}
+                
             >
                 <div>
                     {props.children}
                 </div>
-                <div className="pl2">
-                {props.name}
+                <div className="w-100 flex flex-row justify-between">
+                    <div className="pl2">
+                    {props.name}
+                    </div>
+                    {
+                        (name === "Accounts" && navigation.accountSelected === false) ?
+                        <DownIcon /> 
+                        : ""
+                    }
+                    {
+                        (name === "Accounts" && navigation.accountSelected) ?
+                        <UpIcon />
+                        : ""
+                    }
                 </div>
             </div>
             {

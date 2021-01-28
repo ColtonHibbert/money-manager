@@ -39,6 +39,7 @@ import {
     SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR,
     SET_PASSWORD_RESET_ERROR,
     SET_PASSWORD_RESET_ERROR_MESSAGE,
+    SET_NAVIGATION_ACCOUNT_SELECTED,
     SET_MOBILE_MENU, 
     TOGGLE_MOBILE_MENU,
     SET_INITIAL_DATA
@@ -90,7 +91,7 @@ const initialState = {
     route: "loading",
     navigation: {
         mobileMenu: false,
-        accountSelected: true
+        accountSelected: false
     },
     signUp: {
         signUpFirstName: "",
@@ -497,6 +498,15 @@ export const reducer = (state=initialState, action={}) => {
             navigation: {
                 ...state.navigation,
                 mobileMenu: !state.navigation.mobileMenu
+            }
+        }
+    }
+    if(action.type === SET_NAVIGATION_ACCOUNT_SELECTED ) {
+        return {
+            ...state,
+            navigation: {
+                ...state.navigation,
+                accountSelected: !state.navigation.accountSelected
             }
         }
     }
