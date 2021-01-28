@@ -6,6 +6,7 @@ import MobileMenu from "../components/MobileMenu.js";
 import Dashboard from "./Dashboard.js";
 import Profile from "./Profile.js";
 import AccountSummary from "./AccountSummary.js";
+import Account from "../components/Account.js";
 import Transactions from "./Transactions.js";
 import Lobby from "./Lobby.js";
 import {
@@ -62,9 +63,11 @@ function Home(props) {
                 }
                 {
                     accounts.map(account => {
-                        (routeHome === account.accountId.toString()) ?
-                        <Account {...props} account={account} /> 
-                        : ""
+                        if(routeHome === account.accountId.toString()) {
+                            return <Account {...props} account={account} /> 
+                        } else {
+                            return ""
+                        }
                     })
                 }
                 {

@@ -1,10 +1,11 @@
 import React from "react";
 
 function Account(props) {
+    const { account } = props;
     return(
         <div>
             account
-            {props.accountName}
+            {account.accountName}
         </div>
     )
 }
