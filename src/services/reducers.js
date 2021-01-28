@@ -79,7 +79,8 @@ const initialState = {
     },
     navigation: {
         mobileMenu: false,
-        accountSelected: false
+        accountSelected: false,
+        editProfile: false,
     },
     passwordReset: {
         passwordResetPassword: "",

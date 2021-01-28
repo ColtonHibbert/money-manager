@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import HomeIcon from "../components/HomeIcon.js";
 import PhoneIcon from "../components/PhoneIcon.js";
+import EditProfile from "../components/EditProfile.js";
 
 const mapStateToProps = (state) => {
     return {
@@ -58,14 +59,17 @@ function Profile(props) {
                             </div>
                         </div>
                         <div className="w-100 mv2 pl3">Picture:</div>
-                        <div className="pl3">image here</div>
+                        <div className="w4 h4 flex justify-center items-center ml3 mb2 br-100 bg-money-color">
+                            <div className="w2 h2 white flex justify-center items-center f3">{user.firstName}</div>
+                        </div>
+                        <div className="w3point5 h2 flex justify-center items-center ml3 mv3 pa2 br2 white bg-blue pointer grow">Edit Profile</div>
                     </div>
                 </div>
                 <div className="w-100 flex flex-column mt4">
                     <div className="w-100 h2 flex flex-row items-center pl3 bg-custom-darker-gray border-thin-gray custom-gray">Account Options</div>
-                    <div className="w-100 h3 flex flex-column bg-custom-lighter-gray border-thin-gray custom-gray">
-                        <div className="pl3">Change Email</div>
-                        <div className="pl3">Change Password</div>
+                    <div className="w-100 h4 flex flex-column justify-center bg-custom-lighter-gray border-thin-gray custom-gray">
+                        <div className="pl3 mv2 white underline grow-l pointer">Change Email</div>
+                        <div className="pl3 mv2 white underline grow-l pointer">Change Password</div>
                     </div>
                 </div>
             </div>
