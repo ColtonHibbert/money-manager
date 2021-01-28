@@ -68,7 +68,9 @@ function MenuCategory(props) {
                     {
                         accounts.map(account => {
                             return (
-                                <div key={account.accountId}>
+                                <div key={account.accountId}
+                                onClick={() => setRouteHome(account.accountId.toString())}
+                                >
                                     <div 
                                         className="
                                         f4 flex flex-row items-center pl4 bg-custom-lighter-gray custom-gray pointer money-hover darker-gray-hover 
