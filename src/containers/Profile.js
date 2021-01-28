@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import HomeIcon from "../components/HomeIcon.js";
+import PhoneIcon from "../components/PhoneIcon.js";
 
 const mapStateToProps = (state) => {
     return {
@@ -42,16 +44,28 @@ function Profile(props) {
                         <div className="w-100 flex-flex-column">
                             <div className="f4 b pl3 mv3">{`${user.firstName} ${user.lastName}`}</div>
                             <div className="pl3 mv2 b">Info: </div>
-                            <div className="w-100 mv2 flex flex-row">
-                                <div className="pl3">svg</div>
-                                <div>{`Address: ${user.address}`}</div>
+                            <div className="w-100 mv2 flex flex-row items-center">
+                                <div className="pl3">
+                                    <HomeIcon />
+                                </div>
+                                <div className="pl1">{`Address: ${user.address}`}</div>
                             </div>
-                            <div className="w-100 mv2 flex flex-row">
-                                <div className="pl3">svg</div>
-                                <div>{`Address: ${user.phone}`}</div>
+                            <div className="w-100 mv2 flex flex-row items-center">
+                                <div className="pl3">
+                                    <PhoneIcon />
+                                </div>
+                                <div className="pl1">{`Phone: ${user.phone}`}</div>
                             </div>
                         </div>
-                        <div className="w-100">Picture</div>
+                        <div className="w-100 mv2 pl3">Picture:</div>
+                        <div className="pl3">image here</div>
+                    </div>
+                </div>
+                <div className="w-100 flex flex-column mt4">
+                    <div className="w-100 h2 flex flex-row items-center pl3 bg-custom-darker-gray border-thin-gray custom-gray">Account Options</div>
+                    <div className="w-100 h3 flex flex-column bg-custom-lighter-gray border-thin-gray custom-gray">
+                        <div className="pl3">Change Email</div>
+                        <div className="pl3">Change Password</div>
                     </div>
                 </div>
             </div>
