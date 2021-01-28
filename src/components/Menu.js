@@ -8,7 +8,7 @@ function Menu(props) {
 
             <div
                 className="
-                flex flex-column min-vh-100 bg-custom-lighter-gray
+                flex flex-column min-vh-100 bg-custom-lighter-gray border-thin-gray
                 display-none-s
                 display-none-m
                 w5-l

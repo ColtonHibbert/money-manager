@@ -94,7 +94,7 @@ const initialState = {
         passwordResetPasswordsMatchError: false
     },
     route: "loading",
-    routeHome: "dashboard",
+    routeHome: "profile",
     signUp: {
         signUpFirstName: "",
         signUpLastName: "",
