@@ -45,6 +45,7 @@ export const SET_MOBILE_MENU = "SET_MOBILE_MENU";
 export const TOGGLE_MOBILE_MENU = "TOGGLE_MOBILE_MENU";
 
 export const SET_INITIAL_DATA = "SET_INITIAL_DATA";
+export const SET_ROUTE_HOME = "SET_ROUTE_HOME";
 
 
 

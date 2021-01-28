@@ -42,7 +42,8 @@ import {
     SET_NAVIGATION_ACCOUNT_SELECTED,
     SET_MOBILE_MENU, 
     TOGGLE_MOBILE_MENU,
-    SET_INITIAL_DATA
+    SET_INITIAL_DATA,
+    SET_ROUTE_HOME
 } from "./constants.js";
 
 const initialState = {
@@ -76,6 +77,10 @@ const initialState = {
         loginEmailError: false,
         loginPasswordError: false,
     },
+    navigation: {
+        mobileMenu: false,
+        accountSelected: false
+    },
     passwordReset: {
         passwordResetPassword: "",
         passwordResetConfirmPassword: "",
@@ -89,10 +94,7 @@ const initialState = {
         passwordResetPasswordsMatchError: false
     },
     route: "loading",
-    navigation: {
-        mobileMenu: false,
-        accountSelected: false
-    },
+    routeHome: "dashboard",
     signUp: {
         signUpFirstName: "",
         signUpLastName: "",
@@ -515,6 +517,12 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             user: action.setInitialDataPayload.initialData.user,
             accounts: action.setInitialDataPayload.initialData.accounts
+        }
+    }
+    if(action.type === SET_ROUTE_HOME) {
+        return {
+            ...state,
+            routeHome: action.setRouteHomePayload
         }
     }
     return state;

@@ -192,16 +192,6 @@ function App(props) {
         <Home {...props} />
         : ""
       }
-      {
-        (route === "accounts") ?
-        <Accounts  {...props} />
-        : ""
-      }
-      {
-        (route === "transactions") ?
-        <Transactions {...props} />
-        : ""
-      }
     </div>
   );
 }

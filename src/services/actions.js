@@ -42,7 +42,8 @@ import {
     SET_NAVIGATION_ACCOUNT_SELECTED,
     SET_MOBILE_MENU,
     TOGGLE_MOBILE_MENU, 
-    SET_INITIAL_DATA
+    SET_INITIAL_DATA,
+    SET_ROUTE_HOME
 } from "./constants.js";
 
 
@@ -349,5 +350,12 @@ export const setInitialData = (payload) => {
     return {
         type: SET_INITIAL_DATA,
         setInitialDataPayload: (payload)
+    }
+}
+
+export const setRouteHome = (payload) => {
+    return {
+        type: SET_ROUTE_HOME,
+        setRouteHomePayload: payload
     }
 }
