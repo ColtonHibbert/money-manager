@@ -5,13 +5,18 @@ import CheckingIcon from "./CheckingIcon.js";
 import DebtIcon from "./DebtIcon.js";
 import UpIcon from "./UpIcon.js";
 import DownIcon from "./DownIcon.js";
-import { setRouteHome } from "../services/actions.js";
 
 
 function MenuCategory(props) {
     console.log(props.navigation)
 
-    const {navigation, accounts, name, setNavigationAccountSelected, setRouteHome } = props;
+    const {navigation, accounts, name, setNavigationAccountSelected, setRouteHome, setMobileMenu } = props;
+
+    const handleSelect = (value) => {
+        setMobileMenu(false);
+        setRouteHome(value);
+    } 
+
     return (
         <div className="flex flex-column">
             <div 
@@ -21,10 +26,10 @@ function MenuCategory(props) {
                 h2point25p-l
                 "
                 {...(name === "Accounts" && { onClick: setNavigationAccountSelected } )}
-                {...(name === "Profile" && { onClick: () => setRouteHome("profile") } )}
-                {...(name === "Dashboard" && { onClick: () => setRouteHome("dashboard")} )}
-                {...(name === "Transactions" && {onClick: () => setRouteHome("transactions")} )}
-                {...(name === "Lobby" && {onClick: () => setRouteHome("lobby")} )}
+                {...(name === "Profile" && { onClick: () => handleSelect("profile") } )}
+                {...(name === "Dashboard" && { onClick: () => handleSelect("dashboard")} )}
+                {...(name === "Transactions" && {onClick: () => handleSelect("transactions")} )}
+                {...(name === "Lobby" && {onClick: () => handleSelect("lobby")} )}
             >
                 <div>
                     {props.children}
@@ -54,7 +59,7 @@ function MenuCategory(props) {
                     h2point25-m
                     h2point25p-l
                     "
-                    onClick={() => setRouteHome("accountsummary")}
+                    onClick={() => handleSelect("accountsummary")}
                     >
                         <svg id="Layer_1"
                         className="
@@ -69,7 +74,7 @@ function MenuCategory(props) {
                         accounts.map(account => {
                             return (
                                 <div key={account.accountId}
-                                onClick={() => setRouteHome(account.accountId.toString())}
+                                onClick={() => handleSelect(account.accountId.toString())}
                                 >
                                     <div 
                                         className="
