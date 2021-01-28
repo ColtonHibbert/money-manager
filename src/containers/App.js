@@ -10,8 +10,6 @@ import PasswordReset from "./PasswordReset.js";
 import Logout from '../components/Logout.js';
 import Loading from "../components/Loading.js";
 import Home from "./Home.js";
-import Accounts from "../components/Accounts.js";
-import Transactions from "../components/Transactions.js";
 import {
   setRoute,
   setUser,

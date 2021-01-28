@@ -1,7 +1,7 @@
 import React from "react";
 
 function Transactions(props) {
-    const { user, transactions, setTransactions, setRoute } = props;
+    const { user, transactions, setTransactions } = props;
 
     const getTransactions = () => fetch(
         "http://localhost:3001/transactions",
@@ -19,6 +19,7 @@ function Transactions(props) {
 
     return (
         <div>
+            <div>Transactions</div>
             <div>{user.firstName}</div>
             <div>
             {
@@ -33,12 +34,10 @@ function Transactions(props) {
                     )
                 }) : ""
             }    
-            </div>
-            <button onClick={() => setRoute("home")}>Home</button>
+            </div> 
             <button onClick={() => getTransactions()}>Get Transactions</button>
         </div>
     );
-
 }
 
 export default Transactions;
