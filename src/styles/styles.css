@@ -102,6 +102,10 @@
       height: 2000px;
   }
 
+.w3point5 {
+    width: 6rem;
+}
+
 @media screen and (max-width: 30em) {
     .display-none-s {
         display: none
