@@ -39,6 +39,7 @@ import {
     SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR,
     SET_PASSWORD_RESET_ERROR,
     SET_PASSWORD_RESET_ERROR_MESSAGE,
+    SET_NAVIGATION_ACCOUNT_SELECTED,
     SET_MOBILE_MENU,
     TOGGLE_MOBILE_MENU, 
     SET_INITIAL_DATA
@@ -322,6 +323,12 @@ export const setPasswordResetErrorMessage = (payload) => {
     return {
         type: SET_PASSWORD_RESET_ERROR_MESSAGE,
         setPasswordResetErrorMessagePayload: payload
+    }
+}
+
+export const setNavigationAccountSelected = () => {
+    return {
+        type: SET_NAVIGATION_ACCOUNT_SELECTED
     }
 }
 

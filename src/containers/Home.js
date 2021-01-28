@@ -5,6 +5,7 @@ import Menu from "../components/Menu.js";
 import MobileMenu from "../components/MobileMenu.js";
 import {
     setMobileMenu, 
+    setNavigationAccountSelected, 
     toggleMobileMenu
 } from "../services/actions.js";
 
@@ -17,6 +18,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        setNavigationAccountSelected: () => dispatch(setNavigationAccountSelected()),
         setMobileMenu: (value) => dispatch(setMobileMenu(value)),
         toggleMobileMenu: () => dispatch(toggleMobileMenu())
     }
