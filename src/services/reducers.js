@@ -43,7 +43,8 @@ import {
     SET_MOBILE_MENU, 
     TOGGLE_MOBILE_MENU,
     SET_INITIAL_DATA,
-    SET_ROUTE_HOME
+    SET_ROUTE_HOME,
+    SET_NAVIGATION_EDIT_PROFILE
 } from "./constants.js";
 
 const initialState = {
@@ -524,6 +525,15 @@ export const reducer = (state=initialState, action={}) => {
         return {
             ...state,
             routeHome: action.setRouteHomePayload
+        }
+    }
+    if(action.type === SET_NAVIGATION_EDIT_PROFILE) {
+        return {
+            ...state,
+            navigation: {
+                ...state.navigation,
+                editProfile: action.setNavigationEditProfilePayload
+            }
         }
     }
     return state;
