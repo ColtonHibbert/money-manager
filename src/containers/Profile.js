@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import HomeIcon from "../components/HomeIcon.js";
 import PhoneIcon from "../components/PhoneIcon.js";
 import EditProfile from "../components/EditProfile.js";
+import { setNavigationEditProfile } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
     return {
@@ -12,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        setNavigationEditProfile: (value) => dispatch(setNavigationEditProfile(value))
     }
 }
 
