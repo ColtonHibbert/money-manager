@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function Home(props) {
-    const { setRoute, user, navigation, routeHome, setRouteHome } = props;
+    const { setRoute, user, navigation, routeHome, setRouteHome, accounts } = props;
     return (
         <div className="bg-custom-darker-gray min-vh-100">
             <Header {...props}></Header>
@@ -59,6 +59,13 @@ function Home(props) {
                     (routeHome === "accountsummary") ?
                     <AccountSummary {...props} />
                     : ""
+                }
+                {
+                    accounts.map(account => {
+                        (routeHome === account.accountId.toString()) ?
+                        <Account {...props} account={account} /> 
+                        : ""
+                    })
                 }
                 {
                     (routeHome === "transactions") ? 
