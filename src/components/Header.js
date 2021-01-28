@@ -2,10 +2,10 @@ import React from "react";
 
 function Header(props) {
 
-    const { navigation, setMobileMenu, toggleMobileMenu } = props;
+    const { toggleMobileMenu } = props;
 
     return(
-        <div id="header" className="h3 w100 flex flex-row bg-custom-lighter-gray bb-thin-gray">
+        <div className="h3 w-100 flex flex-row bg-custom-lighter-gray bb-thin-gray">
             <div className="w-50">
                 <svg 
                     className="w2 h2 pa0 ma3 money-color 

@@ -7,8 +7,14 @@
 
 .bb-thin-gray {
     border-bottom-style: solid;
-    border-bottom-width: .1px;
+    border-bottom-width: 1px;
     border-bottom-color: rgb(52,55,61);
+}
+
+.border-thin-gray {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(52,55,61);
 }
 
 .bg-money-color-see-through {

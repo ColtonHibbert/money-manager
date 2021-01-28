@@ -36,16 +36,16 @@ const mapDispatchToProps = (dispatch) => {
 function Home(props) {
     const { setRoute, user, navigation, routeHome, setRouteHome, accounts } = props;
     return (
-        <div className="bg-custom-darker-gray min-vh-100">
+        <div className="min-vh-100 w-100 bg-custom-darker-gray">
             <Header {...props}></Header>
             {
                 (navigation.mobileMenu) ?
                 <MobileMenu {...props}></MobileMenu>
                 : ""
             }
-            <div className="flex flex-row">
+            <div className="w-100 flex flex-row w-100">
                 <Menu {...props}></Menu>
-                <div>
+                <div className="w-100">
                 {
                     (routeHome === "profile") ?
                     <Profile {...props} />
