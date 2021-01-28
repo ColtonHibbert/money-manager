@@ -3,16 +3,21 @@ import { connect }  from "react-redux";
 import Header from "../components/Header.js";
 import Menu from "../components/Menu.js";
 import MobileMenu from "../components/MobileMenu.js";
+import Dashboard from "./Dashboard.js";
+import Profile from "./Profile.js";
+import AccountSummary from "./AccountSummary.js";
 import {
     setMobileMenu, 
     setNavigationAccountSelected, 
-    toggleMobileMenu
+    toggleMobileMenu,
+    setRouteHome
 } from "../services/actions.js";
 
 
 const mapStateToProps = (state) => {
     return {
-        navigation: state.navigation
+        navigation: state.navigation,
+        routeHome: state.routeHome
     }
 }
 
@@ -20,12 +25,13 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setNavigationAccountSelected: () => dispatch(setNavigationAccountSelected()),
         setMobileMenu: (value) => dispatch(setMobileMenu(value)),
-        toggleMobileMenu: () => dispatch(toggleMobileMenu())
+        toggleMobileMenu: () => dispatch(toggleMobileMenu()),
+        setRouteHome: (value) => dispatch(setRouteHome(value))
     }
 }
 
 function Home(props) {
-    const { setRoute, user, navigation } = props;
+    const { setRoute, user, navigation, routeHome, setRouteHome } = props;
     return (
         <div className="bg-custom-darker-gray min-vh-100">
             <Header {...props}></Header>
@@ -34,14 +40,25 @@ function Home(props) {
                 <MobileMenu {...props}></MobileMenu>
                 : ""
             }
-            <div>
+            <div className="flex flex-row">
                 <Menu {...props}></Menu>
-                <div className="">{user.firstName}</div>
-                <button onClick={() => setRoute("login")}>Login</button>
-                <button onClick={() => setRoute("signup")}>Sign up</button>
-                <button onClick={() => setRoute("accounts")}>Accounts</button>
-                <button onClick={() => setRoute("transactions")}>Transactions</button>
-                <button onClick={() => setRoute("logout")}>Logout</button>
+                <div>
+                {
+                    (routeHome === "profile") ?
+                    <Profile {...props} />
+                    : ""
+                }
+                {
+                    (routeHome === "dashboard") ?
+                    <Dashboard {...props} />
+                    : ""
+                }
+                {
+                    (routeHome === "accountsummary") ?
+                    <AccountSummary {...props} />
+                    : ""
+                }
+                </div>
             </div>
         </div>
     )

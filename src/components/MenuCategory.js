@@ -5,11 +5,13 @@ import CheckingIcon from "./CheckingIcon.js";
 import DebtIcon from "./DebtIcon.js";
 import UpIcon from "./UpIcon.js";
 import DownIcon from "./DownIcon.js";
+import { setRouteHome } from "../services/actions.js";
+
 
 function MenuCategory(props) {
     console.log(props.navigation)
 
-    const {navigation, accounts, name, setNavigationAccountSelected } = props;
+    const {navigation, accounts, name, setNavigationAccountSelected, setRouteHome } = props;
     return (
         <div className="flex flex-column">
             <div 
@@ -19,7 +21,10 @@ function MenuCategory(props) {
                 h2point25p-l
                 "
                 {...(name === "Accounts" && { onClick: setNavigationAccountSelected })}
-                
+                {...(name === "Profile" && { onClick: () => setRouteHome("profile")})}
+                {...(name === "Dashboard") && { onClick: () => setRouteHome("dashboard")}}
+                {...(name === "Transactions" && {onClick: () => setRouteHome("transactions")})}
+                {...(name === "Lobby" && {onclick})}
             >
                 <div>
                     {props.children}
@@ -49,6 +54,7 @@ function MenuCategory(props) {
                     h2point25-m
                     h2point25p-l
                     "
+                    onClick={() => setRouteHome("accountsummary")}
                     >
                         <svg id="Layer_1"
                         className="
