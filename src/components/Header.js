@@ -5,10 +5,10 @@ function Header(props) {
     const { navigation, setMobileMenu, toggleMobileMenu } = props;
 
     return(
-        <div className="h3 w100 flex flex-row bg-custom-lighter-gray bb-thin-gray">
+        <div id="header" className="h3 w100 flex flex-row bg-custom-lighter-gray bb-thin-gray">
             <div className="w-50">
                 <svg 
-                    className="w2 h2 fixed pa0 ma3 money-color 
+                    className="w2 h2 pa0 ma3 money-color 
                     display-none-l
                     " 
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
