@@ -6,6 +6,8 @@ import MobileMenu from "../components/MobileMenu.js";
 import Dashboard from "./Dashboard.js";
 import Profile from "./Profile.js";
 import AccountSummary from "./AccountSummary.js";
+import Transactions from "./Transactions.js";
+import Lobby from "./Lobby.js";
 import {
     setMobileMenu, 
     setNavigationAccountSelected, 
@@ -56,6 +58,16 @@ function Home(props) {
                 {
                     (routeHome === "accountsummary") ?
                     <AccountSummary {...props} />
+                    : ""
+                }
+                {
+                    (routeHome === "transactions") ? 
+                    <Transactions {...props} />
+                    : ""
+                }
+                {
+                    (routeHome === "lobby") ?
+                    <Lobby {...props}  />
                     : ""
                 }
                 </div>

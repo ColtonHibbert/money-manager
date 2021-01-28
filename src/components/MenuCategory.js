@@ -20,11 +20,11 @@ function MenuCategory(props) {
                 h2point25-m
                 h2point25p-l
                 "
-                {...(name === "Accounts" && { onClick: setNavigationAccountSelected })}
-                {...(name === "Profile" && { onClick: () => setRouteHome("profile")})}
-                {...(name === "Dashboard") && { onClick: () => setRouteHome("dashboard")}}
-                {...(name === "Transactions" && {onClick: () => setRouteHome("transactions")})}
-                {...(name === "Lobby" && {onclick})}
+                {...(name === "Accounts" && { onClick: setNavigationAccountSelected } )}
+                {...(name === "Profile" && { onClick: () => setRouteHome("profile") } )}
+                {...(name === "Dashboard" && { onClick: () => setRouteHome("dashboard")} )}
+                {...(name === "Transactions" && {onClick: () => setRouteHome("transactions")} )}
+                {...(name === "Lobby" && {onClick: () => setRouteHome("lobby")} )}
             >
                 <div>
                     {props.children}
