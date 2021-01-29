@@ -60,7 +60,9 @@ import {
     SET_PROFILE_ERRORS_CONFIRM_PASSWORD_ERROR, 
     SET_PROFILE_ERRORS_PASSWORDS_MATCH_ERROR, 
     SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR, 
-    SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE
+    SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE,
+    SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR,
+    SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE
 } from "./constants.js";
 
 
@@ -383,3 +385,133 @@ export const setNavigationEditProfile = (payload) => {
         setNavigationEditProfilePayload: payload
     }
 }
+
+export const setNavi
+
+
+export const setProfileFirstName = (payload) => {
+    return {
+        type: SET_PROFILE_FIRST_NAME,
+        setProfileFirstNamePayload: payload
+    }
+}
+
+export const setProfileLastName = (payload) => {
+    return {
+        type: SET_PROFILE_LAST_NAME,
+        setProfileLastNamePayload: payload
+    }
+}
+
+export const setProfileAddress = (payload) => {
+    return {
+        type: SET_PROFILE_ADDRESS,
+        setProfileAddressPayload: payload
+    }
+}
+
+export const setProfilePhone = (payload) => {
+    return {
+        type: SET_PROFILE_PHONE,
+        setProfilePhonePayload: payload
+    }
+}
+
+export const setProfileAbout = (payload) => {
+    return {
+        type: SET_PROFILE_ABOUT,
+        setProfileAboutPayload: payload
+    }
+}
+
+export const setProfileEmail = (payload) => {
+    return {
+        type: SET_PROFILE_EMAIL,
+        setProfileEmailPayload: payload
+    }
+}
+
+export const setProfilePassword = (payload) => {
+    return {
+        type: SET_PROFILE_PASSWORD, 
+        setProfilePasswordPayload: payload
+    }
+}
+
+export const setProfileConfirmPassword = (payload) => {
+    return {
+        type: SET_PROFILE_CONFIRM_PASSWORD,
+        setProfileConfirmPasswordPayload: payload
+    }
+}
+
+export const setProfileErrorsError = (payload) => {
+    return {
+        type: SET_PROFILE_ERRORS_ERROR,
+        setProfileErrorsErrorPayload: payload
+    }
+}
+
+export const setProfileErrorsErrorMessage = (payload) => {
+    return {
+        type: SET_PROFILE_ERRORS_ERROR_MESSAGE,
+        setProfileErrorsErrorMessagePayload: payload
+    }
+}
+
+export const setProfileErrorsEmailError = (payload) => {
+    return {
+        type: SET_PROFILE_ERRORS_EMAIL_ERROR,
+        setProfileErrorsEmailErrorPayload: payload
+    }
+}
+
+export const setProfileErrorsPasswordError = (payload) => {
+    return {
+        type: SET_PROFILE_ERRORS_PASSWORD_ERROR,
+        setProfileErrorsPasswordErrorPayload: payload
+    }
+}
+
+export const setProfileErrorsConfirmPasswordError = (payload) => {
+    return {
+        type: SET_PROFILE_ERRORS_CONFIRM_PASSWORD_ERROR,
+        setProfileErrorsConfirmPasswordErrorPayload: payload
+    }
+}
+
+export const setProfileErrorsPasswordsMatchError = (payload) => {
+    return {
+        type: SET_PROFILE_ERRORS_PASSWORDS_MATCH_ERROR,
+        setProfileErrorsPasswordsMatchErrorPayload: payload
+    }
+}
+
+export const setProfileErrorsPasswordConfirmationError = (payload) => {
+    return {
+        type: SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR,
+        setProfileErrorsPasswordConfirmationErrorPayload: payload
+    }
+}
+
+export const setProfileErrorsPasswordConfirmationErrorMessage = (payload) => {
+    return {
+        type: SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE, 
+        setProfileErrorsPasswordConfirmationErrorMessagePayload: payload
+    }
+}
+
+export const setProfileErrorsEmailConfirmationError = (payload) => {
+    return {
+        type: SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR,
+        setProfileErrorsEmailConfirmationErrorPayload: payload
+    }
+}
+
+export const setProfileErrorsEmailConfirmationErrorMessage = (payload) => {
+    return {
+        type: SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE,
+        setProfileErrorsEmailConfirmationErrorMessagePayload: payload
+    }
+}
+
