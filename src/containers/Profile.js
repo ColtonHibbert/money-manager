@@ -30,7 +30,7 @@ import {
 const mapStateToProps = (state) => {
     return {
        profile: state.profile,
-       profileErros: state.profileErrors
+       profileErrors: state.profileErrors
     }
 }
 
@@ -85,7 +85,7 @@ function Profile(props) {
         setProfileErrorsPasswordConfirmationError,
         setProfileErrorsPasswordConfirmationErrorMessage,
         setProfileErrorsEmailConfirmationError,
-        setProfileErrorsEmailConfirmationErrorMessage 
+        setProfileErrorsEmailConfirmationErrorMessage
     } = props;
 
 

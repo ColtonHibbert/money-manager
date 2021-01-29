@@ -1,7 +1,19 @@
 import React from "react";
 
 function EditProfile(props) {
-    const { navigation, user, setNavigationEditProfile } = props;
+    const { 
+        navigation, 
+        user, 
+        profileErrors,
+        setNavigationEditProfile,
+        setProfileFirstName,
+        setProfileLastName,
+        setProfileAddress,
+        setProfilePhone,
+        setProfileAbout,
+        setProfileErrorsError,
+        setProfileErrorsErrorMessage
+    } = props;
 
     const saveProfile = () => {
         console.log("save profile")
@@ -24,6 +36,7 @@ function EditProfile(props) {
                                 w-50-m
                                 "
                                 placeholder={user.firstName}
+                                onInput={(event) => setProfileFirstName(event.target.value)}
                                 ></input>
                             </div>
                             <div className="flex flex-column mv2">
@@ -33,6 +46,7 @@ function EditProfile(props) {
                                 w-50-m
                                 "
                                 placeholder={user.lastName}
+                                onInput={(event) => setProfileLastName(event.target.value)}
                                 ></input>
                             </div>
                             <div className="flex flex-column mv2">
@@ -42,6 +56,7 @@ function EditProfile(props) {
                                 w-50-m
                                 "
                                 placeholder={user.address}
+                                onInput={(event) => setProfileAddress(event.target.value)}
                                 ></input>
                             </div>
                             <div className="flex flex-column mv2">
@@ -50,6 +65,7 @@ function EditProfile(props) {
                                 w-50-m
                                 "
                                 placeholder={user.phone}
+                                onInput={(event) => setProfilePhone(event.target.value)}
                                 ></input>
                             </div>
                             <div className="flex flex-column mv2">
@@ -58,6 +74,7 @@ function EditProfile(props) {
                                 w-50-m
                                 "
                                 placeholder={user.about}
+                                onInput={(event) => setProfileAbout(event.target.value)}
                                 ></textarea>
                             </div>
                             
@@ -84,6 +101,11 @@ function EditProfile(props) {
                             onClick={() => setNavigationEditProfile(false)}
                             >Cancel</div>
                         </div>
+                        {
+                            (profileErrors.error) ?
+                            <div className="red ml3 mv2">{profileErrors.errorMessage}</div>
+                            : ""
+                        }
                     </div>
                 </div>
             </div>
