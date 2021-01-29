@@ -45,6 +45,8 @@ import {
     SET_INITIAL_DATA,
     SET_ROUTE_HOME,
     SET_NAVIGATION_EDIT_PROFILE,
+    SET_NAVIGATION_EDIT_EMAIL, 
+    SET_NAVIGATION_EDIT_PASSWORD,
     SET_PROFILE_FIRST_NAME,
     SET_PROFILE_LAST_NAME,
     SET_PROFILE_ADDRESS, 
@@ -63,6 +65,7 @@ import {
     SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE,
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR,
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE
+   
 } from "./constants.js";
 
 
@@ -386,8 +389,19 @@ export const setNavigationEditProfile = (payload) => {
     }
 }
 
-export const setNavi
+export const setNavigationEditEmail = (payload) => {
+    return {
+        type: SET_NAVIGATION_EDIT_EMAIL,
+        setNavigationEditEmailPayload: payload
+    }
+}
 
+export const setNavigationEditPassword = (payload) => {
+    return {
+        type: SET_NAVIGATION_EDIT_PASSWORD,
+        setNavigationEditPasswordPayload: payload
+    }
+}
 
 export const setProfileFirstName = (payload) => {
     return {

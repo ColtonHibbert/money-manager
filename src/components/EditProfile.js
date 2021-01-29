@@ -1,5 +1,4 @@
 import React from "react";
-import { useStore } from "react-redux";
 
 function EditProfile(props) {
     const { navigation, user, setNavigationEditProfile } = props;

@@ -7,7 +7,8 @@ import { setNavigationEditProfile } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
     return {
-       profile: state.profile
+       profile: state.profile,
+       profileErros: state.profileErrors
     }
 }
 
