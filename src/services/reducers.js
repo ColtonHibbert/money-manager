@@ -106,6 +106,16 @@ const initialState = {
         password: "",
         confirmPassword: ""
     },
+    profileErrors: {
+        error: false,
+        errorMessage: "",
+        emailError: false,
+        passwordError: false,
+        confirmPasswordError: false,
+        passwordsMatchError: false,
+        passwordConfirmationError: false,
+        passwordConfirmationErrorMessage: false
+    },
     route: "loading",
     routeHome: "profile",
     signUp: {
