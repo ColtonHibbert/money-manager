@@ -80,48 +80,39 @@
     width: 120px;
 }
 
-  .money-hover:hover,
-  .money-hover:active,
-  .money-hover:focus {
+.money-hover:hover,
+.money-hover:active,
+.money-hover:focus {
     color: rgb(66, 146, 68);
-  }
+}
 
-  .fill-money-hover:hover,
-  .fill-money-hover:active,
-  .fill-money-hover:focus {
+.fill-money-hover:hover,
+.fill-money-hover:active,
+.fill-money-hover:focus {
     fill: rgb(66, 146, 68);
-  }
+}
 
-  
-
-    .form-line-active:focus {
-   /* border: 1px solid rgb(66, 146, 68) !important;
-    box-shadow: 0 0 3px rgb(66, 146, 68) !important;*/
+.form-line-active:focus {
     outline-offset: 0px;
     outline: green solid 2px;
-  }
-    
-  
-    /*input:focus, textarea:focus, select:focus {
-    outline-offset: 0px !important;
-    outline: none !important;
-    }*/
+}
 
-  .darker-gray-hover:hover,
-  .darker-gray-hover:active,
-  .darker-gray-hover:focus{
+
+.darker-gray-hover:hover,
+.darker-gray-hover:active,
+.darker-gray-hover:focus{
     background-color: rgb(34,37,42);
-  }
+}
 
-  .lighter-gray-hover:hover,
-  .lighter-gray-hover:active,
-  .lighter-gray-hover:focus{
+.lighter-gray-hover:hover,
+.lighter-gray-hover:active,
+.lighter-gray-hover:focus{
     background-color: rgb(45,48,53);
-  }
+}
 
-  .h2000 {
-      height: 2000px;
-  }
+.h2000 {
+    height: 2000px;
+}
 
 .w3point5 {
     width: 6rem;

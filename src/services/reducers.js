@@ -45,6 +45,8 @@ import {
     SET_INITIAL_DATA,
     SET_ROUTE_HOME,
     SET_NAVIGATION_EDIT_PROFILE,
+    SET_NAVIGATION_EDIT_EMAIL, 
+    SET_NAVIGATION_EDIT_PASSWORD,
     SET_PROFILE_FIRST_NAME,
     SET_PROFILE_LAST_NAME,
     SET_PROFILE_ADDRESS, 
@@ -100,6 +102,8 @@ const initialState = {
         mobileMenu: false,
         accountSelected: false,
         editProfile: true,
+        editEmail: false,
+        editPassword: false
     },
     passwordReset: {
         passwordResetPassword: "",
@@ -575,5 +579,18 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
+    if(action.type === SET_NAVIGATION_EDIT_EMAIL) {
+        return {
+            ...state,
+            navigation: {
+                ...state.navigation,
+                editEmail: action.setNavigationEditEmailPayload
+            }
+        }
+    }
+    if(action.type === SET_NAVIGATION_EDIT_PASSWORD) {
+        
+    }
+
     return state;
 }
