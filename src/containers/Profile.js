@@ -3,7 +3,29 @@ import { connect } from "react-redux";
 import HomeIcon from "../components/HomeIcon.js";
 import PhoneIcon from "../components/PhoneIcon.js";
 import EditProfile from "../components/EditProfile.js";
-import { setNavigationEditProfile } from "../services/actions.js";
+import { 
+    setNavigationEditProfile,
+    setNavigationEditEmail,
+    setNavigationEditPassword,
+    setProfileFirstName,
+    setProfileLastName,
+    setProfileAddress,
+    setProfilePhone,
+    setProfileAbout,
+    setProfileEmail,
+    setProfilePassword,
+    setProfileConfirmPassword,
+    setProfileErrorsError,
+    setProfileErrorsErrorMessage,
+    setProfileErrorsEmailError,
+    setProfileErrorsPasswordError,
+    setProfileErrorsConfirmPasswordError,
+    setProfileErrorsPasswordsMatchError,
+    setProfileErrorsPasswordConfirmationError,
+    setProfileErrorsPasswordConfirmationErrorMessage,
+    setProfileErrorsEmailConfirmationError,
+    setProfileErrorsEmailConfirmationErrorMessage 
+} from "../services/actions.js";
 
 const mapStateToProps = (state) => {
     return {
@@ -14,7 +36,27 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setNavigationEditProfile: (value) => dispatch(setNavigationEditProfile(value))
+        setNavigationEditProfile: (value) => dispatch(setNavigationEditProfile(value)),
+        setNavigationEditEmail: (value) => dispatch(setNavigationEditEmail(value)),
+        setNavigationEditPassword: (value) => dispatch(setNavigationEditPassword(value)),
+        setProfileFirstName: (value) => dispatch(setProfileFirstName(value)),
+        setProfileLastName: (value) => dispatch(setProfileLastName(value)),
+        setProfileAddress: (value) => dispatch(setProfileAddress(value)),
+        setProfilePhone: (value) => dispatch(setProfilePhone(value)),
+        setProfileAbout: (value) => dispatch(setProfileAbout(value)),
+        setProfileEmail: (value) => dispatch(setProfileEmail(value)),
+        setProfilePassword: (value) => dispatch(setProfilePassword(value)),
+        setProfileConfirmPassword: (value) => dispatch(setProfileConfirmPassword(value)),
+        setProfileErrorsError: (value) => dispatch(setProfileErrorsError(value)),
+        setProfileErrorsErrorMessage: (value) => dispatch(setProfileErrorsErrorMessage(value)),
+        setProfileErrorsEmailError: (value) => dispatch(setProfileErrorsEmailError(value)),
+        setProfileErrorsPasswordError: (value) => dispatch(setProfileErrorsPasswordError(value)),
+        setProfileErrorsConfirmPasswordError: (value) => dispatch(setProfileErrorsConfirmPasswordError(value)),
+        setProfileErrorsPasswordsMatchError: (value) => dispatch(setProfileErrorsPasswordsMatchError(value)),
+        setProfileErrorsPasswordConfirmationError: (value) => dispatch(setProfileErrorsPasswordConfirmationError(value)),
+        setProfileErrorsPasswordConfirmationErrorMessage: (value) => dispatch(setProfileErrorsPasswordConfirmationErrorMessage(value)),
+        setProfileErrorsEmailConfirmationError: (value) => dispatch(setProfileErrorsEmailConfirmationError(value)),
+        setProfileErrorsEmailConfirmationErrorMessage: (value) => dispatch(setProfileErrorsEmailConfirmationErrorMessage(value))
     }
 }
 
@@ -23,7 +65,27 @@ function Profile(props) {
     const {
         user,
         navigation,
-        setNavigationEditProfile
+        setNavigationEditProfile,
+        setNavigationEditEmail,
+        setNavigationEditPassword,
+        setProfileFirstName,
+        setProfileLastName,
+        setProfileAddress,
+        setProfilePhone,
+        setProfileAbout,
+        setProfileEmail,
+        setProfilePassword,
+        setProfileConfirmPassword,
+        setProfileErrorsError,
+        setProfileErrorsErrorMessage,
+        setProfileErrorsEmailError,
+        setProfileErrorsPasswordError,
+        setProfileErrorsConfirmPasswordError,
+        setProfileErrorsPasswordsMatchError,
+        setProfileErrorsPasswordConfirmationError,
+        setProfileErrorsPasswordConfirmationErrorMessage,
+        setProfileErrorsEmailConfirmationError,
+        setProfileErrorsEmailConfirmationErrorMessage 
     } = props;
 
 
