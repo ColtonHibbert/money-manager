@@ -17,6 +17,12 @@
     border-color: rgb(52,55,61);
 }
 
+.border-custom-gray {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(138,141,147);
+}
+
 .bg-money-color-see-through {
     background-color: rgba(66, 146, 68, 0.95);
 }
@@ -85,6 +91,21 @@
   .fill-money-hover:focus {
     fill: rgb(66, 146, 68);
   }
+
+  
+
+    .form-line-active:focus {
+   /* border: 1px solid rgb(66, 146, 68) !important;
+    box-shadow: 0 0 3px rgb(66, 146, 68) !important;*/
+    outline-offset: 0px;
+    outline: green solid 2px;
+  }
+    
+  
+    /*input:focus, textarea:focus, select:focus {
+    outline-offset: 0px !important;
+    outline: none !important;
+    }*/
 
   .darker-gray-hover:hover,
   .darker-gray-hover:active,
