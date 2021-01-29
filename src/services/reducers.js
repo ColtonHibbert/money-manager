@@ -136,7 +136,9 @@ const initialState = {
         confirmPasswordError: false,
         passwordsMatchError: false,
         passwordConfirmationError: false,
-        passwordConfirmationErrorMessage: false
+        passwordConfirmationErrorMessage: false,
+        emailConfirmationError: false,
+        emailConfirmationErrorMessage: ""
     },
     route: "loading",
     routeHome: "profile",
@@ -589,8 +591,177 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     if(action.type === SET_NAVIGATION_EDIT_PASSWORD) {
-        
+        return {
+            ...state,
+            navigation: {
+                ...state.navigation,
+                editPassword: action.setNavigationEditPasswordPayload
+            }
+        }
     }
+    if(action.type === SET_PROFILE_FIRST_NAME) {
+        return {
+            ...state,
+            profile: {
+                ...state.profile,
+                firstName: action.setProfileFirstNamePayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_LAST_NAME) {
+        return {
+            ...state,
+            profile: {
+                ...state.profile,
+                lastName: action.setProfileLastNamePayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ADDRESS) {
+        return {
+            ...state,
+            profile: {
+                ...state.profile,
+                address: action.setProfileAddressPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_PHONE) {
+        return {
+            ...state,
+            profile: {
+                ...state.profile,
+                phone: action.setProfilePhonePayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ABOUT) {
+        return {
+            ...state,
+            profile: {
+                ...state.profile,
+                about: action.setProfileAboutPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_EMAIL) {
+        return {
+            ...state,
+            profile: {
+                ...state.profile,
+                email: action.setProfileEmailPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_PASSWORD) {
+        return {
+            ...state,
+            profile: {
+                ...state.profile,
+                password: action.setProfilePasswordPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_CONFIRM_PASSWORD) {
+        return {
+            ...state,
+            profile: {
+                ...state.profile,
+                confirmPassword: action.setProfileConfirmPasswordPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ERRORS_ERROR) {
+        return {
+            ...state,
+            profileErrors: {
+                ...state.profileErrors,
+                error: action.setProfileErrorsErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ERRORS_ERROR_MESSAGE) {
+        return {
+            ...state,
+            profileErrors: {
+                ...state.profileErrors,
+                errorMessage: action.setProfileErrorsErrorMessagePayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ERRORS_EMAIL_ERROR) {
+        return {
+            ...state, 
+            profileErrors: {
+                ...state.profileErrors,
+                emailError: action.setProfileErrorsEmailErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ERRORS_PASSWORD_ERROR) {
+        return {
+            ...state,
+            profileErrors: {
+                ...state.profileErrors,
+                passwordError: action.setProfileErrorsPasswordErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ERRORS_CONFIRM_PASSWORD_ERROR) {
+        return {
+            ...state,
+            profileErrors: {
+                ...state.profileErrors,
+                confirmPasswordError: action.setProfileErrorsConfirmPasswordErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ERRORS_PASSWORDS_MATCH_ERROR) {
+        return {
+            ...state,
+            profileErrors: {
+                ...state.profileErrors,
+                passwordsMatchError: action.setProfileErrorsPasswordsMatchErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR) {
+        return {
+            ...state,
+            profileErrors: {
+                ...state.profileErrors,
+                passwordConfirmationError: action.setPasswordConfirmationErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE) {
+        return {
+            ...state,
+            profileErrors: {
+                ...state.profileErrors,
+                passwordConfirmationErrorMessage: action.setPasswordConfirmationErrorMessagePayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR) {
+        return {
+            ...state,
+            profileErrors: {
+                ...state.profileErrors,
+                emailConfirmationError: action.setProfileErrorsEmailConfirmationErrorPayload
+            }
+        }
+    }
+    if(action.type === SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE) {
+        return {
+            ...state,
+            profileErrors: {
+                ...state.profileErrors,
+                emailConfirmationErrorMessage: action.setProfileErrorsEmailConfirmationErrorMessagePayload
+            }
+        }
+    }
+
 
     return state;
 }
