@@ -95,6 +95,17 @@ const initialState = {
         passwordResetConfirmPasswordError: false,
         passwordResetPasswordsMatchError: false
     },
+    picture: "",
+    profile: {
+        firstName: "",
+        lastName: "",
+        address: "",
+        phone: "",
+        about: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+    },
     route: "loading",
     routeHome: "profile",
     signUp: {
