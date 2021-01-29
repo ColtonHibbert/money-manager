@@ -40,11 +40,15 @@ function Profile(props) {
             >My Profile
             </div>
             <div 
-            className="w-90 flex flex-column items-center mt4"
+            className="w-90 flex flex-column items-center mt4
+            flex-row-l items-start-l
+            "
             >
                 {
                     (navigation.editProfile === false) ?
-                    <div className="w-100 flex flex-column">
+                    <div className="w-100 flex flex-column
+                    w-50-l mt0-l mr2-l
+                    ">
                         <div className="w-100 h2 flex flex-row items-center pl3 bg-custom-darker-gray border-thin-gray custom-gray">My Account</div>
                         <div className="w-100 flex flex-column bg-custom-lighter-gray border-thin-gray custom-gray">
                             <div className="w-100 flex-flex-column">
@@ -79,7 +83,9 @@ function Profile(props) {
                     </div>
                     : <EditProfile {...props}/>
                 }
-                <div className="w-100 flex flex-column mt4">
+                <div className="w-100 flex flex-column mt4
+                w-50-l mt0-l ml2-l
+                ">
                     <div className="w-100 h2 flex flex-row items-center pl3 bg-custom-darker-gray border-thin-gray custom-gray">Account Options</div>
                     <div className="w-100 h4 flex flex-column justify-center bg-custom-lighter-gray border-thin-gray custom-gray">
                         <div className="pl3 mv2 white underline grow-l pointer">Change Email</div>
