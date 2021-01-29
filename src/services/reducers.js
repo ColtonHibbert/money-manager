@@ -81,7 +81,7 @@ const initialState = {
     navigation: {
         mobileMenu: false,
         accountSelected: false,
-        editProfile: false,
+        editProfile: true,
     },
     passwordReset: {
         passwordResetPassword: "",
