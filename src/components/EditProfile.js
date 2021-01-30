@@ -1,9 +1,11 @@
 import React from "react";
+import { setUser } from "../services/actions";
 
 function EditProfile(props) {
     const { 
         navigation, 
         user, 
+        profile,
         profileErrors,
         setNavigationEditProfile,
         setProfileFirstName,
@@ -16,7 +18,76 @@ function EditProfile(props) {
     } = props;
 
     const saveProfile = () => {
-        console.log("save profile")
+
+        const profilePost = formatProfileData();
+
+        fetch(
+            "http://localhost:3001/profileedit", 
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type":"application/json",
+                    "CSRF-Token":user.csrf
+                },
+                body: JSON.stringify({
+                    firstName:profilePost.firstName,
+                    lastName:profilePost.lastName,
+                    address:profilePost.address,
+                    phone:profilePost.phone,
+                    about:profilePost.about
+                }),
+                credentials:"include"
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    setProfileErrorsError(true);
+                    setProfileErrorsErrorMessage(data.error);
+                }
+                if(!data.error) {
+                    setProfileErrorsError(false);
+                    setProfileErrorsErrorMessage("");
+                    setUserProfileData(data);
+                    setNavigationEditProfile(false);
+                    //toaster notification
+                }
+            })
+    }
+
+    const formatProfileData = () => {
+        let profileResponse = {};
+
+        if(profile.firstName !== user.firstName && profile.firstName !== "") {
+            profileResponse.firstName = profile.firstName;
+        } else {
+            profileResponse.firstName = user.firstName;
+        }
+
+        if(profile.lastName !== user.lastName && profile.lastName !== "") {
+            profileResponse.lastName = profile.lastName;
+        } else {
+            profileResponse.lastName = user.lastName;
+        }
+
+        if(profile.address !== user.address && profile.address !== "") {
+            profileResponse.address = profile.address;
+        } else {
+            profileResponse.address = user.address;
+        }
+
+        if(profile.phone !== user.phone && profile.phone !== "") {
+            profileResponse.phone = profile.phone;
+        } else {
+            profileResponse.phone = user.phone;
+        }
+
+        if(profile.about !== user.about && profile.about !== "") {
+            profileResponse.about = profile.about;
+        } else {
+            profileResponse.about = user.about;
+        }
+
+        return profileResponse;
     }
 
     return (
