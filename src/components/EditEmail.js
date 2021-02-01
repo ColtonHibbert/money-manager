@@ -102,7 +102,7 @@ function EditEmail(props) {
                 </div>
                 {
                     (profileErrors.emailConfirmationError) ?
-                    <div className="red pl3">`${profileErrors.emailConfirmationErrorMessage}`</div>
+                    <div className="red pl3">{profileErrors.emailConfirmationErrorMessage}</div>
                     : ""
                 }
             </div>

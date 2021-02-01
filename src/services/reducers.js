@@ -781,7 +781,7 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             user: {
                 ...state.user,
-                email: action.setUserProfileEmailPayload
+                email: action.setUserProfileEmailPayload.updatedEmail
             }
         }
     }

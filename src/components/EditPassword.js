@@ -7,32 +7,64 @@ function EditPassword(props) {
         setNavigationEditPassword,
         setProfilePassword,
         setProfileConfirmPassword,
+        setProfileErrorsPasswordError,
+        setProfileErrorsConfirmPasswordError,
+        setProfileErrorsPasswordsMatchError,
+        setProfileErrorsPasswordConfirmationError,
+        setProfileErrorsPasswordConfirmationErrorMessage,
         user,
+        profile,
+        profileErrors
     } = props;
 
     
     const savePassword = () => {
         console.log("save password");
+        if(
+            profileErrors.passwordError === false 
+            && profileErrors.confirmPasswordError === false
+            && profileErrors.passwordsMatchError === false
+        ) {
+            fetch(
+                "http://localhost:3001/editpassword", 
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json",
+                        "CSRF-Token":user.csrf
+                    },
+                    body: JSON.stringify({
+                        password: profile.password,
+                        confirmPassword: profile.confirmPassword
+                    }),
+                    credentials:"include"
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.error) {
+                        
+                    }
+                })
+        }
     }
- /*
+ 
     const handlePassword = () => {
 
         const passwordRegex = /.{8,72}/;
-        const validPassword = signUp.signUpPassword.search(passwordRegex);
+        const validPassword = profile.password.search(passwordRegex);
 
         if(validPassword !== -1) {
-            setSignUpPasswordError(false);
+            setProfileErrorsPasswordError(false);
         }
         if(validPassword === -1) {
-            setSignUpPasswordError(true);
+            setProfileErrorsPasswordError(true);
         }
 
-        if(signUp.signUpPassword === signUp.signUpConfirmPassword) {
-            console.log("pass and confirm pass match, error false")
-            setSignUpPasswordsMatchError(false);
+        if(profile.password === profile.confirmPassword) {
+            setProfileErrorsPasswordsMatchError(false);
         }
-        if(signUp.signUpPassword !== signUp.signUpConfirmPassword) {
-            setSignUpPasswordsMatchError(true);
+        if(profile.password !== profile.confirmPassword) {
+            setProfileErrorsPasswordsMatchError(true);
         }
 
     }
@@ -40,24 +72,23 @@ function EditPassword(props) {
     const handleConfirmPassword = () => {
 
         const passwordRegex = /.{8,72}/;
-        const validPassword = signUp.signUpConfirmPassword.search(passwordRegex);
+        const validPassword = profile.confirmPassword.search(passwordRegex);
 
         if(validPassword !== -1) {
-            setSignUpConfirmPasswordError(false);
+            setProfileErrorsConfirmPasswordError(false);
         }
         if(validPassword === -1) {
-            setSignUpConfirmPasswordError(true);
+            setProfileErrorsConfirmPasswordError(true);
         }
-
-        if(signUp.signUpPassword === signUp.signUpConfirmPassword) {
-            console.log("pass and confirm pass match, error false")
-            setSignUpPasswordsMatchError(false);
+        if(profile.password === profile.confirmPassword) {
+            setProfileErrorsPasswordsMatchError(false);
         }
-        if(signUp.signUpPassword !== signUp.signUpConfirmPassword) {
-            setSignUpPasswordsMatchError(true);
+        if(profile.password !== profile.confirmPassword) {
+            setProfileErrorsPasswordsMatchError(true);
         }
+        
     }
-    */
+    
 
     return (
         <div className="w-100 flex flex-column mt4
@@ -71,16 +102,33 @@ function EditPassword(props) {
                     w-50-m
                     "
                     onInput={(event) => setProfilePassword(event.target.value)}
+                    onBlur={() => handlePassword()}
                 >
                 </input>
+                {
+                    (profileErrors.passwordError) ?
+                    <div className="red pl3">Please enter a password between 8 and 72 characters.</div>
+                    : ""
+                }
                 <div className="pl3 f5 custom-gray mt2">Confirm Password:</div>
                 <input type="text" 
                     className="input-reset mh3 mt1 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
                     w-50-m
                     "
                     onInput={(event) => setProfileConfirmPassword(event.target.value)}
+                    onBlur={(event) => handleConfirmPassword()}
                 >
                 </input>
+                {
+                    (profileErrors.confirmPasswordError) ?
+                    <div className="red pl3">Please enter a password between 8 and 72 characters.</div>
+                    : ""
+                }
+                                {
+                    (profileErrors.passwordsMatchError) ?
+                    <div className="red pl3">Passwords must match.</div>
+                    : ""
+                }
                 <div 
                 className="flex flex-row justify-between"
                 >
@@ -99,6 +147,11 @@ function EditPassword(props) {
                         Cancel
                     </div>
                 </div>
+                {
+                    (profileErrors.passwordConfirmationError) ? 
+                    <div className="red pl3">{profileErrors.passwordConfirmationErrorMessage}</div>
+                    : ""
+                }
             </div>
            
         </div>
