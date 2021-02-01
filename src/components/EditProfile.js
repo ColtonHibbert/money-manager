@@ -56,7 +56,6 @@ function EditProfile(props) {
                     setUserProfileData(data);
                     setNavigationEditProfile(false);
                     toast.success("Profile successfully updated.");
-                    //toaster notification
                 }
             })
     }

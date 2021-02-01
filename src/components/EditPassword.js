@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 function EditPassword(props) {
 
@@ -52,7 +53,7 @@ function EditPassword(props) {
                         setProfilePassword("");
                         setProfileConfirmPassword("");
                         setNavigationEditPassword(false);
-                        //toaster
+                        toast.success("Password updated.");
                     }
                 })
         }
