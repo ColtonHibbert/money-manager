@@ -15,7 +15,7 @@ function EditEmail(props) {
     } = props;
 
     const saveEmail = () => {
-        if(profileErrors.emailError === false) {
+        if(profileErrors.emailError === false && profile.email !== "") {
             fetch(
                 "http://localhost:3001/emailedit", 
                 {
@@ -39,7 +39,7 @@ function EditEmail(props) {
                 if(!data.error) {
                     setProfileErrorsEmailConfirmationError(false);
                     setProfileErrorsEmailConfirmationErrorMessage("");
-                    setProfileEmail("")
+                    setProfileEmail("");
                     setUserProfileEmail(data);
                     setNavigationEditEmail(false);
                     //toaster
