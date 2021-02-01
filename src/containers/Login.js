@@ -34,7 +34,6 @@ function Login(props) {
     const { 
         user,
         setRoute,
-        setUser, 
         setInitialData,
         login,
         loginErrors, 

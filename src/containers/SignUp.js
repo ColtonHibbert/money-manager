@@ -49,7 +49,6 @@ function SignUp(props) {
         user,
         signUp,
         signUpErrors,
-        setUser, 
         setInitialData,
         setRoute, 
         setSignUpFirstName,

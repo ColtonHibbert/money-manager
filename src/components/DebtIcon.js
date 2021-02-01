@@ -3,8 +3,6 @@ import React from "react";
 function DebtIcon(props) {
     return (
         <div>
-            
-            
             <svg 
             className="
             w1point5-s h1point5-s fill-custom-gray 

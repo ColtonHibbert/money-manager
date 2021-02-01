@@ -18,11 +18,25 @@ function AccountSummary(props) {
     .catch(err => console.log(err))
 
     return (
-        <div>
-            <div>Account Summary</div>
-            <div>{user.firstName}</div>
-            <div>
-            {
+        <div className="flex flex-column w-100 items-center">
+            <div 
+            className="
+                w-100 flex justify-center items-center bg-custom-lighter-gray money-color border-thin-gray 
+                h2 f4 pt1
+                h2-s f4-s
+                h2-ns f4-ns
+                h3-m f3-m
+                h3-l f3-l
+                "
+            >Account Summary
+            </div>
+        </div>
+    );
+}
+
+export default AccountSummary;
+
+ /*{
                 (accounts !== null) ? accounts.map(account => {
                     console.log(account);
                     return (
@@ -33,11 +47,4 @@ function AccountSummary(props) {
                         </div>
                     )
                 }) : ""
-            }
-            </div>
-            <button onClick={ () => getAccounts()}>Get Accounts</button>
-        </div>
-    );
-}
-
-export default AccountSummary;
+            }*/

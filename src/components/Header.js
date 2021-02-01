@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,8 +20,8 @@ function Header(props) {
                 </path>
                 </svg>
             </div>
-            <div className="w-50 flex flex-row items-center">
-                <div className="flex flex-row">
+            <div className="w-50 flex flex-row items-center justify-end">
+                <div className="flex flex-row mr4">
                     <div className="money-color">Money</div>
                     <div className="custom-gray">Manager</div>
                 </div>

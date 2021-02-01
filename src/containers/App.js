@@ -46,37 +46,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function App(props) {
-  const { route, setRoute, setCSRF, user, setUser, resetState, setPasswordResetToken, passwordReset, setInitialData } = props;
+  const { route, setRoute, setCSRF, user, setPasswordResetToken, setInitialData } = props;
   console.log("state changed on app, pass in props)", props)
-  const loadUser = (token) => {
-    console.log("token inside loadUser: ", token)
-      return fetch(
-        "http://localhost:3001/loaduser",
-        {
-            method: "GET",
-            credentials : "include"
-        }
-    )
-    .then(res => res.json())
-    .then(data => {
-        if(data.error) {
-          if(token === "") {
-            setRoute("login")
-          }
-          if(token !== "") {
-            setRoute("passwordreset")
-          }
-        }
-        if(!data.error) {
-            setUser(data);
-            setRoute("home");
-        }
-    })
-    .catch(err => {
-      console.log("Error with retrieving user");
-    }) 
-  }
-
+  
   const loadInitialData = (token) => {
     return fetch(
       "http://localhost:3001/loadinitialdata", 
