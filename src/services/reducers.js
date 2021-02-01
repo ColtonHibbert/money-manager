@@ -767,11 +767,11 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             user: {
                 ...state.user,
-                firstName: action.setUserProfileDataPayload.firstName,
-                lastName: action.setUserProfileDataPayload.lastName,
-                address: action.setUserProfileDataPayload.address,
-                phone: action.setUserProfileDataPayload.phone,
-                about: action.setUserProfileDataPayload.about
+                firstName: action.setUserProfileDataPayload.user.firstName,
+                lastName: action.setUserProfileDataPayload.user.lastName,
+                address: action.setUserProfileDataPayload.user.address,
+                phone: action.setUserProfileDataPayload.user.phone,
+                about: action.setUserProfileDataPayload.user.about
             }
         }
     }

@@ -47,6 +47,11 @@ function EditProfile(props) {
                 if(!data.error) {
                     setProfileErrorsError(false);
                     setProfileErrorsErrorMessage("");
+                    setProfileFirstName("");
+                    setProfileLastName("");
+                    setProfileAddress("");
+                    setProfilePhone("");
+                    setProfileAbout("");
                     setUserProfileData(data);
                     setNavigationEditProfile(false);
                     //toaster notification
