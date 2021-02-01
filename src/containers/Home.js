@@ -9,6 +9,7 @@ import AccountSummary from "./AccountSummary.js";
 import Account from "../components/Account.js";
 import Transactions from "./Transactions.js";
 import Lobby from "./Lobby.js";
+import 'react-toastify/dist/ReactToastify.css';
 import {
     setMobileMenu, 
     setNavigationAccountSelected, 
@@ -32,6 +33,7 @@ const mapDispatchToProps = (dispatch) => {
         setRouteHome: (value) => dispatch(setRouteHome(value))
     }
 }
+
 
 function Home(props) {
     const { setRoute, user, navigation, routeHome, setRouteHome, accounts } = props;

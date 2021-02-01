@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from 'react-toastify';
 
 function Header(props) {
 
@@ -23,8 +24,7 @@ function Header(props) {
                     <div className="money-color">Money</div>
                     <div className="custom-gray">Manager</div>
                 </div>
-
-                
+                <ToastContainer autoClose={3000}/>
             </div>
         </div>
     )
