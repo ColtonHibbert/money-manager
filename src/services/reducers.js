@@ -102,7 +102,7 @@ const initialState = {
     navigation: {
         mobileMenu: false,
         accountSelected: false,
-        editProfile: true,
+        editProfile: false,
         editEmail: false,
         editPassword: false
     },

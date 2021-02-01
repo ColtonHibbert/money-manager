@@ -69,6 +69,8 @@ function Profile(props) {
     const {
         user,
         navigation,
+        profile,
+        profileErrors,
         setNavigationEditProfile,
         setNavigationEditEmail,
         setNavigationEditPassword,
