@@ -1,5 +1,4 @@
 import React from "react";
-import { setUser } from "../services/actions";
 
 function EditProfile(props) {
     const { 
@@ -14,7 +13,8 @@ function EditProfile(props) {
         setProfilePhone,
         setProfileAbout,
         setProfileErrorsError,
-        setProfileErrorsErrorMessage
+        setProfileErrorsErrorMessage,
+        setUserProfileData
     } = props;
 
     const saveProfile = () => {

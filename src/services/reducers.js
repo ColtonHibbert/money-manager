@@ -64,7 +64,8 @@ import {
     SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR, 
     SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE,
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR,
-    SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE
+    SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE,
+    SET_USER_PROFILE_DATA
 } from "./constants.js";
 
 const initialState = {
@@ -758,6 +759,19 @@ export const reducer = (state=initialState, action={}) => {
             profileErrors: {
                 ...state.profileErrors,
                 emailConfirmationErrorMessage: action.setProfileErrorsEmailConfirmationErrorMessagePayload
+            }
+        }
+    }
+    if(action.type === SET_USER_PROFILE_DATA) {
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                firstName: action.setUserProfileDataPayload.firstName,
+                lastName: action.setUserProfileDataPayload.lastName,
+                address: action.setUserProfileDataPayload.address,
+                phone: action.setUserProfileDataPayload.phone,
+                about: action.setUserProfileDataPayload.about
             }
         }
     }

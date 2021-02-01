@@ -64,7 +64,8 @@ import {
     SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR, 
     SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE,
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR,
-    SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE
+    SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE,
+    SET_USER_PROFILE_DATA
    
 } from "./constants.js";
 
@@ -529,3 +530,9 @@ export const setProfileErrorsEmailConfirmationErrorMessage = (payload) => {
     }
 }
 
+export const setUserProfileData = (payload) => {
+    return {
+        type: SET_USER_PROFILE_DATA,
+        setUserProfileDataPayload: payload
+    }
+}
