@@ -27,7 +27,8 @@ import {
     setProfileErrorsPasswordConfirmationErrorMessage,
     setProfileErrorsEmailConfirmationError,
     setProfileErrorsEmailConfirmationErrorMessage,
-    setUserProfileData
+    setUserProfileData,
+    setUserProfileEmail
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -60,7 +61,8 @@ const mapDispatchToProps = (dispatch) => {
         setProfileErrorsPasswordConfirmationErrorMessage: (value) => dispatch(setProfileErrorsPasswordConfirmationErrorMessage(value)),
         setProfileErrorsEmailConfirmationError: (value) => dispatch(setProfileErrorsEmailConfirmationError(value)),
         setProfileErrorsEmailConfirmationErrorMessage: (value) => dispatch(setProfileErrorsEmailConfirmationErrorMessage(value)),
-        setUserProfileData: (value) => dispatch(setUserProfileData(value))
+        setUserProfileData: (value) => dispatch(setUserProfileData(value)),
+        setUserProfileEmail: (value) => dispatch(setUserProfileEmail(value))
     }
 }
 
@@ -92,7 +94,8 @@ function Profile(props) {
         setProfileErrorsPasswordConfirmationErrorMessage,
         setProfileErrorsEmailConfirmationError,
         setProfileErrorsEmailConfirmationErrorMessage,
-        setUserProfileData
+        setUserProfileData,
+        setUserProfileEmail
     } = props;
 
 
