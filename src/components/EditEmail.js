@@ -9,15 +9,44 @@ function EditEmail(props) {
         setProfileErrorsEmailError,
         setProfileErrorsEmailConfirmationError,
         setProfileErrorsEmailConfirmationErrorMessage,
+        setUserProfileEmail,
         user,
         profile
     } = props;
 
     const saveEmail = () => {
         if(profileErrors.emailError === false) {
-            
+            fetch(
+                "http://localhost:3001/emailedit", 
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json",
+                        "CSRF-Token":user.csrf
+                    },
+                    body: JSON.stringify({
+                        email: profile.email
+                    }),
+                    credentials:"include"
+                }
+            )
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    setProfileErrorsEmailConfirmationError(true);
+                    setProfileErrorsEmailConfirmationErrorMessage(data.error);
+                }
+                if(!data.error) {
+                    setProfileErrorsEmailConfirmationError(false);
+                    setProfileErrorsEmailConfirmationErrorMessage("");
+                    setProfileEmail("")
+                    setUserProfileEmail(data);
+                    setNavigationEditEmail(false);
+                    //toaster
+                }
+            })
         }
-        console.log("save email")
+        
     }
 
     const handleEmail = () => {
@@ -45,8 +74,14 @@ function EditEmail(props) {
                     w-50-m
                     "
                     onInput={(event) => setProfileEmail(event.target.value)}
+                    onBlur={() => handleEmail()}
                 >
                 </input>
+                {
+                    (profileErrors.emailError) ?
+                    <div className="red ml3">Please enter a valid email address.</div>
+                    : ""
+                }
                 <div 
                 className="flex flex-row justify-between"
                 >
@@ -65,6 +100,11 @@ function EditEmail(props) {
                         Cancel
                     </div>
                 </div>
+                {
+                    (profileErrors.emailConfirmationError) ?
+                    <div className="red pl3">`${profileErrors.emailConfirmationErrorMessage}`</div>
+                    : ""
+                }
             </div>
            
         </div>
