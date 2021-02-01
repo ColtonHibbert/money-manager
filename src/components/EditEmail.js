@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 function EditEmail(props) {
 
@@ -42,7 +43,7 @@ function EditEmail(props) {
                     setProfileEmail("");
                     setUserProfileEmail(data);
                     setNavigationEditEmail(false);
-                    //toaster
+                    toast.success("Email updated.");
                 }
             })
         }

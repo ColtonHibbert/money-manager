@@ -9,7 +9,6 @@ import AccountSummary from "./AccountSummary.js";
 import Account from "../components/Account.js";
 import Transactions from "./Transactions.js";
 import Lobby from "./Lobby.js";
-import 'react-toastify/dist/ReactToastify.css';
 import {
     setMobileMenu, 
     setNavigationAccountSelected, 
