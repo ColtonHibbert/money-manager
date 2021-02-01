@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from 'react-toastify';
 
 function EditProfile(props) {
     const { 
@@ -54,6 +55,7 @@ function EditProfile(props) {
                     setProfileAbout("");
                     setUserProfileData(data);
                     setNavigationEditProfile(false);
+                    toast.success("Profile successfully updated.");
                     //toaster notification
                 }
             })
