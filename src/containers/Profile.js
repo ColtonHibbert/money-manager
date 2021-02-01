@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import HomeIcon from "../components/HomeIcon.js";
 import PhoneIcon from "../components/PhoneIcon.js";
 import EditProfile from "../components/EditProfile.js";
+import EditEmail from "../components/EditEmail.js";
+import EditPassword from "../components/EditPassword.js";
 import { 
     setNavigationEditProfile,
     setNavigationEditEmail,
@@ -149,15 +151,33 @@ function Profile(props) {
                     </div>
                     : <EditProfile {...props}/>
                 }
-                <div className="w-100 flex flex-column mt4
-                w-50-l mt0-l ml2-l
-                ">
-                    <div className="w-100 h2 flex flex-row items-center pl3 bg-custom-darker-gray border-thin-gray custom-gray">Account Options</div>
-                    <div className="w-100 h4 flex flex-column justify-center bg-custom-lighter-gray border-thin-gray custom-gray">
-                        <div className="pl3 mv2 white underline grow-l pointer">Change Email</div>
-                        <div className="pl3 mv2 white underline grow-l pointer">Change Password</div>
+                {
+                    (navigation.editEmail) ?
+                    <EditEmail {...props} /> :
+                    (navigation.editPassword) ?
+                    <EditPassword {...props} />
+                    :
+                    <div className="w-100 flex flex-column mt4
+                    w-50-l mt0-l ml2-l
+                    ">
+                        <div className="w-100 h2 flex flex-row items-center pl3 bg-custom-darker-gray border-thin-gray custom-gray">Account Options</div>
+                        <div className="w-100 h4 flex flex-column justify-center bg-custom-lighter-gray border-thin-gray custom-gray">
+                            <div 
+                                className="pl3 mv2 white underline grow-l pointer"
+                                onClick={() => setNavigationEditEmail(true)}
+                            >
+                                Change Email
+                            </div>
+                            <div 
+                                className="pl3 mv2 white underline grow-l pointer"
+                                onClick={() => setNavigationEditPassword(true)}
+                            >
+                                Change Password
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
+                
             </div>
         </div>
     )
