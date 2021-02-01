@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 function Home(props) {
-    const { setRoute, user, navigation, routeHome, setRouteHome, accounts } = props;
+    const { navigation, routeHome, accounts } = props;
     return (
         <div className="min-vh-100 w-100 bg-custom-darker-gray">
             <Header {...props}></Header>

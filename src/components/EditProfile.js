@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 
 function EditProfile(props) {
     const { 
-        navigation, 
         user, 
         profile,
         profileErrors,

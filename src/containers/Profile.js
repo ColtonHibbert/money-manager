@@ -72,31 +72,9 @@ function Profile(props) {
     const {
         user,
         navigation,
-        profile,
-        profileErrors,
         setNavigationEditProfile,
         setNavigationEditEmail,
         setNavigationEditPassword,
-        setProfileFirstName,
-        setProfileLastName,
-        setProfileAddress,
-        setProfilePhone,
-        setProfileAbout,
-        setProfileEmail,
-        setProfilePassword,
-        setProfileConfirmPassword,
-        setProfileErrorsError,
-        setProfileErrorsErrorMessage,
-        setProfileErrorsEmailError,
-        setProfileErrorsPasswordError,
-        setProfileErrorsConfirmPasswordError,
-        setProfileErrorsPasswordsMatchError,
-        setProfileErrorsPasswordConfirmationError,
-        setProfileErrorsPasswordConfirmationErrorMessage,
-        setProfileErrorsEmailConfirmationError,
-        setProfileErrorsEmailConfirmationErrorMessage,
-        setUserProfileData,
-        setUserProfileEmail
     } = props;
 
 
