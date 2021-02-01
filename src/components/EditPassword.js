@@ -19,14 +19,15 @@ function EditPassword(props) {
 
     
     const savePassword = () => {
-        console.log("save password");
         if(
             profileErrors.passwordError === false 
             && profileErrors.confirmPasswordError === false
             && profileErrors.passwordsMatchError === false
+            && profile.password !== ""
+            && profile.confirmPassword !== ""
         ) {
             fetch(
-                "http://localhost:3001/editpassword", 
+                "http://localhost:3001/passwordedit", 
                 {
                     method: "POST",
                     headers: {
@@ -42,7 +43,16 @@ function EditPassword(props) {
                 .then(res => res.json())
                 .then(data => {
                     if(data.error) {
-                        
+                        setProfileErrorsPasswordConfirmationError(true);
+                        setProfileErrorsPasswordConfirmationErrorMessage(data.error);
+                    }
+                    if(!data.error) {
+                        setProfileErrorsPasswordConfirmationError(false);
+                        setProfileErrorsPasswordConfirmationErrorMessage("");
+                        setProfilePassword("");
+                        setProfileConfirmPassword("");
+                        setNavigationEditPassword(false);
+                        //toaster
                     }
                 })
         }
