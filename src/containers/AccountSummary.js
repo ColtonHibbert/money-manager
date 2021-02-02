@@ -44,6 +44,27 @@ function AccountSummary(props) {
                     <input className="w4 input-reset bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"></input>
                 </div>
             </div>
+            <div className="w-100 flex flex-column">
+                <div className="w-100 flex flex-row mt3">
+                    <div className="w-25 mt2 custom-gray tc">Account</div>
+                    <div className="w-25 mt2 custom-gray tc">Current Balance</div>
+                    <div className="w-25 mt2 custom-gray tc">Low Balance Alert</div>
+                    <div className="w-25 mt2 custom-gray tc">Owner</div>
+                </div>
+                {
+                    (accounts !== null ) ? accounts.map(account => {
+                        return(
+                            <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
+                                <div className="w-25 ml1 mr1 custom gray tc">{account.accountName}</div>
+                                <div className="w-25 ml1 mr1 custom gray tc">{account.currentBalance}</div>
+                                <div className="w-25 ml1 mr1 custom gray tc">{account.lowAlertBalance}</div>
+                                <div className="w-25 ml1 mr1 custom gray tc">{user.firstName}</div>
+                            </div>
+                        )
+                    }) 
+                    : ""
+                }
+            </div>
         </div>
     );
 }
