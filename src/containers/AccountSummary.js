@@ -14,9 +14,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function AccountSummary(props) {
-    const { user, accounts, setAccounts } = props;
-
-    let entries = 10;
+    const { user, accounts, setAccounts, accountSummaryRendering} = props;
 
     const getAccounts = () => fetch(
         "http://localhost:3001/accounts",
@@ -32,8 +30,30 @@ function AccountSummary(props) {
     })
     .catch(err => console.log(err))
 
-    
+    const makePages = () => {
 
+        const numberOfPages = (Math.floor(accounts.length / accountSummaryRendering.entries) + 1);
+
+        console.log("accountSummary, numberOfPages: ",numberOfPages);
+        let pageArray = [];
+        let startSlice = 0;
+        let endSlice = accountSummaryRendering.entries;
+
+        for(let i = 0; i < numberOfPages; i++) {
+           let entriesArray = accounts.slice(startSlice, endSlice);
+           pageArray.push(entriesArray);
+           console.log("pageArray in loop: ", pageArray);
+           startSlice += accountSummaryRendering.entries;
+           endSlice += accountSummaryRendering.entries;
+        }
+
+        console.log("pageArray after loop:", pageArray)
+
+        return pageArray;
+
+    }
+
+    const pages = makePages();
     
 
     return (
@@ -100,15 +120,3 @@ function AccountSummary(props) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountSummary);
 
- /*{
-                (accounts !== null) ? accounts.map(account => {
-                    console.log(account);
-                    return (
-                        <div key={account.accountId} >
-                            <div>{account.accountId}</div>
-                            <div>{account.accountName}</div>
-                            <div>{account.currentBalance}</div>
-                        </div>
-                    )
-                }) : ""
-            }*/
