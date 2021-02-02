@@ -1,20 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
+import { setAccountSummaryEntries } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
     return {
-        accountSummaryRendering: state.accountSummaryRendering
+        accountSummary: state.accountSummary
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        setAccountSummaryEntries: (value) => dispatch(setAccountSummaryEntries(value))
     }
 }
 
 function AccountSummary(props) {
-    const { user, accounts, setAccounts, accountSummaryRendering} = props;
+    const { user, accounts, setAccounts, accountSummary, setAccountSummaryEntries} = props;
 
     const getAccounts = () => fetch(
         "http://localhost:3001/accounts",
@@ -32,19 +33,22 @@ function AccountSummary(props) {
 
     const makePages = () => {
 
-        const numberOfPages = (Math.floor(accounts.length / accountSummaryRendering.entries) + 1);
+        const numberOfPages = (Math.ceil(accounts.length / accountSummary.entries));
+        console.log("accounts.length: ", accounts.length);
+        console.log("accountSummary.entries: ", accountSummary.entries);
+        console.log("Math.ceil(accounts.length/accountSummary.entries): ", Math.ceil(accounts.length / accountSummary.entries));
 
         console.log("accountSummary, numberOfPages: ",numberOfPages);
         let pageArray = [];
         let startSlice = 0;
-        let endSlice = accountSummaryRendering.entries;
+        let endSlice = accountSummary.entries;
 
         for(let i = 0; i < numberOfPages; i++) {
            let entriesArray = accounts.slice(startSlice, endSlice);
            pageArray.push(entriesArray);
            console.log("pageArray in loop: ", pageArray);
-           startSlice += accountSummaryRendering.entries;
-           endSlice += accountSummaryRendering.entries;
+           startSlice += accountSummary.entries;
+           endSlice += accountSummary.entries;
         }
 
         console.log("pageArray after loop:", pageArray)
@@ -76,10 +80,14 @@ function AccountSummary(props) {
             >
                 <div className="flex flex-row items-center ml3">
                     <div className="mr1">Entries</div>
-                    <select className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                    <select id="account-entries" 
+                    className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"
+                    onChange={(event) => setAccountSummaryEntries(event.target.value)}
+                    
+                    >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>
                 </div>
                 <div className="flex flex-row items-center mr3">
@@ -101,7 +109,7 @@ function AccountSummary(props) {
                     <div className="w-25 mt2 custom-gray">Owner</div>
                 </div>
                 {
-                    (accounts !== null ) ? pages[accountSummaryRendering.page].map(account => {
+                    (accounts !== null ) ? pages[accountSummary.page].map(account => {
                         return(
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
