@@ -67,6 +67,7 @@ import {
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE,
     SET_USER_PROFILE_DATA,
     SET_USER_PROFILE_EMAIL,
+    SET_ACCOUNT_SUMMARY_ENTRIES
 } from "./constants.js";
 
 const initialState = {
@@ -80,8 +81,8 @@ const initialState = {
             userId: "",
         }
     ],
-    accountSummaryRendering: {
-        entries: 2,
+    accountSummary: {
+        entries: 1,
         regexFilter: "",
         page: 0
     },
@@ -787,6 +788,15 @@ export const reducer = (state=initialState, action={}) => {
             user: {
                 ...state.user,
                 email: action.setUserProfileEmailPayload.updatedEmail
+            }
+        }
+    }
+    if(action.type === SET_ACCOUNT_SUMMARY_ENTRIES) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                entries: action.setAccountSummaryEntriesPayload
             }
         }
     }
