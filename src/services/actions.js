@@ -548,6 +548,6 @@ export const setUserProfileEmail = (payload) => {
 export const setAccountSummaryEntries = (payload) => {
     return {
         type: SET_ACCOUNT_SUMMARY_ENTRIES,
-        setAccountSummaryEntriesPayload: payload
+        setAccountSummaryEntriesPayload: parseFloat(payload)
     }
 }
