@@ -83,7 +83,7 @@ const initialState = {
     accountSummaryRendering: {
         entries: 2,
         regexFilter: "",
-        page: 1
+        page: 0
     },
     forgotPassword: {
         forgotPasswordEmail: "",

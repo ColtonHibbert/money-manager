@@ -77,9 +77,9 @@ function AccountSummary(props) {
                 <div className="flex flex-row items-center ml3">
                     <div className="mr1">Entries</div>
                     <select className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b">
-                        <option>10</option>
-                        <option>25</option>
-                        <option>50</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
                     </select>
                 </div>
                 <div className="flex flex-row items-center mr3">
@@ -101,7 +101,7 @@ function AccountSummary(props) {
                     <div className="w-25 mt2 custom-gray">Owner</div>
                 </div>
                 {
-                    (accounts !== null ) ? accounts.map(account => {
+                    (accounts !== null ) ? pages[accountSummaryRendering.page].map(account => {
                         return(
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
