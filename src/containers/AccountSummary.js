@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { setAccountSummaryEntries } from "../services/actions.js";
+import PaginationBar from "../components/PaginationBar.js";
+import { 
+    setAccountSummaryEntries,
+    setAccountSummaryTotalPages,
+    setAccountSummaryPages
+} from "../services/actions.js";
 
 const mapStateToProps = (state) => {
     return {
@@ -10,12 +15,22 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setAccountSummaryEntries: (value) => dispatch(setAccountSummaryEntries(value))
+        setAccountSummaryEntries: (value) => dispatch(setAccountSummaryEntries(value)),
+        setAccountSummaryTotalPages: (value) => dispatch(setAccountSummaryTotalPages(value)),
+        setAccountSummaryPages: (value) => dispatch(setAccountSummaryPages(value))
     }
 }
 
 function AccountSummary(props) {
-    const { user, accounts, setAccounts, accountSummary, setAccountSummaryEntries} = props;
+    const { 
+        user, 
+        accounts, 
+        setAccounts, 
+        accountSummary, 
+        setAccountSummaryEntries, 
+        setAccountSummaryTotalPages,
+        setAccountSummaryPages
+    } = props;
 
     const getAccounts = () => fetch(
         "http://localhost:3001/accounts",
@@ -31,35 +46,42 @@ function AccountSummary(props) {
     })
     .catch(err => console.log(err))
 
-    const makePages = () => {
-
+    useEffect(() => {
+        
         const numberOfPages = (Math.ceil(accounts.length / accountSummary.entries));
+        setAccountSummaryTotalPages(numberOfPages);
+
         console.log("accounts.length: ", accounts.length);
         console.log("accountSummary.entries: ", accountSummary.entries);
         console.log("Math.ceil(accounts.length/accountSummary.entries): ", Math.ceil(accounts.length / accountSummary.entries));
 
         console.log("accountSummary, numberOfPages: ",numberOfPages);
-        let pageArray = [];
-        let startSlice = 0;
-        let endSlice = accountSummary.entries;
+        let pagesArray = [];
+        let start = 0;
+        let end = accountSummary.entries;
 
         for(let i = 0; i < numberOfPages; i++) {
-           let entriesArray = accounts.slice(startSlice, endSlice);
-           pageArray.push(entriesArray);
-           console.log("pageArray in loop: ", pageArray);
-           console.log("startSlice, endSlice", startSlice, endSlice)
-           startSlice += accountSummary.entries;
-           endSlice += accountSummary.entries;
+           let page = [
+               {
+                 pageNumber: i,
+                 startEntry: start,
+                 finishEntry: end
+               }
+           ]
+           pagesArray.push(page);
+           console.log("pageArray in loop: ", pagesArray);
+           console.log("start, end", start, end)
+           start += accountSummary.entries;
+           end += accountSummary.entries;
         }
+        console.log("pageArray after loop:", pagesArray)
 
-        console.log("pageArray after loop:", pageArray)
+        setAccountSummaryPages(pagesArray);
 
-        return pageArray;
-
-    }
-
-    const pages = makePages();
+    }, [])
     
+
+    console.log(accountSummary.pages[accountSummary.currentPage][0])
 
     return (
         <div>
@@ -110,7 +132,7 @@ function AccountSummary(props) {
                     <div className="w-25 mt2 custom-gray">Owner</div>
                 </div>
                 {
-                    (accounts !== null ) ? pages[accountSummary.page].map(account => {
+                    (accounts !== null ) ? accounts.map(account => {
                         return(
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
@@ -123,9 +145,12 @@ function AccountSummary(props) {
                     : ""
                 }
             </div>
+            <PaginationBar startEntry={accountSummary.pages[accountSummary.currentPage].startEntry} finishEntry={accountSummary.pages[accountSummary.currentPage].finishEntry} total={accounts.length}/>
         </div>
     );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountSummary);
+
+//accountSummary.pages[accountSummary.currentPage].startEntry
 

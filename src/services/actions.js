@@ -67,7 +67,9 @@ import {
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE,
     SET_USER_PROFILE_DATA,
     SET_USER_PROFILE_EMAIL,
-    SET_ACCOUNT_SUMMARY_ENTRIES
+    SET_ACCOUNT_SUMMARY_ENTRIES,
+    SET_ACCOUNT_SUMMARY_TOTAL_PAGES,
+    SET_ACCOUNT_SUMMARY_PAGES
 } from "./constants.js";
 
 
@@ -549,5 +551,19 @@ export const setAccountSummaryEntries = (payload) => {
     return {
         type: SET_ACCOUNT_SUMMARY_ENTRIES,
         setAccountSummaryEntriesPayload: parseFloat(payload)
+    }
+}
+
+export const setAccountSummaryTotalPages = (payload) => {
+    return {
+        type: SET_ACCOUNT_SUMMARY_TOTAL_PAGES,
+        setAccountSummaryTotalPagesPayload: payload
+    }
+}
+
+export const setAccountSummaryPages = (payload) => {
+    return {
+        type: SET_ACCOUNT_SUMMARY_PAGES,
+        setAccountSummaryPagesPayload: payload
     }
 }

@@ -1,12 +1,22 @@
 import React from "react";
 
 function PaginationBar(props) {
+
+    const {
+        startEntry,
+        finishEntry,
+        total
+    } = props;
+
     return (
         <div>
             <div className="w-100 flex flex-row pl2 pr2 justify-between
             pl3-l pr3-l
             ">
-                <div className="custom-gray">`Showing ${} to ${} of ${} entries`</div>
+                <div className="w-30 custom-gray">{`Showing ${startEntry + 1} to ${finishEntry} of ${total} results`}</div> 
+                <div className="flex flex-row">
+
+                </div>
             </div>
         </div>
     )

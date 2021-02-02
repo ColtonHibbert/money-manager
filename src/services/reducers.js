@@ -67,7 +67,9 @@ import {
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE,
     SET_USER_PROFILE_DATA,
     SET_USER_PROFILE_EMAIL,
-    SET_ACCOUNT_SUMMARY_ENTRIES
+    SET_ACCOUNT_SUMMARY_ENTRIES,
+    SET_ACCOUNT_SUMMARY_TOTAL_PAGES,
+    SET_ACCOUNT_SUMMARY_PAGES
 } from "./constants.js";
 
 const initialState = {
@@ -84,7 +86,15 @@ const initialState = {
     accountSummary: {
         entries: 1,
         regexFilter: "",
-        page: 0
+        currentPage: 0,
+        totalPages: 0,
+        pages: [
+            {
+                pageNumber: 0,
+                startEntry: 0,
+                finishEntry: 0,
+            }
+        ]
     },
     forgotPassword: {
         forgotPasswordEmail: "",
@@ -797,6 +807,24 @@ export const reducer = (state=initialState, action={}) => {
             accountSummary: {
                 ...state.accountSummary,
                 entries: action.setAccountSummaryEntriesPayload
+            }
+        }
+    }
+    if(action.type === SET_ACCOUNT_SUMMARY_TOTAL_PAGES) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                totalPages: action.setAccountSummaryTotalPagesPayload
+            }
+        }
+    }
+    if(action.type === SET_ACCOUNT_SUMMARY_PAGES) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                pages: action.setAccountSummaryPagesPayload
             }
         }
     }
