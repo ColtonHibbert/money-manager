@@ -35,30 +35,38 @@ function AccountSummary(props) {
             <div className="
                 w-100 flex flex-row custom-gray justify-between mt3"
             >
-                <div className="flex flex-row ml3">
+                <div className="flex flex-row items-center ml3">
                     <div className="mr1">Entries</div>
-                    <div>dropdown</div>
+                    <select className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b">
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                    </select>
                 </div>
-                <div className="flex flex-row mr3">
+                <div className="flex flex-row items-center mr3">
                     <div className="mr1">Search</div>
-                    <input className="w4 input-reset bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"></input>
+                    <input 
+                    className="w4 input-reset bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b
+                    w5-l
+                    "
+                    ></input>
                 </div>
             </div>
             <div className="w-100 flex flex-column">
                 <div className="w-100 flex flex-row mt3">
-                    <div className="w-25 mt2 custom-gray tc">Account</div>
-                    <div className="w-25 mt2 custom-gray tc">Current Balance</div>
-                    <div className="w-25 mt2 custom-gray tc">Low Balance Alert</div>
-                    <div className="w-25 mt2 custom-gray tc">Owner</div>
+                    <div className="w-25 mt2 custom-gray">Account</div>
+                    <div className="w-25 mt2 custom-gray">Current Balance</div>
+                    <div className="w-25 mt2 custom-gray">Low Balance Alert</div>
+                    <div className="w-25 mt2 custom-gray">Owner</div>
                 </div>
                 {
                     (accounts !== null ) ? accounts.map(account => {
                         return(
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
-                                <div className="w-25 ml1 mr1 custom gray tc">{account.accountName}</div>
-                                <div className="w-25 ml1 mr1 custom gray tc">{account.currentBalance}</div>
-                                <div className="w-25 ml1 mr1 custom gray tc">{account.lowAlertBalance}</div>
-                                <div className="w-25 ml1 mr1 custom gray tc">{user.firstName}</div>
+                                <div className="w-25 custom gray">{account.accountName}</div>
+                                <div className="w-25 custom gray">{account.currentBalance}</div>
+                                <div className="w-25 custom gray">{account.lowAlertBalance}</div>
+                                <div className="w-25 custom gray">{user.firstName}</div>
                             </div>
                         )
                     }) 
