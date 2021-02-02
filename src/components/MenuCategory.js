@@ -22,7 +22,7 @@ function MenuCategory(props) {
             <div 
                 className="
                 f4 flex flex-row items-center pl2 bg-custom-lighter-gray custom-gray pointer money-hover darker-gray-hover 
-                h2point25-m
+                h2point25-m 
                 h2point25p-l
                 "
                 {...(name === "Accounts" && { onClick: setNavigationAccountSelected } )}
@@ -62,7 +62,7 @@ function MenuCategory(props) {
                     onClick={() => handleSelect("accountsummary")}
                     >
                         <AccountSummaryIcon />
-                        <div className="pl2">Summary of Accounts</div>
+                        <div className="pl2">Account Summary</div>
                     </div>
                     {
                         accounts.map(account => {
