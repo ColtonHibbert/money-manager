@@ -47,6 +47,7 @@ function AccountSummary(props) {
            let entriesArray = accounts.slice(startSlice, endSlice);
            pageArray.push(entriesArray);
            console.log("pageArray in loop: ", pageArray);
+           console.log("startSlice, endSlice", startSlice, endSlice)
            startSlice += accountSummary.entries;
            endSlice += accountSummary.entries;
         }
