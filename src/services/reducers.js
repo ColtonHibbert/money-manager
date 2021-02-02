@@ -77,9 +77,14 @@ const initialState = {
             accountTypeId: "",
             currentBalance: "",
             lowAlertBalance: "",
-            userId: ""
+            userId: "",
         }
     ],
+    accountSummaryRendering: {
+        entries: 10,
+        regexFilter: "",
+        page: 1
+    },
     forgotPassword: {
         forgotPasswordEmail: "",
         forgotPasswordEmailSent: false,

@@ -1,7 +1,22 @@
 import React from "react";
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+    return {
+        accountSummaryRendering: state.accountSummaryRendering
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
 
 function AccountSummary(props) {
     const { user, accounts, setAccounts } = props;
+
+    let entries = 10;
 
     const getAccounts = () => fetch(
         "http://localhost:3001/accounts",
@@ -16,6 +31,10 @@ function AccountSummary(props) {
         setAccounts(data);
     })
     .catch(err => console.log(err))
+
+    
+
+    
 
     return (
         <div>
@@ -52,7 +71,9 @@ function AccountSummary(props) {
                     ></input>
                 </div>
             </div>
-            <div className="w-100 flex flex-column">
+            <div className="w-100 flex flex-column pl2
+            pl3-l
+            ">
                 <div className="w-100 flex flex-row mt3">
                     <div className="w-25 mt2 custom-gray">Account</div>
                     <div className="w-25 mt2 custom-gray">Current Balance</div>
@@ -77,7 +98,7 @@ function AccountSummary(props) {
     );
 }
 
-export default AccountSummary;
+export default connect(mapStateToProps, mapDispatchToProps)(AccountSummary);
 
  /*{
                 (accounts !== null) ? accounts.map(account => {
