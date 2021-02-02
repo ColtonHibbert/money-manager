@@ -81,7 +81,7 @@ const initialState = {
         }
     ],
     accountSummaryRendering: {
-        entries: 10,
+        entries: 2,
         regexFilter: "",
         page: 1
     },
