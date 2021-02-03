@@ -16,9 +16,9 @@ function PaginationBar(props) {
             <div className="w-100 flex flex-row pl2 pr2 justify-between
             pl3-l pr3-l
             ">
-                <div className="w-30 custom-gray">{`Showing ${startEntry + 1} to ${finishEntry} of ${totalEntries} results`}</div> 
-                <div className="flex flex-row">
-                    <div>Previous</div>
+                <div className="w-30 h2 flex items-center custom-gray">{`Showing ${startEntry + 1} to ${finishEntry} of ${totalEntries} results`}</div> 
+                <div className="flex flex-row items-center">
+                    <div className="mr2 custom-gray pointer">Previous</div>
                     {
                         (totalPages === 1) ?
                         <div>1</div>
@@ -68,11 +68,11 @@ function PaginationBar(props) {
                             {
                                 (currentPage < 2) ?
                                 <div className="flex flex-row">
-                                    <div>1</div>
-                                    <div>2</div>
-                                    <div>3</div>
-                                    <div>4</div>
-                                    <div>{totalPages}</div>
+                                    <div className="h2 w2 flex justify-center items-center bg-white black pointer">1</div>
+                                    <div className="h2 w2 flex justify-center items-center bg-white black pointer">2</div>
+                                    <div className="h2 w2 flex justify-center items-center bg-white black pointer">3</div>
+                                    <div className="h2 w2 flex justify-center items-center bg-white black pointer">4</div>
+                                    <div className="h2 w2 flex justify-center items-center bg-white black pointer">{totalPages}</div>
                                 </div>
                                 : ""
                             }
@@ -100,7 +100,7 @@ function PaginationBar(props) {
                         </div>
                         : ""
                     }
-                    <div>Next</div>
+                    <div className="ml2 custom-gray pointer">Next</div>
                 </div>
             </div>
         </div>
@@ -108,24 +108,3 @@ function PaginationBar(props) {
 }
 
 export default PaginationBar;
-/*
-{
-    (currentPage === totalPages - 1) ?
-    "" : <div>{currentPage + 1}</div>
-}
-{
-    (currentPage === totalPages - 2) ?
-    "" : <div>{currentPage + 2}</div>
-}
-{
-                                (currentPage < 2) ?
-                                <div className="flex flex-row">
-                                    <div>1<div>
-                                    <div>2</div>
-                                    <div>3</div>
-                                    <div>4</div>
-                                    <div>{totalPages}</div>
-                                </div>    
-                                : ""
-                            }
-*/

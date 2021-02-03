@@ -69,7 +69,8 @@ import {
     SET_USER_PROFILE_EMAIL,
     SET_ACCOUNT_SUMMARY_ENTRIES,
     SET_ACCOUNT_SUMMARY_TOTAL_PAGES,
-    SET_ACCOUNT_SUMMARY_PAGES
+    SET_ACCOUNT_SUMMARY_PAGES,
+    SET_ACCOUNT_SUMMARY_CURRENT_PAGE
 } from "./constants.js";
 
 
@@ -565,5 +566,12 @@ export const setAccountSummaryPages = (payload) => {
     return {
         type: SET_ACCOUNT_SUMMARY_PAGES,
         setAccountSummaryPagesPayload: payload
+    }
+}
+
+export const setAccountSummaryCurrentPage = (payload) => {
+    return {
+        type: SET_ACCOUNT_SUMMARY_CURRENT_PAGE,
+        setAccountSummaryCurrentPagePayload: payload
     }
 }
