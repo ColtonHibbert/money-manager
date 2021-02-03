@@ -84,8 +84,10 @@ function AccountSummary(props) {
 
     
 
-    console.log(accountSummary.pages[accountSummary.currentPage])
-
+    console.log("current page", accountSummary.pages[accountSummary.currentPage])
+    console.log("start entry", accountSummary.pages[accountSummary.currentPage].startEntry)
+    console.log("finish entry", accountSummary.pages[accountSummary.currentPage].finishEntry)
+    console.log(accounts.slice(0,1))
     return (
         <div>
             <div className="flex flex-column w-100 items-center">
@@ -135,7 +137,7 @@ function AccountSummary(props) {
                     <div className="w-25 mt2 custom-gray">Owner</div>
                 </div>
                 {
-                    (accounts !== null ) ? accounts.slice([accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry]).map(account => {
+                    (accounts !== null ) ? accounts.slice(accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry).map(account => {
                         return(
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
@@ -148,7 +150,7 @@ function AccountSummary(props) {
                     : ""
                 }
             </div>
-            <PaginationBar startEntry={1} finishEntry={1} total={accounts.length}/>
+            <PaginationBar startEntry={accountSummary.pages[accountSummary.currentPage].startEntry} finishEntry={accountSummary.pages[accountSummary.currentPage].finishEntry} total={accounts.length}/>
         </div>
     );
 }
