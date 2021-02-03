@@ -592,7 +592,11 @@ export const reducer = (state=initialState, action={}) => {
                 };
             pagesArray.push(page);
             start += state.accountSummary.entries;
-            end += state.accountSummary.entries;
+            if((end + state.accountSummary.entries) >= state.accounts.length) {
+                pagesArray[pagesArray.length - 1].finishEntry = state.accounts.length;
+            } else {
+                end += state.accountSummary.entries;
+            }
         }
         return {
             ...state,
