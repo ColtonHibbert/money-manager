@@ -69,7 +69,8 @@ import {
     SET_USER_PROFILE_EMAIL,
     SET_ACCOUNT_SUMMARY_ENTRIES,
     SET_ACCOUNT_SUMMARY_TOTAL_PAGES,
-    SET_ACCOUNT_SUMMARY_PAGES
+    SET_ACCOUNT_SUMMARY_PAGES,
+    SET_ACCOUNT_SUMMARY_CURRENT_PAGE
 } from "./constants.js";
 
 const initialState = {
@@ -845,6 +846,15 @@ export const reducer = (state=initialState, action={}) => {
             accountSummary: {
                 ...state.accountSummary,
                 pages: action.setAccountSummaryPagesPayload
+            }
+        }
+    }
+    if(action.type === SET_ACCOUNT_SUMMARY_CURRENT_PAGE) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                currentPage: action.setAccountSummaryCurrentPage
             }
         }
     }
