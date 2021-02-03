@@ -64,13 +64,23 @@ function PaginationBar(props) {
                     {
                         (totalPages > 5) ?
                         <div className="flex flex-row">
-                            {
+                            <div>1</div>
+                            {   
                                 (currentPage === 0) ?
-                                <div>{currentPage + 1}</div>
-                                : <div>1</div>
+                                "" : <div>{currentPage}</div>
                             }
-                            <div>{currentPage + 2}</div>
-                            <div>{currentPage + 3}</div>
+                            {
+                                (currentPage === 1) ?
+                                "" : <div>{currentPage}</div>
+                            }
+                            {
+                                (currentPage === totalPages - 1) ?
+                                "" : <div>{currentPage + 1}</div>
+                            }
+                            {
+                                (currentPage === totalPages - 2) ?
+                                "" : <div>{currentPage + 2}</div>
+                            }
                             <div>{totalPages}</div>
                         </div>
                         : ""
