@@ -150,7 +150,13 @@ function AccountSummary(props) {
                     : ""
                 }
             </div>
-            <PaginationBar startEntry={accountSummary.pages[accountSummary.currentPage].startEntry} finishEntry={accountSummary.pages[accountSummary.currentPage].finishEntry} total={accounts.length}/>
+            <PaginationBar 
+                startEntry={accountSummary.pages[accountSummary.currentPage].startEntry} 
+                finishEntry={accountSummary.pages[accountSummary.currentPage].finishEntry} 
+                totalEntries={accounts.length}
+                totalPages={accountSummary.totalPages}
+                currentPage={accountSummary.currentPage}
+            />
         </div>
     );
 }
