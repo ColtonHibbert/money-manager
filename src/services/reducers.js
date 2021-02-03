@@ -578,10 +578,30 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     if(action.type === SET_INITIAL_DATA) {
+        const numberOfPages = (Math.ceil(action.setInitialDataPayload.initialData.accounts.length / state.accountSummary.entries));
+        
+        let pagesArray = [];
+        let start = 0;
+        let end = state.accountSummary.entries;
+        for(let i = 0; i < numberOfPages; i++) {
+            let page = {
+                        pageNumber: i,
+                        startEntry: start,
+                        finishEntry: end
+                };
+            pagesArray.push(page);
+            start += state.accountSummary.entries;
+            end += state.accountSummary.entries;
+        }
         return {
             ...state,
             user: action.setInitialDataPayload.initialData.user,
-            accounts: action.setInitialDataPayload.initialData.accounts
+            accounts: action.setInitialDataPayload.initialData.accounts,
+            accountSummary: {
+                ...state.accountSummary,
+                totalPages: numberOfPages,
+                pages: pagesArray
+            }
         }
     }
     if(action.type === SET_ROUTE_HOME) {
