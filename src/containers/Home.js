@@ -13,7 +13,7 @@ import {
     setMobileMenu, 
     setNavigationAccountSelected, 
     toggleMobileMenu,
-    setRouteHome
+    setRouteHome,
 } from "../services/actions.js";
 
 

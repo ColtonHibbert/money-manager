@@ -854,7 +854,7 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             accountSummary: {
                 ...state.accountSummary,
-                currentPage: action.setAccountSummaryCurrentPage
+                currentPage: action.setAccountSummaryCurrentPagePayload
             }
         }
     }

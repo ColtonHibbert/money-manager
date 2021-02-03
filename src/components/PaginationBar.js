@@ -7,8 +7,12 @@ function PaginationBar(props) {
         finishEntry,
         totalEntries,
         totalPages,
-        currentPage
+        currentPage,
+        setAccountSummaryCurrentPage
     } = props;
+
+    const classNoSelect = "h2 w2 flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
+    const classSelect = "h2 w2 flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
 
     console.log("currentPage paginationBar: ", currentPage)
     return (
@@ -21,44 +25,44 @@ function PaginationBar(props) {
                     <div className="mr2 custom-gray pointer">Previous</div>
                     {
                         (totalPages === 1) ?
-                        <div>1</div>
+                        <div className={(currentPage === 0) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(0)}>1</div>
                         : ""
                     }
                     {
                         (totalPages === 2) ?
                         <div className="flex flex-row">
-                            <div>1</div>
-                            <div>2</div>
+                            <div className={(currentPage === 0) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(0)}>1</div>
+                            <div className={(currentPage === 1) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(1)}>2</div>
                         </div>
                         : ""
                     }
                     {
                         (totalPages === 3) ?
                         <div className="flex flex-row">
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
+                            <div className={(currentPage === 0) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(0)}>1</div>
+                            <div className={(currentPage === 1) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(1)}>2</div>
+                            <div className={(currentPage === 2) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(2)}>3</div>
                         </div>
                         : ""
                     }
                     {
                         (totalPages === 4) ?
                         <div className="flex flex-row">
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
-                            <div>4</div>
+                            <div className={(currentPage === 0) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(0)}>1</div>
+                            <div className={(currentPage === 1) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(1)}>2</div>
+                            <div className={(currentPage === 2) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(2)}>3</div>
+                            <div className={(currentPage === 3) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(3)}>4</div>
                         </div>
                         : ""
                     }
                     {
                         (totalPages === 5) ?
                         <div className="flex flex-row">
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
-                            <div>4</div>
-                            <div>5</div>
+                            <div className={(currentPage === 0) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(0)}>1</div>
+                            <div className={(currentPage === 1) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(1)}>2</div>
+                            <div className={(currentPage === 2) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(2)}>3</div>
+                            <div className={(currentPage === 3) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(3)}>4</div>
+                            <div className={(currentPage === 4) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(4)}>5</div>
                         </div>
                         : ""
                     }
@@ -68,32 +72,32 @@ function PaginationBar(props) {
                             {
                                 (currentPage < 2) ?
                                 <div className="flex flex-row">
-                                    <div className="h2 w2 flex justify-center items-center bg-white black pointer">1</div>
-                                    <div className="h2 w2 flex justify-center items-center bg-white black pointer">2</div>
-                                    <div className="h2 w2 flex justify-center items-center bg-white black pointer">3</div>
-                                    <div className="h2 w2 flex justify-center items-center bg-white black pointer">4</div>
-                                    <div className="h2 w2 flex justify-center items-center bg-white black pointer">{totalPages}</div>
+                                    <div className={(currentPage === 0) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(0)}>1</div>
+                                    <div className={(currentPage === 1) ? classSelect : classNoSelect}  onClick={() => setAccountSummaryCurrentPage(1)}>2</div>
+                                    <div className={(currentPage === 2) ? classSelect : classNoSelect}  onClick={() => setAccountSummaryCurrentPage(2)}>3</div>
+                                    <div className={(currentPage === 3) ? classSelect : classNoSelect}  onClick={() => setAccountSummaryCurrentPage(3)}>4</div>
+                                    <div className={(currentPage === totalPages - 1) ? classSelect : classNoSelect}  onClick={() => setAccountSummaryCurrentPage(totalPages - 1)}>{totalPages}</div>
                                 </div>
                                 : ""
                             }
                             {
                                 (currentPage >= 2 && (currentPage < totalPages - 2) ) ?
                                 <div className="flex flex-row">
-                                    <div>1</div>
-                                    <div>{currentPage}</div>
-                                    <div>{currentPage + 1}</div>
-                                    <div>{currentPage + 2}</div>
-                                    <div>{totalPages}</div>
+                                    <div className={(currentPage === 0) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(0)}>1</div>
+                                    <div className={(currentPage === currentPage - 1) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(currentPage - 1)}>{currentPage}</div>
+                                    <div className={(currentPage === currentPage) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(currentPage)}>{currentPage + 1}</div>
+                                    <div className={(currentPage === currentPage + 1) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(currentPage + 1)}>{currentPage + 2}</div>
+                                    <div className={(currentPage === totalPages - 1) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(totalPages - 1)}>{totalPages}</div>
                                 </div>
                                 : ""
                             }
                             {
                                 (currentPage >= totalPages -2 ) ?
                                 <div className="flex flex-row">
-                                    <div>1</div>
-                                    <div>{totalPages - 2}</div>
-                                    <div>{totalPages -1 }</div>
-                                    <div>{totalPages}</div>
+                                    <div className={(currentPage === 0) ? classSelect : classNoSelect} >1</div>
+                                    <div className={(currentPage === totalPages - 3) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(totalPages - 3)}>{totalPages - 2}</div>
+                                    <div className={(currentPage === totalPages -2 ) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(totalPages - 2)}>{totalPages -1 }</div>
+                                    <div className={(currentPage === totalPages -1) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(totalPages - 1)}>{totalPages}</div>
                                 </div>
                                 : ""
                             }
