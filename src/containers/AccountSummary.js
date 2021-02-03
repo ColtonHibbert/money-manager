@@ -75,11 +75,15 @@ function AccountSummary(props) {
             };
         
         pagesArray.push(page);
-        console.log("pageArray in loop: ", pagesArray);
-        console.log("start, end", start, end)
+        //console.log("pageArray in loop: ", pagesArray);
+        //console.log("start, end", start, end)
         start += value;
-        end += value;
+        if((end + value) >= accounts.length) {
+            pagesArray[pagesArray.length - 1].finishEntry = accounts.length;
+        } else {
+            end += value;
         }
+    }
         console.log("pageArray after loop:", pagesArray)
 
         setAccountSummaryPages(pagesArray);
