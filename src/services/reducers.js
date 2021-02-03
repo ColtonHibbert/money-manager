@@ -86,7 +86,7 @@ const initialState = {
     accountSummary: {
         entries: 1,
         regexFilter: "",
-        currentPage: 6,
+        currentPage: 0,
         totalPages: 0,
         pages: [
             {

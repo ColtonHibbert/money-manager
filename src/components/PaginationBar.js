@@ -10,6 +10,7 @@ function PaginationBar(props) {
         currentPage
     } = props;
 
+    console.log("currentPage paginationBar: ", currentPage)
     return (
         <div>
             <div className="w-100 flex flex-row pl2 pr2 justify-between
@@ -67,14 +68,11 @@ function PaginationBar(props) {
                             <div>1</div>
                             {   
                                 (currentPage === 0) ?
+                                "" : (currentPage === 1) ?
                                 "" : <div>{currentPage}</div>
                             }
                             {
-                                (currentPage === 1) ?
-                                "" : <div>{currentPage}</div>
-                            }
-                            {
-                                (currentPage === totalPages - 1) ?
+                                (currentPage === totalPages - 1 && currentPage !== 0 && currentPage !== 1) ?
                                 "" : <div>{currentPage + 1}</div>
                             }
                             {
