@@ -110,6 +110,13 @@
     background-color: rgb(45,48,53);
 }
 
+.bg-white-color-black:hover,
+.bg-white-color-black:active,
+.bg-white-color-black:focus {
+    background-color: white;
+    color: black;
+}
+
 .h2000 {
     height: 2000px;
 }

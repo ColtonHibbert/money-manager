@@ -4,7 +4,8 @@ import PaginationBar from "../components/PaginationBar.js";
 import { 
     setAccountSummaryEntries,
     setAccountSummaryTotalPages,
-    setAccountSummaryPages
+    setAccountSummaryPages,
+    setAccountSummaryCurrentPage
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -17,7 +18,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setAccountSummaryEntries: (value) => dispatch(setAccountSummaryEntries(value)),
         setAccountSummaryTotalPages: (value) => dispatch(setAccountSummaryTotalPages(value)),
-        setAccountSummaryPages: (value) => dispatch(setAccountSummaryPages(value))
+        setAccountSummaryPages: (value) => dispatch(setAccountSummaryPages(value)),
+        setAccountSummaryCurrentPage: (value) => dispatch(setAccountSummaryCurrentPage(value))
     }
 }
 
@@ -31,7 +33,8 @@ function AccountSummary(props) {
         accountSummary, 
         setAccountSummaryEntries, 
         setAccountSummaryTotalPages,
-        setAccountSummaryPages
+        setAccountSummaryPages,
+        setAccountSummaryCurrentPage
     } = props;
 
     const getAccounts = () => fetch(
@@ -84,10 +87,8 @@ function AccountSummary(props) {
 
     
 
-    console.log("current page", accountSummary.pages[accountSummary.currentPage])
-    console.log("start entry", accountSummary.pages[accountSummary.currentPage].startEntry)
-    console.log("finish entry", accountSummary.pages[accountSummary.currentPage].finishEntry)
-    console.log(accounts.slice(0,1))
+    console.log("current page", accountSummary.currentPage);
+   
     return (
         <div>
             <div className="flex flex-column w-100 items-center">
@@ -156,6 +157,7 @@ function AccountSummary(props) {
                 totalEntries={accounts.length}
                 totalPages={accountSummary.totalPages}
                 currentPage={accountSummary.currentPage}
+                setAccountSummaryCurrentPage={setAccountSummaryCurrentPage}
             />
         </div>
     );
