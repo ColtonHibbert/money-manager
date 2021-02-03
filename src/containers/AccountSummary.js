@@ -21,6 +21,8 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
+
+
 function AccountSummary(props) {
     const { 
         user, 
@@ -46,42 +48,43 @@ function AccountSummary(props) {
     })
     .catch(err => console.log(err))
 
-    useEffect(() => {
-        
-        const numberOfPages = (Math.ceil(accounts.length / accountSummary.entries));
+    function configurePages(value) {
+        value = parseFloat(value);
+        const numberOfPages = (Math.ceil(accounts.length / value));
+        setAccountSummaryEntries(value);
         setAccountSummaryTotalPages(numberOfPages);
-
+        console.log("accountSummary: ", accountSummary)
         console.log("accounts.length: ", accounts.length);
-        console.log("accountSummary.entries: ", accountSummary.entries);
+        console.log("accountSummary.entries: ", props.accountSummary.entries);
+        console.log("accountSummary, value: should not be stale", value);
         console.log("Math.ceil(accounts.length/accountSummary.entries): ", Math.ceil(accounts.length / accountSummary.entries));
 
         console.log("accountSummary, numberOfPages: ",numberOfPages);
         let pagesArray = [];
         let start = 0;
-        let end = accountSummary.entries;
+        let end = value;
 
         for(let i = 0; i < numberOfPages; i++) {
-           let page = [
-               {
-                 pageNumber: i,
-                 startEntry: start,
-                 finishEntry: end
-               }
-           ]
-           pagesArray.push(page);
-           console.log("pageArray in loop: ", pagesArray);
-           console.log("start, end", start, end)
-           start += accountSummary.entries;
-           end += accountSummary.entries;
+        let page = {
+                    pageNumber: i,
+                    startEntry: start,
+                    finishEntry: end
+            };
+        
+        pagesArray.push(page);
+        console.log("pageArray in loop: ", pagesArray);
+        console.log("start, end", start, end)
+        start += value;
+        end += value;
         }
         console.log("pageArray after loop:", pagesArray)
 
         setAccountSummaryPages(pagesArray);
+    }
 
-    }, [])
     
 
-    console.log(accountSummary.pages[accountSummary.currentPage][0])
+    console.log(accountSummary.pages[accountSummary.currentPage])
 
     return (
         <div>
@@ -105,7 +108,7 @@ function AccountSummary(props) {
                     <div className="mr1">Entries</div>
                     <select id="account-entries" 
                     className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"
-                    onChange={(event) => setAccountSummaryEntries(event.target.value)}
+                    onChange={(event) => configurePages(event.target.value)}
                     
                     >
                         <option value="1">1</option>
@@ -132,7 +135,7 @@ function AccountSummary(props) {
                     <div className="w-25 mt2 custom-gray">Owner</div>
                 </div>
                 {
-                    (accounts !== null ) ? accounts.map(account => {
+                    (accounts !== null ) ? accounts.slice([accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry]).map(account => {
                         return(
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
@@ -145,7 +148,7 @@ function AccountSummary(props) {
                     : ""
                 }
             </div>
-            <PaginationBar startEntry={accountSummary.pages[accountSummary.currentPage].startEntry} finishEntry={accountSummary.pages[accountSummary.currentPage].finishEntry} total={accounts.length}/>
+            <PaginationBar startEntry={1} finishEntry={1} total={accounts.length}/>
         </div>
     );
 }
