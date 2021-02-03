@@ -56,35 +56,26 @@ function AccountSummary(props) {
         const numberOfPages = (Math.ceil(accounts.length / value));
         setAccountSummaryEntries(value);
         setAccountSummaryTotalPages(numberOfPages);
-        console.log("accountSummary: ", accountSummary)
-        console.log("accounts.length: ", accounts.length);
-        console.log("accountSummary.entries: ", props.accountSummary.entries);
-        console.log("accountSummary, value: should not be stale", value);
-        console.log("Math.ceil(accounts.length/accountSummary.entries): ", Math.ceil(accounts.length / accountSummary.entries));
-
-        console.log("accountSummary, numberOfPages: ",numberOfPages);
+        
         let pagesArray = [];
         let start = 0;
         let end = value;
 
         for(let i = 0; i < numberOfPages; i++) {
-        let page = {
-                    pageNumber: i,
-                    startEntry: start,
-                    finishEntry: end
-            };
-        
-        pagesArray.push(page);
-        //console.log("pageArray in loop: ", pagesArray);
-        //console.log("start, end", start, end)
-        start += value;
-        if((end + value) >= accounts.length) {
-            pagesArray[pagesArray.length - 1].finishEntry = accounts.length;
-        } else {
+            let page = {
+                        pageNumber: i,
+                        startEntry: start,
+                        finishEntry: end
+                };
+            pagesArray.push(page);
+            
+            if(pagesArray[pagesArray.length -1 ].finishEntry >= accounts.length) {
+                pagesArray[pagesArray.length - 1].finishEntry = accounts.length;
+                continue
+            } 
+            start += value;
             end += value;
         }
-    }
-        console.log("pageArray after loop:", pagesArray)
 
         setAccountSummaryPages(pagesArray);
     }
