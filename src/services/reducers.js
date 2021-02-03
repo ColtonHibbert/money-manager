@@ -85,7 +85,7 @@ const initialState = {
         }
     ],
     accountSummary: {
-        entries: 1,
+        entries: 2,
         regexFilter: "",
         currentPage: 0,
         totalPages: 0,
@@ -591,12 +591,14 @@ export const reducer = (state=initialState, action={}) => {
                         finishEntry: end
                 };
             pagesArray.push(page);
+            
+            if(pagesArray[pagesArray.length - 1].finishEntry >= action.setInitialDataPayload.initialData.accounts.length) {
+                pagesArray[pagesArray.length - 1 ].finishEntry = action.setInitialDataPayload.initialData.accounts.length;
+                break;
+            } 
+
             start += state.accountSummary.entries;
-            if((end + state.accountSummary.entries) >= state.accounts.length) {
-                pagesArray[pagesArray.length - 1].finishEntry = state.accounts.length;
-            } else {
-                end += state.accountSummary.entries;
-            }
+            end += state.accountSummary.entries;
         }
         return {
             ...state,
