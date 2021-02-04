@@ -7,7 +7,10 @@ import {
     setAccountSummaryPages,
     setAccountSummaryCurrentPage,
     setAccountSummaryFilter,
-    setAccountSummaryFilteredAccounts
+    setAccountSummaryFilteredAccounts,
+    setAccountSummaryFilterTotalPages,
+    setAccountSummaryFilterCurrentPage,
+    setAccountSummaryFilterPages
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -23,7 +26,10 @@ const mapDispatchToProps = (dispatch) => {
         setAccountSummaryPages: (value) => dispatch(setAccountSummaryPages(value)),
         setAccountSummaryCurrentPage: (value) => dispatch(setAccountSummaryCurrentPage(value)),
         setAccountSummaryFilter: (value) => dispatch(setAccountSummaryFilter(value)),
-        setAccountSummaryFilteredAccounts: (value) => dispatch(setAccountSummaryFilteredAccounts(value))
+        setAccountSummaryFilteredAccounts: (value) => dispatch(setAccountSummaryFilteredAccounts(value)),
+        setAccountSummaryFilterTotalPages: (value) => dispatch(setAccountSummaryFilterTotalPages(value)),
+        setAccountSummaryFilterCurrentPage: (value) => dispatch(setAccountSummaryFilterCurrentPage(value)),
+        setAccountSummaryFilterPages: (value) => dispatch(setAccountSummaryFilterPages(value))
     }
 }
 
@@ -40,7 +46,10 @@ function AccountSummary(props) {
         setAccountSummaryPages,
         setAccountSummaryCurrentPage,
         setAccountSummaryFilter,
-        setAccountSummaryFilteredAccounts
+        setAccountSummaryFilteredAccounts,
+        setAccountSummaryFilterTotalPages,
+        setAccountSummaryFilterCurrentPage,
+        setAccountSummaryFilterPages
     } = props;
 
     const getAccounts = () => fetch(
@@ -198,18 +207,49 @@ function AccountSummary(props) {
                             </div>
                         )
                     }) 
-                    : (accounts !== null && accountSummary.filter === true) ? accountSummary.filteredAccounts.slice(accountSummary) 
+                    : ""
+                }
+                {
+                    (accounts !== null && accountSummary.filter) ? accounts.slice(accountSummary.filterPages[accountSummary.filterCurrentPage].startEntry, accountSummary.filterPages[accountSummary.filterCurrentPage].finishEntry).map(account => {
+                        return( 
+                            <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
+                                <div className="w-25 custom gray">{account.accountName}</div>
+                                <div className="w-25 custom gray">{account.currentBalance}</div>
+                                <div className="w-25 custom gray">{account.lowAlertBalance}</div>
+                                <div className="w-25 custom gray">{user.firstName}</div>
+                            </div>
+                        )
+                    }) 
                     : ""
                 }
             </div>
-            <PaginationBar 
-                startEntry={accountSummary.pages[accountSummary.currentPage].startEntry} 
-                finishEntry={accountSummary.pages[accountSummary.currentPage].finishEntry} 
-                totalEntries={accounts.length}
-                totalPages={accountSummary.totalPages}
-                currentPage={accountSummary.currentPage}
-                setCurrentPage={setAccountSummaryCurrentPage}
-            />
+            {
+                (accountSummary.filter === false) ?
+                <PaginationBar 
+                    startEntry={accountSummary.pages[accountSummary.currentPage].startEntry} 
+                    finishEntry={accountSummary.pages[accountSummary.currentPage].finishEntry} 
+                    totalEntries={accounts.length}
+                    totalPages={accountSummary.totalPages}
+                    currentPage={accountSummary.currentPage}
+                    setCurrentPage={setAccountSummaryCurrentPage}
+                />
+                : ""
+            }
+            {
+                (accountSummary.filter) ?
+                <PaginationBar 
+                    startEntry={accountSummary.filterPages[accountSummary.filterCurrentPage].startEntry} 
+                    finishEntry={accountSummary.filterPages[accountSummary.filterCurrentPage].finishEntry} 
+                    totalEntries={accountSummary.filteredAccounts.length}
+                    totalPages={accountSummary.filterTotalPages}
+                    currentPage={accountSummary.filterCurrentPage}
+                    setCurrentPage={setAccountSummaryFilterCurrentPage}
+                />
+                : ""
+            }
+
+            
+            
         </div>
     );
 }
