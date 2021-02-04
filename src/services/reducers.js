@@ -72,7 +72,10 @@ import {
     SET_ACCOUNT_SUMMARY_PAGES,
     SET_ACCOUNT_SUMMARY_CURRENT_PAGE, 
     SET_ACCOUNT_SUMMARY_FILTER,
-    SET_ACCOUNT_SUMMARY_FILTERED_ACCOUNTS
+    SET_ACCOUNT_SUMMARY_FILTERED_ACCOUNTS,
+    SET_ACCOUNT_SUMMARY_FILTER_TOTAL_PAGES,
+    SET_ACCOUNT_SUMMARY_FILTER_CURRENT_PAGE,
+    SET_ACCOUNT_SUMMARY_FILTER_PAGES
 } from "./constants.js";
 
 const initialState = {
@@ -108,6 +111,15 @@ const initialState = {
                 userId: "",
             }
         ],
+        filterTotalPages: 0,
+        filterCurrentPage: 0,
+        filterPages: [
+            {
+                pageNumber,
+                startEntry,
+                finishEntry
+            }
+        ]
     },
     forgotPassword: {
         forgotPasswordEmail: "",
@@ -891,6 +903,33 @@ export const reducer = (state=initialState, action={}) => {
             accountSummary: {
                 ...state.accountSummary,
                 filteredAccounts: action.setAccountSummaryFilteredAccountsPayload
+            }
+        }
+    }
+    if(action.type === SET_ACCOUNT_SUMMARY_FILTER_TOTAL_PAGES) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                filterTotalPages: action.setAccountSummaryFilterTotalPagesPayload
+            }
+        }
+    }
+    if(action.type === SET_ACCOUNT_SUMMARY_FILTER_CURRENT_PAGE) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                filterCurrentPage: action.setAccountSummaryFilterCurrentPagePayload
+            }
+        }
+    }
+    if(action.type === SET_ACCOUNT_SUMMARY_FILTER_PAGES) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                filterPages: action.setAccountSummaryFilterPagesPayload
             }
         }
     }
