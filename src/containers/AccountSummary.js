@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PaginationBar from "../components/PaginationBar.js";
+import Sort from "../components/Sort.js";
 import { 
     setAccountSummaryEntries,
     setAccountSummaryTotalPages,
@@ -122,7 +123,7 @@ function AccountSummary(props) {
         if(search === "") {
             const numberOfPages = (Math.ceil(accounts.length / accountSummary.entries));
             const modifiedPages = pagesArray(accountSummary.entries, accounts, numberOfPages);
-            
+
             setAccountSummaryPages(modifiedPages);
             setAccountSummaryCurrentPage(0);
             setAccountSummaryTotalPages(numberOfPages);
@@ -177,8 +178,14 @@ function AccountSummary(props) {
             pl3-l
             ">
                 <div className="w-100 flex flex-row mt3">
-                    <div className="w-25 mt2 custom-gray">Account</div>
-                    <div className="w-25 mt2 custom-gray">Current Balance</div>
+                    <div>
+                        <div className="w-25 mt2 custom-gray">Account</div>
+                        <Sort setNewArray={setAccounts} arrayToSort={accounts} propertyToCompare={"accountName"} typeToCompare={"str"}/>
+                    </div>
+                    <div>
+                        <div className="w-25 mt2 custom-gray">Current Balance</div>
+                        <Sort setNewArray={setAccounts} arrayToSort={accounts} propertyToCompare={"currentBalance"} typeToCompare={"num"}/>
+                    </div>
                     <div className="w-25 mt2 custom-gray">Low Balance Alert</div>
                     <div className="w-25 mt2 custom-gray">Owner</div>
                 </div>
