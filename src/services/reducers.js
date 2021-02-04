@@ -86,7 +86,6 @@ const initialState = {
     ],
     accountSummary: {
         entries: 1,
-        regexFilter: "",
         currentPage: 0,
         totalPages: 0,
         pages: [
@@ -95,7 +94,18 @@ const initialState = {
                 startEntry: 0,
                 finishEntry: 0,
             }
-        ]
+        ],
+        filter: false,
+        filteredAccounts: [
+            {
+                accountId: "",
+                accountName: "",
+                accountTypeId: "",
+                currentBalance: "",
+                lowAlertBalance: "",
+                userId: "",
+            }
+        ],
     },
     forgotPassword: {
         forgotPasswordEmail: "",
@@ -864,6 +874,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
+    
 
 
     return state;

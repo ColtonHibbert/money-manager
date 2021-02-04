@@ -80,8 +80,16 @@ function AccountSummary(props) {
         setAccountSummaryPages(pagesArray);
     }
 
+    const handleFilter = (value) => {
+        let search= value.trim();
+        if(search !== "") {
+            console.log(search);
+        }
+        if(search === "") {
+            console.log("search empty string");
+        }
+    }
     
-
     console.log("current page", accountSummary.currentPage);
    
     return (
@@ -120,6 +128,7 @@ function AccountSummary(props) {
                     className="w4 input-reset bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b
                     w5-l
                     "
+                    onInput={(event) => handleFilter(event.target.value)}
                     ></input>
                 </div>
             </div>
@@ -134,7 +143,7 @@ function AccountSummary(props) {
                 </div>
                 {
                     (accounts !== null ) ? accounts.slice(accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry).map(account => {
-                        return(
+                        return( 
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
                                 <div className="w-25 custom gray">{account.currentBalance}</div>
