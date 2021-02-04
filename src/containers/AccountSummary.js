@@ -66,41 +66,11 @@ function AccountSummary(props) {
     })
     .catch(err => console.log(err))
 
-    /*
-    function configurePages(value) {
-        value = parseFloat(value);
-        const numberOfPages = (Math.ceil(accounts.length / value));
-        setAccountSummaryEntries(value);
-        setAccountSummaryTotalPages(numberOfPages);
-        setAccountSummaryCurrentPage(0);
-        let pagesArray = [];
-        let start = 0;
-        let end = value;
-
-        for(let i = 0; i < numberOfPages; i++) {
-            let page = {
-                        pageNumber: i,
-                        startEntry: start,
-                        finishEntry: end
-                };
-            pagesArray.push(page);
-            
-            if(pagesArray[pagesArray.length -1 ].finishEntry >= accounts.length) {
-                pagesArray[pagesArray.length - 1].finishEntry = accounts.length;
-                continue
-            } 
-            start += value;
-            end += value;
-        }
-
-        setAccountSummaryPages(pagesArray);
-    }
-    */
-
     
-    function configurePages(value, setEntries, setTotalPages, setCurrentPage, setPages) {
+    function configurePages(value, setEntries, setTotalPages, setCurrentPage, setPages, passedAccounts) {
+        console.log("setPages:", setPages);
         value = parseFloat(value);
-        const numberOfPages = (Math.ceil(accounts.length / value));
+        const numberOfPages = (Math.ceil(passedAccounts.length / value));
         setEntries(value);
         setTotalPages(numberOfPages);
         setCurrentPage(0);
@@ -116,8 +86,8 @@ function AccountSummary(props) {
                 };
             pagesArray.push(page);
             
-            if(pagesArray[pagesArray.length -1 ].finishEntry >= accounts.length) {
-                pagesArray[pagesArray.length - 1].finishEntry = accounts.length;
+            if(pagesArray[pagesArray.length -1 ].finishEntry >= passedAccounts.length) {
+                pagesArray[pagesArray.length - 1].finishEntry = passedAccounts.length;
                 continue
             } 
             start += value;
@@ -129,17 +99,19 @@ function AccountSummary(props) {
     const handleFilter = (value) => {
         const search= value.trim();
         if(search !== "") {
-            console.log(search);
-            setAccountSummaryFilter(true);
             const searchRegex = new RegExp(search, "i");
-            const filteredAccounts = accounts.filter(account => {
+            const filteredAccounts = accountSummary.filteredAccounts.filter(account => {
                 return (searchRegex.test(account.accountName) || searchRegex.test(account.currentBalance) || searchRegex.test(account.lowAlertBalance) || searchRegex.test(user.firstName));
             })
+            const numberOfPages = (Math.ceil(filteredAccounts.length, accountSummary.entries))
+
+            setAccountSummaryFilterTotalPages(numberOfPages);
+            setAccountSummaryFilterCurrentPage(0);
             setAccountSummaryFilteredAccounts(filteredAccounts);
+            setAccountSummaryFilter(true);
             console.log("filteredAccounts: ",filteredAccounts);
         }
         if(search === "") {
-            console.log("search empty string");
             setAccountSummaryFilter(false);
             setAccountSummaryFilteredAccounts([]);
         }
@@ -169,7 +141,7 @@ function AccountSummary(props) {
                     <div className="mr1">Entries</div>
                     <select id="account-entries" 
                     className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"
-                    onChange={(event) => (accountSummary.filter === false) ? configurePages(event.target.value,setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages)}
+                    onChange={(event) => (accountSummary.filter === false) ? configurePages(event.target.value,setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
                     
                     >
                         <option value="1">1</option>
@@ -210,7 +182,7 @@ function AccountSummary(props) {
                     : ""
                 }
                 {
-                    (accounts !== null && accountSummary.filter) ? accounts.slice(accountSummary.filterPages[accountSummary.filterCurrentPage].startEntry, accountSummary.filterPages[accountSummary.filterCurrentPage].finishEntry).map(account => {
+                    (accountSummary.filteredAccounts !== null && accountSummary.filter) ? accountSummary.filteredAccounts.slice(accountSummary.filterPages[accountSummary.filterCurrentPage].startEntry, accountSummary.filterPages[accountSummary.filterCurrentPage].finishEntry).map(account => {
                         return( 
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
@@ -236,7 +208,7 @@ function AccountSummary(props) {
                 : ""
             }
             {
-                (accountSummary.filter) ?
+                (accountSummary.filter === true) ?
                 <PaginationBar 
                     startEntry={accountSummary.filterPages[accountSummary.filterCurrentPage].startEntry} 
                     finishEntry={accountSummary.filterPages[accountSummary.filterCurrentPage].finishEntry} 

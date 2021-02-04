@@ -115,9 +115,9 @@ const initialState = {
         filterCurrentPage: 0,
         filterPages: [
             {
-                pageNumber,
-                startEntry,
-                finishEntry
+                pageNumber: 0,
+                startEntry: 0,
+                finishEntry: 0
             }
         ]
     },
@@ -631,7 +631,10 @@ export const reducer = (state=initialState, action={}) => {
             accountSummary: {
                 ...state.accountSummary,
                 totalPages: numberOfPages,
-                pages: pagesArray
+                pages: pagesArray,
+                filteredAccounts: action.setInitialDataPayload.initialData.accounts,
+                filterTotalPages: numberOfPages,
+                filterPages: pagesArray
             }
         }
     }
