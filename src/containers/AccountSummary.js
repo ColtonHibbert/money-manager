@@ -177,7 +177,7 @@ function AccountSummary(props) {
                 totalEntries={accounts.length}
                 totalPages={accountSummary.totalPages}
                 currentPage={accountSummary.currentPage}
-                setAccountSummaryCurrentPage={setAccountSummaryCurrentPage}
+                setCurrentPage={setAccountSummaryCurrentPage}
             />
         </div>
     );
