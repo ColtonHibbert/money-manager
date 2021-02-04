@@ -74,7 +74,12 @@ function AccountSummary(props) {
         setEntries(value);
         setTotalPages(numberOfPages);
         setCurrentPage(0);
-        let pagesArray = [];
+        const modifiedPages = pagesArray(value, passedAccounts, numberOfPages);
+        setPages(modifiedPages);
+    }
+
+    const pagesArray = (value, passedAccounts, numberOfPages) => {
+        let baseArray = [];
         let start = 0;
         let end = value;
 
@@ -84,36 +89,45 @@ function AccountSummary(props) {
                         startEntry: start,
                         finishEntry: end
                 };
-            pagesArray.push(page);
+            baseArray.push(page);
             
-            if(pagesArray[pagesArray.length -1 ].finishEntry >= passedAccounts.length) {
-                pagesArray[pagesArray.length - 1].finishEntry = passedAccounts.length;
+            if(baseArray[baseArray.length -1 ].finishEntry >= passedAccounts.length) {
+                baseArray[baseArray.length - 1].finishEntry = passedAccounts.length;
                 continue
             } 
             start += value;
             end += value;
         }
-        setPages(pagesArray);
+        return baseArray;
     }
 
     const handleFilter = (value) => {
         const search= value.trim();
         if(search !== "") {
             const searchRegex = new RegExp(search, "i");
-            const filteredAccounts = accountSummary.filteredAccounts.filter(account => {
+            const filteredAccounts = accounts.filter(account => {
                 return (searchRegex.test(account.accountName) || searchRegex.test(account.currentBalance) || searchRegex.test(account.lowAlertBalance) || searchRegex.test(user.firstName));
             })
-            const numberOfPages = (Math.ceil(filteredAccounts.length, accountSummary.entries))
+            const numberOfPages = (Math.ceil(filteredAccounts.length / accountSummary.entries));
+            const modifiedPages = pagesArray(accountSummary.entries ,filteredAccounts, numberOfPages);
 
             setAccountSummaryFilterTotalPages(numberOfPages);
             setAccountSummaryFilterCurrentPage(0);
             setAccountSummaryFilteredAccounts(filteredAccounts);
+            console.log("modified pages", modifiedPages, numberOfPages)
+            setAccountSummaryFilterPages(modifiedPages)
             setAccountSummaryFilter(true);
             console.log("filteredAccounts: ",filteredAccounts);
         }
         if(search === "") {
+            const numberOfPages = (Math.ceil(accounts.length / accountSummary.entries));
+            const modifiedPages = pagesArray(accountSummary.entries, accounts, numberOfPages);
+            
+            setAccountSummaryPages(modifiedPages);
+            setAccountSummaryCurrentPage(0);
+            setAccountSummaryTotalPages(numberOfPages);
             setAccountSummaryFilter(false);
-            setAccountSummaryFilteredAccounts([]);
+            setAccountSummaryFilteredAccounts(accounts);
         }
     }
     
@@ -169,7 +183,7 @@ function AccountSummary(props) {
                     <div className="w-25 mt2 custom-gray">Owner</div>
                 </div>
                 {
-                    (accounts !== null && accountSummary.filter === false) ? accounts.slice(accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry).map(account => {
+                    (accounts[0] && accountSummary.filter === false) ? accounts.slice(accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry).map(account => {
                         return( 
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
@@ -182,7 +196,7 @@ function AccountSummary(props) {
                     : ""
                 }
                 {
-                    (accountSummary.filteredAccounts !== null && accountSummary.filter) ? accountSummary.filteredAccounts.slice(accountSummary.filterPages[accountSummary.filterCurrentPage].startEntry, accountSummary.filterPages[accountSummary.filterCurrentPage].finishEntry).map(account => {
+                    (accountSummary.filteredAccounts[0] && accountSummary.filter) ? accountSummary.filteredAccounts.slice(accountSummary.filterPages[accountSummary.filterCurrentPage].startEntry, accountSummary.filterPages[accountSummary.filterCurrentPage].finishEntry).map(account => {
                         return( 
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
@@ -196,7 +210,7 @@ function AccountSummary(props) {
                 }
             </div>
             {
-                (accountSummary.filter === false) ?
+                (accounts[0] && accountSummary.filter === false) ?
                 <PaginationBar 
                     startEntry={accountSummary.pages[accountSummary.currentPage].startEntry} 
                     finishEntry={accountSummary.pages[accountSummary.currentPage].finishEntry} 
@@ -208,7 +222,7 @@ function AccountSummary(props) {
                 : ""
             }
             {
-                (accountSummary.filter === true) ?
+                (accountSummary.filteredAccounts[0] && accountSummary.filter === true) ?
                 <PaginationBar 
                     startEntry={accountSummary.filterPages[accountSummary.filterCurrentPage].startEntry} 
                     finishEntry={accountSummary.filterPages[accountSummary.filterCurrentPage].finishEntry} 
