@@ -5,7 +5,9 @@ import {
     setAccountSummaryEntries,
     setAccountSummaryTotalPages,
     setAccountSummaryPages,
-    setAccountSummaryCurrentPage
+    setAccountSummaryCurrentPage,
+    setAccountSummaryFilter,
+    setAccountSummaryFilteredAccounts
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -19,7 +21,9 @@ const mapDispatchToProps = (dispatch) => {
         setAccountSummaryEntries: (value) => dispatch(setAccountSummaryEntries(value)),
         setAccountSummaryTotalPages: (value) => dispatch(setAccountSummaryTotalPages(value)),
         setAccountSummaryPages: (value) => dispatch(setAccountSummaryPages(value)),
-        setAccountSummaryCurrentPage: (value) => dispatch(setAccountSummaryCurrentPage(value))
+        setAccountSummaryCurrentPage: (value) => dispatch(setAccountSummaryCurrentPage(value)),
+        setAccountSummaryFilter: (value) => dispatch(setAccountSummaryFilter(value)),
+        setAccountSummaryFilteredAccounts: (value) => dispatch(setAccountSummaryFilteredAccounts(value))
     }
 }
 
@@ -34,7 +38,9 @@ function AccountSummary(props) {
         setAccountSummaryEntries, 
         setAccountSummaryTotalPages,
         setAccountSummaryPages,
-        setAccountSummaryCurrentPage
+        setAccountSummaryCurrentPage,
+        setAccountSummaryFilter,
+        setAccountSummaryFilteredAccounts
     } = props;
 
     const getAccounts = () => fetch(
@@ -81,12 +87,21 @@ function AccountSummary(props) {
     }
 
     const handleFilter = (value) => {
-        let search= value.trim();
+        const search= value.trim();
         if(search !== "") {
             console.log(search);
+            setAccountSummaryFilter(true);
+            const searchRegex = new RegExp(search, "i");
+            const filteredAccounts = accounts.filter(account => {
+                return (searchRegex.test(account.accountName) || searchRegex.test(account.currentBalance) || searchRegex.test(account.lowAlertBalance) || searchRegex.test(user.firstName));
+            })
+            setAccountSummaryFilteredAccounts(filteredAccounts);
+            console.log("filteredAccounts: ",filteredAccounts);
         }
         if(search === "") {
             console.log("search empty string");
+            setAccountSummaryFilter(false);
+            setAccountSummaryFilteredAccounts([]);
         }
     }
     
@@ -142,7 +157,7 @@ function AccountSummary(props) {
                     <div className="w-25 mt2 custom-gray">Owner</div>
                 </div>
                 {
-                    (accounts !== null ) ? accounts.slice(accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry).map(account => {
+                    (accounts !== null && accountSummary.filter === false) ? accounts.slice(accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry).map(account => {
                         return( 
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
@@ -152,6 +167,7 @@ function AccountSummary(props) {
                             </div>
                         )
                     }) 
+                    : (accounts !== null && accountSummary.filter === true) ? accountSummary.filteredAccounts.slice(accountSummary) 
                     : ""
                 }
             </div>

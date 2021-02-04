@@ -70,7 +70,9 @@ import {
     SET_ACCOUNT_SUMMARY_ENTRIES,
     SET_ACCOUNT_SUMMARY_TOTAL_PAGES,
     SET_ACCOUNT_SUMMARY_PAGES,
-    SET_ACCOUNT_SUMMARY_CURRENT_PAGE
+    SET_ACCOUNT_SUMMARY_CURRENT_PAGE, 
+    SET_ACCOUNT_SUMMARY_FILTER,
+    SET_ACCOUNT_SUMMARY_FILTERED_ACCOUNTS
 } from "./constants.js";
 
 const initialState = {
@@ -874,7 +876,24 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    
+    if(action.type === SET_ACCOUNT_SUMMARY_FILTER) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                filter: action.setAccountSummaryFilterPayload
+            }
+        }
+    }
+    if(action.type === SET_ACCOUNT_SUMMARY_FILTERED_ACCOUNTS) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                filteredAccounts: action.setAccountSummaryFilteredAccountsPayload
+            }
+        }
+    }
 
 
     return state;
