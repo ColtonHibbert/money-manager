@@ -70,7 +70,9 @@ import {
     SET_ACCOUNT_SUMMARY_ENTRIES,
     SET_ACCOUNT_SUMMARY_TOTAL_PAGES,
     SET_ACCOUNT_SUMMARY_PAGES,
-    SET_ACCOUNT_SUMMARY_CURRENT_PAGE
+    SET_ACCOUNT_SUMMARY_CURRENT_PAGE,
+    SET_ACCOUNT_SUMMARY_FILTER,
+    SET_ACCOUNT_SUMMARY_FILTERED_ACCOUNTS
 } from "./constants.js";
 
 
@@ -573,5 +575,19 @@ export const setAccountSummaryCurrentPage = (payload) => {
     return {
         type: SET_ACCOUNT_SUMMARY_CURRENT_PAGE,
         setAccountSummaryCurrentPagePayload: payload
+    }
+}
+
+export const setAccountSummaryFilter = (payload) => {
+    return {
+        type: SET_ACCOUNT_SUMMARY_FILTER,
+        setAccountSummaryFilterPayload: payload
+    }
+}
+
+export const setAccountSummaryFilteredAccounts = (payload) => {
+    return {
+        type: SET_ACCOUNT_SUMMARY_FILTERED_ACCOUNTS,
+        setAccountSummaryFilteredAccountsPayload: payload
     }
 }
