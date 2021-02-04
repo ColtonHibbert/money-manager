@@ -57,6 +57,7 @@ function AccountSummary(props) {
     })
     .catch(err => console.log(err))
 
+    /*
     function configurePages(value) {
         value = parseFloat(value);
         const numberOfPages = (Math.ceil(accounts.length / value));
@@ -84,6 +85,36 @@ function AccountSummary(props) {
         }
 
         setAccountSummaryPages(pagesArray);
+    }
+    */
+
+    
+    function configurePages(value, setEntries, setTotalPages, setCurrentPage, setPages) {
+        value = parseFloat(value);
+        const numberOfPages = (Math.ceil(accounts.length / value));
+        setEntries(value);
+        setTotalPages(numberOfPages);
+        setCurrentPage(0);
+        let pagesArray = [];
+        let start = 0;
+        let end = value;
+
+        for(let i = 0; i < numberOfPages; i++) {
+            let page = {
+                        pageNumber: i,
+                        startEntry: start,
+                        finishEntry: end
+                };
+            pagesArray.push(page);
+            
+            if(pagesArray[pagesArray.length -1 ].finishEntry >= accounts.length) {
+                pagesArray[pagesArray.length - 1].finishEntry = accounts.length;
+                continue
+            } 
+            start += value;
+            end += value;
+        }
+        setPages(pagesArray);
     }
 
     const handleFilter = (value) => {
@@ -129,7 +160,7 @@ function AccountSummary(props) {
                     <div className="mr1">Entries</div>
                     <select id="account-entries" 
                     className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"
-                    onChange={(event) => configurePages(event.target.value)}
+                    onChange={(event) => (accountSummary.filter === false) ? configurePages(event.target.value,setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages)}
                     
                     >
                         <option value="1">1</option>
