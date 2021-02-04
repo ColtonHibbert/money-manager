@@ -56,7 +56,7 @@ function AccountSummary(props) {
         const numberOfPages = (Math.ceil(accounts.length / value));
         setAccountSummaryEntries(value);
         setAccountSummaryTotalPages(numberOfPages);
-        
+        setAccountSummaryCurrentPage(0);
         let pagesArray = [];
         let start = 0;
         let end = value;
@@ -160,5 +160,4 @@ function AccountSummary(props) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountSummary);
 
-//accountSummary.pages[accountSummary.currentPage].startEntry
 

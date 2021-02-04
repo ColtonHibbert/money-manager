@@ -14,6 +14,18 @@ function PaginationBar(props) {
     const classNoSelect = "h2 w2 flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
     const classSelect = "h2 w2 flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
 
+    const handlePrevious = () => {
+        if(currentPage > 0) {
+            setAccountSummaryCurrentPage(currentPage - 1);
+        }
+    }
+
+    const handleNext = () => {
+        if(currentPage < totalPages - 1) {
+            setAccountSummaryCurrentPage(currentPage + 1);
+        }
+    }
+
     console.log("currentPage paginationBar: ", currentPage)
     return (
         <div>
@@ -22,7 +34,7 @@ function PaginationBar(props) {
             ">
                 <div className="w-30 h2 flex items-center custom-gray">{`Showing ${startEntry + 1} to ${finishEntry} of ${totalEntries} results`}</div> 
                 <div className="flex flex-row items-center">
-                    <div className="mr2 custom-gray pointer">Previous</div>
+                    <div className="mr2 custom-gray pointer" onClick={() => handlePrevious()}>Previous</div>
                     {
                         (totalPages === 1) ?
                         <div className={(currentPage === 0) ? classSelect : classNoSelect} onClick={() => setAccountSummaryCurrentPage(0)}>1</div>
@@ -104,7 +116,7 @@ function PaginationBar(props) {
                         </div>
                         : ""
                     }
-                    <div className="ml2 custom-gray pointer">Next</div>
+                    <div className="ml2 custom-gray pointer" onClick={() => handleNext()}>Next</div>
                 </div>
             </div>
         </div>
