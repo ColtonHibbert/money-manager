@@ -7,7 +7,6 @@ function Sort(props) {
         propertyToCompare,
         typeToCompare,
         setCurrentPage, 
-        user
     } = props;
 
     const handleAscSort = () => {
