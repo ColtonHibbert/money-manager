@@ -180,23 +180,48 @@ function AccountSummary(props) {
             <div className="w-100 flex flex-column pl2
             pl3-l
             ">
-                <div className="w-100 flex flex-row mt3">
-                    <div className="w-25 mt2 custom-gray flex flex-row items-center">
-                        <div className="mr2">Account</div>
-                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} />
+                {
+                    (accountSummary.accounts[0] && accountSummary.filter === false) ?
+                    <div className="w-100 flex flex-row mt3">
+                        <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                            <div className="mr1 mr2-l">Account</div>
+                            <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} />
+                        </div>
+                        <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                            <div className="mr1 mr2-l">Current Balance</div>
+                            <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"currentBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage} />
+                        </div>
+                        <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                            <div className="mr1 mr2-l">Low Balance Alert</div>
+                            <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"lowAlertBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage} />
+                        </div>
+                        <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                            <div className="mr1 mr2-l">Owner</div>
+                        </div>
                     </div>
-                    <div className="w-25 mt2 custom-gray flex flex-row items-center">
-                        <div className="mr2">Current Balance</div>
-                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"currentBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage} />
+                    : ""
+                }
+                {
+                    (accountSummary.filteredAccounts[0] && accountSummary.filter === true) ?
+                    <div className="w-100 flex flex-row mt3">
+                        <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                            <div className="mr1 mr2-l">Account</div>
+                            <Sort setNewArray={setAccountSummaryFilteredAccounts} arrayToSort={accountSummary.filteredAccounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryFilterCurrentPage} />
+                        </div>
+                        <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                            <div className="mr1 mr2-l">Current Balance</div>
+                            <Sort setNewArray={setAccountSummaryFilteredAccounts} arrayToSort={accountSummary.filteredAccounts} propertyToCompare={"currentBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryFilterCurrentPage} />
+                        </div>
+                        <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                            <div className="mr1 mr2-l">Low Balance Alert</div>
+                            <Sort setNewArray={setAccountSummaryFilteredAccounts} arrayToSort={accountSummary.filteredAccounts} propertyToCompare={"lowAlertBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryFilterCurrentPage} />
+                        </div>
+                        <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                            <div className="mr1 mr2-l">Owner</div>
+                        </div>
                     </div>
-                    <div className="w-25 mt2 custom-gray flex flex-row items-center">
-                        <div className="mr2">Low Balance Alert</div>
-                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"lowAlertBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage} />
-                    </div>
-                   <div className="w-25 mt2 custom-gray flex flex-row items-center">
-                       <div className="mr2">Owner</div>
-                   </div>
-                </div>
+                    : ""
+                }
                 {
                     (accountSummary.accounts[0] && accountSummary.filter === false) ? accountSummary.accounts.slice(accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry).map(account => {
                         return( 
