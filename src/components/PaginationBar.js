@@ -106,7 +106,7 @@ function PaginationBar(props) {
                             {
                                 (currentPage >= totalPages -2 ) ?
                                 <div className="flex flex-row">
-                                    <div className={(currentPage === 0) ? classSelect : classNoSelect} >1</div>
+                                    <div className={(currentPage === 0) ? classSelect : classNoSelect} onClick={() => setCurrentPage(0)}>1</div>
                                     <div className={(currentPage === totalPages - 3) ? classSelect : classNoSelect} onClick={() => setCurrentPage(totalPages - 3)}>{totalPages - 2}</div>
                                     <div className={(currentPage === totalPages -2 ) ? classSelect : classNoSelect} onClick={() => setCurrentPage(totalPages - 2)}>{totalPages -1 }</div>
                                     <div className={(currentPage === totalPages -1) ? classSelect : classNoSelect} onClick={() => setCurrentPage(totalPages - 1)}>{totalPages}</div>
