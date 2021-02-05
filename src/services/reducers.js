@@ -949,6 +949,7 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     if(action.type === SET_ACCOUNT_SUMMARY_ACCOUNTS) {
+        console.log("reducer, state set account summary accounts", state)
         return {
             ...state,
             accountSummary: {

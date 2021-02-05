@@ -11,7 +11,8 @@ import {
     setAccountSummaryFilteredAccounts,
     setAccountSummaryFilterTotalPages,
     setAccountSummaryFilterCurrentPage,
-    setAccountSummaryFilterPages
+    setAccountSummaryFilterPages,
+    setAccountSummaryAccounts
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -31,6 +32,7 @@ const mapDispatchToProps = (dispatch) => {
         setAccountSummaryFilterTotalPages: (value) => dispatch(setAccountSummaryFilterTotalPages(value)),
         setAccountSummaryFilterCurrentPage: (value) => dispatch(setAccountSummaryFilterCurrentPage(value)),
         setAccountSummaryFilterPages: (value) => dispatch(setAccountSummaryFilterPages(value)),
+        setAccountSummaryAccounts: (value) => dispatch(setAccountSummaryAccounts(value))
     }
 }
 
@@ -38,9 +40,8 @@ const mapDispatchToProps = (dispatch) => {
 
 function AccountSummary(props) {
     const { 
-        user, 
-        accounts, 
-        setAccounts, 
+        user,   
+        accounts,
         accountSummary, 
         setAccountSummaryEntries, 
         setAccountSummaryTotalPages,
@@ -50,9 +51,11 @@ function AccountSummary(props) {
         setAccountSummaryFilteredAccounts,
         setAccountSummaryFilterTotalPages,
         setAccountSummaryFilterCurrentPage,
-        setAccountSummaryFilterPages
+        setAccountSummaryFilterPages,
+        setAccountSummaryAccounts
     } = props;
 
+    /*
     const getAccounts = () => fetch(
         "http://localhost:3001/accounts",
         {
@@ -66,6 +69,7 @@ function AccountSummary(props) {
         setAccounts(data);
     })
     .catch(err => console.log(err))
+    */
 
     
     function configurePages(value, setEntries, setTotalPages, setCurrentPage, setPages, passedAccounts) {
@@ -106,7 +110,7 @@ function AccountSummary(props) {
         const search= value.trim();
         if(search !== "") {
             const searchRegex = new RegExp(search, "i");
-            const filteredAccounts = accounts.filter(account => {
+            const filteredAccounts = accountSummary.accounts.filter(account => {
                 return (searchRegex.test(account.accountName) || searchRegex.test(account.currentBalance) || searchRegex.test(account.lowAlertBalance) || searchRegex.test(user.firstName));
             })
             const numberOfPages = (Math.ceil(filteredAccounts.length / accountSummary.entries));
@@ -121,14 +125,14 @@ function AccountSummary(props) {
             console.log("filteredAccounts: ",filteredAccounts);
         }
         if(search === "") {
-            const numberOfPages = (Math.ceil(accounts.length / accountSummary.entries));
-            const modifiedPages = pagesArray(accountSummary.entries, accounts, numberOfPages);
+            const numberOfPages = (Math.ceil(accountSummary.accounts.length / accountSummary.entries));
+            const modifiedPages = pagesArray(accountSummary.entries, accountSummary.accounts, numberOfPages);
 
             setAccountSummaryPages(modifiedPages);
             setAccountSummaryCurrentPage(0);
             setAccountSummaryTotalPages(numberOfPages);
             setAccountSummaryFilter(false);
-            setAccountSummaryFilteredAccounts(accounts);
+            setAccountSummaryFilteredAccounts(accountSummary.accounts);
         }
     }
     
@@ -156,8 +160,7 @@ function AccountSummary(props) {
                     <div className="mr1">Entries</div>
                     <select id="account-entries" 
                     className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"
-                    onChange={(event) => (accountSummary.filter === false) ? configurePages(event.target.value,setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
-                    
+                    onChange={(event) => (accountSummary.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
                     >
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -178,19 +181,25 @@ function AccountSummary(props) {
             pl3-l
             ">
                 <div className="w-100 flex flex-row mt3">
-                    <div>
-                        <div className="w-25 mt2 custom-gray">Account</div>
-                        <Sort setNewArray={setAccounts} arrayToSort={accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage}/>
+                    <div className="w-25 mt2 custom-gray flex flex-row items-center">
+                        <div className="mr2">Account</div>
+                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} user={user}/>
                     </div>
-                    <div>
-                        <div className="w-25 mt2 custom-gray">Current Balance</div>
-                        <Sort setNewArray={setAccounts} arrayToSort={accounts} propertyToCompare={"currentBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage}/>
+                    <div className="w-25 mt2 custom-gray flex flex-row items-center">
+                        <div className="mr2">Current Balance</div>
+                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"currentBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage} user={user}/>
                     </div>
-                    <div className="w-25 mt2 custom-gray">Low Balance Alert</div>
-                    <div className="w-25 mt2 custom-gray">Owner</div>
+                    <div className="w-25 mt2 custom-gray flex flex-row items-center">
+                        <div className="mr2">Low Balance Alert</div>
+                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"lowAlertBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage} user={user}/>
+                    </div>
+                   <div className="w-25 mt2 custom-gray flex flex-row items-center">
+                       <div className="mr2">Owner</div>
+                       <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"userName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} user={user}/>
+                   </div>
                 </div>
                 {
-                    (accounts[0] && accountSummary.filter === false) ? accounts.slice(accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry).map(account => {
+                    (accountSummary.accounts[0] && accountSummary.filter === false) ? accountSummary.accounts.slice(accountSummary.pages[accountSummary.currentPage].startEntry, accountSummary.pages[accountSummary.currentPage].finishEntry).map(account => {
                         return( 
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
@@ -217,11 +226,11 @@ function AccountSummary(props) {
                 }
             </div>
             {
-                (accounts[0] && accountSummary.filter === false) ?
+                (accountSummary.accounts[0] && accountSummary.filter === false) ?
                 <PaginationBar 
                     startEntry={accountSummary.pages[accountSummary.currentPage].startEntry} 
                     finishEntry={accountSummary.pages[accountSummary.currentPage].finishEntry} 
-                    totalEntries={accounts.length}
+                    totalEntries={accountSummary.accounts.length}
                     totalPages={accountSummary.totalPages}
                     currentPage={accountSummary.currentPage}
                     setCurrentPage={setAccountSummaryCurrentPage}
