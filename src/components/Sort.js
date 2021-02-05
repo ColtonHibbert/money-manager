@@ -1,37 +1,41 @@
 import React from "react";
+import { setAccountSummaryCurrentPage } from "../services/actions";
 
 function Sort(props) {
     const {
         setNewArray,
         arrayToSort,
         propertyToCompare,
-        typeToCompare
+        typeToCompare,
+        setCurrentPage
     } = props;
 
     const handleAscSort = () => {
-        //console.log(propertyToCompare);
         if(typeToCompare === "str") {
 
         }
         if(typeToCompare === "num") {
-                //console.log(arrayToSort.sort(function(a,b){ 
-                //console.log(a[propertyToCompare], b[propertyToCompare])
-                //return a[propertyToCompare] - b[propertyToCompare] }))
             setNewArray(arrayToSort.sort(function(a,b){
-                const first = a[propertyToCompare].slice(1,);
-                const second = b[propertyToCompare].slice(1,);
-                //console.log(a[propertyToCompare]);
-                console.log(first)
-                console.log(Number(first))
-                //console.log(first - second);
-                return (a[propertyToCompare]) - (b[propertyToCompare]) 
+                const first = parseFloat(a[propertyToCompare]);
+                const second = parseFloat(b[propertyToCompare]);
+                return (first - second); 
             }));
         }
-        
+        setCurrentPage(0);
     }
 
     const handleDescSort = () => {
-        setNewArray(arrayToSort.sort(function(a,b) { return b[propertyToCompare] - a[propertyToCompare] }));
+        if(typeToCompare === "str") {
+
+        }
+        if(typeToCompare === "num") {
+            setNewArray(arrayToSort.sort(function(a,b){
+                const first = parseFloat(a[propertyToCompare]);
+                const second = parseFloat(b[propertyToCompare]);
+                return (second - first); 
+            }));
+        }
+        setCurrentPage(0);
     }
 
     return (

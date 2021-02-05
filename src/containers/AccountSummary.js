@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
         setAccountSummaryFilteredAccounts: (value) => dispatch(setAccountSummaryFilteredAccounts(value)),
         setAccountSummaryFilterTotalPages: (value) => dispatch(setAccountSummaryFilterTotalPages(value)),
         setAccountSummaryFilterCurrentPage: (value) => dispatch(setAccountSummaryFilterCurrentPage(value)),
-        setAccountSummaryFilterPages: (value) => dispatch(setAccountSummaryFilterPages(value))
+        setAccountSummaryFilterPages: (value) => dispatch(setAccountSummaryFilterPages(value)),
     }
 }
 
@@ -184,7 +184,7 @@ function AccountSummary(props) {
                     </div>
                     <div>
                         <div className="w-25 mt2 custom-gray">Current Balance</div>
-                        <Sort setNewArray={setAccounts} arrayToSort={accounts} propertyToCompare={"currentBalance"} typeToCompare={"num"}/>
+                        <Sort setNewArray={setAccounts} arrayToSort={accounts} propertyToCompare={"currentBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage}/>
                     </div>
                     <div className="w-25 mt2 custom-gray">Low Balance Alert</div>
                     <div className="w-25 mt2 custom-gray">Owner</div>
