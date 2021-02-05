@@ -180,7 +180,7 @@ function AccountSummary(props) {
                 <div className="w-100 flex flex-row mt3">
                     <div>
                         <div className="w-25 mt2 custom-gray">Account</div>
-                        <Sort setNewArray={setAccounts} arrayToSort={accounts} propertyToCompare={"accountName"} typeToCompare={"str"}/>
+                        <Sort setNewArray={setAccounts} arrayToSort={accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage}/>
                     </div>
                     <div>
                         <div className="w-25 mt2 custom-gray">Current Balance</div>

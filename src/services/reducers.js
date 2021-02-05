@@ -75,7 +75,8 @@ import {
     SET_ACCOUNT_SUMMARY_FILTERED_ACCOUNTS,
     SET_ACCOUNT_SUMMARY_FILTER_TOTAL_PAGES,
     SET_ACCOUNT_SUMMARY_FILTER_CURRENT_PAGE,
-    SET_ACCOUNT_SUMMARY_FILTER_PAGES
+    SET_ACCOUNT_SUMMARY_FILTER_PAGES,
+    SET_ACCOUNT_SUMMARY_ACCOUNTS
 } from "./constants.js";
 
 const initialState = {
@@ -90,6 +91,16 @@ const initialState = {
         }
     ],
     accountSummary: {
+        accounts: [
+            {
+                accountId: "",
+                accountName: "",
+                accountTypeId: "",
+                currentBalance: "",
+                lowAlertBalance: "",
+                userId: "",
+            }
+        ],
         entries: 1,
         currentPage: 0,
         totalPages: 0,
@@ -630,6 +641,7 @@ export const reducer = (state=initialState, action={}) => {
             accounts: action.setInitialDataPayload.initialData.accounts,
             accountSummary: {
                 ...state.accountSummary,
+                accounts: action.setInitialDataPayload.initialData.accounts,
                 totalPages: numberOfPages,
                 pages: pagesArray,
                 filteredAccounts: action.setInitialDataPayload.initialData.accounts,
@@ -936,6 +948,14 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-
+    if(action.type === SET_ACCOUNT_SUMMARY_ACCOUNTS) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                accounts: action.setAccountSummaryAccountsPayload
+            }
+        }
+    }
     return state;
 }
