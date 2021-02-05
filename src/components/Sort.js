@@ -1,5 +1,4 @@
 import React from "react";
-import { setAccountSummaryCurrentPage } from "../services/actions";
 
 function Sort(props) {
     const {
@@ -12,7 +11,17 @@ function Sort(props) {
 
     const handleAscSort = () => {
         if(typeToCompare === "str") {
-
+            setNewArray(arrayToSort.sort(function(a,b) {
+                const first = a[propertyToCompare].toLowerCase();
+                const second = b[propertyToCompare].toLowerCase();
+                if(first < second) {
+                    return -1;
+                }
+                if(first > second) {
+                    return 1;
+                }
+                return 0;
+            }))
         }
         if(typeToCompare === "num") {
             setNewArray(arrayToSort.sort(function(a,b){
@@ -26,7 +35,17 @@ function Sort(props) {
 
     const handleDescSort = () => {
         if(typeToCompare === "str") {
-
+            setNewArray(arrayToSort.sort(function(a,b) {
+                const first = a[propertyToCompare].toLowerCase();
+                const second = b[propertyToCompare].toLowerCase();
+                if(first < second) {
+                    return 1;
+                }
+                if(first > second) {
+                    return -1;
+                }
+                return 0;
+            }))
         }
         if(typeToCompare === "num") {
             setNewArray(arrayToSort.sort(function(a,b){
