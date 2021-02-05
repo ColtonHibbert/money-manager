@@ -87,7 +87,7 @@ const initialState = {
             accountTypeId: "",
             currentBalance: "",
             lowAlertBalance: "",
-            userId: "",
+            userId: ""
         }
     ],
     accountSummary: {
@@ -98,7 +98,7 @@ const initialState = {
                 accountTypeId: "",
                 currentBalance: "",
                 lowAlertBalance: "",
-                userId: "",
+                userId: ""
             }
         ],
         entries: 1,
@@ -119,7 +119,7 @@ const initialState = {
                 accountTypeId: "",
                 currentBalance: "",
                 lowAlertBalance: "",
-                userId: "",
+                userId: ""
             }
         ],
         filterTotalPages: 0,

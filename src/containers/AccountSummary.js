@@ -183,19 +183,18 @@ function AccountSummary(props) {
                 <div className="w-100 flex flex-row mt3">
                     <div className="w-25 mt2 custom-gray flex flex-row items-center">
                         <div className="mr2">Account</div>
-                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} user={user}/>
+                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} />
                     </div>
                     <div className="w-25 mt2 custom-gray flex flex-row items-center">
                         <div className="mr2">Current Balance</div>
-                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"currentBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage} user={user}/>
+                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"currentBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage} />
                     </div>
                     <div className="w-25 mt2 custom-gray flex flex-row items-center">
                         <div className="mr2">Low Balance Alert</div>
-                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"lowAlertBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage} user={user}/>
+                        <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"lowAlertBalance"} typeToCompare={"num"} setCurrentPage={setAccountSummaryCurrentPage} />
                     </div>
                    <div className="w-25 mt2 custom-gray flex flex-row items-center">
                        <div className="mr2">Owner</div>
-                       <Sort setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"userName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} user={user}/>
                    </div>
                 </div>
                 {
