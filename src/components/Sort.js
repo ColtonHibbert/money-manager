@@ -6,12 +6,15 @@ function Sort(props) {
         arrayToSort,
         propertyToCompare,
         typeToCompare,
-        setCurrentPage
+        setCurrentPage, 
+        user
     } = props;
 
     const handleAscSort = () => {
+        const copyArrayNoMutate = arrayToSort.slice();
+
         if(typeToCompare === "str") {
-            setNewArray(arrayToSort.sort(function(a,b) {
+            setNewArray(copyArrayNoMutate.sort(function(a,b) {
                 const first = a[propertyToCompare].toLowerCase();
                 const second = b[propertyToCompare].toLowerCase();
                 if(first < second) {
@@ -24,7 +27,7 @@ function Sort(props) {
             }))
         }
         if(typeToCompare === "num") {
-            setNewArray(arrayToSort.sort(function(a,b){
+            setNewArray(copyArrayNoMutate.sort(function(a,b){
                 const first = parseFloat(a[propertyToCompare]);
                 const second = parseFloat(b[propertyToCompare]);
                 return (first - second); 
@@ -34,8 +37,10 @@ function Sort(props) {
     }
 
     const handleDescSort = () => {
+        const copyArrayNoMutate = arrayToSort.slice();
+
         if(typeToCompare === "str") {
-            setNewArray(arrayToSort.sort(function(a,b) {
+            setNewArray(copyArrayNoMutate.sort(function(a,b) {
                 const first = a[propertyToCompare].toLowerCase();
                 const second = b[propertyToCompare].toLowerCase();
                 if(first < second) {
@@ -48,7 +53,7 @@ function Sort(props) {
             }))
         }
         if(typeToCompare === "num") {
-            setNewArray(arrayToSort.sort(function(a,b){
+            setNewArray(copyArrayNoMutate.sort(function(a,b){
                 const first = parseFloat(a[propertyToCompare]);
                 const second = parseFloat(b[propertyToCompare]);
                 return (second - first); 
