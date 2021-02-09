@@ -136,7 +136,8 @@ function AccountSummary(props) {
         }
     }
     
-    console.log("current page", accountSummary.currentPage);
+    console.log("AccountSummary current page", accountSummary.currentPage);
+    console.log(accountSummary.accounts.length > 0)
    
     return (
         <div>
