@@ -1,6 +1,6 @@
 import React from "react";
 
-function Account(props) {
+function IndividualAccount(props) {
     const { account } = props;
     return(
         <div>
@@ -10,4 +10,4 @@ function Account(props) {
     )
 }
 
-export default Account;
+export default IndividualAccount;

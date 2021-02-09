@@ -13,8 +13,6 @@ import Home from "./Home.js";
 import {
   setRoute,
   setUser,
-  setAccounts,
-  setTransactions,
   setCSRF,
   resetState,
   setPasswordResetToken,
@@ -26,8 +24,6 @@ const mapStateToProps = (state) => {
   return {
     route: state.route,
     user: state.user,
-    accounts: state.accounts,
-    transactions: state.transactions,
     passwordReset: state.passwordReset,
   }
 }
@@ -36,8 +32,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setRoute: (value) => dispatch(setRoute(value)),
     setUser: (value) => dispatch(setUser(value)),
-    setAccounts: (value) => dispatch(setAccounts(value)),
-    setTransactions: (value) => dispatch(setTransactions(value)),
     setCSRF: (value) => dispatch(setCSRF(value)),
     resetState: () => dispatch(resetState()),
     setPasswordResetToken: (value) => dispatch(setPasswordResetToken(value)),

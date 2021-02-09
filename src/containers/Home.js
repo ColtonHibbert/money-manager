@@ -6,7 +6,7 @@ import MobileMenu from "../components/MobileMenu.js";
 import Dashboard from "./Dashboard.js";
 import Profile from "./Profile.js";
 import AccountSummary from "./AccountSummary.js";
-import Account from "../components/Account.js";
+import IndividualAccount from "../components/IndividualAccount.js";
 import Transactions from "./Transactions.js";
 import Lobby from "./Lobby.js";
 import {
@@ -14,13 +14,19 @@ import {
     setNavigationAccountSelected, 
     toggleMobileMenu,
     setRouteHome,
+    setAccounts,
+    setTransactions,
 } from "../services/actions.js";
 
 
 const mapStateToProps = (state) => {
     return {
+        accounts: state.accounts,
         navigation: state.navigation,
-        routeHome: state.routeHome
+        routeHome: state.routeHome,
+        individualAccounts: state.individualAccounts,
+        categoriesAndItems: state.categoriesAndItems,
+        transactions: state.transactions
     }
 }
 
@@ -29,7 +35,9 @@ const mapDispatchToProps = (dispatch) => {
         setNavigationAccountSelected: () => dispatch(setNavigationAccountSelected()),
         setMobileMenu: (value) => dispatch(setMobileMenu(value)),
         toggleMobileMenu: () => dispatch(toggleMobileMenu()),
-        setRouteHome: (value) => dispatch(setRouteHome(value))
+        setRouteHome: (value) => dispatch(setRouteHome(value)),
+        setAccounts: (value) => dispatch(setAccounts(value)),
+        setTransactions: (value) => dispatch(setTransactions(value)),
     }
 }
 
@@ -65,7 +73,7 @@ function Home(props) {
                 {
                     accounts.map(account => {
                         if(routeHome === account.accountId.toString()) {
-                            return <Account {...props} account={account} /> 
+                            return <IndividualAccount {...props} account={account} /> 
                         } else {
                             return ""
                         }
