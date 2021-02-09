@@ -80,25 +80,15 @@ import {
 } from "./constants.js";
 
 const initialState = {
-    accounts: [
-        {
-            accountId: "",
-            accountName: "",
-            accountTypeId: "",
-            currentBalance: "",
-            lowAlertBalance: "",
-            userId: ""
-        }
-    ],
     accountSummary: {
         accounts: [
             {
-                accountId: "",
+                accountId: 0,
                 accountName: "",
-                accountTypeId: "",
-                currentBalance: "",
-                lowAlertBalance: "",
-                userId: ""
+                accountTypeId: 0,
+                currentBalance: 0,
+                lowAlertBalance: 0,
+                userId: 0
             }
         ],
         entries: 1,
@@ -114,12 +104,12 @@ const initialState = {
         filter: false,
         filteredAccounts: [
             {
-                accountId: "",
+                accountId: 0,
                 accountName: "",
-                accountTypeId: "",
-                currentBalance: "",
-                lowAlertBalance: "",
-                userId: ""
+                accountTypeId: 0,
+                currentBalance: 0,
+                lowAlertBalance: 0,
+                userId: 0
             }
         ],
         filterTotalPages: 0,
@@ -131,6 +121,34 @@ const initialState = {
                 finishEntry: 0
             }
         ]
+    },
+    individualAccounts: {
+        "id": {
+            accountId: 0,
+            accountName: "",
+            currentBalance: 0,
+            lowAlertBalance: 0,
+            userId: 0,
+            accountTypeId: 0,
+            userFirstName: "",
+            transactions: [
+              {
+                transactionId: 0,
+                amount: 0,
+                date: null,
+                memoNote: "",
+                categoryName: "",
+                categoryItemName: "",
+                personalBudgetCategoryId: 0,
+                personalBudgetCategoryItemId: 0,
+                householdBudgetCategoryId: null,
+                householdBudgetCategoryItemId: null,
+                transactionTypeId: 0,
+                userId: 0,
+                accountId: 0
+              }
+            ]
+          },
     },
     forgotPassword: {
         forgotPasswordEmail: "",
@@ -216,16 +234,23 @@ const initialState = {
     },
     transactions: [
         {
-            transactionId: "",
-            amount: "",
-            date: "",
-            memoNote: "",
-            userId: "",
-            accountTypeId: ""
+          transactionId: 0,
+          amount: 0,
+          date: null,
+          memoNote: "",
+          categoryName: "",
+          categoryItemName: "",
+          personalBudgetCategoryId: 0,
+          personalBudgetCategoryItemId: 0,
+          householdBudgetCategoryId: null,
+          householdBudgetCategoryItemId: null,
+          transactionTypeId: 0,
+          userId: 0,
+          accountId: 0
         }
     ],
     user: {
-        userId: "",
+        userId: 0,
         firstName: "",
         lastName: "",
         email: "",
@@ -233,9 +258,9 @@ const initialState = {
         phone: "",
         about: "",
         joined: "",
-        householdMemberId: "",
-        householdId: "",
-        roleId: "",
+        householdMemberId: 0,
+        householdId: 0,
+        roleId: 0,
         csrf: "",
     }
     
