@@ -122,6 +122,24 @@ const initialState = {
             }
         ]
     },
+    categoriesAndItems: {
+        "id": {
+            personalBudgetCategoryId: 0,
+            budgetAmount: 0,
+            categoryId: 0,
+            userId: 0,
+            name: "",
+            items: {
+                "id": {
+                    personalBudgetCategoryItemId: 0,
+                    personalBudgetCategoryId: 0,
+                    categoryItemId: 0,
+                    userId: 0,
+                    name: ""
+                }
+            }
+        }
+    },
     individualAccounts: {
         "id": {
             accountId: 0,
