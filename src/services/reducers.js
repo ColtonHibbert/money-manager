@@ -80,6 +80,16 @@ import {
 } from "./constants.js";
 
 const initialState = {
+    accounts: [
+        {
+            accountId: 0,
+            accountName: "",
+            accountTypeId: 0,
+            currentBalance: 0,
+            lowAlertBalance: 0,
+            userId: 0
+        }
+    ],
     accountSummary: {
         accounts: [
             {
@@ -657,7 +667,7 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     if(action.type === SET_INITIAL_DATA) {
-        const numberOfPages = (Math.ceil(action.setInitialDataPayload.initialData.accounts.length / state.accountSummary.entries));
+        const numberOfPages = (Math.ceil(action.setInitialDataPayload.initialData.accountSummary.length / state.accountSummary.entries));
         
         let pagesArray = [];
         let start = 0;
@@ -670,8 +680,8 @@ export const reducer = (state=initialState, action={}) => {
                 };
             pagesArray.push(page);
             
-            if(pagesArray[pagesArray.length - 1].finishEntry >= action.setInitialDataPayload.initialData.accounts.length) {
-                pagesArray[pagesArray.length - 1 ].finishEntry = action.setInitialDataPayload.initialData.accounts.length;
+            if(pagesArray[pagesArray.length - 1].finishEntry >= action.setInitialDataPayload.initialData.accountSummary.length) {
+                pagesArray[pagesArray.length - 1 ].finishEntry = action.setInitialDataPayload.initialData.accountSummary.length;
                 break;
             } 
 
@@ -680,17 +690,19 @@ export const reducer = (state=initialState, action={}) => {
         }
         return {
             ...state,
-            user: action.setInitialDataPayload.initialData.user,
-            accounts: action.setInitialDataPayload.initialData.accounts,
+            accounts: action.setInitialDataPayload.initialData.accountSummary,
             accountSummary: {
                 ...state.accountSummary,
-                accounts: action.setInitialDataPayload.initialData.accounts,
+                accounts: action.setInitialDataPayload.initialData.accountSummary,
                 totalPages: numberOfPages,
                 pages: pagesArray,
-                filteredAccounts: action.setInitialDataPayload.initialData.accounts,
+                filteredAccounts: action.setInitialDataPayload.initialData.accountSummary,
                 filterTotalPages: numberOfPages,
                 filterPages: pagesArray
-            }
+            },
+            categoriesAndItems: action.setInitialDataPayload.initialData.categoriesAndItems,
+            individualAccounts: action.setInitialDataPayload.initialData.individualAccounts,
+            user: action.setInitialDataPayload.initialData.user,
         }
     }
     if(action.type === SET_ROUTE_HOME) {
