@@ -132,26 +132,26 @@ const initialState = {
             }
         ]
     },
-    categoriesAndItems: {
-        "id": {
+    categoriesAndItems: [
+        {
             personalBudgetCategoryId: 0,
             budgetAmount: 0,
             categoryId: 0,
             userId: 0,
             name: "",
-            items: {
-                "id": {
+            items: [
+                {
                     personalBudgetCategoryItemId: 0,
                     personalBudgetCategoryId: 0,
                     categoryItemId: 0,
                     userId: 0,
                     name: ""
                 }
-            }
+            ]
         }
-    },
-    individualAccounts: {
-        "id": {
+    ],
+    individualAccounts: [
+        {
             accountId: 0,
             accountName: "",
             currentBalance: 0,
@@ -176,8 +176,8 @@ const initialState = {
                 accountId: 0
               }
             ]
-          },
-    },
+        }
+    ],
     forgotPassword: {
         forgotPasswordEmail: "",
         forgotPasswordEmailSent: false,
