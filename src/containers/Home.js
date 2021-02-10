@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 function Home(props) {
-    const { navigation, routeHome, accounts } = props;
+    const { navigation, routeHome, individualAccounts } = props;
     return (
         <div className="min-vh-100 w-100 bg-custom-darker-gray">
             <Header {...props}></Header>
@@ -70,14 +70,16 @@ function Home(props) {
                     <AccountSummary {...props} />
                     : ""
                 }
-                {
-                    accounts.map(account => {
-                        if(routeHome === account.accountId.toString()) {
-                            return <IndividualAccount {...props} account={account} /> 
-                        } else {
-                            return ""
-                        }
-                    })
+                {/*
+                    (true) && 
+                        for( individualAccount in individualAccounts) {
+                            if(routeHome === individualAccount.accountId.toString()) {
+                                return <IndividualAccount {...props} individualAccount={individualAccount} /> 
+                            } else {
+                                return ""
+                            }
+                        })
+                    */
                 }
                 {
                     (routeHome === "transactions") ? 

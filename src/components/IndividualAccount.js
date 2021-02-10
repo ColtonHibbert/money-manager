@@ -1,11 +1,14 @@
 import React from "react";
 
 function IndividualAccount(props) {
-    const { account } = props;
+    const { 
+        individualAccount,
+        categoriesAndItems
+    } = props;
     return(
         <div>
-            account
-            {account.accountName}
+            
+            {individualAccount.accountName}
         </div>
     )
 }

@@ -241,7 +241,7 @@ const initialState = {
         emailConfirmationErrorMessage: ""
     },
     route: "loading",
-    routeHome: "accountsummary",
+    routeHome: "1",
     signUp: {
         signUpFirstName: "",
         signUpLastName: "",
