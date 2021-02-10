@@ -70,16 +70,14 @@ function Home(props) {
                     <AccountSummary {...props} />
                     : ""
                 }
-                {/*
-                    (true) && 
-                        for( individualAccount in individualAccounts) {
-                            if(routeHome === individualAccount.accountId.toString()) {
-                                return <IndividualAccount {...props} individualAccount={individualAccount} /> 
-                            } else {
-                                return ""
-                            }
-                        })
-                    */
+                {
+                    (individualAccounts.map(individualAccount => {
+                        if (routeHome === individualAccount.accountId.toString()) {
+                            return <IndividualAccount {...props} individualAccount={individualAccount} />
+                        } else {
+                            return ""
+                        }
+                    }))
                 }
                 {
                     (routeHome === "transactions") ? 

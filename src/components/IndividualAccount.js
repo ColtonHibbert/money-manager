@@ -6,8 +6,7 @@ function IndividualAccount(props) {
         categoriesAndItems
     } = props;
     return(
-        <div>
-            
+        <div>    
             {individualAccount.accountName}
         </div>
     )
