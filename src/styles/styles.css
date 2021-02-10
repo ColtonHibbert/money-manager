@@ -34,10 +34,12 @@
 .bg-custom-darker-gray {
     background-color: rgb(34,37,42);
 }
+/*#22252a*/
 
 .bg-custom-lighter-gray {
     background-color: rgb(45,48,53);
 }
+/*#2d3035*/
 
 .bg-custom-gray {
     background-color: rgb(138,141,147);
@@ -124,6 +126,8 @@
 .w3point5 {
     width: 6rem;
 }
+
+.deposit0 {fill:none;stroke:#8a8d93;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 
 @media screen and (max-width: 30em) {
     .display-none-s {
