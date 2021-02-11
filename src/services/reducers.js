@@ -163,19 +163,43 @@ const initialState = {
               {
                 transactionId: 0,
                 amount: 0,
-                date: null,
+                date: "",
                 memoNote: "",
                 categoryName: "",
                 categoryItemName: "",
                 personalBudgetCategoryId: 0,
                 personalBudgetCategoryItemId: 0,
-                householdBudgetCategoryId: null,
-                householdBudgetCategoryItemId: null,
+                householdBudgetCategoryId: 0,
+                householdBudgetCategoryItemId: 0,
                 transactionTypeId: 0,
                 userId: 0,
                 accountId: 0
               }
-            ]
+            ],
+            transactionsMonthly: [
+                {
+                  transactionId: 0,
+                  amount: 0,
+                  date: "",
+                  memoNote: "",
+                  categoryName: "",
+                  categoryItemName: "",
+                  personalBudgetCategoryId: 0,
+                  personalBudgetCategoryItemId: 0,
+                  householdBudgetCategoryId: 0,
+                  householdBudgetCategoryItemId: 0,
+                  transactionTypeId: 0,
+                  userId: 0,
+                  accountId: 0
+                }
+              ],
+              transactionsMonthlyQuantity: 0,
+              depositsMonthlyQuantity: 0,
+              depositsMonthlyAmount: 0,
+              withdrawalsMonthlyQuantity: 0,
+              withdrawalsMonthlyAmount: 0,
+              transfersMonthlyQuantity: 0,
+              transfersMonthlyAmount: 0
         }
     ],
     forgotPassword: {
@@ -264,19 +288,60 @@ const initialState = {
         {
           transactionId: 0,
           amount: 0,
-          date: null,
+          date: "",
           memoNote: "",
           categoryName: "",
           categoryItemName: "",
           personalBudgetCategoryId: 0,
           personalBudgetCategoryItemId: 0,
-          householdBudgetCategoryId: null,
-          householdBudgetCategoryItemId: null,
+          householdBudgetCategoryId: 0,
+          householdBudgetCategoryItemId: 0,
           transactionTypeId: 0,
           userId: 0,
           accountId: 0
         }
     ],
+    transactionsAllAccounts: [
+        {
+          transactionId: 0,
+          amount: 0,
+          date: "",
+          memoNote: "",
+          categoryName: "",
+          categoryItemName: "",
+          personalBudgetCategoryId: 0,
+          personalBudgetCategoryItemId: 0,
+          householdBudgetCategoryId: 0,
+          householdBudgetCategoryItemId: 0,
+          transactionTypeId: 0,
+          userId: 0,
+          accountId: 0
+        }
+    ],
+    transactionsMonthlyAllAccounts: [
+        {
+          transactionId: 0,
+          amount: 0,
+          date: "",
+          memoNote: "",
+          categoryName: "",
+          categoryItemName: "",
+          personalBudgetCategoryId: 0,
+          personalBudgetCategoryItemId: 0,
+          householdBudgetCategoryId: 0,
+          householdBudgetCategoryItemId: 0,
+          transactionTypeId: 0,
+          userId: 0,
+          accountId: 0
+        }
+    ],
+    transactionsMonthlyAllAccountsQuantity: 0,
+    depositsMonthlyAllAccountsQuantity: 0,
+    depositsMonthlyAllAccountsAmount: 0,
+    withdrawalsMonthlyAllAccountsQuantity: 0,
+    withdrawalsMonthlyAllAccountsAmount: 0,
+    transfersMonthlyAllAccountsQuantity: 0,
+    transfersMonthlyAllAccountsAmount: 0,
     user: {
         userId: 0,
         firstName: "",
