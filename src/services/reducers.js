@@ -284,23 +284,6 @@ const initialState = {
         signUpConfirmPasswordError: false,
         signUpPasswordsMatchError: false
     },
-    transactions: [
-        {
-          transactionId: 0,
-          amount: 0,
-          date: "",
-          memoNote: "",
-          categoryName: "",
-          categoryItemName: "",
-          personalBudgetCategoryId: 0,
-          personalBudgetCategoryItemId: 0,
-          householdBudgetCategoryId: 0,
-          householdBudgetCategoryItemId: 0,
-          transactionTypeId: 0,
-          userId: 0,
-          accountId: 0
-        }
-    ],
     transactionsAllAccounts: [
         {
           transactionId: 0,
@@ -767,6 +750,15 @@ export const reducer = (state=initialState, action={}) => {
             },
             categoriesAndItems: action.setInitialDataPayload.initialData.categoriesAndItems,
             individualAccounts: action.setInitialDataPayload.initialData.individualAccounts,
+            transactionsAllAccounts: action.setInitialDataPayload.initialData.transactionsAllAccounts,
+            transactionsMonthlyAllAccounts: action.setInitialDataPayload.initialData.transactionsMonthlyAllAccounts,
+            transactionsMonthlyAllAccountsQuantity: action.setInitialDataPayload.initialData.transactionsMonthlyAllAccountsQuantity,
+            depositsMonthlyAllAccountsQuantity: action.setInitialDataPayload.initialData.depositsMonthlyAllAccountsQuantity,
+            depositsMonthlyAllAccountsAmount: action.setInitialDataPayload.initialData.depositsMonthlyAllAccountsAmount,
+            withdrawalsMonthlyAllAccountsQuantity: action.setInitialDataPayload.initialData.withdrawalsMonthlyAllAccountsQuantity,
+            withdrawalsMonthlyAllAccountsAmount: action.setInitialDataPayload.initialData.withdrawalsMonthlyAllAccountsAmount,
+            transfersMonthlyAllAccountsQuantity: action.setInitialDataPayload.initialData.transfersMonthlyAllAccountsQuantity,
+            transfersMonthlyAllAccountsAmount: action.setInitialDataPayload.initialData.transfersMonthlyAllAccountsAmount,
             user: action.setInitialDataPayload.initialData.user,
         }
     }
