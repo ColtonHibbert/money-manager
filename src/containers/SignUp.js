@@ -203,18 +203,18 @@ function SignUp(props) {
             ">
                 <div className="
                 w-100 flex white ph2 pt2 pb5 flex-column bg-money-color-see-through tc
-                vh-75-l justify-center-l
+                min-vh-75-l justify-center-l
                 ">
                     <h1>Money Manager</h1>
                     <div>Money is a good servant but a terrible master. Get in control of your finances and sign up today!</div>
                 </div>
                 <div className="
                 w-100 flex flex-column pv3 bg-custom-lighter-gray ph3
-                vh-75-l 
+                min-vh-75-l 
                 ">
                     <div className="
                     white 
-                    mb2-l mt4-l
+                    mb1-l mt1-l
                     ">Sign up for a Money Manage account!
                     </div>
                     <hr className="w-90"/>
@@ -298,7 +298,7 @@ function SignUp(props) {
                         <div className="white pr2 mt2 mb1">Remember Sign Up?</div>
                         <input type="checkbox" onClick={() => setSignUpRememberMe()} className="flex mt2"></input>
                     </div>
-                    <div onClick={() => sendSignUp()} className="width-80-px ph1 pv2 mv3 bg-money-color br2 tc white pointer grow">Sign Up</div>   
+                    <div onClick={() => sendSignUp()} className="width-80-px ph1 pv2 mv2 bg-money-color br2 tc white pointer grow">Sign Up</div>   
                     <div className="flex flex-row mb3">
                         <div className="white">Already have an account?</div>
                         <div onClick={() => setRoute("login")} className="pl1 money-color pointer underline-hover">Log in</div>
