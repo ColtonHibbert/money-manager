@@ -73,7 +73,7 @@ function Home(props) {
                 {
                     (individualAccounts.map(individualAccount => {
                         if (routeHome === individualAccount.accountId.toString()) {
-                            return <IndividualAccount {...props} individualAccount={individualAccount} />
+                            return <IndividualAccount {...props} individualAccount={individualAccount} key={individualAccount.accountId}/>
                         } else {
                             return ""
                         }

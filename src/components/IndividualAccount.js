@@ -25,7 +25,7 @@ function IndividualAccount(props) {
     const accountTypeName = getAccountTypeName();
     
     return(
-        <div>    
+        <div >    
             <div className="flex flex-column w-100 items-center">
                 <div 
                     className="
