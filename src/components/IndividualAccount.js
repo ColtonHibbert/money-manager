@@ -39,10 +39,10 @@ function IndividualAccount(props) {
                     >{individualAccount.accountName} - {accountTypeName}
                 </div>
                 <div 
-                className="w-100 flex flex-column 
+                className="w-100 flex flex-column items-center
                 flex-s flex-column-s
                 flex-m flex-column-m
-                flex-l flex-row-l ph2-l
+                flex-l flex-row-l ph2-l 
                 "
                 >
                     <div className="
@@ -83,7 +83,7 @@ function IndividualAccount(props) {
                         <div className="
                         f3 red flex items-center mb1 pl3
                         ">   
-                            ${individualAccount.currentBalance}
+                            ${individualAccount.withdrawalsMonthlyAmount}
                         </div>
                     </div>
                     <div className="
@@ -103,7 +103,7 @@ function IndividualAccount(props) {
                         <div className="
                         f3 money-color flex items-center mb1 pl3
                         ">   
-                            ${individualAccount.currentBalance}
+                            ${individualAccount.depositsMonthlyAmount}
                         </div>
                     </div>
                     <div className="
@@ -123,9 +123,38 @@ function IndividualAccount(props) {
                         <div className="
                         f3 yellow flex items-center mb1 pl3
                         ">   
-                            {individualAccount.transactions.length}
+                            {individualAccount.transactionsMonthlyQuantity}
                         </div>
                     </div>  
+                </div>
+                <div className="w-90 flex flex-column mt3 bg-custom-lighter-gray">
+                    <div className="pl3 f3 mt1 custom-gray b">Add Transaction</div>
+                    <div className="pl3 h2 flex flex-row items-center mt2">
+                        <div className="h2 w4 flex items-center pr2 f4 custom-gray ">Amount</div>
+                        <input className="h2 w4 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="number" placeholder="0.00"></input>
+                    </div>
+                    <div className="pl3 h3 flex flex-row items-center mt2">
+                        <div className="h2 w4 flex items-center pr2 f4 custom-gray ">Transaction Type</div>
+                        <select className="h2 w4 flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1">
+                            <option value="">--</option>
+                            <option value="1">Withdrawal</option>
+                            <option value="2">Deposit</option>
+                            <option value="3">Transfer</option>
+                        </select>
+                    </div>
+                    <div className="pl3 h2 flex flex-row items-center mt2">
+                        <div className="h2 w4 flex items-center pr2 f4 custom-gray ">Memo Note</div>
+                        <input className="h2 w4 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="text" placeholder="note"></input>
+                    </div>
+                    <div className="pl3 h3 flex flex-row items-center mt2">
+                        <div className="h2 w4 flex items-center pr2 f4 custom-gray ">Budget Category</div>
+                        <select className="h2 w4 flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1">
+                            {
+                                //<select name="cars" id="cars">
+                                //<optgroup label="Swedish Cars"></optgroup>
+                            }
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
