@@ -97,14 +97,14 @@ const ForgotPassword = (props) => {
             ">
                 <div className="
                 w-100 flex white ph2 pt2 pb5 flex-column bg-money-color-see-through tc
-                vh-75-l justify-center-l
+                min-vh-75-l justify-center-l
                 ">
                     <h1>Money Manager</h1>
                     <div>Money is a good servant but a terrible master. Get in control of your finances and sign up today!</div>
                 </div>
                 <div className="
                 w-100 flex flex-column pv3 bg-custom-lighter-gray ph3 justify-center
-                vh-75-l 
+                min-vh-75-l 
                 ">
                     <div className="
                     white f3 lh-copy
