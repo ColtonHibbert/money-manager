@@ -204,7 +204,6 @@ function IndividualAccount(props) {
                     </div>
                 </div>
 
-                
                 <div className="w-90 flex flex-column mt3 bg-custom-darker-gray
                 w-100-l ph3-l
                 ">
