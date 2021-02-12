@@ -28,6 +28,8 @@ function IndividualAccount(props) {
 
     const classNoSelect = "h2 ph1 ph2-l flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
     const classSelect = "h2 ph1 ph2-l flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
+
+    console.log(individualAccount.transactions)
     
     return(
         <div className="w-100">    
@@ -247,6 +249,98 @@ function IndividualAccount(props) {
                             </div>
                         </div>
 
+                        {
+                            ((individualAccount.transactions === undefined || individualAccount.transactions.length === 0) && individualAccount.filter === false) ?
+                            <div className="w-100 flex flex-column mt3 ph3
+                            flex-row-l
+                            ">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                    <div className="mr1 mr2-l">Amount</div>
+                                    <Sort />
+                                </div>
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                    <div className="mr1 mr2-l">Date</div>
+                                    <Sort  />
+                                </div>
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                    <div className="mr1 mr2-l">Transaction Type</div>
+                                    <Sort  />
+                                </div>
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                    <div className="mr1 mr2-l">Memo</div>
+                                    <Sort  />
+                                </div>
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                    <div className="mr1 mr2-l">BudgetCategory</div>
+                                    <Sort />
+                                </div>
+                            </div>
+                            : ""
+                        }
+
+                        {
+                            ((individualAccount.filteredTransasctions === undefined || individualAccount.filteredTransasctions.length === 0) && individualAccount.filter === true) ?
+                            <div className="w-100 flex flex-column mt3 ph3
+                            flex-row-l
+                            ">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                    <div className="mr1 mr2-l">Amount</div>
+                                    <Sort />
+                                </div>
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                    <div className="mr1 mr2-l">Date</div>
+                                    <Sort  />
+                                </div>
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                    <div className="mr1 mr2-l">Transaction Type</div>
+                                    <Sort  />
+                                </div>
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                    <div className="mr1 mr2-l">Memo</div>
+                                    <Sort  />
+                                </div>
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                    <div className="mr1 mr2-l">BudgetCategory</div>
+                                    <Sort />
+                                </div>
+                            </div>
+                            : ""
+                        }
+                        <div className="w-100 flex flex-column mt3 ph3
+                        flex-row-l
+                        ">
+                            <div className="w-15-l ph1 custom-gray flex flex-row items-center 
+                            mt2-l ph0-l
+                            ">
+                                <div className="mr1 mr2-l">Amount</div>
+                                <Sort />
+                            </div>
+                            <div className="w-15-l ph1 custom-gray flex flex-row items-center 
+                            mt2-l ph0-l
+                            ">
+                                <div className="mr1 mr2-l">Date</div>
+                                <Sort  />
+                            </div>
+                            <div className="w-15-l ph1 custom-gray flex flex-row items-center 
+                            mt2-l ph0-l
+                            ">
+                                <div className="mr1 mr2-l">Transaction Type</div>
+                                <Sort  />
+                            </div>
+                            <div className="w-15-l ph1 custom-gray flex flex-row items-center 
+                            mt2-l ph0-l
+                            ">
+                                <div className="mr1 mr2-l">Memo</div>
+                                <Sort  />
+                            </div>
+                            <div className="w-15-l ph1 custom-gray flex flex-row items-center 
+                            mt2-l ph0-l
+                            ">
+                                <div className="mr1 mr2-l">BudgetCategory</div>
+                                <Sort />
+                            </div>
+                        </div>
+
                         <div>
                             <div>
                                 <div>Amount</div>
@@ -270,28 +364,7 @@ function IndividualAccount(props) {
                                 //edit will insert a row below similar to add transaction, check based on filter, no filter
                             }
                         </div>
-                        <div className="w-100 flex flex-row mt3">
-                            <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                <div className="mr1 mr2-l">Amount</div>
-                                <Sort />
-                            </div>
-                            <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                <div className="mr1 mr2-l">Date</div>
-                                <Sort  />
-                            </div>
-                            <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                <div className="mr1 mr2-l">Transaction Type</div>
-                                <Sort  />
-                            </div>
-                            <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                <div className="mr1 mr2-l">Memo</div>
-                                <Sort  />
-                            </div>
-                            <div className="w-25 mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                <div className="mr1 mr2-l">BudgetCategory</div>
-                                <Sort />
-                            </div>
-                        </div>
+                        
 
                     </div>
                 </div>  
@@ -303,7 +376,7 @@ function IndividualAccount(props) {
 
 export default IndividualAccount;
 
-//                                onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
+//  onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
 
 
 //setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} 
