@@ -767,6 +767,98 @@ export const reducer = (state=initialState, action={}) => {
             start += state.accountSummary.entries;
             end += state.accountSummary.entries;
         }
+
+
+        const formatStateForIndividualAccounts = () => {
+            const formattedIndividualAccounts = [];
+            action.setInitialDataPayload.initialData.individualAccounts.map(account => {
+                const accountObject = {
+                    accountId: 0,
+                    accountName: "",
+                    currentBalance: 0,
+                    lowAlertBalance: 0,
+                    userId: 0,
+                    accountTypeId: 0,
+                    userFirstName: "",
+                    entries: 1,
+                    filterTransactionSelection: "all",
+                    currentPage: 0,
+                    totalPages: 0,
+                    pages: [
+                        {
+                            pageNumber: 0,
+                            startEntry: 0,
+                            finishEntry: 0,
+                        }
+                    ],
+                    filter: false,
+                    filteredAccounts: [
+                        {
+                            accountId: 0,
+                            accountName: "",
+                            accountTypeId: 0,
+                            currentBalance: 0,
+                            lowAlertBalance: 0,
+                            userId: 0
+                        }
+                    ],
+                    filterTotalPages: 0,
+                    filterCurrentPage: 0,
+                    filterPages: [
+                        {
+                            pageNumber: 0,
+                            startEntry: 0,
+                            finishEntry: 0
+                        }
+                    ],
+                    transactions: [
+                        {
+                        transactionId: 0,
+                        amount: 0,
+                        date: "",
+                        memoNote: "",
+                        categoryName: "",
+                        categoryItemName: "",
+                        personalBudgetCategoryId: 0,
+                        personalBudgetCategoryItemId: 0,
+                        householdBudgetCategoryId: 0,
+                        householdBudgetCategoryItemId: 0,
+                        transactionTypeId: 0,
+                        userId: 0,
+                        accountId: 0
+                        }
+                    ],
+                    transactionsMonthly: [
+                        {
+                            transactionId: 0,
+                            amount: 0,
+                            date: "",
+                            memoNote: "",
+                            categoryName: "",
+                            categoryItemName: "",
+                            personalBudgetCategoryId: 0,
+                            personalBudgetCategoryItemId: 0,
+                            householdBudgetCategoryId: 0,
+                            householdBudgetCategoryItemId: 0,
+                            transactionTypeId: 0,
+                            userId: 0,
+                            accountId: 0
+                        }
+                        ],
+                    transactionsMonthlyQuantity: 0,
+                    depositsMonthlyQuantity: 0,
+                    depositsMonthlyAmount: 0,
+                    withdrawalsMonthlyQuantity: 0,
+                    withdrawalsMonthlyAmount: 0,
+                    transfersMonthlyQuantity: 0,
+                    transfersMonthlyAmount: 0
+                };
+
+
+                
+            })
+        }
+
         return {
             ...state,
             accounts: action.setInitialDataPayload.initialData.accountSummary,
@@ -780,7 +872,11 @@ export const reducer = (state=initialState, action={}) => {
                 filterPages: pagesArray
             },
             categoriesAndItems: action.setInitialDataPayload.initialData.categoriesAndItems,
-            individualAccounts: action.setInitialDataPayload.initialData.individualAccounts,
+            individualAccounts: [
+                ...state.individualAccounts,
+
+                
+            ],
             transactionsAllAccounts: action.setInitialDataPayload.initialData.transactionsAllAccounts,
             transactionsMonthlyAllAccounts: action.setInitialDataPayload.initialData.transactionsMonthlyAllAccounts,
             transactionsMonthlyAllAccountsQuantity: action.setInitialDataPayload.initialData.transactionsMonthlyAllAccountsQuantity,
