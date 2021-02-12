@@ -159,6 +159,37 @@ const initialState = {
             userId: 0,
             accountTypeId: 0,
             userFirstName: "",
+            entries: 1,
+            filterTransactionSelection: "all",
+            currentPage: 0,
+            totalPages: 0,
+            pages: [
+                {
+                    pageNumber: 0,
+                    startEntry: 0,
+                    finishEntry: 0,
+                }
+            ],
+            filter: false,
+            filteredAccounts: [
+                {
+                    accountId: 0,
+                    accountName: "",
+                    accountTypeId: 0,
+                    currentBalance: 0,
+                    lowAlertBalance: 0,
+                    userId: 0
+                }
+            ],
+            filterTotalPages: 0,
+            filterCurrentPage: 0,
+            filterPages: [
+                {
+                    pageNumber: 0,
+                    startEntry: 0,
+                    finishEntry: 0
+                }
+            ],
             transactions: [
               {
                 transactionId: 0,
