@@ -23,10 +23,13 @@ function IndividualAccount(props) {
     }
 
     const accountTypeName = getAccountTypeName();
+
+    const classNoSelect = "h2 flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
+    const classSelect = "h2 flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
     
     return(
-        <div >    
-            <div className="flex flex-column w-100 items-center">
+        <div className="w-100">    
+            <div className="flex flex-column w-100 items-center bg-custom-darker-gray">
 
                 <div 
                     className="
@@ -201,11 +204,23 @@ function IndividualAccount(props) {
                     </div>
                 </div>
 
+                
                 <div className="w-90 flex flex-column mt3 bg-custom-darker-gray
                 w-100-l ph3-l
                 ">
-                    
-                </div>
+                    <div className="w-100 bg-custom-lighter-gray">
+                        <div className="flex flex-row justify-between items-center">
+                            <div className="custom-gray f3">Transactions</div>
+                            <div className="flex flex-row custom-gray">
+                                <div className={(individualAccount.filterTransactionSelection === "all" ? classSelect : classNoSelect)}>All</div>
+                                <div className={(individualAccount.filterTransactionSelection === "withdrawals" ? classSelect : classNoSelect)}>Withdrawals</div>
+                                <div className={(individualAccount.filterTransactionSelection === "deposits" ? classSelect : classNoSelect)}>Deposits</div>
+                                <div className={(individualAccount.filterTransactionSelection === "transfers" ? classSelect : classNoSelect)}>Transfers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                
             </div>
         </div>
     )
@@ -213,28 +228,5 @@ function IndividualAccount(props) {
 
 export default IndividualAccount;
 
-/*
-                            <div 
-                            className="flex flex-column
-                            h4-l w-10-l
-                            "
-                            >
-                                <div className="w-100-l h-50-l flex items-center pr2 f4 custom-gray">fill</div>
-                                <div className="flex flex-row">
-                                    <div 
-                                        className="
-                                        w3 h2 flex justify-center items-center mv3 ml3 mv0-l ml0-l pa2 br2 white bg-money-color pointer grow
-                                        "
-                                        onClick={() => console.log("save")}
-                                    >
-                                        Add
-                                    </div>
-                                    <div
-                                    className="w3 h2 flex justify-center items-center mv3 ml4 pa2 br2 white bg-red pointer grow"
-                                    onClick={() => console.log("cancel")}
-                                    >Clear
-                                    </div>
-                                </div>
-                            </div>
 
-*/
+
