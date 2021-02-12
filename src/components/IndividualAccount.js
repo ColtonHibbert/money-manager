@@ -7,7 +7,8 @@ import TransactionIcon from "../components/TransactionIcon.js";
 function IndividualAccount(props) {
     const { 
         individualAccount,
-        categoriesAndItems
+        categoriesAndItems,
+        setIndividualAccountFilterTransactionSelection
     } = props;
 
     const getAccountTypeName = () => {
@@ -211,8 +212,8 @@ function IndividualAccount(props) {
                         <div className="flex flex-row justify-between items-center">
                             <div className="custom-gray f3">Transactions</div>
                             <div className="flex flex-row custom-gray">
-                                <div className={(individualAccount.filterTransactionSelection === "all" ? classSelect : classNoSelect)}>All</div>
-                                <div className={(individualAccount.filterTransactionSelection === "withdrawals" ? classSelect : classNoSelect)}>Withdrawals</div>
+                                <div className={(individualAccount.filterTransactionSelection === "all" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountFilterTransactionSelection(individualAccount.accountId, "all")}>All</div>
+                                <div className={(individualAccount.filterTransactionSelection === "withdrawals" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountFilterTransactionSelection(individualAccount.accountId, "withdrawals")}>Withdrawals</div>
                                 <div className={(individualAccount.filterTransactionSelection === "deposits" ? classSelect : classNoSelect)}>Deposits</div>
                                 <div className={(individualAccount.filterTransactionSelection === "transfers" ? classSelect : classNoSelect)}>Transfers</div>
                             </div>
