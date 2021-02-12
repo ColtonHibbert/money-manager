@@ -25,8 +25,8 @@ function IndividualAccount(props) {
 
     const accountTypeName = getAccountTypeName();
 
-    const classNoSelect = "h2 flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
-    const classSelect = "h2 flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
+    const classNoSelect = "h2 ph1 ph2-l flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
+    const classSelect = "h2 ph1 ph2-l flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
     
     return(
         <div className="w-100">    
@@ -209,18 +209,20 @@ function IndividualAccount(props) {
                 w-100-l ph3-l
                 ">
                     <div className="w-100 bg-custom-lighter-gray">
-                        <div className="flex flex-row justify-between items-center">
-                            <div className="custom-gray f3">Transactions</div>
-                            <div className="flex flex-row custom-gray">
+                        <div className="flex flex-column 
+                        flex-row-l justify-between-l items-center-l
+                        ">
+                            <div className="custom-gray f3 mt2">Transactions</div>
+                            <div className="flex flex-row custom-gray mt2">
                                 <div className={(individualAccount.filterTransactionSelection === "all" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountFilterTransactionSelection(individualAccount.accountId, "all")}>All</div>
                                 <div className={(individualAccount.filterTransactionSelection === "withdrawals" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountFilterTransactionSelection(individualAccount.accountId, "withdrawals")}>Withdrawals</div>
-                                <div className={(individualAccount.filterTransactionSelection === "deposits" ? classSelect : classNoSelect)}>Deposits</div>
-                                <div className={(individualAccount.filterTransactionSelection === "transfers" ? classSelect : classNoSelect)}>Transfers</div>
+                                <div className={(individualAccount.filterTransactionSelection === "deposits" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountFilterTransactionSelection(individualAccount.accountId, "deposits")}>Deposits</div>
+                                <div className={(individualAccount.filterTransactionSelection === "transfers" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountFilterTransactionSelection(individualAccount.accountId, "transfers")}>Transfers</div>
                             </div>
                         </div>
                     </div>
                 </div>  
-                
+                                    
             </div>
         </div>
     )
