@@ -746,8 +746,9 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     if(action.type === SET_INITIAL_DATA) {
-        const numberOfPages = (Math.ceil(action.setInitialDataPayload.initialData.accountSummary.length / state.accountSummary.entries));
+        //const numberOfPages = (Math.ceil(action.setInitialDataPayload.initialData.accountSummary.length / state.accountSummary.entries));
         
+        /*
         let pagesArray = [];
         let start = 0;
         let end = state.accountSummary.entries;
@@ -767,19 +768,59 @@ export const reducer = (state=initialState, action={}) => {
             start += state.accountSummary.entries;
             end += state.accountSummary.entries;
         }
+        */
 
+        const configurePages = (value, passedAccounts) => {
+            value = parseFloat(value);
+            const numberOfPages = (Math.ceil(passedAccounts.length / value));
+            const modifiedPages = pagesArray(value, passedAccounts, numberOfPages);
+            const pagesObject = {
+                totalPages: numberOfPages,
+                pages: modifiedPages,
+                entries: value
+            }
+            return pagesObject;
+        }
+    
+        const pagesArray = (value, passedAccounts, numberOfPages) => {
+            let baseArray = [];
+            let start = 0;
+            let end = value;
+            for(let i = 0; i < numberOfPages; i++) {
+                let page = {
+                            pageNumber: i,
+                            startEntry: start,
+                            finishEntry: end
+                    };
+                baseArray.push(page);
+                
+                if(baseArray[baseArray.length -1 ].finishEntry >= passedAccounts.length) {
+                    baseArray[baseArray.length - 1].finishEntry = passedAccounts.length;
+                    continue
+                } 
+                start += value;
+                end += value;
+            }
+            return baseArray;
+        }
+
+        const summaryPagesRegularOrFilter = configurePages(state.accountSummary.entries, action.setInitialDataPayload.initialData.accountSummary.accounts);
 
         const formatStateForIndividualAccounts = () => {
             const formattedIndividualAccounts = [];
+
             action.setInitialDataPayload.initialData.individualAccounts.map(account => {
+
+                //const individualAccountTransactionPagesRegularOrFilter = configurePages(1, );
+
                 const accountObject = {
-                    accountId: 0,
-                    accountName: "",
-                    currentBalance: 0,
-                    lowAlertBalance: 0,
-                    userId: 0,
-                    accountTypeId: 0,
-                    userFirstName: "",
+                    accountId: account.accountId,
+                    accountName: account.accountName,
+                    currentBalance: account.currentBalance,
+                    lowAlertBalance: account.lowAlertBalance,
+                    userId: account.userId,
+                    accountTypeId: account.accountTypeId,
+                    userFirstName: account.userFirstName,
                     entries: 1,
                     filterTransactionSelection: "all",
                     currentPage: 0,
@@ -853,10 +894,9 @@ export const reducer = (state=initialState, action={}) => {
                     transfersMonthlyQuantity: 0,
                     transfersMonthlyAmount: 0
                 };
-
-
-                
+                formattedIndividualAccounts.push(accountObject);
             })
+            return formatStateForIndividualAccounts;
         }
 
         return {
@@ -865,18 +905,14 @@ export const reducer = (state=initialState, action={}) => {
             accountSummary: {
                 ...state.accountSummary,
                 accounts: action.setInitialDataPayload.initialData.accountSummary,
-                totalPages: numberOfPages,
-                pages: pagesArray,
+                totalPages: summaryPagesRegularOrFilter.totalPages,
+                pages: summaryPagesRegularOrFilter.pages,
                 filteredAccounts: action.setInitialDataPayload.initialData.accountSummary,
                 filterTotalPages: numberOfPages,
-                filterPages: pagesArray
+                filterPages: summaryPagesRegularOrFilter.pagesArray
             },
             categoriesAndItems: action.setInitialDataPayload.initialData.categoriesAndItems,
-            individualAccounts: [
-                ...state.individualAccounts,
-
-                
-            ],
+            individualAccounts: formatStateForIndividualAccounts(),
             transactionsAllAccounts: action.setInitialDataPayload.initialData.transactionsAllAccounts,
             transactionsMonthlyAllAccounts: action.setInitialDataPayload.initialData.transactionsMonthlyAllAccounts,
             transactionsMonthlyAllAccountsQuantity: action.setInitialDataPayload.initialData.transactionsMonthlyAllAccountsQuantity,
