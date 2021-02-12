@@ -148,12 +148,43 @@ function IndividualAccount(props) {
                     </div>
                     <div className="pl3 h3 flex flex-row items-center mt2">
                         <div className="h2 w4 flex items-center pr2 f4 custom-gray ">Budget Category</div>
-                        <select className="h2 w4 flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1">
+                        <select className="w4 flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
+                        
+                        >
+                            <option value="">--</option>
                             {
-                                //<select name="cars" id="cars">
-                                //<optgroup label="Swedish Cars"></optgroup>
+                                categoriesAndItems.map(category => {
+                                    return(
+                                        
+                                        <optgroup key={category.categoryId} label={category.name}>
+                                            {
+                                                category.items.map(item => {
+                                                return <option key={item.categoryItemId} value={item.personalBudgetCategoryItemId}>{item.name}</option>
+                                                })
+                                            }
+                                        </optgroup>
+                                    )
+                                })
                             }
                         </select>
+                    </div>
+                    <div 
+                    className="flex flex-row 
+                    "
+                    >
+                        <div 
+                            className="
+                            w3 h2 flex justify-center items-center mv3 ml3 pa2 br2 white bg-money-color pointer grow
+                            "
+                            onClick={() => console.log("save")}
+                        >
+                            Add
+                        </div>
+                        <div
+                        className="w3 h2 flex justify-center items-center mv3 ml4 pa2 br2 white bg-red pointer grow"
+                        onClick={() => console.log("cancel")}
+                        >Clear
+                        </div>
                     </div>
                 </div>
             </div>
