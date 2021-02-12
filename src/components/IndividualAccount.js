@@ -27,6 +27,7 @@ function IndividualAccount(props) {
     return(
         <div >    
             <div className="flex flex-column w-100 items-center">
+
                 <div 
                     className="
                         w-100 flex justify-center items-center bg-custom-lighter-gray money-color border-thin-gray 
@@ -38,6 +39,7 @@ function IndividualAccount(props) {
                         "
                     >{individualAccount.accountName} - {accountTypeName}
                 </div>
+
                 <div 
                 className="w-100 flex flex-column items-center
                 flex-s flex-column-s
@@ -127,6 +129,7 @@ function IndividualAccount(props) {
                         </div>
                     </div>  
                 </div>
+                
                 <div className="w-90 flex flex-column mt3 bg-custom-darker-gray
                 w-100-l ph3-l
                 ">
@@ -138,13 +141,13 @@ function IndividualAccount(props) {
                             <div className="pl3 h2 flex flex-row items-center mt2
                             flex-column-l h4-l w-15-l
                             ">
-                                <div className="h2 w4 w-100-l flex items-center pr2 f4 custom-gray ">Amount</div>
+                                <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Amount</div>
                                 <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="number" placeholder="0.00"></input>
                             </div>
                             <div className="pl3 h3 flex flex-row items-center mt2
                             flex-column-l h4-l w-20-l
                             ">
-                                <div className="h2 w4 w-100-l flex items-center pr2 f4 custom-gray ">Transaction Type</div>
+                                <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Transaction Type</div>
                                 <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1">
                                     <option value="">--</option>
                                     <option value="1">Withdrawal</option>
@@ -155,13 +158,13 @@ function IndividualAccount(props) {
                             <div className="pl3 h2 flex flex-row items-center mt2
                             flex-column-l h4-l w-20-l
                             ">
-                                <div className="h2 w4 w-100-l flex items-center pr2 f4 custom-gray ">Memo Note</div>
+                                <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Memo Note</div>
                                 <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="text" placeholder="note"></input>
                             </div>
                             <div className="pl3 h3 flex flex-row items-center mt2
                             flex-column-l h4-l w-25-l
                             ">
-                                <div className="h2 w4 w-100-l flex items-center pr2 f4 custom-gray ">Budget Category</div>
+                                <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Budget Category</div>
                                 <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
                                 
                                 >
@@ -182,28 +185,26 @@ function IndividualAccount(props) {
                                     }
                                 </select>
                             </div>
-                            <div 
-                            className="flex flex-row 
-                            h4-l w-10-l
-                            "
-                            >
-                                <div 
-                                    className="
-                                    w3 h2 flex justify-center items-center mv3 ml3 pa2 br2 white bg-money-color pointer grow
-                                    "
-                                    onClick={() => console.log("save")}
-                                >
-                                    Add
+                            <div className="pl3 h2 flex flex-row items-center mt2 mb2
+                            flex-column-l h4-l w-15-l
+                            ">
+                                <div className="h2 w-0 w-100-l h-50-l flex items-center f4 custom-gray ">
+                                
                                 </div>
-                                <div
-                                className="w3 h2 flex justify-center items-center mv3 ml4 pa2 br2 white bg-red pointer grow"
-                                onClick={() => console.log("cancel")}
-                                >Clear
+                                <div className="flex flex-row w-100-l">
+                                    
+                                    <div className="h2 w3 flex items-center justify-center mr3 ph1-l bg-money-color br2 white pointer">Add</div>
+                                    <div className="h2 w3 flex items-center justify-center ml3 ph1-l bg-red br2 white pointer">Clear</div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+                </div>
+
+                <div className="w-90 flex flex-column mt3 bg-custom-darker-gray
+                w-100-l ph3-l
+                ">
+                    
                 </div>
             </div>
         </div>
@@ -212,3 +213,28 @@ function IndividualAccount(props) {
 
 export default IndividualAccount;
 
+/*
+                            <div 
+                            className="flex flex-column
+                            h4-l w-10-l
+                            "
+                            >
+                                <div className="w-100-l h-50-l flex items-center pr2 f4 custom-gray">fill</div>
+                                <div className="flex flex-row">
+                                    <div 
+                                        className="
+                                        w3 h2 flex justify-center items-center mv3 ml3 mv0-l ml0-l pa2 br2 white bg-money-color pointer grow
+                                        "
+                                        onClick={() => console.log("save")}
+                                    >
+                                        Add
+                                    </div>
+                                    <div
+                                    className="w3 h2 flex justify-center items-center mv3 ml4 pa2 br2 white bg-red pointer grow"
+                                    onClick={() => console.log("cancel")}
+                                    >Clear
+                                    </div>
+                                </div>
+                            </div>
+
+*/
