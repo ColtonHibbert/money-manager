@@ -746,33 +746,8 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     if(action.type === SET_INITIAL_DATA) {
-        //const numberOfPages = (Math.ceil(action.setInitialDataPayload.initialData.accountSummary.length / state.accountSummary.entries));
-        
-        /*
-        let pagesArray = [];
-        let start = 0;
-        let end = state.accountSummary.entries;
-        for(let i = 0; i < numberOfPages; i++) {
-            let page = {
-                        pageNumber: i,
-                        startEntry: start,
-                        finishEntry: end
-                };
-            pagesArray.push(page);
-            
-            if(pagesArray[pagesArray.length - 1].finishEntry >= action.setInitialDataPayload.initialData.accountSummary.length) {
-                pagesArray[pagesArray.length - 1 ].finishEntry = action.setInitialDataPayload.initialData.accountSummary.length;
-                break;
-            } 
-
-            start += state.accountSummary.entries;
-            end += state.accountSummary.entries;
-        }
-        */
-       console.log(action.setInitialDataPayload)
-
+       
         const configurePages = (value, passedAccounts) => {
-            console.log(value, passedAccounts)
             value = parseFloat(value);
             const numberOfPages = (Math.ceil(passedAccounts.length / value));
             const modifiedPages = pagesArray(value, passedAccounts, numberOfPages);
