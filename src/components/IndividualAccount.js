@@ -128,23 +128,24 @@ function IndividualAccount(props) {
                     </div>  
                 </div>
                 <div className="w-90 flex flex-column mt3 bg-custom-darker-gray
-                w-100-l
+                w-100-l ph3-l
                 ">
-                    <div className="mh3-l bg-custom-lighter-gray">
-                        <div className="pl3 f3 mt1 custom-gray b">Add Transaction</div>
-
-                        <div className="flex-l flex-row-l">{/* started getting wonky here, remove flex-column-l*/}
+                    <div className="bg-custom-lighter-gray">
+                        <div className="pl3 f3 mt1 custom-gray b ">
+                        Add Transaction
+                        </div>
+                        <div className="flex-l flex-row-l">
                             <div className="pl3 h2 flex flex-row items-center mt2
-                            flex-column-l h4-l
+                            flex-column-l h4-l w-15-l
                             ">
-                                <div className="h2 w4 flex items-center pr2 f4 custom-gray">Amount</div>
-                                <input className="h2 w4 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="number" placeholder="0.00"></input>
+                                <div className="h2 w4 w-100-l flex items-center pr2 f4 custom-gray ">Amount</div>
+                                <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="number" placeholder="0.00"></input>
                             </div>
                             <div className="pl3 h3 flex flex-row items-center mt2
-                            flex-column-l h4-l
+                            flex-column-l h4-l w-20-l
                             ">
-                                <div className="h2 w4 flex items-center pr2 f4 custom-gray ">Transaction Type</div>
-                                <select className="h2 w4 flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1">
+                                <div className="h2 w4 w-100-l flex items-center pr2 f4 custom-gray ">Transaction Type</div>
+                                <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1">
                                     <option value="">--</option>
                                     <option value="1">Withdrawal</option>
                                     <option value="2">Deposit</option>
@@ -152,16 +153,16 @@ function IndividualAccount(props) {
                                 </select>
                             </div>
                             <div className="pl3 h2 flex flex-row items-center mt2
-                            flex-column-l h4-l
+                            flex-column-l h4-l w-20-l
                             ">
-                                <div className="h2 w4 flex items-center pr2 f4 custom-gray ">Memo Note</div>
-                                <input className="h2 w4 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="text" placeholder="note"></input>
+                                <div className="h2 w4 w-100-l flex items-center pr2 f4 custom-gray ">Memo Note</div>
+                                <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="text" placeholder="note"></input>
                             </div>
                             <div className="pl3 h3 flex flex-row items-center mt2
-                            flex-column-l h4-l
+                            flex-column-l h4-l w-25-l
                             ">
-                                <div className="h2 w4 flex items-center pr2 f4 custom-gray ">Budget Category</div>
-                                <select className="h2 w4 flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
+                                <div className="h2 w4 w-100-l flex items-center pr2 f4 custom-gray ">Budget Category</div>
+                                <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
                                 
                                 >
                                     <option value="">--</option>
@@ -183,7 +184,7 @@ function IndividualAccount(props) {
                             </div>
                             <div 
                             className="flex flex-row 
-                            h4-l
+                            h4-l w-10-l
                             "
                             >
                                 <div 
@@ -201,6 +202,7 @@ function IndividualAccount(props) {
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -209,3 +211,4 @@ function IndividualAccount(props) {
 }
 
 export default IndividualAccount;
+
