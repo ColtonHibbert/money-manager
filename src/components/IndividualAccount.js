@@ -10,7 +10,7 @@ function IndividualAccount(props) {
     const { 
         individualAccount,
         categoriesAndItems,
-        setIndividualAccountFilterTransactionSelection
+        setIndividualAccountsFilterTransactionSelection
     } = props;
 
     const getAccountTypeName = () => {
@@ -236,10 +236,10 @@ function IndividualAccount(props) {
                             <div className="custom-gray f3 mt2 pl3">Transactions</div>
                             <div className="flex flex-row custom-gray mt2 pl3 pr3
                             ">
-                                <div className={(individualAccount.filterTransactionSelection === "all" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountFilterTransactionSelection(individualAccount.accountId, "all")}>All</div>
-                                <div className={(individualAccount.filterTransactionSelection === "withdrawals" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountFilterTransactionSelection(individualAccount.accountId, "withdrawals")}>Withdrawals</div>
-                                <div className={(individualAccount.filterTransactionSelection === "deposits" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountFilterTransactionSelection(individualAccount.accountId, "deposits")}>Deposits</div>
-                                <div className={(individualAccount.filterTransactionSelection === "transfers" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountFilterTransactionSelection(individualAccount.accountId, "transfers")}>Transfers</div>
+                                <div className={(individualAccount.filterTransactionSelection === "all" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountsFilterTransactionSelection(individualAccount.accountId, "all")}>All</div>
+                                <div className={(individualAccount.filterTransactionSelection === "withdrawals" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountsFilterTransactionSelection(individualAccount.accountId, "withdrawals")}>Withdrawals</div>
+                                <div className={(individualAccount.filterTransactionSelection === "deposits" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountsFilterTransactionSelection(individualAccount.accountId, "deposits")}>Deposits</div>
+                                <div className={(individualAccount.filterTransactionSelection === "transfers" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountsFilterTransactionSelection(individualAccount.accountId, "transfers")}>Transfers</div>
                             </div>
                         </div>
                                   
@@ -250,7 +250,7 @@ function IndividualAccount(props) {
                                 <div className="mr1">Entries</div>
                                 <select id="account-entries" 
                                 className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"
-                                //onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setIndividualAccountsEntries, setIndividualAcccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, individualAccount.transactions ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
+                                //onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setIndividualAccountsEntries, setIndividualAcccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, individualAccount.transactions ) : configurePages(event.target.value, setIndividualAccountsEntries, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, individualAccount.filteredAccounts)}
                                 //onChange={(event) => (accountSummary.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
                                 >
                                     <option value="1">1</option>

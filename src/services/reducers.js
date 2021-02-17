@@ -77,7 +77,7 @@ import {
     SET_ACCOUNT_SUMMARY_FILTER_CURRENT_PAGE,
     SET_ACCOUNT_SUMMARY_FILTER_PAGES,
     SET_ACCOUNT_SUMMARY_ACCOUNTS,
-    SET_INDIVIDUAL_ACCOUNT_FILTER_TRANSACTION_SELECTION
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION
 } from "./constants.js";
 
 const initialState = {
@@ -1157,14 +1157,14 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNT_FILTER_TRANSACTION_SELECTION) {
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION) {
         return {
             ...state,
             individualAccounts: function(accountsState) {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountFilterTransactionSelectionAccountId) {
-                        account.filterTransactionSelection = action.setIndividualAccountFilterTransactionSelectionPayload
+                    if(account.accountId === action.setIndividualAccountsFilterTransactionSelectionAccountId) {
+                        account.filterTransactionSelection = action.setIndividualAccountsFilterTransactionSelectionPayload
                     }
                 })
                 return accounts;
