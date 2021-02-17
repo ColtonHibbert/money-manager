@@ -47,10 +47,75 @@ function IndividualAccount(props) {
     const classNoSelect = "h2 ph1 ph2-l flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
     const classSelect = "h2 ph1 ph2-l flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
     
-   
-    
+    /*
+    function configurePages(value, setEntries, setTotalPages, setCurrentPage, setPages, passedAccounts) {
+        console.log("setPages:", setPages);
+        value = parseFloat(value);
+        const numberOfPages = (Math.ceil(passedAccounts.length / value));
+        setEntries(value);
+        setTotalPages(numberOfPages);
+        setCurrentPage(0);
+        const modifiedPages = pagesArray(value, passedAccounts, numberOfPages);
+        setPages(modifiedPages);
+    }
+
+    const pagesArray = (value, passedAccounts, numberOfPages) => {
+        let baseArray = [];
+        let start = 0;
+        let end = value;
+
+        for(let i = 0; i < numberOfPages; i++) {
+            let page = {
+                        pageNumber: i,
+                        startEntry: start,
+                        finishEntry: end
+                };
+            baseArray.push(page);
+            
+            if(baseArray[baseArray.length -1 ].finishEntry >= passedAccounts.length) {
+                baseArray[baseArray.length - 1].finishEntry = passedAccounts.length;
+                continue
+            } 
+            start += value;
+            end += value;
+        }
+        return baseArray;
+    }
+
+    const handleFilter = (value) => {
+        const search= value.trim();
+        if(search !== "") {
+            const searchRegex = new RegExp(search, "i");
+            const filteredAccounts = accountSummary.accounts.filter(account => {
+                return (searchRegex.test(account.accountName) || searchRegex.test(account.currentBalance) || searchRegex.test(account.lowAlertBalance) || searchRegex.test(user.firstName));
+            })
+            const numberOfPages = (Math.ceil(filteredAccounts.length / accountSummary.entries));
+            const modifiedPages = pagesArray(accountSummary.entries ,filteredAccounts, numberOfPages);
+
+            setAccountSummaryFilterTotalPages(numberOfPages);
+            setAccountSummaryFilterCurrentPage(0);
+            setAccountSummaryFilteredAccounts(filteredAccounts);
+            console.log("modified pages", modifiedPages, numberOfPages)
+            setAccountSummaryFilterPages(modifiedPages)
+            setAccountSummaryFilter(true);
+            console.log("filteredAccounts: ",filteredAccounts);
+        }
+        if(search === "") {
+            const numberOfPages = (Math.ceil(accountSummary.accounts.length / accountSummary.entries));
+            const modifiedPages = pagesArray(accountSummary.entries, accountSummary.accounts, numberOfPages);
+
+            setAccountSummaryPages(modifiedPages);
+            setAccountSummaryCurrentPage(0);
+            setAccountSummaryTotalPages(numberOfPages);
+            setAccountSummaryFilter(false);
+            setAccountSummaryFilteredAccounts(accountSummary.accounts);
+        }
+    }
+    */
+
+
     return(
-        <div className="w-100">    
+        <div className="w-100" key={individualAccount.accountId}>    
             <div className="flex flex-column w-100 items-center bg-custom-darker-gray">
 
                 <div 
@@ -250,6 +315,8 @@ function IndividualAccount(props) {
                                 <div className="mr1">Entries</div>
                                 <select id="account-entries" 
                                 className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"
+                                //onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, individualAccount.transactions ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
+                                //onChange={(event) => (accountSummary.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
                                 >
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -334,9 +401,6 @@ function IndividualAccount(props) {
                                     <div className="w-100 flex flex-column mt3 ph3
                                     flex-row-l
                                     ">
-                                        {
-                                            console.log("hi")
-                                        }
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                             <div className="mr1 mr2-l">{transaction.amount}</div>
                                         </div>
