@@ -32,15 +32,30 @@ const pagesArray = (value, passedAccounts, numberOfPages) => {
     return baseArray;
 }
 
-const handleFilter = (value, setTotalPages, setCurrentPage, setPages, passedArray, checkPropertiesArray ) => {
+const handleFilter = (value, setTotalPages, setCurrentPage, setPages, passedArray, arrayType, accountTypeName ) => {
     const search= value.trim();
     if(search !== "") {
         const searchRegex = new RegExp(search, "i");
-        const buildTestProperties = () => {
-            
-        }
+       
         const filteredArray = passedArray.filter(entry => {
-            return (searchRegex.test(entry.accountName) || searchRegex.test(entry.currentBalance) || searchRegex.test(entry.lowAlertBalance) || searchRegex.test(entry.firstName));
+            if(arrayType === "accountsummary") {
+                return (searchRegex.test(entry.accountName) || searchRegex.test(entry.currentBalance) || searchRegex.test(entry.lowAlertBalance) || searchRegex.test(entry.firstName));
+            }
+            if(arrayType === "individualtransactions") {
+                return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
+            }
+            if(arrayType === "individualtransactionsallaccounts") {
+                return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
+            }
+            if(arrayType === "householdaccountsummary") {
+                return (searchRegex.test(entry.accountName) || searchRegex.test(entry.currentBalance) || searchRegex.test(entry.lowAlertBalance) || searchRegex.test(entry.firstName));
+            }
+            if(arrayType === "householdtransactions") {
+                return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
+            }
+            if(arrayType === "householdtransactionsallaccounts") {
+                return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
+            }
         })
         const numberOfPages = (Math.ceil(filteredAccounts.length / accountSummary.entries));
         const modifiedPages = pagesArray(accountSummary.entries ,filteredAccounts, numberOfPages);
