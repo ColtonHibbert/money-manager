@@ -83,7 +83,7 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_PAGES,
     SET_INDIVIDUAL_ACCOUNTS_CURRENT_PAGE,
     SET_INDIVIDUAL_ACCOUNTS_FILTER,
-    SET_INDIVIDUAL_ACCOUNTS_FILTERED_ACCOUNTS,
+    SET_INDIVIDUAL_ACCOUNTS_FILTERED_TRANSACTIONS,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_TOTAL_PAGES,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
@@ -638,7 +638,88 @@ export const setAccountSummaryAccounts = (payload) => {
 export const setIndividualAccountsFilterTransactionSelection = (accountId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION,
+        setIndividualAccountsFilterTransactionSelectionAccountId: accountId,
         setIndividualAccountsFilterTransactionSelectionPayload: payload,
-        setIndividualAccountsFilterTransactionSelectionAccountId: accountId
     }
 }
+
+export const setIndividualAccountsEntries = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_ENTRIES,
+        setIndividualAccountsEntriesAccountId: accountId,
+        setIndividualAccountsEntriesPayload: payload,
+    }
+}
+
+export const setIndividualAccountsTotalPages = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_TOTAL_PAGES,
+        setIndividualAccountsTotalPagesAccountId: accountId,
+        setIndividualAccountsTotalPagesPayload: payload
+    }
+}
+
+export const setIndividualAccountsPages = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_PAGES,
+        setIndividualAccountsPagesAccountId: accountId,
+        setIndividualAccountsPagesPayload: payload
+    }
+}
+
+export const setIndividualAccountsCurrentPage = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_CURRENT_PAGE,
+        setIndividualAccountsCurrentPageAccountId: accountId,
+        setIndividualAccountsCurrentPagePayload: payload
+    }
+}
+
+export const setIndividualAccountsFilter = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER,
+        setIndividualAccountsFilterAccountId: accountId,
+        setIndividualAccountsFilterPayload: payload
+    }
+}
+
+export const setIndividualAccountsFilteredTransactions = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTERED_TRANSACTIONS,
+        setIndividualAccountsFilteredTransactionsAccountId: accountId,
+        setIndividualAccountsFilteredTransactionsPayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterTotalPages = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_TOTAL_PAGES,
+        setIndividualAccountsFilterTotalPagesAccountId: accountId,
+        setIndividualAccountsFilterTotalPagesPayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterCurrentPage = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE,
+        setIndividualAccountsFilterCurrentPageAccountId: accountId,
+        setIndividualAccountsFilterCurrentPagePayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterPages = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
+        setIndividualAccountsFilterPagesAccountId: accountId,
+        setIndividualAccountsFilterPagesPayload: payload
+    }
+}
+
+export const setIndividualAccountsTransactions = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS,
+        setIndividualAccountsTransactionsAccountId: accountId,
+        setIndividualAccountsTransactionsPayload: payload
+    }
+}
+
