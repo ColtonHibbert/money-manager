@@ -49,7 +49,17 @@ const mapDispatchToProps = (dispatch) => {
         setRouteHome: (value) => dispatch(setRouteHome(value)),
         setAccounts: (value) => dispatch(setAccounts(value)),
         setTransactions: (value) => dispatch(setTransactions(value)),
-        setIndividualAccountsFilterTransactionSelection: (accountId, payload) => dispatch(setIndividualAccountsFilterTransactionSelection(accountId, payload))
+        setIndividualAccountsFilterTransactionSelection: (accountId, payload) => dispatch(setIndividualAccountsFilterTransactionSelection(accountId, payload)),
+        setIndividualAccountsEntries: (accountId, payload) => dispatch(setIndividualAccountsEntries(accountId, payload)),
+        setIndividualAccountsTotalPages: (accountId, payload) => dispatch(setIndividualAccountsTotalPages(accountId, payload)),
+        setIndividualAccountsPages: (accountId, payload) => dispatch(setIndividualAccountsPages(accountId, payload)),
+        setIndividualAccountsCurrentPage: (accountId, payload) => dispatch(setIndividualAccountsCurrentPage(accountId, payload)),
+        setIndividualAccountsFilter: (accountId, payload) => dispatch(setIndividualAccountsFilter(accountId, payload)),
+        setIndividualAccountsFilteredTransactions: (accountId, payload) => dispatch(setIndividualAccountsFilteredTransactions(accountId, payload)),
+        setIndividualAccountsFilterTotalPages: (accountId, payload) => dispatch(setIndividualAccountsFilterTotalPages(accountId, payload)),
+        setIndividualAccountsFilterCurrentPage: (accountId, payload) => dispatch(setIndividualAccountsFilterCurrentPage(accountId, payload)),
+        setIndividualAccountsFilterPages: (accountId, payload) => dispatch(setIndividualAccountsFilterPages(accountId, payload)),
+        setIndividualAccountsTransactions: (accountId, payload) => dispatch(setIndividualAccountsTransactions(accountId, payload))
     }
 }
 

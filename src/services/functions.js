@@ -1,15 +1,25 @@
-function configurePages(value, setEntries, setTotalPages, setCurrentPage, setPages, passedAccounts) {
+export function configurePages(value, setEntries, setTotalPages, setCurrentPage, setPages, passedArray) {
     //console.log("setPages:", setPages);
     value = parseFloat(value);
-    const numberOfPages = (Math.ceil(passedAccounts.length / value));
+    const numberOfPages = (Math.ceil(passedArray.length / value));
     setEntries(value);
     setTotalPages(numberOfPages);
     setCurrentPage(0);
-    const modifiedPages = pagesArray(value, passedAccounts, numberOfPages);
+    const modifiedPages = pagesArray(value, passedArray, numberOfPages);
     setPages(modifiedPages);
 }
 
-const pagesArray = (value, passedAccounts, numberOfPages) => {
+export function configureNestedArrayPages(value, id, setEntries, setTotalPages, setCurrentPage, setPages, passedArray ) {
+    value = parseFloat(value);
+    const numberOfPages = (Math.ceil(passedArray.length / value));
+    setEntries(id, value);
+    setTotalPages(id, numberOfPages);
+    setCurrentPage(id, 0);
+    const modifiedPages = pagesArray(value, passedArray, numberOfPages);
+    setPages(id, modifiedPages);
+}
+
+export const pagesArray = (value, passedArray, numberOfPages) => {
     let baseArray = [];
     let start = 0;
     let end = value;
@@ -22,8 +32,8 @@ const pagesArray = (value, passedAccounts, numberOfPages) => {
             };
         baseArray.push(page);
         
-        if(baseArray[baseArray.length -1 ].finishEntry >= passedAccounts.length) {
-            baseArray[baseArray.length - 1].finishEntry = passedAccounts.length;
+        if(baseArray[baseArray.length -1 ].finishEntry >= passedArray.length) {
+            baseArray[baseArray.length - 1].finishEntry = passedArray.length;
             continue
         } 
         start += value;
