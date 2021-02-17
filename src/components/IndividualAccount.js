@@ -260,7 +260,6 @@ function IndividualAccount(props) {
                                 <div className="mr1">Entries</div>
                                 <select id="account-entries" 
                                 className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"
-                                //onChange={(event) =>  configA(event.target.value, individualAccount.accountId)}
                                 onChange={(event) => (individualAccount.filter === false) ? configureNestedArrayPages(event.target.value, individualAccount.accountId, setIndividualAccountsEntries, setIndividualAccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, individualAccount.transactions ) : configureNestedArrayPages(event.target.value, individualAccount.accountId, setIndividualAccountsEntries, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, individualAccount.filteredTransactions)}
                                 >
                                     <option value="1">1</option>
@@ -301,7 +300,7 @@ function IndividualAccount(props) {
                                     <Sort  />
                                 </div>
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                    <div className="mr1 mr2-l">BudgetCategory</div>
+                                    <div className="mr1 mr2-l">Budget Category</div>
                                     <Sort />
                                 </div>
                             </div>
@@ -330,7 +329,7 @@ function IndividualAccount(props) {
                                     <Sort  />
                                 </div>
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                    <div className="mr1 mr2-l">BudgetCategory</div>
+                                    <div className="mr1 mr2-l">Budget Category</div>
                                     <Sort />
                                 </div>
                             </div>
@@ -339,7 +338,7 @@ function IndividualAccount(props) {
                         
                         {
                             (Array.isArray(individualAccount.transactions) && transactionsArrayValid && individualAccount.filter === false   ) ?
-                            individualAccount.transactions.map(transaction => {
+                            individualAccount.transactions.slice(individualAccount.pages[individualAccount.currentPage].startEntry, individualAccount.pages[individualAccount.currentPage].finishEntry).map(transaction => {
                                 const transactionDate = new Date(transaction.date).toLocaleString();
 
                                 return(
@@ -375,7 +374,7 @@ function IndividualAccount(props) {
                         }
                         {
                             ((Array.isArray(individualAccount.filteredTransactions)) && filteredTransactionsArrayValid && individualAccount.filter === true) ?
-                            individualAccount.filteredTransactions.map(transaction => {
+                            individualAccount.filteredTransactions.slice(individualAccount.filteredPages[individualAccount.currentPage].startEntry, individualAccount.filteredPages[individualAccount.currentPage].finishEntry).map(transaction => {
                                 const transactionDate = new Date(transaction.date).toLocaleString();
                                 return(
                                     <div className="w-100 flex flex-column mt3 ph3
