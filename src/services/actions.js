@@ -77,7 +77,17 @@ import {
     SET_ACCOUNT_SUMMARY_FILTER_CURRENT_PAGE,
     SET_ACCOUNT_SUMMARY_FILTER_PAGES,
     SET_ACCOUNT_SUMMARY_ACCOUNTS, 
-    SET_INDIVIDUAL_ACCOUNT_FILTER_TRANSACTION_SELECTION
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION,
+    SET_INDIVIDUAL_ACCOUNTS_ENTRIES,
+    SET_INDIVIDUAL_ACCOUNTS_TOTAL_PAGES,
+    SET_INDIVIDUAL_ACCOUNTS_PAGES,
+    SET_INDIVIDUAL_ACCOUNTS_CURRENT_PAGE,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER,
+    SET_INDIVIDUAL_ACCOUNTS_FILTERED_ACCOUNTS,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_TOTAL_PAGES,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
+    SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS
 } from "./constants.js";
 
 
@@ -625,10 +635,10 @@ export const setAccountSummaryAccounts = (payload) => {
     }
 }
 
-export const setIndividualAccountFilterTransactionSelection = (accountId, payload) => {
+export const setIndividualAccountsFilterTransactionSelection = (accountId, payload) => {
     return {
-        type: SET_INDIVIDUAL_ACCOUNT_FILTER_TRANSACTION_SELECTION,
-        setIndividualAccountFilterTransactionSelectionPayload: payload,
-        setIndividualAccountFilterTransactionSelectionAccountId: accountId
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION,
+        setIndividualAccountsFilterTransactionSelectionPayload: payload,
+        setIndividualAccountsFilterTransactionSelectionAccountId: accountId
     }
 }

@@ -16,7 +16,7 @@ import {
     setRouteHome,
     setAccounts,
     setTransactions,
-    setIndividualAccountFilterTransactionSelection
+    setIndividualAccountsFilterTransactionSelection
 } from "../services/actions.js";
 
 
@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch) => {
         setRouteHome: (value) => dispatch(setRouteHome(value)),
         setAccounts: (value) => dispatch(setAccounts(value)),
         setTransactions: (value) => dispatch(setTransactions(value)),
-        setIndividualAccountFilterTransactionSelection: (accountId, payload) => dispatch(setIndividualAccountFilterTransactionSelection(accountId, payload))
+        setIndividualAccountsFilterTransactionSelection: (accountId, payload) => dispatch(setIndividualAccountsFilterTransactionSelection(accountId, payload))
     }
 }
 

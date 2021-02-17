@@ -32,6 +32,8 @@ const pagesArray = (value, passedAccounts, numberOfPages) => {
     return baseArray;
 }
 
+
+/*
 const handleFilter = (value, setTotalPages, setCurrentPage, setPages, passedArray, arrayType, accountTypeName, currentEntries ) => {
     const search= value.trim();
     if(search !== "") {
@@ -79,3 +81,5 @@ const handleFilter = (value, setTotalPages, setCurrentPage, setPages, passedArra
         setFilteredArray(passedArrays);
     }
 }
+
+*/
