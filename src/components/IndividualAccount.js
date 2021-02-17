@@ -25,11 +25,12 @@ function IndividualAccount(props) {
     }
 
     const accountTypeName = getAccountTypeName();
+    
 
     const classNoSelect = "h2 ph1 ph2-l flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
     const classSelect = "h2 ph1 ph2-l flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
-
-    console.log(individualAccount.transactions === undefined )
+    
+   
     
     return(
         <div className="w-100">    
@@ -250,7 +251,7 @@ function IndividualAccount(props) {
                         </div>
 
                         {
-                            (individualAccount.transactions !== undefined && individualAccount.filter === false) ?
+                            (Array.isArray(individualAccount.transactions) && individualAccount.filter === false) ?
                             <div className="w-100 flex flex-column mt3 ph3
                             flex-row-l
                             ">
@@ -279,7 +280,7 @@ function IndividualAccount(props) {
                         }
 
                         {
-                            ((individualAccount.filteredTransasctions !== undefined) && individualAccount.filter === true) ?
+                            ((Array.isArray(individualAccount.filteredTransactions)) && individualAccount.filter === true) ?
                             <div className="w-100 flex flex-column mt3 ph3
                             flex-row-l
                             ">
@@ -308,8 +309,10 @@ function IndividualAccount(props) {
                         }
                         
                         {
-                            ((individualAccount.transasctions === undefined)) ?
+                            (Array.isArray(individualAccount.transactions) && individualAccount.filter === false   ) ?
                             individualAccount.transactions.map(transaction => {
+                                const transactionDate = new Date(transaction.date).toLocaleString();
+
                                 return(
                                     <div className="w-100 flex flex-column mt3 ph3
                                     flex-row-l
@@ -321,19 +324,19 @@ function IndividualAccount(props) {
                                             <div className="mr1 mr2-l">{transaction.amount}</div>
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">Date</div>
+                                            <div className="mr1 mr2-l">{transactionDate}</div>
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">Transaction Type</div>
+                                            <div className="mr1 mr2-l">{accountTypeName}</div>
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">Memo</div>
+                                            <div className="mr1 mr2-l">{transaction.memoNote}</div>
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">BudgetCategory</div>
+                                            <div className="mr1 mr2-l">{transaction.categoryItemName}</div>
                                             
                                         </div>
                                         {
@@ -345,29 +348,30 @@ function IndividualAccount(props) {
                             : ""
                         }
                         {
-                            ((individualAccount.filteredTransasctions !== undefined) && individualAccount.filter === true) ?
-                            individualAccount.transactions.map(transaction => {
+                            ((Array.isArray(individualAccount.filteredTransactions)) && individualAccount.filter === true) ?
+                            individualAccount.filteredTransactions.map(transaction => {
+                                const transactionDate = new Date(transaction.date).toLocaleString();
                                 return(
                                     <div className="w-100 flex flex-column mt3 ph3
                                     flex-row-l
                                     ">
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">Amount</div>
+                                            <div className="mr1 mr2-l">{transaction.amount}</div>
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">Date</div>
+                                            <div className="mr1 mr2-l">{transactionDate}</div>
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">Transaction Type</div>
+                                            <div className="mr1 mr2-l">{accountTypeName}</div>
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">Memo</div>
+                                            <div className="mr1 mr2-l">{transaction.memoNote}</div>
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">BudgetCategory</div>
+                                            <div className="mr1 mr2-l">{transaction.categoryItemName}</div>
                                             
                                         </div>
                                         {
