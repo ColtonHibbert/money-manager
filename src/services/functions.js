@@ -43,13 +43,18 @@ export const pagesArray = (value, passedArray, numberOfPages) => {
 }
 
 
-/*
-const handleFilter = (value, setTotalPages, setCurrentPage, setPages, passedArray, arrayType, accountTypeName, currentEntries ) => {
+
+export const handleTransactionFilter = (value, setTotalPages, setCurrentPage, setPages, passedArray, arrayType, accountTypeName, currentEntries, filterTransactionSelection ) => {
     const search= value.trim();
     if(search !== "") {
         const searchRegex = new RegExp(search, "i");
+
+        // grab args for transactions, filter by account type id depending on what filterTransactionSelection is
+        const filterTransactionSelectionArray = passedArray.filter(entry => {
+            
+        })
        
-        const filteredArray = passedArray.filter(entry => {
+        const filteredArray = filterTransactionSelectionArray.filter(entry => {
             if(arrayType === "accountsummary") {
                 return (searchRegex.test(entry.accountName) || searchRegex.test(entry.currentBalance) || searchRegex.test(entry.lowAlertBalance) || searchRegex.test(entry.firstName));
             }
@@ -92,4 +97,3 @@ const handleFilter = (value, setTotalPages, setCurrentPage, setPages, passedArra
     }
 }
 
-*/
