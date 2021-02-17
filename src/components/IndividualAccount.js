@@ -25,6 +25,23 @@ function IndividualAccount(props) {
     }
 
     const accountTypeName = getAccountTypeName();
+    let transactionsArrayValid;
+    let filteredTransactionsArrayValid;
+    try {
+        if(individualAccount.transactions.length) {
+            transactionsArrayValid = true;
+        }
+    } catch(err) {
+        transactionsArrayValid = false;
+    }
+
+    try {
+        if(individualAccount.filteredTransactions.length) {
+            filteredTransactionsArrayValid = true;
+        }
+    } catch(err) {
+        filteredTransactionsArrayValid = false;
+    }
     
 
     const classNoSelect = "h2 ph1 ph2-l flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
@@ -251,7 +268,7 @@ function IndividualAccount(props) {
                         </div>
 
                         {
-                            (Array.isArray(individualAccount.transactions) && individualAccount.filter === false) ?
+                            (Array.isArray(individualAccount.transactions) && transactionsArrayValid && individualAccount.filter === false) ?
                             <div className="w-100 flex flex-column mt3 ph3
                             flex-row-l
                             ">
@@ -280,7 +297,7 @@ function IndividualAccount(props) {
                         }
 
                         {
-                            ((Array.isArray(individualAccount.filteredTransactions)) && individualAccount.filter === true) ?
+                            (Array.isArray(individualAccount.filteredTransactions) && filteredTransactionsArrayValid && individualAccount.filter === true) ?
                             <div className="w-100 flex flex-column mt3 ph3
                             flex-row-l
                             ">
@@ -309,7 +326,7 @@ function IndividualAccount(props) {
                         }
                         
                         {
-                            (Array.isArray(individualAccount.transactions) && individualAccount.filter === false   ) ?
+                            (Array.isArray(individualAccount.transactions) && transactionsArrayValid && individualAccount.filter === false   ) ?
                             individualAccount.transactions.map(transaction => {
                                 const transactionDate = new Date(transaction.date).toLocaleString();
 
@@ -348,7 +365,7 @@ function IndividualAccount(props) {
                             : ""
                         }
                         {
-                            ((Array.isArray(individualAccount.filteredTransactions)) && individualAccount.filter === true) ?
+                            ((Array.isArray(individualAccount.filteredTransactions)) && filteredTransactionsArrayValid && individualAccount.filter === true) ?
                             individualAccount.filteredTransactions.map(transaction => {
                                 const transactionDate = new Date(transaction.date).toLocaleString();
                                 return(
