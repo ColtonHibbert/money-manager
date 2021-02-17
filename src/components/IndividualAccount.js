@@ -340,7 +340,6 @@ function IndividualAccount(props) {
                             (Array.isArray(individualAccount.transactions) && transactionsArrayValid && individualAccount.filter === false   ) ?
                             individualAccount.transactions.slice(individualAccount.pages[individualAccount.currentPage].startEntry, individualAccount.pages[individualAccount.currentPage].finishEntry).map(transaction => {
                                 const transactionDate = new Date(transaction.date).toLocaleString();
-
                                 return(
                                     <div className="w-100 flex flex-column mt3 ph3
                                     flex-row-l
