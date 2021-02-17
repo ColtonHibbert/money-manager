@@ -32,7 +32,7 @@ const pagesArray = (value, passedAccounts, numberOfPages) => {
     return baseArray;
 }
 
-const handleFilter = (value, setTotalPages, setCurrentPage, setPages, passedArray, arrayType, accountTypeName ) => {
+const handleFilter = (value, setTotalPages, setCurrentPage, setPages, passedArray, arrayType, accountTypeName, currentEntries ) => {
     const search= value.trim();
     if(search !== "") {
         const searchRegex = new RegExp(search, "i");
@@ -57,25 +57,25 @@ const handleFilter = (value, setTotalPages, setCurrentPage, setPages, passedArra
                 return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
             }
         })
-        const numberOfPages = (Math.ceil(filteredAccounts.length / accountSummary.entries));
-        const modifiedPages = pagesArray(accountSummary.entries ,filteredAccounts, numberOfPages);
+        const numberOfPages = (Math.ceil(filteredArray.length / currentEntries));
+        const modifiedPages = pagesArray(currentEntries, filteredArray, numberOfPages);
 
-        setAccountSummaryFilterTotalPages(numberOfPages);
-        setAccountSummaryFilterCurrentPage(0);
-        setAccountSummaryFilteredAccounts(filteredAccounts);
+        setTotalPages(numberOfPages);
+        setCurrentPage(0);
+        setFilteredArray(filteredArray);
         console.log("modified pages", modifiedPages, numberOfPages)
-        setAccountSummaryFilterPages(modifiedPages)
-        setAccountSummaryFilter(true);
-        console.log("filteredAccounts: ",filteredAccounts);
+        setFilterPages(modifiedPages)
+        setFilter(true);
+        console.log("filteredAccounts: ",filteredArray);
     }
     if(search === "") {
-        const numberOfPages = (Math.ceil(accountSummary.accounts.length / accountSummary.entries));
-        const modifiedPages = pagesArray(accountSummary.entries, accountSummary.accounts, numberOfPages);
+        const numberOfPages = (Math.ceil(passedArray.length / currentEntries));
+        const modifiedPages = pagesArray(currentEntries, passedArray, numberOfPages);
 
-        setAccountSummaryPages(modifiedPages);
-        setAccountSummaryCurrentPage(0);
-        setAccountSummaryTotalPages(numberOfPages);
-        setAccountSummaryFilter(false);
-        setAccountSummaryFilteredAccounts(accountSummary.accounts);
+        setPages(modifiedPages);
+        setCurrentPage(0);
+        setTotalPages(numberOfPages);
+        setFilter(false);
+        setFilteredArray(passedArrays);
     }
 }
