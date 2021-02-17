@@ -4,13 +4,23 @@ import PriceTagIcon from "../components/PriceTagIcon.js";
 import DepositIcon from "../components/DepositIcon.js";
 import TransactionIcon from "../components/TransactionIcon.js";
 import Sort from "../components/Sort.js";
-import { pagesArray, configurePages }  from "../services/functions.js";
+import { pagesArray, configurePages, configureNestedArrayPages, configA }  from "../services/functions.js";
 
 function IndividualAccount(props) {
     const { 
         individualAccount,
         categoriesAndItems,
-        setIndividualAccountsFilterTransactionSelection
+        setIndividualAccountsFilterTransactionSelection,
+        setIndividualAccountsEntries,
+        setIndividualAccountsTotalPages,
+        setIndividualAccountsPages,
+        setIndividualAccountsCurrentPage,
+        setIndividualAccountsFilter,
+        setIndividualAccountsFilteredTransactions,
+        setIndividualAccountsFilterTotalPages,
+        setIndividualAccountsFilterCurrentPage,
+        setIndividualAccountsFilterPages,
+        setIndividualAccountsTransactions
     } = props;
 
     const getAccountTypeName = () => {
@@ -250,8 +260,8 @@ function IndividualAccount(props) {
                                 <div className="mr1">Entries</div>
                                 <select id="account-entries" 
                                 className="w3 bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b"
-                                //onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setIndividualAccountsEntries, setIndividualAcccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, individualAccount.transactions ) : configurePages(event.target.value, setIndividualAccountsEntries, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, individualAccount.filteredAccounts)}
-                                //onChange={(event) => (accountSummary.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
+                                //onChange={(event) =>  configA(event.target.value, individualAccount.accountId)}
+                                onChange={(event) => (individualAccount.filter === false) ? configureNestedArrayPages(event.target.value, individualAccount.accountId, setIndividualAccountsEntries, setIndividualAccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, individualAccount.transactions ) : configureNestedArrayPages(event.target.value, individualAccount.accountId, setIndividualAccountsEntries, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, individualAccount.filteredTransactions)}
                                 >
                                     <option value="1">1</option>
                                     <option value="2">2</option>
