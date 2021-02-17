@@ -77,7 +77,17 @@ import {
     SET_ACCOUNT_SUMMARY_FILTER_CURRENT_PAGE,
     SET_ACCOUNT_SUMMARY_FILTER_PAGES,
     SET_ACCOUNT_SUMMARY_ACCOUNTS,
-    SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION,
+    SET_INDIVIDUAL_ACCOUNTS_ENTRIES,
+    SET_INDIVIDUAL_ACCOUNTS_TOTAL_PAGES,
+    SET_INDIVIDUAL_ACCOUNTS_PAGES,
+    SET_INDIVIDUAL_ACCOUNTS_CURRENT_PAGE,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER,
+    SET_INDIVIDUAL_ACCOUNTS_FILTERED_TRANSACTIONS,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_TOTAL_PAGES,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
+    SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS 
 } from "./constants.js";
 
 const initialState = {
@@ -172,14 +182,21 @@ const initialState = {
                 }
             ],
             filter: false,
-            filteredAccounts: [
+            filteredTransactions: [
                 {
-                    accountId: 0,
-                    accountName: "",
-                    accountTypeId: 0,
-                    currentBalance: 0,
-                    lowAlertBalance: 0,
-                    userId: 0
+                  transactionId: 0,
+                  amount: 0,
+                  date: "",
+                  memoNote: "",
+                  categoryName: "",
+                  categoryItemName: "",
+                  personalBudgetCategoryId: 0,
+                  personalBudgetCategoryItemId: 0,
+                  householdBudgetCategoryId: 0,
+                  householdBudgetCategoryItemId: 0,
+                  transactionTypeId: 0,
+                  userId: 0,
+                  accountId: 0
                 }
             ],
             filterTotalPages: 0,
@@ -808,6 +825,7 @@ export const reducer = (state=initialState, action={}) => {
                     filterTotalPages: individualAccountTransactionPagesRegularOrFilter.totalPages,
                     filterCurrentPage: 0,
                     filterPages: individualAccountTransactionPagesRegularOrFilter.pages,
+                    filteredTransactions: account.transactions,
                     transactions: account.transactions,
                     transactionsMonthly: account.transactionsMonthly,
                     transactionsMonthlyQuantity: account.transactionsMonthlyQuantity,
@@ -1171,5 +1189,164 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts)
         }
     }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ENTRIES) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEntriesAccountId) {
+                        account.entries = action.setIndividualAccountsEntriesPayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_TOTAL_PAGES) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsTotalPagesAccountId) {
+                        account.totalPages = action.setIndividualAccountsTotalPagesPayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_PAGES) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsPagesAccountId) {
+                        account.pages = action.setIndividualAccountsPagesPayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_CURRENT_PAGE) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsCurrentPageAccountId) {
+                        account.currentPage = action.setIndividualAccountsCurrentPagePayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsFilterAccountId) {
+                        account.filter = action.setIndividualAccountsFilterPayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTERED_TRANSACTIONS) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsFilteredTransactionsAccountId) {
+                        account.filteredTransactions = action.setIndividualAccountsFilteredTransactionsPayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_TOTAL_PAGES) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsFilterTotalPagesAccountId) {
+                        account.filterTotalPages = action.setIndividualAccountsFilterTotalPagesPayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsFilterCurrentPageAccountId) {
+                        account.filterCurrentPage = action.setIndividualAccountsFilterCurrentPagePayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsFilterPagesAccountId) {
+                        account.filterPages = action.setIndividualAccountsFilterPagesPayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsTransactionsAccountId) {
+                        account.transactions = action.setIndividualAccountsTransactionsPayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
     return state;
 }
+
+
+
+/*
+if(action.type === SET_INDIVIDUAL_ACCOUNTS_) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccounts) {
+                        account.
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+*/

@@ -16,7 +16,17 @@ import {
     setRouteHome,
     setAccounts,
     setTransactions,
-    setIndividualAccountsFilterTransactionSelection
+    setIndividualAccountsFilterTransactionSelection,
+    setIndividualAccountsEntries,
+    setIndividualAccountsTotalPages,
+    setIndividualAccountsPages,
+    setIndividualAccountsCurrentPage,
+    setIndividualAccountsFilter,
+    setIndividualAccountsFilteredTransactions,
+    setIndividualAccountsFilterTotalPages,
+    setIndividualAccountsFilterCurrentPage,
+    setIndividualAccountsFilterPages,
+    setIndividualAccountsTransactions
 } from "../services/actions.js";
 
 
