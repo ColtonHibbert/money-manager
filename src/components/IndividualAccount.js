@@ -4,7 +4,7 @@ import PriceTagIcon from "../components/PriceTagIcon.js";
 import DepositIcon from "../components/DepositIcon.js";
 import TransactionIcon from "../components/TransactionIcon.js";
 import Sort from "../components/Sort.js";
-import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter }  from "../services/functions.js";
+import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter, handleFilterTransactionSelection }  from "../services/functions.js";
 
 function IndividualAccount(props) {
     const { 
@@ -36,6 +36,19 @@ function IndividualAccount(props) {
     }
 
     const accountTypeName = getAccountTypeName();
+
+    const getTransactionTypeName = (entry) => {
+        if(entry.transactionTypeId === 1) {
+            return "Withdrawal";
+        }
+        if(entry.transactionTypeId === 2) {
+            return "Deposit";
+        }
+        if(entry.transactionTypeId === 3) {
+            return "Transfer"
+        }
+    }
+
     let transactionsArrayValid;
     let filteredTransactionsArrayValid;
     try {
@@ -182,7 +195,9 @@ function IndividualAccount(props) {
                             flex-column-l h4-l w-20-l
                             ">
                                 <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Transaction Type</div>
-                                <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1">
+                                <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
+
+                                >
                                     <option value="">--</option>
                                     <option value="1">Withdrawal</option>
                                     <option value="2">Deposit</option>
@@ -245,10 +260,10 @@ function IndividualAccount(props) {
                             <div className="custom-gray f3 mt2 pl3">Transactions</div>
                             <div className="flex flex-row custom-gray mt2 pl3 pr3
                             ">
-                                <div className={(individualAccount.filterTransactionSelection === "all" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountsFilterTransactionSelection(individualAccount.accountId, "all")}>All</div>
-                                <div className={(individualAccount.filterTransactionSelection === "withdrawals" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountsFilterTransactionSelection(individualAccount.accountId, "withdrawals")}>Withdrawals</div>
-                                <div className={(individualAccount.filterTransactionSelection === "deposits" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountsFilterTransactionSelection(individualAccount.accountId, "deposits")}>Deposits</div>
-                                <div className={(individualAccount.filterTransactionSelection === "transfers" ? classSelect : classNoSelect)} onClick={() => setIndividualAccountsFilterTransactionSelection(individualAccount.accountId, "transfers")}>Transfers</div>
+                                <div className={(individualAccount.filterTransactionSelection === "all" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "all", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions)}>All</div>
+                                <div className={(individualAccount.filterTransactionSelection === "withdrawals" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "withdrawals", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions)}>Withdrawals</div>
+                                <div className={(individualAccount.filterTransactionSelection === "deposits" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "deposits", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions)}>Deposits</div>
+                                <div className={(individualAccount.filterTransactionSelection === "transfers" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "transfers", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions)}>Transfers</div>
                             </div>
                         </div>
                                   
@@ -342,7 +357,8 @@ function IndividualAccount(props) {
                             (Array.isArray(individualAccount.transactions) && transactionsArrayValid && individualAccount.filter === false   ) ?
                             individualAccount.transactions.slice(individualAccount.pages[individualAccount.currentPage].startEntry, individualAccount.pages[individualAccount.currentPage].finishEntry).map(transaction => {
                                 const transactionDate = new Date(transaction.date).toLocaleString();
-                                console.log("running filter false")
+                                const transactionType = getTransactionTypeName(transaction);
+                                
                                 return(
                                     <div className="w-100 flex flex-column mt3 ph3
                                     flex-row-l
@@ -355,7 +371,7 @@ function IndividualAccount(props) {
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">{accountTypeName}</div>
+                                            <div className="mr1 mr2-l">{transactionType}</div>
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
@@ -378,7 +394,8 @@ function IndividualAccount(props) {
                             ((Array.isArray(individualAccount.filteredTransactions)) && filteredTransactionsArrayValid && individualAccount.filter === true) ?
                             individualAccount.filteredTransactions.slice(individualAccount.filterPages[individualAccount.filterCurrentPage].startEntry, individualAccount.filterPages[individualAccount.filterCurrentPage].finishEntry).map(transaction => {
                                 const transactionDate = new Date(transaction.date).toLocaleString();
-                                console.log("running filter true")
+                                const transactionType = getTransactionTypeName(transaction);
+
                                 return(
                                     <div className="w-100 flex flex-column mt3 ph3
                                     flex-row-l
@@ -391,7 +408,7 @@ function IndividualAccount(props) {
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">{accountTypeName}</div>
+                                            <div className="mr1 mr2-l">{transactionType}</div>
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
@@ -421,44 +438,7 @@ function IndividualAccount(props) {
 
 export default IndividualAccount;
 
-//  onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
+//onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
 
 
 //setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} 
-
-/*
-<div className="w-100 flex flex-column mt3 ph3
-                        flex-row-l
-                        ">
-                            <div className="w-15-l ph1 custom-gray flex flex-row items-center 
-                            mt2-l ph0-l
-                            ">
-                                <div className="mr1 mr2-l">Amount</div>
-                                <Sort />
-                            </div>
-                            <div className="w-15-l ph1 custom-gray flex flex-row items-center 
-                            mt2-l ph0-l
-                            ">
-                                <div className="mr1 mr2-l">Date</div>
-                                <Sort  />
-                            </div>
-                            <div className="w-15-l ph1 custom-gray flex flex-row items-center 
-                            mt2-l ph0-l
-                            ">
-                                <div className="mr1 mr2-l">Transaction Type</div>
-                                <Sort  />
-                            </div>
-                            <div className="w-15-l ph1 custom-gray flex flex-row items-center 
-                            mt2-l ph0-l
-                            ">
-                                <div className="mr1 mr2-l">Memo</div>
-                                <Sort  />
-                            </div>
-                            <div className="w-15-l ph1 custom-gray flex flex-row items-center 
-                            mt2-l ph0-l
-                            ">
-                                <div className="mr1 mr2-l">BudgetCategory</div>
-                                <Sort />
-                            </div>
-                        </div>
-    */
