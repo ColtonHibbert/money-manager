@@ -362,7 +362,8 @@ function IndividualAccount(props) {
                                 const transactionType = getTransactionTypeName(transaction);
                                 
                                 return(
-                                    <div className="w-100 flex flex-column mt3 ph3
+                                    <div key={transaction.transactionId}
+                                    className="w-100 flex flex-column mt3 ph3
                                     flex-row-l
                                     ">
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
@@ -399,7 +400,8 @@ function IndividualAccount(props) {
                                 const transactionType = getTransactionTypeName(transaction);
 
                                 return(
-                                    <div className="w-100 flex flex-column mt3 ph3
+                                    <div key={transaction.transactionId}
+                                    className="w-100 flex flex-column mt3 ph3
                                     flex-row-l
                                     ">
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
