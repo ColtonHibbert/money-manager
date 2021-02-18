@@ -44,13 +44,12 @@ export const pagesArray = (value, passedArray, numberOfPages) => {
 
 
 
-export const handleTransactionFilter = (value, setFilter, setTotalPages, setCurrentPage, setPages, setArray, currentEntries, filterTransactionSelectionType , arrayType, accountTypeName, passedArray  ) => {
+export const handleTransactionFilter = (value, accountId, setFilter, setTotalPages, setCurrentPage, setPages, setArray, currentEntries, filterTransactionSelectionType , arrayType, accountTypeName, passedArray  ) => {
     const search= value.trim();
     
     if(search !== "") {
         const searchRegex = new RegExp(search, "i");
 
-        // filter by account type id depending on what filterTransactionSelection is
         const filterTransactionSelectionArray = passedArray.filter(entry => {
             if(filterTransactionSelectionType === "all") {
                 return entry;
@@ -85,23 +84,23 @@ export const handleTransactionFilter = (value, setFilter, setTotalPages, setCurr
         const numberOfPages = (Math.ceil(filteredArray.length / currentEntries));
         const modifiedPages = pagesArray(currentEntries, filteredArray, numberOfPages);
 
-        setTotalPages(numberOfPages);
-        setCurrentPage(0);
-        setArray(filteredArray);
+        setTotalPages(accountId, numberOfPages);
+        setCurrentPage(accountId, 0);
+        setArray(accountId, filteredArray);
         console.log("modified pages, numberOfPages", modifiedPages, numberOfPages)
-        setPages(modifiedPages)
-        setFilter(true);
+        setPages(accountId, modifiedPages)
+        setFilter(accountId, true);
         //console.log("filteredAccounts: ",filteredArray);
     }
     if(search === "") {
         const numberOfPages = (Math.ceil(passedArray.length / currentEntries));
         const modifiedPages = pagesArray(currentEntries, passedArray, numberOfPages);
 
-        setPages(modifiedPages);
-        setCurrentPage(0);
-        setTotalPages(numberOfPages);
-        setFilter(false);
-        setArray(passedArray);
+        setPages(accountId, modifiedPages);
+        setCurrentPage(accountId, 0);
+        setTotalPages(accountId, numberOfPages);
+        setFilter(accountId, false);
+        setArray(accountId, passedArray);
     }
 }
 
