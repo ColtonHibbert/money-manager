@@ -8,7 +8,7 @@ import DownIcon from "./DownIcon.js";
 import AccountSummaryIcon from "./AccountSummaryIcon.js";
 
 function MenuCategory(props) {
-    console.log(props.navigation)
+    //console.log(props.navigation)
 
     const {navigation, accounts, name, setNavigationAccountSelected, setRouteHome, setMobileMenu } = props;
 
