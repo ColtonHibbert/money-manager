@@ -170,7 +170,7 @@ const initialState = {
             userId: 0,
             accountTypeId: 0,
             userFirstName: "",
-            entries: 1,
+            entries: 3,
             filterTransactionSelection: "all",
             currentPage: 0,
             totalPages: 0,
@@ -806,7 +806,7 @@ export const reducer = (state=initialState, action={}) => {
 
             action.setInitialDataPayload.initialData.individualAccounts.map(account => {
 
-                const individualAccountTransactionPagesRegularOrFilter = configurePages(1, account.transactions);
+                const individualAccountTransactionPagesRegularOrFilter = configurePages(3, account.transactions);
 
                 const accountObject = {
                     accountId: account.accountId,
@@ -816,7 +816,7 @@ export const reducer = (state=initialState, action={}) => {
                     userId: account.userId,
                     accountTypeId: account.accountTypeId,
                     userFirstName: account.userFirstName,
-                    entries: 1,
+                    entries: individualAccountTransactionPagesRegularOrFilter.entries,
                     currentPage: 0,
                     totalPages: individualAccountTransactionPagesRegularOrFilter.totalPages,
                     pages: individualAccountTransactionPagesRegularOrFilter.pages,

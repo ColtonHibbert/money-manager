@@ -46,13 +46,26 @@ export const pagesArray = (value, passedArray, numberOfPages) => {
 
 export const handleTransactionFilter = (value, setFilter, setTotalPages, setCurrentPage, setPages, setArray, currentEntries, filterTransactionSelectionType , arrayType, accountTypeName, passedArray  ) => {
     const search= value.trim();
+    
     if(search !== "") {
         const searchRegex = new RegExp(search, "i");
 
         // filter by account type id depending on what filterTransactionSelection is
         const filterTransactionSelectionArray = passedArray.filter(entry => {
-            return (entry.filterTransactionSelection === filterTransactionSelectionType);
+            if(filterTransactionSelectionType === "all") {
+                return entry;
+            }
+            if(entry.transactionTypeId === 1 && filterTransactionSelectionType === "withdrawals" ) {
+                return entry;
+            }
+            if(entry.transactionTypeId === 2 && filterTransactionSelectionType === "deposits" ) {
+                return entry;
+            }
+            if(entry.transactionTypeId === 3 && filterTransactionSelectionType === "transfers" ) {
+                return entry;
+            }
         })
+        console.log("filterTransactionSelectionArray: ", filterTransactionSelectionArray);
        
         const filteredArray = filterTransactionSelectionArray.filter(entry => {
             if(arrayType === "individualtransactions") {
@@ -61,7 +74,6 @@ export const handleTransactionFilter = (value, setFilter, setTotalPages, setCurr
             if(arrayType === "individualtransactionsallaccounts") {
                 return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
             }
-           
             if(arrayType === "householdtransactions") {
                 return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
             }
@@ -69,16 +81,17 @@ export const handleTransactionFilter = (value, setFilter, setTotalPages, setCurr
                 return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
             }
         })
+        console.log("filteredArray: ", filteredArray);
         const numberOfPages = (Math.ceil(filteredArray.length / currentEntries));
         const modifiedPages = pagesArray(currentEntries, filteredArray, numberOfPages);
 
         setTotalPages(numberOfPages);
         setCurrentPage(0);
         setArray(filteredArray);
-        console.log("modified pages", modifiedPages, numberOfPages)
+        console.log("modified pages, numberOfPages", modifiedPages, numberOfPages)
         setPages(modifiedPages)
         setFilter(true);
-        console.log("filteredAccounts: ",filteredArray);
+        //console.log("filteredAccounts: ",filteredArray);
     }
     if(search === "") {
         const numberOfPages = (Math.ceil(passedArray.length / currentEntries));
