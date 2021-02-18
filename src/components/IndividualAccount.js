@@ -273,7 +273,7 @@ function IndividualAccount(props) {
                                 className="w4 input-reset bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b
                                 w5-l
                                 "
-                                onInput={(event) => ( (event.target.value).trim() !== "" ) ?
+                                onInput={(event) => ( (event.target.value).trim() === "" ) ?
                                     handleTransactionFilter(event.target.value, setIndividualAccountsFilter, setIndividualAccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, setIndividualAccountsTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions)
                                     : handleTransactionFilter(event.target.value, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions)
                                 }
