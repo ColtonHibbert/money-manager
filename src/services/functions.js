@@ -42,6 +42,37 @@ export const pagesArray = (value, passedArray, numberOfPages) => {
     return baseArray;
 }
 
+export const handleFilterTransactionSelection = (accountId, setFilter, setTotalPages, setCurrentPage, setPages, setArray, currentEntries, filterTransactionSelectionType, setSelection, passedArray ) => {
+    const filteredArray = passedArray.filter(entry => {
+        if(filterTransactionSelectionType === "all") {
+            return entry;
+        }
+        if(entry.transactionTypeId === 1 && filterTransactionSelectionType === "withdrawals" ) {
+            return entry;
+        }
+        if(entry.transactionTypeId === 2 && filterTransactionSelectionType === "deposits" ) {
+            return entry;
+        }
+        if(entry.transactionTypeId === 3 && filterTransactionSelectionType === "transfers" ) {
+            return entry;
+        }
+    })
+    console.log("handleFilterTransactionSelection, filteredArray: ", filteredArray);
+   
+    
+    console.log("filteredArray: ", filteredArray);
+    const numberOfPages = (Math.ceil(filteredArray.length / currentEntries));
+    const modifiedPages = pagesArray(currentEntries, filteredArray, numberOfPages);
+
+    setTotalPages(accountId, numberOfPages);
+    setCurrentPage(accountId, 0);
+    setArray(accountId, filteredArray);
+    console.log("modified pages, numberOfPages", modifiedPages, numberOfPages)
+    setPages(accountId, modifiedPages)
+    setFilter(accountId, true);
+    setSelection(accountId, filterTransactionSelectionType)
+    
+}
 
 
 export const handleTransactionFilter = (value, accountId, setFilter, setTotalPages, setCurrentPage, setPages, setArray, currentEntries, filterTransactionSelectionType , arrayType, accountTypeName, passedArray  ) => {
