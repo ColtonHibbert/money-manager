@@ -44,29 +44,24 @@ export const pagesArray = (value, passedArray, numberOfPages) => {
 
 
 
-export const handleTransactionFilter = (value, setTotalPages, setCurrentPage, setPages, passedArray, arrayType, accountTypeName, currentEntries, filterTransactionSelection ) => {
+export const handleTransactionFilter = (value, setFilter, setTotalPages, setCurrentPage, setPages, setArray, currentEntries, filterTransactionSelectionType , arrayType, accountTypeName, passedArray  ) => {
     const search= value.trim();
     if(search !== "") {
         const searchRegex = new RegExp(search, "i");
 
-        // grab args for transactions, filter by account type id depending on what filterTransactionSelection is
+        // filter by account type id depending on what filterTransactionSelection is
         const filterTransactionSelectionArray = passedArray.filter(entry => {
-            
+            return (entry.filterTransactionSelection === filterTransactionSelectionType);
         })
        
         const filteredArray = filterTransactionSelectionArray.filter(entry => {
-            if(arrayType === "accountsummary") {
-                return (searchRegex.test(entry.accountName) || searchRegex.test(entry.currentBalance) || searchRegex.test(entry.lowAlertBalance) || searchRegex.test(entry.firstName));
-            }
             if(arrayType === "individualtransactions") {
                 return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
             }
             if(arrayType === "individualtransactionsallaccounts") {
                 return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
             }
-            if(arrayType === "householdaccountsummary") {
-                return (searchRegex.test(entry.accountName) || searchRegex.test(entry.currentBalance) || searchRegex.test(entry.lowAlertBalance) || searchRegex.test(entry.firstName));
-            }
+           
             if(arrayType === "householdtransactions") {
                 return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
             }
@@ -79,9 +74,9 @@ export const handleTransactionFilter = (value, setTotalPages, setCurrentPage, se
 
         setTotalPages(numberOfPages);
         setCurrentPage(0);
-        setFilteredArray(filteredArray);
+        setArray(filteredArray);
         console.log("modified pages", modifiedPages, numberOfPages)
-        setFilterPages(modifiedPages)
+        setPages(modifiedPages)
         setFilter(true);
         console.log("filteredAccounts: ",filteredArray);
     }
@@ -93,7 +88,16 @@ export const handleTransactionFilter = (value, setTotalPages, setCurrentPage, se
         setCurrentPage(0);
         setTotalPages(numberOfPages);
         setFilter(false);
-        setFilteredArray(passedArrays);
+        setArray(passedArray);
     }
 }
 
+/*
+   if(arrayType === "accountsummary") {
+                return (searchRegex.test(entry.accountName) || searchRegex.test(entry.currentBalance) || searchRegex.test(entry.lowAlertBalance) || searchRegex.test(entry.firstName));
+            }
+
+ if(arrayType === "householdaccountsummary") {
+                return (searchRegex.test(entry.accountName) || searchRegex.test(entry.currentBalance) || searchRegex.test(entry.lowAlertBalance) || searchRegex.test(entry.firstName));
+            }
+*/
