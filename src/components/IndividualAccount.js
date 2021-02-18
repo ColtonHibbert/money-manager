@@ -4,7 +4,7 @@ import PriceTagIcon from "../components/PriceTagIcon.js";
 import DepositIcon from "../components/DepositIcon.js";
 import TransactionIcon from "../components/TransactionIcon.js";
 import Sort from "../components/Sort.js";
-import { pagesArray, configurePages, configureNestedArrayPages, configA, handleTransactionFilter }  from "../services/functions.js";
+import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter }  from "../services/functions.js";
 
 function IndividualAccount(props) {
     const { 
@@ -273,7 +273,10 @@ function IndividualAccount(props) {
                                 className="w4 input-reset bg-custom-lighter-gray border-custom-gray custom-gray form-line-active b
                                 w5-l
                                 "
-                                onInput={(event) => ( (event.target.value).trim() !== "" ) ? handleTransactionFilter(event.target.value, ) : handleTransactionFilter()}
+                                onInput={(event) => ( (event.target.value).trim() !== "" ) ?
+                                    handleTransactionFilter(event.target.value, setIndividualAccountsFilter, setIndividualAccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, setIndividualAccountsTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions)
+                                    : handleTransactionFilter(event.target.value, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions)
+                                }
                                 ></input>
                             </div>
                         </div>

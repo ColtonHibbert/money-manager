@@ -61,7 +61,6 @@ export const handleTransactionFilter = (value, setFilter, setTotalPages, setCurr
             if(arrayType === "individualtransactionsallaccounts") {
                 return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
             }
-           
             if(arrayType === "householdtransactions") {
                 return(searchRegex.test(entry.amount) || searchRegex.test(entry.date) || searchRegex.test(entry.memoNote) || searchRegex.test(entry.categoryItemName) || searchRegex.test(accountTypeName))
             }
