@@ -58,7 +58,6 @@ function IndividualAccount(props) {
     const classNoSelect = "h2 ph1 ph2-l flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
     const classSelect = "h2 ph1 ph2-l flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
 
-
     return(
         <div className="w-100" key={individualAccount.accountId}>    
             <div className="flex flex-column w-100 items-center bg-custom-darker-gray">
@@ -274,8 +273,8 @@ function IndividualAccount(props) {
                                 w5-l
                                 "
                                 onInput={(event) => ( (event.target.value).trim() === "" ) ?
-                                    handleTransactionFilter(event.target.value, setIndividualAccountsFilter, setIndividualAccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, setIndividualAccountsTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions)
-                                    : handleTransactionFilter(event.target.value, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions)
+                                    handleTransactionFilter(event.target.value, individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, setIndividualAccountsTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions)
+                                    : handleTransactionFilter(event.target.value, individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions)
                                 }
                                 ></input>
                             </div>
@@ -343,6 +342,7 @@ function IndividualAccount(props) {
                             (Array.isArray(individualAccount.transactions) && transactionsArrayValid && individualAccount.filter === false   ) ?
                             individualAccount.transactions.slice(individualAccount.pages[individualAccount.currentPage].startEntry, individualAccount.pages[individualAccount.currentPage].finishEntry).map(transaction => {
                                 const transactionDate = new Date(transaction.date).toLocaleString();
+                                console.log("running filter false")
                                 return(
                                     <div className="w-100 flex flex-column mt3 ph3
                                     flex-row-l
@@ -376,8 +376,9 @@ function IndividualAccount(props) {
                         }
                         {
                             ((Array.isArray(individualAccount.filteredTransactions)) && filteredTransactionsArrayValid && individualAccount.filter === true) ?
-                            individualAccount.filteredTransactions.slice(individualAccount.filteredPages[individualAccount.currentPage].startEntry, individualAccount.filteredPages[individualAccount.currentPage].finishEntry).map(transaction => {
+                            individualAccount.filteredTransactions.slice(individualAccount.filterPages[individualAccount.filterCurrentPage].startEntry, individualAccount.filterPages[individualAccount.filterCurrentPage].finishEntry).map(transaction => {
                                 const transactionDate = new Date(transaction.date).toLocaleString();
+                                console.log("running filter true")
                                 return(
                                     <div className="w-100 flex flex-column mt3 ph3
                                     flex-row-l
