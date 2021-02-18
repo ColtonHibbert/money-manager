@@ -7,12 +7,13 @@ function Sort(props) {
         propertyToCompare,
         typeToCompare,
         setCurrentPage, 
+        accountId
     } = props;
 
     const handleAscSort = () => {
         const copyArrayNoMutate = arrayToSort.slice();
 
-        if(typeToCompare === "str") {
+        if(typeToCompare === "str" && (accountId === undefined || accountId === null)) {
             setNewArray(copyArrayNoMutate.sort(function(a,b) {
                 const first = a[propertyToCompare].toLowerCase();
                 const second = b[propertyToCompare].toLowerCase();
@@ -25,20 +26,63 @@ function Sort(props) {
                 return 0;
             }))
         }
-        if(typeToCompare === "num") {
+        if(typeToCompare === "num" && (accountId === undefined || accountId === null)) {
             setNewArray(copyArrayNoMutate.sort(function(a,b){
                 const first = parseFloat(a[propertyToCompare]);
                 const second = parseFloat(b[propertyToCompare]);
                 return (first - second); 
             }));
         }
-        setCurrentPage(0);
+        if(typeToCompare === "date" && (accountId === undefined || accountId === null)) {
+            setNewArray(copyArrayNoMutate.sort(function(a,b){
+                const first = Date.parse(a[propertyToCompare]);
+                const second = Date.parse(b[propertyToCompare]);
+                return (first - second); 
+            }));
+        }
+
+        //nested
+
+        if(typeToCompare === "str" && (accountId !== undefined && accountId !== null)) {
+            setNewArray(accountId, copyArrayNoMutate.sort(function(a,b) {
+                const first = a[propertyToCompare].toLowerCase();
+                const second = b[propertyToCompare].toLowerCase();
+                if(first < second) {
+                    return -1;
+                }
+                if(first > second) {
+                    return 1;
+                }
+                return 0;
+            }))
+        }
+        if(typeToCompare === "num" && (accountId !== undefined && accountId !== null)) {
+            setNewArray(accountId, copyArrayNoMutate.sort(function(a,b){
+                const first = parseFloat(a[propertyToCompare]);
+                const second = parseFloat(b[propertyToCompare]);
+                return (first - second); 
+            }));
+        }
+        if(typeToCompare === "date" && (accountId !== undefined && accountId !== null)) {
+            setNewArray(accountId, copyArrayNoMutate.sort(function(a,b){
+                const first = Date.parse(a[propertyToCompare]);
+                const second = Date.parse(b[propertyToCompare]);
+                return (first - second); 
+            }));
+        }
+
+        if(accountId !== undefined && accountId !== null) {
+            setCurrentPage(accountId, 0)
+        } else {
+            setCurrentPage(0);
+        }
+       
     }
 
     const handleDescSort = () => {
         const copyArrayNoMutate = arrayToSort.slice();
 
-        if(typeToCompare === "str") {
+        if(typeToCompare === "str" && (accountId === undefined || accountId === null)) {
             setNewArray(copyArrayNoMutate.sort(function(a,b) {
                 const first = a[propertyToCompare].toLowerCase();
                 const second = b[propertyToCompare].toLowerCase();
@@ -51,14 +95,56 @@ function Sort(props) {
                 return 0;
             }))
         }
-        if(typeToCompare === "num") {
+        if(typeToCompare === "num" && (accountId === undefined || accountId === null)) {
             setNewArray(copyArrayNoMutate.sort(function(a,b){
                 const first = parseFloat(a[propertyToCompare]);
                 const second = parseFloat(b[propertyToCompare]);
                 return (second - first); 
             }));
         }
-        setCurrentPage(0);
+        if(typeToCompare === "date" && (accountId === undefined || accountId === null)) {
+            setNewArray(copyArrayNoMutate.sort(function(a,b){
+                const first = Date.parse(a[propertyToCompare]);
+                const second = Date.parse(b[propertyToCompare]);
+                return (second - first); 
+            }));
+        }
+
+        //nested
+
+        if(typeToCompare === "str" && (accountId !== undefined && accountId !== null)) {
+            setNewArray(accountId, copyArrayNoMutate.sort(function(a,b) {
+                const first = a[propertyToCompare].toLowerCase();
+                const second = b[propertyToCompare].toLowerCase();
+                if(first < second) {
+                    return 1;
+                }
+                if(first > second) {
+                    return -1;
+                }
+                return 0;
+            }))
+        }
+        if(typeToCompare === "num" && (accountId !== undefined && accountId !== null)) {
+            setNewArray(accountId, copyArrayNoMutate.sort(function(a,b){
+                const first = parseFloat(a[propertyToCompare]);
+                const second = parseFloat(b[propertyToCompare]);
+                return (second - first); 
+            }));
+        }
+        if(typeToCompare === "date" && (accountId !== undefined && accountId !== null)) {
+            setNewArray(accountId, copyArrayNoMutate.sort(function(a,b){
+                const first = Date.parse(a[propertyToCompare]);
+                const second = Date.parse(b[propertyToCompare]);
+                return (second - first); 
+            }));
+        }
+
+        if(accountId !== undefined && accountId !== null) {
+            setCurrentPage(accountId, 0)
+        } else {
+            setCurrentPage(0);
+        }
     }
 
     return (
@@ -151,6 +237,3 @@ function Sort(props) {
 
 export default Sort;
 
-//style="enable-background:new 0 0 292.362 292.362;" width="292.362px" height="292.362px"
-
-//style="enable-background:new 0 0 292.362 292.362;"

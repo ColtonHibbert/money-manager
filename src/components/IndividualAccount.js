@@ -296,29 +296,31 @@ function IndividualAccount(props) {
                         </div>
 
                         {
+                            //setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} 
+
                             (Array.isArray(individualAccount.transactions) && transactionsArrayValid && individualAccount.filter === false) ?
                             <div className="w-100 flex flex-column mt3 ph3
                             flex-row-l
                             ">
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                     <div className="mr1 mr2-l">Amount</div>
-                                    <Sort />
+                                    <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsTransactions} arrayToSort={individualAccount.transactions} propertyToCompare={"amount"} typeToCompare={"num"} setCurrentPage={setIndividualAccountsCurrentPage} />
                                 </div>
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                     <div className="mr1 mr2-l">Date</div>
-                                    <Sort  />
+                                    <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsTransactions} arrayToSort={individualAccount.transactions} propertyToCompare={"date"} typeToCompare={"date"} setCurrentPage={setIndividualAccountsCurrentPage} />
                                 </div>
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                     <div className="mr1 mr2-l">Transaction Type</div>
-                                    <Sort  />
+                                    <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsTransactions} arrayToSort={individualAccount.transactions} propertyToCompare={"transactionTypeId"} typeToCompare={"num"} setCurrentPage={setIndividualAccountsCurrentPage} />
                                 </div>
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                     <div className="mr1 mr2-l">Memo</div>
-                                    <Sort  />
+                                    <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsTransactions} arrayToSort={individualAccount.transactions} propertyToCompare={"memoNote"} typeToCompare={"str"} setCurrentPage={setIndividualAccountsCurrentPage} />
                                 </div>
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                     <div className="mr1 mr2-l">Budget Category</div>
-                                    <Sort />
+                                    <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsTransactions} arrayToSort={individualAccount.transactions} propertyToCompare={"categoryItemName"} typeToCompare={"str"} setCurrentPage={setIndividualAccountsCurrentPage} />
                                 </div>
                             </div>
                             : ""
@@ -331,23 +333,23 @@ function IndividualAccount(props) {
                             ">
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                     <div className="mr1 mr2-l">Amount</div>
-                                    <Sort />
+                                    <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsFilteredTransactions} arrayToSort={individualAccount.filteredTransactions} propertyToCompare={"amount"} typeToCompare={"num"} setCurrentPage={setIndividualAccountsFilterCurrentPage} />
                                 </div>
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                     <div className="mr1 mr2-l">Date</div>
-                                    <Sort  />
+                                    <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsFilteredTransactions} arrayToSort={individualAccount.filteredTransactions} propertyToCompare={"date"} typeToCompare={"date"} setCurrentPage={setIndividualAccountsFilterCurrentPage} />
                                 </div>
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                     <div className="mr1 mr2-l">Transaction Type</div>
-                                    <Sort  />
+                                    <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsFilteredTransactions} arrayToSort={individualAccount.filteredTransactions} propertyToCompare={"transactionTypeId"} typeToCompare={"num"} setCurrentPage={setIndividualAccountsFilterCurrentPage} />
                                 </div>
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                     <div className="mr1 mr2-l">Memo</div>
-                                    <Sort  />
+                                    <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsFilteredTransactions} arrayToSort={individualAccount.filteredTransactions} propertyToCompare={"memoNote"} typeToCompare={"str"} setCurrentPage={setIndividualAccountsFilterCurrentPage} />
                                 </div>
                                 <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                     <div className="mr1 mr2-l">Budget Category</div>
-                                    <Sort />
+                                    <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsFilteredTransactions} arrayToSort={individualAccount.filteredTransactions} propertyToCompare={"categoryItemName"} typeToCompare={"str"} setCurrentPage={setIndividualAccountsFilterCurrentPage} />
                                 </div>
                             </div>
                             : ""
@@ -438,7 +440,6 @@ function IndividualAccount(props) {
 
 export default IndividualAccount;
 
-//onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
 
+                            //onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
 
-//setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} 
