@@ -4,6 +4,7 @@ import PriceTagIcon from "../components/PriceTagIcon.js";
 import DepositIcon from "../components/DepositIcon.js";
 import TransactionIcon from "../components/TransactionIcon.js";
 import Sort from "../components/Sort.js";
+import PaginationBar from "../components/PaginationBar.js";
 import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter, handleFilterTransactionSelection }  from "../services/functions.js";
 
 function IndividualAccount(props) {
@@ -296,8 +297,6 @@ function IndividualAccount(props) {
                         </div>
 
                         {
-                            //setNewArray={setAccountSummaryAccounts} arrayToSort={accountSummary.accounts} propertyToCompare={"accountName"} typeToCompare={"str"} setCurrentPage={setAccountSummaryCurrentPage} 
-
                             (Array.isArray(individualAccount.transactions) && transactionsArrayValid && individualAccount.filter === false) ?
                             <div className="w-100 flex flex-column mt3 ph3
                             flex-row-l
@@ -388,6 +387,14 @@ function IndividualAccount(props) {
                                         {
                                             //edit will bring up another row
                                         }
+                                        <PaginationBar 
+                                        startEntry={individualAccount.pages[individualAccount.currentPage].startEntry} 
+                                        finishEntry={individualAccount.pages[individualAccount.currentPage].finishEntry} 
+                                        totalEntries={individualAccount.transactions.length}
+                                        totalPages={individualAccount.totalPages}
+                                        currentPage={individualAccount.currentPage}
+                                        setCurrentPage={setIndividualAccountsCurrentPage}
+                                        />
                                     </div>
                                 )
                             })
@@ -426,11 +433,21 @@ function IndividualAccount(props) {
                                         {
                                             //edit will bring up another row
                                         }
+                                        <PaginationBar 
+                                            startEntry={individualAccount.filterPages[individualAccount.filterCurrentPage].startEntry} 
+                                            finishEntry={individualAccount.filterPages[individualAccount.filterCurrentPage].finishEntry} 
+                                            totalEntries={individualAccount.filteredTransactions.length}
+                                            totalPages={individualAccount.filterTotalPages}
+                                            currentPage={individualAccount.filterCurrentPage}
+                                            setCurrentPage={setIndividualAccountsFilterCurrentPage}
+                                        />
                                     </div>
                                 )
                             })
                             : ""
                         }
+                        
+                       
 
                     </div>
                 </div>  
@@ -443,5 +460,32 @@ function IndividualAccount(props) {
 export default IndividualAccount;
 
 
-                            //onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
+//onChange={(event) => (individualAccount.filter === false) ? configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryTotalPages, setAccountSummaryCurrentPage, setAccountSummaryPages, accountSummary.accounts ) : configurePages(event.target.value, setAccountSummaryEntries, setAccountSummaryFilterTotalPages, setAccountSummaryFilterCurrentPage, setAccountSummaryFilterPages, accountSummary.filteredAccounts)}
 
+/*
+{
+    (Array.isArray(individualAccount.transactions) && transactionsArrayValid && individualAccount.filter === false) ?
+    <PaginationBar 
+        startEntry={individualAccount.pages[individualAccount.currentPage].startEntry} 
+        finishEntry={individualAccount.pages[individualAccount.currentPage].finishEntry} 
+        totalEntries={individualAccount.transactions.length}
+        totalPages={individualAccount.totalPages}
+        currentPage={individualAccount.currentPage}
+        setCurrentPage={setIndividualAccountsCurrentPage}
+    />
+    : ""
+}
+{
+    ((Array.isArray(individualAccount.filteredTransactions)) && filteredTransactionsArrayValid && individualAccount.filter === true) ?
+    <PaginationBar 
+        startEntry={individualAccount.filterPages[individualAccount.filterCurrentPage].startEntry} 
+        finishEntry={individualAccount.filterPages[individualAccount.filterCurrentPage].finishEntry} 
+        totalEntries={individualAccount.filteredTransactions.length}
+        totalPages={individualAccount.filterTotalPages}
+        currentPage={individualAccount.filterCurrentPage}
+        setCurrentPage={setIndividualAccountsFilterCurrentPage}
+    />
+    : ""
+}
+
+*/
