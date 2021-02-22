@@ -21,7 +21,8 @@ function IndividualAccount(props) {
         setIndividualAccountsFilterTotalPages,
         setIndividualAccountsFilterCurrentPage,
         setIndividualAccountsFilterPages,
-        setIndividualAccountsTransactions
+        setIndividualAccountsTransactions,
+        setIndividualAccountsSearch
     } = props;
 
     const getAccountTypeName = () => {
