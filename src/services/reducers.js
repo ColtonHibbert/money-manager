@@ -77,6 +77,7 @@ import {
     SET_ACCOUNT_SUMMARY_FILTER_CURRENT_PAGE,
     SET_ACCOUNT_SUMMARY_FILTER_PAGES,
     SET_ACCOUNT_SUMMARY_ACCOUNTS,
+    SET_ACCOUNT_SUMMARY_SEARCH,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION,
     SET_INDIVIDUAL_ACCOUNTS_ENTRIES,
     SET_INDIVIDUAL_ACCOUNTS_TOTAL_PAGES,
@@ -141,7 +142,8 @@ const initialState = {
                 startEntry: 0,
                 finishEntry: 0
             }
-        ]
+        ],
+        search: ""
     },
     categoriesAndItems: [
         {
@@ -208,6 +210,7 @@ const initialState = {
                     finishEntry: 0
                 }
             ],
+            search: "",
             transactions: [
               {
                 transactionId: 0,
@@ -820,6 +823,7 @@ export const reducer = (state=initialState, action={}) => {
                     currentPage: 0,
                     totalPages: individualAccountTransactionPagesRegularOrFilter.totalPages,
                     pages: individualAccountTransactionPagesRegularOrFilter.pages,
+                    search: "",
                     filter: false,
                     filterTransactionSelection: "all",
                     filterTotalPages: individualAccountTransactionPagesRegularOrFilter.totalPages,
@@ -1172,6 +1176,15 @@ export const reducer = (state=initialState, action={}) => {
             accountSummary: {
                 ...state.accountSummary,
                 accounts: action.setAccountSummaryAccountsPayload
+            }
+        }
+    }
+    if(action.type === SET_ACCOUNT_SUMMARY_SEARCH) {
+        return {
+            ...state,
+            accountSummary: {
+                ...state.accountSummary,
+                search: action.setAccountSummarySearchPayload
             }
         }
     }

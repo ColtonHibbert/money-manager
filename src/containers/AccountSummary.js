@@ -12,7 +12,8 @@ import {
     setAccountSummaryFilterTotalPages,
     setAccountSummaryFilterCurrentPage,
     setAccountSummaryFilterPages,
-    setAccountSummaryAccounts
+    setAccountSummaryAccounts,
+    setAccountSummarySearch
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -32,7 +33,8 @@ const mapDispatchToProps = (dispatch) => {
         setAccountSummaryFilterTotalPages: (value) => dispatch(setAccountSummaryFilterTotalPages(value)),
         setAccountSummaryFilterCurrentPage: (value) => dispatch(setAccountSummaryFilterCurrentPage(value)),
         setAccountSummaryFilterPages: (value) => dispatch(setAccountSummaryFilterPages(value)),
-        setAccountSummaryAccounts: (value) => dispatch(setAccountSummaryAccounts(value))
+        setAccountSummaryAccounts: (value) => dispatch(setAccountSummaryAccounts(value)),
+        setAccountSummarySearch: (value) => dispatch(setAccountSummarySearch(value))
     }
 }
 
@@ -52,7 +54,8 @@ function AccountSummary(props) {
         setAccountSummaryFilterTotalPages,
         setAccountSummaryFilterCurrentPage,
         setAccountSummaryFilterPages,
-        setAccountSummaryAccounts
+        setAccountSummaryAccounts,
+        setAccountSummarySearch
     } = props;
 
     /*
@@ -116,6 +119,7 @@ function AccountSummary(props) {
             const numberOfPages = (Math.ceil(filteredAccounts.length / accountSummary.entries));
             const modifiedPages = pagesArray(accountSummary.entries ,filteredAccounts, numberOfPages);
 
+            setAccountSummarySearch(value);
             setAccountSummaryFilterTotalPages(numberOfPages);
             setAccountSummaryFilterCurrentPage(0);
             setAccountSummaryFilteredAccounts(filteredAccounts);
@@ -127,7 +131,7 @@ function AccountSummary(props) {
         if(search === "") {
             const numberOfPages = (Math.ceil(accountSummary.accounts.length / accountSummary.entries));
             const modifiedPages = pagesArray(accountSummary.entries, accountSummary.accounts, numberOfPages);
-
+            setAccountSummarySearch("");
             setAccountSummaryPages(modifiedPages);
             setAccountSummaryCurrentPage(0);
             setAccountSummaryTotalPages(numberOfPages);
@@ -175,6 +179,7 @@ function AccountSummary(props) {
                     w5-l
                     "
                     onInput={(event) => handleFilter(event.target.value)}
+                    value={accountSummary.search}
                     ></input>
                 </div>
             </div>

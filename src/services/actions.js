@@ -87,7 +87,8 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_TOTAL_PAGES,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
-    SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS
+    SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS, 
+    SET_ACCOUNT_SUMMARY_SEARCH
 } from "./constants.js";
 
 
@@ -632,6 +633,13 @@ export const setAccountSummaryAccounts = (payload) => {
     return {
         type: SET_ACCOUNT_SUMMARY_ACCOUNTS,
         setAccountSummaryAccountsPayload: payload
+    }
+}
+
+export const setAccountSummarySearch = (payload) => {
+    return {
+        type: SET_ACCOUNT_SUMMARY_SEARCH,
+        setAccountSummarySearchPayload: payload
     }
 }
 
