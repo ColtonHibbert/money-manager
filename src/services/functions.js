@@ -42,7 +42,7 @@ export const pagesArray = (value, passedArray, numberOfPages) => {
     return baseArray;
 }
 
-export const handleFilterTransactionSelection = (accountId, setFilter, setTotalPages, setCurrentPage, setPages, setArray, currentEntries, filterTransactionSelectionType, setSelection, passedArray ) => {
+export const handleFilterTransactionSelection = (accountId, setFilter, setTotalPages, setCurrentPage, setPages, setArray, currentEntries, filterTransactionSelectionType, setSelection, passedArray, setSearch ) => {
     const filteredArray = passedArray.filter(entry => {
         if(filterTransactionSelectionType === "all") {
             return entry;
@@ -64,6 +64,7 @@ export const handleFilterTransactionSelection = (accountId, setFilter, setTotalP
     const numberOfPages = (Math.ceil(filteredArray.length / currentEntries));
     const modifiedPages = pagesArray(currentEntries, filteredArray, numberOfPages);
 
+    setSearch(accountId, "");
     setTotalPages(accountId, numberOfPages);
     setCurrentPage(accountId, 0);
     setArray(accountId, filteredArray);
@@ -75,7 +76,7 @@ export const handleFilterTransactionSelection = (accountId, setFilter, setTotalP
 }
 
 
-export const handleTransactionFilter = (value, accountId, setFilter, setTotalPages, setCurrentPage, setPages, setArray, currentEntries, filterTransactionSelectionType , arrayType, accountTypeName, passedArray  ) => {
+export const handleTransactionFilter = (value, accountId, setFilter, setTotalPages, setCurrentPage, setPages, setArray, currentEntries, filterTransactionSelectionType , arrayType, accountTypeName, passedArray , setSearch ) => {
     const search= value.trim();
     
     if(search !== "") {
@@ -115,6 +116,7 @@ export const handleTransactionFilter = (value, accountId, setFilter, setTotalPag
         const numberOfPages = (Math.ceil(filteredArray.length / currentEntries));
         const modifiedPages = pagesArray(currentEntries, filteredArray, numberOfPages);
 
+        setSearch(accountId, value);
         setTotalPages(accountId, numberOfPages);
         setCurrentPage(accountId, 0);
         setArray(accountId, filteredArray);
@@ -127,6 +129,7 @@ export const handleTransactionFilter = (value, accountId, setFilter, setTotalPag
         const numberOfPages = (Math.ceil(passedArray.length / currentEntries));
         const modifiedPages = pagesArray(currentEntries, passedArray, numberOfPages);
 
+        setSearch(accountId, value);
         setPages(accountId, modifiedPages);
         setCurrentPage(accountId, 0);
         setTotalPages(accountId, numberOfPages);
