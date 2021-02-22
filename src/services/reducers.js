@@ -88,7 +88,8 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_TOTAL_PAGES,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
-    SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS 
+    SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS,
+    SET_INDIVIDUAL_ACCOUNTS_SEARCH
 } from "./constants.js";
 
 const initialState = {
@@ -1336,6 +1337,20 @@ export const reducer = (state=initialState, action={}) => {
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsTransactionsAccountId) {
                         account.transactions = action.setIndividualAccountsTransactionsPayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_SEARCH) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsSearchAccountId) {
+                        account.search = action.setIndividualAccountsSearchPayload
                     }   
                 })
                  return accounts;
