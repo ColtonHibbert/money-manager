@@ -177,6 +177,7 @@ const initialState = {
             filterTransactionSelection: "all",
             currentPage: 0,
             totalPages: 0,
+            editAccount: true,
             pages: [
                 {
                     pageNumber: 0,
@@ -821,6 +822,7 @@ export const reducer = (state=initialState, action={}) => {
                     accountTypeId: account.accountTypeId,
                     userFirstName: account.userFirstName,
                     entries: individualAccountTransactionPagesRegularOrFilter.entries,
+                    editAccount: true,
                     currentPage: 0,
                     totalPages: individualAccountTransactionPagesRegularOrFilter.totalPages,
                     pages: individualAccountTransactionPagesRegularOrFilter.pages,

@@ -5,7 +5,10 @@ import DepositIcon from "../components/DepositIcon.js";
 import TransactionIcon from "../components/TransactionIcon.js";
 import Sort from "../components/Sort.js";
 import PaginationBar from "../components/PaginationBar.js";
+import EditAccountButton from "./EditAccountButton.js";
+import EditAccount from "./EditAccount.js";
 import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter, handleFilterTransactionSelection }  from "../services/functions.js";
+
 
 function IndividualAccount(props) {
     const { 
@@ -76,7 +79,6 @@ function IndividualAccount(props) {
     return(
         <div className="w-100" key={individualAccount.accountId}>    
             <div className="flex flex-column w-100 items-center bg-custom-darker-gray">
-
                 <div 
                     className="
                         w-100 flex justify-center items-center bg-custom-lighter-gray money-color border-thin-gray 
@@ -88,7 +90,17 @@ function IndividualAccount(props) {
                         "
                     >{individualAccount.accountName} - {accountTypeName}
                 </div>
-
+                {
+                    (individualAccount.editAccount === false) ?
+                    <div className="w-100 flex justify-end mv2 pr3">
+                        <EditAccountButton />
+                    </div>
+                    : 
+                    <div className="w-100 flex justify-start mv2 pl3">
+                        <EditAccount />
+                    </div>
+                }
+              
                 <div 
                 className="w-100 flex flex-column items-center
                 flex-s flex-column-s
@@ -262,10 +274,10 @@ function IndividualAccount(props) {
                             <div className="custom-gray f3 mt2 pl3">Transactions</div>
                             <div className="flex flex-row custom-gray mt2 pl3 pr3
                             ">
-                                <div className={(individualAccount.filterTransactionSelection === "all" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "all", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions)}>All</div>
-                                <div className={(individualAccount.filterTransactionSelection === "withdrawals" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "withdrawals", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions)}>Withdrawals</div>
-                                <div className={(individualAccount.filterTransactionSelection === "deposits" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "deposits", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions)}>Deposits</div>
-                                <div className={(individualAccount.filterTransactionSelection === "transfers" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "transfers", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions)}>Transfers</div>
+                                <div className={(individualAccount.filterTransactionSelection === "all" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "all", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions, setIndividualAccountsSearch)}>All</div>
+                                <div className={(individualAccount.filterTransactionSelection === "withdrawals" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "withdrawals", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions, setIndividualAccountsSearch)}>Withdrawals</div>
+                                <div className={(individualAccount.filterTransactionSelection === "deposits" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "deposits", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions, setIndividualAccountsSearch)}>Deposits</div>
+                                <div className={(individualAccount.filterTransactionSelection === "transfers" ? classSelect : classNoSelect)} onClick={() => handleFilterTransactionSelection(individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, "transfers", setIndividualAccountsFilterTransactionSelection, individualAccount.transactions, setIndividualAccountsSearch)}>Transfers</div>
                             </div>
                         </div>
                                   
@@ -290,8 +302,8 @@ function IndividualAccount(props) {
                                 w5-l
                                 "
                                 onInput={(event) => ( (event.target.value).trim() === "" ) ?
-                                    handleTransactionFilter(event.target.value, individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, setIndividualAccountsTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions)
-                                    : handleTransactionFilter(event.target.value, individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions)
+                                    handleTransactionFilter(event.target.value, individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsTotalPages, setIndividualAccountsCurrentPage, setIndividualAccountsPages, setIndividualAccountsTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions, setIndividualAccountsSearch)
+                                    : handleTransactionFilter(event.target.value, individualAccount.accountId, setIndividualAccountsFilter, setIndividualAccountsFilterTotalPages, setIndividualAccountsFilterCurrentPage, setIndividualAccountsFilterPages, setIndividualAccountsFilteredTransactions, individualAccount.entries, individualAccount.filterTransactionSelection, "individualtransactions", accountTypeName, individualAccount.transactions, setIndividualAccountsSearch)
                                 }
                                 value={individualAccount.search}
                                 ></input>
