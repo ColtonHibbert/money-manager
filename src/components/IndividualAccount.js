@@ -7,6 +7,8 @@ import Sort from "../components/Sort.js";
 import PaginationBar from "../components/PaginationBar.js";
 import EditAccountButton from "./EditAccountButton.js";
 import EditAccount from "./EditAccount.js";
+import EditIcon from "./EditIcon.js";
+import TrashIcon from "./TrashIcon.js";
 import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter, handleFilterTransactionSelection }  from "../services/functions.js";
 
 
@@ -92,12 +94,12 @@ function IndividualAccount(props) {
                 </div>
                 {
                     (individualAccount.editAccount === false) ?
-                    <div className="w-100 flex justify-end mv2 pr3">
+                    <div className="w-100 flex justify-start mv2 pl3 pr3">
                         <EditAccountButton />
                     </div>
                     : 
-                    <div className="w-100 flex justify-start mv2 pl3">
-                        <EditAccount />
+                    <div className="w-100 flex justify-start mv2 pl3 pr3">
+                        <EditAccount individualAccount={individualAccount}/>
                     </div>
                 }
               
@@ -376,7 +378,7 @@ function IndividualAccount(props) {
                                 
                                 return(
                                     <div key={transaction.transactionId}
-                                    className="w-100 flex flex-column mt3 ph3 bb b--black
+                                    className="w-100 flex flex-column mt3 mb2 pb3 ph3 bb b--black 
                                     flex-row-l
                                     ">
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
@@ -397,6 +399,14 @@ function IndividualAccount(props) {
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                             <div className="mr1 mr2-l">{transaction.categoryItemName}</div>
                                             
+                                        </div>
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                            <div className="w1 h1 pointer">
+                                                <EditIcon fillColor={"#429244"}/>
+                                            </div>
+                                            <div className="w1 h1 pointer ml3">
+                                                <TrashIcon fillColor={"#ff4136"} />
+                                            </div>
                                         </div>
                                         {
                                             //edit will bring up another row
@@ -415,7 +425,7 @@ function IndividualAccount(props) {
 
                                 return(
                                     <div key={transaction.transactionId}
-                                    className="w-100 flex flex-column mt3 ph3 bb b--black
+                                    className="w-100 flex flex-column mt3 pb3 ph3 bb b--black
                                     flex-row-l
                                     ">
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
@@ -436,6 +446,14 @@ function IndividualAccount(props) {
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
                                             <div className="mr1 mr2-l">{transaction.categoryItemName}</div>
                                             
+                                        </div>
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                            <div className="w1 h1 pointer ml3">
+                                                <EditIcon fillColor={"#429244"}/>
+                                            </div>
+                                            <div className="w1 h1 pointer">
+                                                <TrashIcon fillColor={"#ff4136"} />
+                                            </div>
                                         </div>
                                         {
                                             //edit will bring up another row
