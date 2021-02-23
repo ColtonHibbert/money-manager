@@ -93,7 +93,9 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE
 } from "./constants.js";
 
 
@@ -773,5 +775,22 @@ export const setIndividualAccountsEditAccountLowAlertBalance = (accountId, paylo
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE,
         setIndividualAccountsEditAccountLowAlertBalanceAccountId: accountId,
         setIndividualAccountsEditAccountLowAlertBalancePayload: payload
+    }
+}
+
+export const setIndividualAccountsEditAccountError = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR,
+        setIndividualAccountsEditAccountErrorAccountId: accountId,
+        setIndividualAccountsEditAccountErrorPayload: payload
+    }
+}
+
+export const setIndividualAccountsEditErrorMessage = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE,
+        setIndividualAccountsEditAccountErrorMessageAccountId: accountId,
+        setIndividualAccountsEditAccountErrorMessagePayload: payload
+
     }
 }
