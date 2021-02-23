@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import {
     SET_ROUTE,
     SET_USER,
@@ -89,7 +90,8 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
     SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS,
-    SET_INDIVIDUAL_ACCOUNTS_SEARCH
+    SET_INDIVIDUAL_ACCOUNTS_SEARCH,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT
 } from "./constants.js";
 
 const initialState = {
@@ -1357,6 +1359,20 @@ export const reducer = (state=initialState, action={}) => {
                 })
                  return accounts;
             }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditAccountAccountId) {
+                        account.editAccount = action.setIndividualAccountsEditAccountPayload
+                    }
+                })
+                return accounts;
+            }(state.individualAccounts)
         }
     }
     return state;

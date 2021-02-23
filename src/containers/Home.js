@@ -27,7 +27,8 @@ import {
     setIndividualAccountsFilterCurrentPage,
     setIndividualAccountsFilterPages,
     setIndividualAccountsTransactions,
-    setIndividualAccountsSearch
+    setIndividualAccountsSearch,
+    setIndividualAccountsEditAccount
 } from "../services/actions.js";
 
 
@@ -61,7 +62,8 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsFilterCurrentPage: (accountId, payload) => dispatch(setIndividualAccountsFilterCurrentPage(accountId, payload)),
         setIndividualAccountsFilterPages: (accountId, payload) => dispatch(setIndividualAccountsFilterPages(accountId, payload)),
         setIndividualAccountsTransactions: (accountId, payload) => dispatch(setIndividualAccountsTransactions(accountId, payload)),
-        setIndividualAccountsSearch: (accountId, payload) => dispatch(setIndividualAccountsSearch(accountId, payload))
+        setIndividualAccountsSearch: (accountId, payload) => dispatch(setIndividualAccountsSearch(accountId, payload)),
+        setIndividualAccountsEditAccount: (accountId, payload) => dispatch(setIndividualAccountsEditAccount(accountId, payload))
     }
 }
 

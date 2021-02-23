@@ -233,8 +233,8 @@ function AccountSummary(props) {
                         return( 
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
-                                <div className="w-25 custom gray">{account.currentBalance}</div>
-                                <div className="w-25 custom gray">{account.lowAlertBalance}</div>
+                                <div className="w-25 custom gray">{account.currentBalance.toFixed(2)}</div>
+                                <div className="w-25 custom gray">{account.lowAlertBalance.toFixed(2)}</div>
                                 <div className="w-25 custom gray">{user.firstName}</div>
                             </div>
                         )
@@ -246,8 +246,8 @@ function AccountSummary(props) {
                         return( 
                             <div className="w-100 flex flex-row mt2 mb2 pv1 items-center bb b--black" key={account.accountId}>
                                 <div className="w-25 custom gray">{account.accountName}</div>
-                                <div className="w-25 custom gray">{account.currentBalance}</div>
-                                <div className="w-25 custom gray">{account.lowAlertBalance}</div>
+                                <div className="w-25 custom gray">{account.currentBalance.toFixed(2)}</div>
+                                <div className="w-25 custom gray">{account.lowAlertBalance.toFixed(2)}</div>
                                 <div className="w-25 custom gray">{user.firstName}</div>
                             </div>
                         )

@@ -3,14 +3,21 @@ import React from "react";
 function EditAccount(props) {
 
     const {
-        individualAccount
+        individualAccount,
+        setIndividualAccountsEditAccount
     } = props;
 
     return (
-        <div className="flex flex-column bg-custom-lighter-gray w-100-s w-90-m w-50-l custom-gray">
+        <div className="w-90 flex flex-column bg-custom-lighter-gray custom-gray
+        w-90-m
+        w-50-l mh3-l
+        ">
             <div className="w-100 flex flex-row justify-between items-center ph3 pv1 mv1 bb-thin-gray">
                 <div className="f3">Edit Account</div>
-                <div className="f3 pointer">{String.fromCharCode('0x2716')}</div>
+                <div className="f3 pointer"
+                onClick={() => setIndividualAccountsEditAccount(individualAccount.accountId, false)}
+                >{String.fromCharCode('0x2716')}
+                </div>
             </div>
             <div className="w-100 flex flex-row items-center ph3 pv1 mv1 bb-thin-gray">
                 <div className="w-30 h2 f5 ">Account Name</div>
@@ -37,7 +44,7 @@ function EditAccount(props) {
                 <input type="number" 
                 className="w-70 h2 input-reset mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
                 "
-                placeholder={individualAccount.lowAlertBalance}
+                placeholder={individualAccount.lowAlertBalance.toFixed(2)}
                 onInput={(event) => console.log("")}
                 ></input>
             </div>
