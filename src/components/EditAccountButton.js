@@ -8,7 +8,7 @@ function EditAccountButton(props) {
                 Edit Account
             </div>
             <div className="w1 h1">
-                <EditIcon />
+                <EditIcon fillColor={"#2d3035"}/>
             </div>
         </div>
     )
