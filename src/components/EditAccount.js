@@ -28,7 +28,7 @@ function EditAccount(props) {
                 },
                 body: JSON.stringify({
                     editAccountName: accountPost.editAccountName,
-                    editAccountType: accountPost.editAccountType,
+                    editAccountTypeId: accountPost.editAccountTypeId,
                     editAccountLowAlertBalance: accountPost.editAccountLowAlertBalance
                 }),
                 credentials:"include"
@@ -58,10 +58,10 @@ function EditAccount(props) {
             editAccountData.editAccountName = individualAccount.accountName;
         }
 
-        if(individualAccount.accountType !== individualAccount.editAccountType && individualAccount.editAccountType !== 0) {
-            editAccountData.editAccountType = individualAccount.editAccountType
+        if(individualAccount.accountTypeId !== individualAccount.editAccountTypeId && individualAccount.editAccountTypeId !== 0) {
+            editAccountData.editAccountTypeId = individualAccount.editAccountTypeId
         } else {
-            editAccountData.editAccountType = individualAccount.accountType;
+            editAccountData.editAccountTypeId = individualAccount.accountTypeId;
         }
 
         if(individualAccount.lowAlertBalance !== individualAccount.editAccountLowAlertBalance) {
@@ -70,6 +70,7 @@ function EditAccount(props) {
             editAccountData.editAccountLowAlertBalance = individualAccount.lowAlertBalance
         }
 
+        console.log(editAccountData)
         return editAccountData;
 
     }

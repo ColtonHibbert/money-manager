@@ -92,7 +92,7 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_SEARCH,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE_ID,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE
@@ -762,11 +762,11 @@ export const setIndividualAccountsEditAccountName = (accountId, payload) => {
     }
 }
 
-export const setIndividualAccountsEditAccountType = (accountId, payload) => {
+export const setIndividualAccountsEditAccountTypeId = (accountId, payload) => {
     return {
-        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE,
-        setIndividualAccountsEditAccountTypeAccountId: accountId,
-        setIndividualAccountsEditAccountTypePayload: payload
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE_ID,
+        setIndividualAccountsEditAccountTypeIdAccountId: accountId,
+        setIndividualAccountsEditAccountTypeIdPayload: payload
     }
 }
 
