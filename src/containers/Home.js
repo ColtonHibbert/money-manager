@@ -29,7 +29,9 @@ import {
     setIndividualAccountsTransactions,
     setIndividualAccountsSearch,
     setIndividualAccountsEditAccount,
-    setIndividualAccountsEditAccountName
+    setIndividualAccountsEditAccountName,
+    setIndividualAccountsEditAccountType,
+    setIndividualAccountsEditAccountLowAlertBalance
 } from "../services/actions.js";
 
 
@@ -64,7 +66,10 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsFilterPages: (accountId, payload) => dispatch(setIndividualAccountsFilterPages(accountId, payload)),
         setIndividualAccountsTransactions: (accountId, payload) => dispatch(setIndividualAccountsTransactions(accountId, payload)),
         setIndividualAccountsSearch: (accountId, payload) => dispatch(setIndividualAccountsSearch(accountId, payload)),
-        setIndividualAccountsEditAccount: (accountId, payload) => dispatch(setIndividualAccountsEditAccount(accountId, payload))
+        setIndividualAccountsEditAccount: (accountId, payload) => dispatch(setIndividualAccountsEditAccount(accountId, payload)),
+        setIndividualAccountsEditAccountName: (accountId, payload) => dispatch(setIndividualAccountsEditAccountName(accountId, payload)),
+        setIndividualAccountsEditAccountType: (accountId, payload) => dispatch(setIndividualAccountsEditAccountType(accountId, payload)),
+        setIndividualAccountsEditAccountLowAlertBalance: (accountId, payload) => dispatch(setIndividualAccountsEditAccountLowAlertBalance(accountId, payload))
     }
 }
 

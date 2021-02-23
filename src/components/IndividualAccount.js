@@ -10,7 +10,6 @@ import EditAccount from "./EditAccount.js";
 import EditIcon from "./EditIcon.js";
 import TrashIcon from "./TrashIcon.js";
 import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter, handleFilterTransactionSelection }  from "../services/functions.js";
-import { setIndividualAccountsEditAccount } from "../services/actions.js";
 
 
 function IndividualAccount(props) {
@@ -29,9 +28,13 @@ function IndividualAccount(props) {
         setIndividualAccountsFilterPages,
         setIndividualAccountsTransactions,
         setIndividualAccountsSearch,
-        setIndividualAccountsEditAccount
+        setIndividualAccountsEditAccount,
+        setIndividualAccountsEditAccountName,
+        setIndividualAccountsEditAccountType,
+        setIndividualAccountsEditAccountLowAlertBalance
     } = props;
 
+    console.log(setIndividualAccountsEditAccountType)
     const getAccountTypeName = () => {
         if(individualAccount.accountTypeId === 1) {
             return "Checking";
@@ -54,7 +57,7 @@ function IndividualAccount(props) {
             return "Deposit";
         }
         if(entry.transactionTypeId === 3) {
-            return "Transfer"
+            return "Transfer";
         }
     }
 
@@ -104,7 +107,12 @@ function IndividualAccount(props) {
                     justify-center-m 
                     justify-start-l
                     ">
-                        <EditAccount individualAccount={individualAccount} setIndividualAccountsEditAccount={setIndividualAccountsEditAccount}/>
+                        <EditAccount individualAccount={individualAccount} 
+                        setIndividualAccountsEditAccount={setIndividualAccountsEditAccount}
+                        setIndividualAccountsEditAccountName={setIndividualAccountsEditAccountName}
+                        setIndividualAccountsEditAccountType={setIndividualAccountsEditAccountType}
+                        setIndividualAccountsEditAccountLowAlertBalance={setIndividualAccountsEditAccountLowAlertBalance}
+                        />
                     </div>
                 }
               

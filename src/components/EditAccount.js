@@ -1,11 +1,47 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 function EditAccount(props) {
 
     const {
         individualAccount,
-        setIndividualAccountsEditAccount
+        setIndividualAccountsEditAccount,
+        setIndividualAccountsEditAccountName,
+        setIndividualAccountsEditAccountType,
+        setIndividualAccountsEditAccountLowAlertBalance,
+        user
     } = props;
+
+    const submitEditAccount = () => {
+        fetch(
+            "http://localhost:3001/individualaccountseditaccount",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type":"application/json",
+                    "CSRF-Token":user.csrf
+                },
+                body: JSON.stringify({
+                    editAccountName: individualAccount.editAccountName,
+                    editAccountType: individualAccount.editAccountType,
+                    editAccountLowAlertBalance: individualAccount.editAccountLowAlertBalance
+                }),
+                credentials:"include"
+            }
+        )
+        .then(res => res.json())
+        .then(data => {
+            if(data.error) {
+                //setEditAccountError(true);
+                //setEditAccountErrorMessage;
+            }
+            if(!data.error) {
+                
+                toast.success("Account Updated.")
+            }
+
+        })
+    }
 
     return (
         <div className="w-90 flex flex-column bg-custom-lighter-gray custom-gray
@@ -25,13 +61,14 @@ function EditAccount(props) {
                 className="input-reset w-70 h2 mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
                 "
                 placeholder={individualAccount.accountName}
-                onInput={(event) => console.log("")}
+                onInput={(event) => setIndividualAccountsEditAccountName(individualAccount.accountId, event.target.value)}
                 ></input>
             </div>
             <div className="w-100 flex flex-row items-center ph3 pv1 mv1 bb-thin-gray">
                 <div className="w-30 h2 f5 ">Account Type</div>
                 <select className="input-reset w-70 h2 mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b"
-                value={individualAccount.accountTypeId}
+                placeholder={individualAccount.accountTypeId}
+                onChange={(event) => setIndividualAccountsEditAccountType(individualAccount.accountId, event.target.value)}
                 >
                     <option value="">--</option>
                     <option value="1">Checking</option>
@@ -45,7 +82,7 @@ function EditAccount(props) {
                 className="w-70 h2 input-reset mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
                 "
                 placeholder={individualAccount.lowAlertBalance.toFixed(2)}
-                onInput={(event) => console.log("")}
+                onInput={(event) => setIndividualAccountsEditAccountLowAlertBalance(individualAccount.accountId, event.target.value)}
                 ></input>
             </div>
             <div className="flex justify-end pr4">

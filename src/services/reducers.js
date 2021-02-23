@@ -94,7 +94,9 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE
 } from "./constants.js";
 
 const initialState = {
@@ -186,6 +188,8 @@ const initialState = {
             editAccountName: "",
             editAccountType: 0,
             editAccountLowAlertBalance: 0,
+            editAccountError: false,
+            editAccountErrorMessage: "",
             pages: [
                 {
                     pageNumber: 0,
@@ -831,6 +835,11 @@ export const reducer = (state=initialState, action={}) => {
                     userFirstName: account.userFirstName,
                     entries: individualAccountTransactionPagesRegularOrFilter.entries,
                     editAccount: true,
+                    editAccountName: "",
+                    editAccountType: 0,
+                    editAccountLowAlertBalance: 0,
+                    editAccountError: false,
+                    editAccountErrorMessage: "",
                     currentPage: 0,
                     totalPages: individualAccountTransactionPagesRegularOrFilter.totalPages,
                     pages: individualAccountTransactionPagesRegularOrFilter.pages,
@@ -1402,7 +1411,7 @@ export const reducer = (state=initialState, action={}) => {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsEditAccountTypeAccountId) {
-                        account.editAccountType = action.setIndividualAccountsEditAccountTypePayload
+                        account.editAccountType = Number(action.setIndividualAccountsEditAccountTypePayload)
                     }   
                 })
                  return accounts;
@@ -1416,7 +1425,35 @@ export const reducer = (state=initialState, action={}) => {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsEditAccountLowAlertBalanceAccountId) {
-                        account.lowAlertBalance = action.setIndividualAccountsEditAccountLowAlertBalancePayload
+                        account.lowAlertBalance = Number(action.setIndividualAccountsEditAccountLowAlertBalancePayload)
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditAccountErrorAccountId) {
+                        account.editAccountError = action.setIndividualAccountsEditAccountErrorPayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditAccountErrorMessageAccountId) {
+                        account.editAccountErrorMessage = action.setIndividualAccountsEditAccountErrorMessagePayload
                     }   
                 })
                  return accounts;
