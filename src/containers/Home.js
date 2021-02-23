@@ -28,7 +28,8 @@ import {
     setIndividualAccountsFilterPages,
     setIndividualAccountsTransactions,
     setIndividualAccountsSearch,
-    setIndividualAccountsEditAccount
+    setIndividualAccountsEditAccount,
+    setIndividualAccountsEditAccountName
 } from "../services/actions.js";
 
 

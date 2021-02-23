@@ -90,7 +90,10 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
     SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS, 
     SET_INDIVIDUAL_ACCOUNTS_SEARCH,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE
 } from "./constants.js";
 
 
@@ -749,3 +752,26 @@ export const setIndividualAccountsEditAccount = (accountId, payload) => {
     }
 }
 
+export const setIndividualAccountsEditAccountName = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME,
+        setIndividualAccountsEditAccountNameAccountId: accountId,
+        setIndividualAccountsEditAccountNamePayload: payload
+    }
+}
+
+export const setIndividualAccountsEditAccountType = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE,
+        setIndividualAccountsEditAccountTypeAccountId: accountId,
+        setIndividualAccountsEditAccountTypePayload: payload
+    }
+}
+
+export const setIndividualAccountsEditAccountLowAlertBalance = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE,
+        setIndividualAccountsEditAccountLowAlertBalanceAccountId: accountId,
+        setIndividualAccountsEditAccountLowAlertBalancePayload: payload
+    }
+}

@@ -91,7 +91,10 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
     SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS,
     SET_INDIVIDUAL_ACCOUNTS_SEARCH,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE
 } from "./constants.js";
 
 const initialState = {
@@ -180,6 +183,9 @@ const initialState = {
             currentPage: 0,
             totalPages: 0,
             editAccount: true,
+            editAccountName: "",
+            editAccountType: 0,
+            editAccountLowAlertBalance: 0,
             pages: [
                 {
                     pageNumber: 0,
@@ -1373,6 +1379,48 @@ export const reducer = (state=initialState, action={}) => {
                 })
                 return accounts;
             }(state.individualAccounts)
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditAccountNameAccountId) {
+                        account.editAccountName = action.setIndividualAccountsEditAccountNamePayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditAccountTypeAccountId) {
+                        account.editAccountType = action.setIndividualAccountsEditAccountTypePayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditAccountLowAlertBalanceAccountId) {
+                        account.lowAlertBalance = action.setIndividualAccountsEditAccountLowAlertBalancePayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
         }
     }
     return state;
