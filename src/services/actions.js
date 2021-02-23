@@ -786,7 +786,7 @@ export const setIndividualAccountsEditAccountError = (accountId, payload) => {
     }
 }
 
-export const setIndividualAccountsEditErrorMessage = (accountId, payload) => {
+export const setIndividualAccountsEditAccountErrorMessage = (accountId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE,
         setIndividualAccountsEditAccountErrorMessageAccountId: accountId,

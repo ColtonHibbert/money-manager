@@ -10,6 +10,7 @@ import EditAccount from "./EditAccount.js";
 import EditIcon from "./EditIcon.js";
 import TrashIcon from "./TrashIcon.js";
 import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter, handleFilterTransactionSelection }  from "../services/functions.js";
+import { setIndividualAccountsEditAccountErrorMessage } from "../services/actions.js";
 
 
 function IndividualAccount(props) {
@@ -31,7 +32,10 @@ function IndividualAccount(props) {
         setIndividualAccountsEditAccount,
         setIndividualAccountsEditAccountName,
         setIndividualAccountsEditAccountType,
-        setIndividualAccountsEditAccountLowAlertBalance
+        setIndividualAccountsEditAccountLowAlertBalance,
+        setIndividualAccountsEditAccountError,
+        setIndividualAccountsEditAccountErrorMessage,
+        user
     } = props;
 
     console.log(setIndividualAccountsEditAccountType)
@@ -112,6 +116,9 @@ function IndividualAccount(props) {
                         setIndividualAccountsEditAccountName={setIndividualAccountsEditAccountName}
                         setIndividualAccountsEditAccountType={setIndividualAccountsEditAccountType}
                         setIndividualAccountsEditAccountLowAlertBalance={setIndividualAccountsEditAccountLowAlertBalance}
+                        setIndividualAcountsEditAccountError={setIndividualAccountsEditAccountError}
+                        setIndividualAcountsEditAccountErrorMessage={setIndividualAccountsEditAccountErrorMessage}
+                        user={user}
                         />
                     </div>
                 }
