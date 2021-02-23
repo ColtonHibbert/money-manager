@@ -263,8 +263,8 @@ function IndividualAccount(props) {
                                 </div>
                                 <div className="flex flex-row w-100-l">
                                     
-                                    <div className="h2 w3 flex items-center justify-center mr3 ph1-l bg-money-color br2 white pointer">Add</div>
-                                    <div className="h2 w3 flex items-center justify-center ml3 ph1-l bg-red br2 white pointer">Clear</div>
+                                    <div className="h2 w3 flex items-center justify-center mr3 ph1-l bg-money-color br2 white pointer grow">Add</div>
+                                    <div className="h2 w3 flex items-center justify-center ml3 ph1-l bg-red br2 white pointer grow">Clear</div>
                                 </div>
                             </div>
                         </div>
@@ -406,10 +406,10 @@ function IndividualAccount(props) {
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
-                                            <div className="w1 h1 pointer">
+                                            <div className="w1 h1 pointer grow">
                                                 <EditIcon fillColor={"#429244"}/>
                                             </div>
-                                            <div className="w1 h1 pointer ml3">
+                                            <div className="w1 h1 pointer ml3 grow">
                                                 <TrashIcon fillColor={"#ff4136"} />
                                             </div>
                                         </div>
@@ -453,10 +453,10 @@ function IndividualAccount(props) {
                                             
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
-                                            <div className="w1 h1 pointer ml3">
+                                            <div className="w1 h1 pointer grow">
                                                 <EditIcon fillColor={"#429244"}/>
                                             </div>
-                                            <div className="w1 h1 pointer">
+                                            <div className="w1 h1 pointer ml3 grow">
                                                 <TrashIcon fillColor={"#ff4136"} />
                                             </div>
                                         </div>
