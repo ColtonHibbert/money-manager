@@ -89,7 +89,8 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
     SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS, 
-    SET_INDIVIDUAL_ACCOUNTS_SEARCH
+    SET_INDIVIDUAL_ACCOUNTS_SEARCH,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT
 } from "./constants.js";
 
 
@@ -737,6 +738,14 @@ export const setIndividualAccountsSearch = (accountId, payload) => {
         type: SET_INDIVIDUAL_ACCOUNTS_SEARCH,
         setIndividualAccountsSearchAccountId: accountId,
         setIndividualAccountsSearchPayload: payload
+    }
+}
+
+export const setIndividualAccountsEditAccount = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT,
+        setIndividualAccountsEditAccountAccountId: accountId,
+        setIndividualAccountsEditAccountPayload: payload
     }
 }
 

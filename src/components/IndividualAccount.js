@@ -10,6 +10,7 @@ import EditAccount from "./EditAccount.js";
 import EditIcon from "./EditIcon.js";
 import TrashIcon from "./TrashIcon.js";
 import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter, handleFilterTransactionSelection }  from "../services/functions.js";
+import { setIndividualAccountsEditAccount } from "../services/actions.js";
 
 
 function IndividualAccount(props) {
@@ -27,7 +28,8 @@ function IndividualAccount(props) {
         setIndividualAccountsFilterCurrentPage,
         setIndividualAccountsFilterPages,
         setIndividualAccountsTransactions,
-        setIndividualAccountsSearch
+        setIndividualAccountsSearch,
+        setIndividualAccountsEditAccount
     } = props;
 
     const getAccountTypeName = () => {
@@ -94,12 +96,15 @@ function IndividualAccount(props) {
                 </div>
                 {
                     (individualAccount.editAccount === false) ?
-                    <div className="w-100 flex justify-start mv2 pl3 pr3">
-                        <EditAccountButton />
+                    <div className="w-90 flex justify-start mv2 w-100-l pl3-l ">
+                        <EditAccountButton individualAccount={individualAccount} setIndividualAccountsEditAccount={setIndividualAccountsEditAccount}/>
                     </div>
                     : 
-                    <div className="w-100 flex justify-start mv2 pl3 pr3">
-                        <EditAccount individualAccount={individualAccount}/>
+                    <div className="w-100 flex justify-center mv2
+                    justify-center-m 
+                    justify-start-l
+                    ">
+                        <EditAccount individualAccount={individualAccount} setIndividualAccountsEditAccount={setIndividualAccountsEditAccount}/>
                     </div>
                 }
               
@@ -127,7 +132,7 @@ function IndividualAccount(props) {
                         <div className="
                         f3 money-color flex items-center mb1 pl3
                         ">   
-                            ${individualAccount.currentBalance}
+                            ${individualAccount.currentBalance.toFixed(2)}
                         </div>
                     </div>
                     <div className="
@@ -148,7 +153,7 @@ function IndividualAccount(props) {
                         <div className="
                         f3 red flex items-center mb1 pl3
                         ">   
-                            ${individualAccount.withdrawalsMonthlyAmount}
+                            ${individualAccount.withdrawalsMonthlyAmount.toFixed(2)}
                         </div>
                     </div>
                     <div className="
@@ -168,7 +173,7 @@ function IndividualAccount(props) {
                         <div className="
                         f3 money-color flex items-center mb1 pl3
                         ">   
-                            ${individualAccount.depositsMonthlyAmount}
+                            ${individualAccount.depositsMonthlyAmount.toFixed(2)}
                         </div>
                     </div>
                     <div className="
@@ -314,26 +319,26 @@ function IndividualAccount(props) {
 
                         {
                             (Array.isArray(individualAccount.transactions) && transactionsArrayValid && individualAccount.filter === false) ?
-                            <div className="w-100 flex flex-column mt3 ph3
+                            <div className="w-100 flex flex-column mt3 ph3 bb b--black
                             flex-row-l
                             ">
-                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                     <div className="mr1 mr2-l">Amount</div>
                                     <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsTransactions} arrayToSort={individualAccount.transactions} propertyToCompare={"amount"} typeToCompare={"num"} setCurrentPage={setIndividualAccountsCurrentPage} />
                                 </div>
-                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                     <div className="mr1 mr2-l">Date</div>
                                     <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsTransactions} arrayToSort={individualAccount.transactions} propertyToCompare={"date"} typeToCompare={"date"} setCurrentPage={setIndividualAccountsCurrentPage} />
                                 </div>
-                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                     <div className="mr1 mr2-l">Transaction Type</div>
                                     <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsTransactions} arrayToSort={individualAccount.transactions} propertyToCompare={"transactionTypeId"} typeToCompare={"num"} setCurrentPage={setIndividualAccountsCurrentPage} />
                                 </div>
-                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                     <div className="mr1 mr2-l">Memo</div>
                                     <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsTransactions} arrayToSort={individualAccount.transactions} propertyToCompare={"memoNote"} typeToCompare={"str"} setCurrentPage={setIndividualAccountsCurrentPage} />
                                 </div>
-                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                     <div className="mr1 mr2-l">Budget Category</div>
                                     <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsTransactions} arrayToSort={individualAccount.transactions} propertyToCompare={"categoryItemName"} typeToCompare={"str"} setCurrentPage={setIndividualAccountsCurrentPage} />
                                 </div>
@@ -343,26 +348,26 @@ function IndividualAccount(props) {
 
                         {
                             (Array.isArray(individualAccount.filteredTransactions) && filteredTransactionsArrayValid && individualAccount.filter === true) ?
-                            <div className="w-100 flex flex-column mt3 ph3
+                            <div className="w-100 flex flex-column mt3 ph3 bb b--black
                             flex-row-l
                             ">
-                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                     <div className="mr1 mr2-l">Amount</div>
                                     <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsFilteredTransactions} arrayToSort={individualAccount.filteredTransactions} propertyToCompare={"amount"} typeToCompare={"num"} setCurrentPage={setIndividualAccountsFilterCurrentPage} />
                                 </div>
-                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                     <div className="mr1 mr2-l">Date</div>
                                     <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsFilteredTransactions} arrayToSort={individualAccount.filteredTransactions} propertyToCompare={"date"} typeToCompare={"date"} setCurrentPage={setIndividualAccountsFilterCurrentPage} />
                                 </div>
-                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                     <div className="mr1 mr2-l">Transaction Type</div>
                                     <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsFilteredTransactions} arrayToSort={individualAccount.filteredTransactions} propertyToCompare={"transactionTypeId"} typeToCompare={"num"} setCurrentPage={setIndividualAccountsFilterCurrentPage} />
                                 </div>
-                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                     <div className="mr1 mr2-l">Memo</div>
                                     <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsFilteredTransactions} arrayToSort={individualAccount.filteredTransactions} propertyToCompare={"memoNote"} typeToCompare={"str"} setCurrentPage={setIndividualAccountsFilterCurrentPage} />
                                 </div>
-                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                     <div className="mr1 mr2-l">Budget Category</div>
                                     <Sort accountId={individualAccount.accountId} setNewArray={setIndividualAccountsFilteredTransactions} arrayToSort={individualAccount.filteredTransactions} propertyToCompare={"categoryItemName"} typeToCompare={"str"} setCurrentPage={setIndividualAccountsFilterCurrentPage} />
                                 </div>
@@ -381,26 +386,26 @@ function IndividualAccount(props) {
                                     className="w-100 flex flex-column mt3 mb2 pb3 ph3 bb b--black 
                                     flex-row-l
                                     ">
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">{transaction.amount}</div>
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
+                                            <div className="mr1 mr2-l">{transaction.amount.toFixed(2)}</div>
                                         </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="mr1 mr2-l">{transactionDate}</div>
                                             
                                         </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="mr1 mr2-l">{transactionType}</div>
                                             
                                         </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="mr1 mr2-l">{transaction.memoNote}</div>
                                             
                                         </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="mr1 mr2-l">{transaction.categoryItemName}</div>
                                             
                                         </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="w1 h1 pointer">
                                                 <EditIcon fillColor={"#429244"}/>
                                             </div>
@@ -428,26 +433,26 @@ function IndividualAccount(props) {
                                     className="w-100 flex flex-column mt3 pb3 ph3 bb b--black
                                     flex-row-l
                                     ">
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
-                                            <div className="mr1 mr2-l">{transaction.amount}</div>
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
+                                            <div className="mr1 mr2-l">{transaction.amount.toFixed(2)}</div>
                                         </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="mr1 mr2-l">{transactionDate}</div>
                                             
                                         </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="mr1 mr2-l">{transactionType}</div>
                                             
                                         </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="mr1 mr2-l">{transaction.memoNote}</div>
                                             
                                         </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="mr1 mr2-l">{transaction.categoryItemName}</div>
                                             
                                         </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center br b--black bn-l">
+                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="w1 h1 pointer ml3">
                                                 <EditIcon fillColor={"#429244"}/>
                                             </div>
