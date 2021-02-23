@@ -9,10 +9,15 @@ function EditAccount(props) {
         setIndividualAccountsEditAccountName,
         setIndividualAccountsEditAccountType,
         setIndividualAccountsEditAccountLowAlertBalance,
+        setIndividualAccountsEditAccountError,
+        setIndividualAccountsEditAccountErrorMessage,
         user
     } = props;
 
     const submitEditAccount = () => {
+         
+        const accountPost = formatEditAccountData();
+
         fetch(
             "http://localhost:3001/individualaccountseditaccount",
             {
@@ -22,9 +27,9 @@ function EditAccount(props) {
                     "CSRF-Token":user.csrf
                 },
                 body: JSON.stringify({
-                    editAccountName: individualAccount.editAccountName,
-                    editAccountType: individualAccount.editAccountType,
-                    editAccountLowAlertBalance: individualAccount.editAccountLowAlertBalance
+                    editAccountName: accountPost.editAccountName,
+                    editAccountType: accountPost.editAccountType,
+                    editAccountLowAlertBalance: accountPost.editAccountLowAlertBalance
                 }),
                 credentials:"include"
             }
@@ -32,15 +37,41 @@ function EditAccount(props) {
         .then(res => res.json())
         .then(data => {
             if(data.error) {
-                //setEditAccountError(true);
-                //setEditAccountErrorMessage;
+                setIndividualAccountsEditAccountError(true);
+                setIndividualAccountsEditAccountErrorMessage(data.error);
             }
             if(!data.error) {
-                
+                setIndividualAccountsEditAccountError(false);
+                setIndividualAccountsEditAccountErrorMessage("");
                 toast.success("Account Updated.")
             }
 
         })
+    }
+
+    const formatEditAccountData = () => {
+        const editAccountData = {};
+
+        if(individualAccount.accountName !== individualAccount.editAccountName && individualAccount.editAccountName !== "") {
+            editAccountData.editAccountName = individualAccount.editAccountName;
+        } else {
+            editAccountData.editAccountName = individualAccount.accountName;
+        }
+
+        if(individualAccount.accountType !== individualAccount.editAccountType && individualAccount.editAccountType !== 0) {
+            editAccountData.editAccountType = individualAccount.editAccountType
+        } else {
+            editAccountData.editAccountType = individualAccount.accountType;
+        }
+
+        if(individualAccount.lowAlertBalance !== individualAccount.editAccountLowAlertBalance) {
+            editAccountData.editAccountLowAlertBalance = individualAccount.editAccountLowAlertBalance
+        } else {
+            editAccountData.editAccountLowAlertBalance = individualAccount.lowAlertBalance
+        }
+
+        return editAccountData;
+
     }
 
     return (
@@ -86,7 +117,9 @@ function EditAccount(props) {
                 ></input>
             </div>
             <div className="flex justify-end pr4">
-                <div className="w4 h2 flex flex-row items-center justify-center mv2 bg-money-color br2 white pointer grow">
+                <div className="w4 h2 flex flex-row items-center justify-center mv2 bg-money-color br2 white pointer grow"
+                onClick={() => submitEditAccount()}
+                >
                     Update
                 </div>
             </div>
