@@ -114,8 +114,8 @@ function IndividualAccount(props) {
                         setIndividualAccountsEditAccountName={setIndividualAccountsEditAccountName}
                         setIndividualAccountsEditAccountTypeId={setIndividualAccountsEditAccountTypeId}
                         setIndividualAccountsEditAccountLowAlertBalance={setIndividualAccountsEditAccountLowAlertBalance}
-                        setIndividualAcountsEditAccountError={setIndividualAccountsEditAccountError}
-                        setIndividualAcountsEditAccountErrorMessage={setIndividualAccountsEditAccountErrorMessage}
+                        setIndividualAccountsEditAccountError={setIndividualAccountsEditAccountError}
+                        setIndividualAccountsEditAccountErrorMessage={setIndividualAccountsEditAccountErrorMessage}
                         user={user}
                         />
                     </div>
