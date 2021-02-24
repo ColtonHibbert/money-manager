@@ -33,7 +33,8 @@ import {
     setIndividualAccountsEditAccountTypeId,
     setIndividualAccountsEditAccountLowAlertBalance,
     setIndividualAccountsEditAccountError,
-    setIndividualAccountsEditAccountErrorMessage
+    setIndividualAccountsEditAccountErrorMessage,
+    setIndividualAccountsUpdateAccount
 } from "../services/actions.js";
 
 
@@ -73,7 +74,8 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsEditAccountTypeId: (accountId, payload) => dispatch(setIndividualAccountsEditAccountTypeId(accountId, payload)),
         setIndividualAccountsEditAccountLowAlertBalance: (accountId, payload) => dispatch(setIndividualAccountsEditAccountLowAlertBalance(accountId, payload)),
         setIndividualAccountsEditAccountError: (accountId, payload) => dispatch(setIndividualAccountsEditAccountError(accountId, payload)),
-        setIndividualAccountsEditAccountErrorMessage: (accountId, payload) => dispatch(setIndividualAccountsEditAccountErrorMessage(accountId, payload))
+        setIndividualAccountsEditAccountErrorMessage: (accountId, payload) => dispatch(setIndividualAccountsEditAccountErrorMessage(accountId, payload)),
+        setIndividualAccountsUpdateAccount: (accountId, payload) => dispatch(setIndividualAccountsUpdateAccount(accountId, payload))
     }
 }
 

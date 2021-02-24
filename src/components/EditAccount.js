@@ -11,6 +11,7 @@ function EditAccount(props) {
         setIndividualAccountsEditAccountLowAlertBalance,
         setIndividualAccountsEditAccountError,
         setIndividualAccountsEditAccountErrorMessage,
+        setIndividualAccountsUpdateAccount,
         user
     } = props;
 
@@ -44,6 +45,7 @@ function EditAccount(props) {
             if(!data.error) {
                 setIndividualAccountsEditAccountError(individualAccount.accountId, false);
                 setIndividualAccountsEditAccountErrorMessage(individualAccount.accountId, "");
+                setIndividualAccountsUpdateAccount(individualAccount.accountId, data.updatedAccountResponse);
                 toast.success("Account Updated.")
             }
 
