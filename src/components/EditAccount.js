@@ -43,9 +43,10 @@ function EditAccount(props) {
                 setIndividualAccountsEditAccountErrorMessage(individualAccount.accountId, data.error);
             }
             if(!data.error) {
+                console.log(data)
                 setIndividualAccountsEditAccountError(individualAccount.accountId, false);
                 setIndividualAccountsEditAccountErrorMessage(individualAccount.accountId, "");
-                setIndividualAccountsUpdateAccount(individualAccount.accountId, data.updatedAccountResponse);
+                setIndividualAccountsUpdateAccount(individualAccount.accountId, data);
                 toast.success("Account Updated.")
             }
 
