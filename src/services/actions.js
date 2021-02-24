@@ -96,7 +96,11 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE,
-    SET_INDIVIDUAL_ACCOUNTS_UPDATE_ACCOUNT
+    SET_INDIVIDUAL_ACCOUNTS_UPDATE_ACCOUNT,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_MEMO_NOTE,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID
 } from "./constants.js";
 
 
@@ -803,3 +807,36 @@ export const setIndividualAccountsUpdateAccount = (accountId, payload) => {
         setIndividualAccountsUpdateAccountPayload: payload
     }
 }
+
+export const setIndividualAccountsAddTransactionAmount = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT,
+        setIndividualAccountsAddTransactionAmountAccountId: accountId,
+        setIndividualAccountsAddTransactionAmountPayload: payload
+    }
+}
+
+export const setIndividualAccountsAddTransactionTransactionTypeId = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID,
+        setIndividualAccountsAddTransactionTransactionTypeIdAccountId: accountId,
+        setIndividualAccountsAddTransactionTransactionTypeIdPayload: payload
+    }
+}
+
+export const setIndividualAccountsAddTransactionMemoNote = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_MEMO_NOTE,
+        setIndividualAccountsAddTransactionMemoNoteAccountId: accountId,
+        setIndividualAccountsAddTransactionMemoNotePayload: payload
+    }
+}
+
+export const setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdAccountId: accountId,
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdPayload: payload
+    }
+}
+ 
