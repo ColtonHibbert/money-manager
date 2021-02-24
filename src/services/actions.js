@@ -95,7 +95,8 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE_ID,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE,
+    SET_INDIVIDUAL_ACCOUNTS_UPDATE_ACCOUNT
 } from "./constants.js";
 
 
@@ -792,5 +793,13 @@ export const setIndividualAccountsEditAccountErrorMessage = (accountId, payload)
         setIndividualAccountsEditAccountErrorMessageAccountId: accountId,
         setIndividualAccountsEditAccountErrorMessagePayload: payload
 
+    }
+}
+
+export const setIndividualAccountsUpdateAccount = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_UPDATE_ACCOUNT,
+        setIndividualAccountsUpdateAccountAccountId: accountId,
+        setIndividualAccountsUpdateAccountPayload: payload
     }
 }

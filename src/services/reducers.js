@@ -96,7 +96,8 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE_ID,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE,
+    SET_INDIVIDUAL_ACCOUNTS_UPDATE_ACCOUNT
 } from "./constants.js";
 
 const initialState = {
@@ -1454,6 +1455,22 @@ export const reducer = (state=initialState, action={}) => {
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsEditAccountErrorMessageAccountId) {
                         account.editAccountErrorMessage = action.setIndividualAccountsEditAccountErrorMessagePayload
+                    }   
+                })
+                 return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_UPDATE_ACCOUNT) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
+                        account.accountName = action.setIndividualAccountsUpdateAccountPayload.accountName
+                        account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
+                        account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
                     }   
                 })
                  return accounts;

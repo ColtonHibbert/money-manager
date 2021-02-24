@@ -34,6 +34,7 @@ function IndividualAccount(props) {
         setIndividualAccountsEditAccountLowAlertBalance,
         setIndividualAccountsEditAccountError,
         setIndividualAccountsEditAccountErrorMessage,
+        setIndividualAccountsUpdateAccount,
         user
     } = props;
 
@@ -116,6 +117,7 @@ function IndividualAccount(props) {
                         setIndividualAccountsEditAccountLowAlertBalance={setIndividualAccountsEditAccountLowAlertBalance}
                         setIndividualAccountsEditAccountError={setIndividualAccountsEditAccountError}
                         setIndividualAccountsEditAccountErrorMessage={setIndividualAccountsEditAccountErrorMessage}
+                        setIndividualAccountsUpdateAccount={setIndividualAccountsUpdateAccount}
                         user={user}
                         />
                     </div>
