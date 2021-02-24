@@ -35,8 +35,73 @@ function IndividualAccount(props) {
         setIndividualAccountsEditAccountError,
         setIndividualAccountsEditAccountErrorMessage,
         setIndividualAccountsUpdateAccount,
+        setIndividualAccountsAddTransactionAmount,
+        setIndividualAccountsAddTransactionTransactionTypeId,
+        setIndividualAccountsAddTransactionMemoNote,
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId,
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryId,
+        setIndividualAccountsAddTransactionAmountError,
         user
     } = props;
+
+    const submitAddTransaction = () => {
+        if(individualAccount.addTransactionAmount < 0) {
+            setIndividualAccountsAddTransactionAmountError(true);
+        } 
+        if(individualAccount.addTransactionAmount > 0) {
+            setIndividualAccountsAddTransactionAmountError(false);
+        }
+
+        if(individualAccount.addTransactionTransactionTypeId === 2) {
+            const itemId = categoriesAndItems.filter(category => {
+
+                const item = category.items.filter(item => {
+                    if(item.name === "deposit" ) {
+                        return item;
+                    }
+                })
+                if(item[0]) {
+                    if(item[0].name === "deposit") {
+                        return item[0];
+                    }
+                }
+            })
+            console.log(itemId[0])
+            setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId(individualAccount.accountId, itemId[0].items[0].personalBudgetCategoryItemId);
+            setIndividualAccountsAddTransactionPersonalBudgetCategoryId(individualAccount.accountId, itemId[0].items[0].personalBudgetCategoryId);
+        
+        }
+
+        if(individualAccount.addTransactionTransactionTypeId === 3) {
+            const itemId = categoriesAndItems.filter(category => {
+
+                const item = category.items.filter(item => {
+                    if(item.name === "transfer" ) {
+                        return item;
+                    }
+                })
+                if(item[0]) {
+                    if(item[0].name === "transfer") {
+                        return item[0];
+                    }
+                }
+            })
+            console.log(itemId[0])
+            setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId(individualAccount.accountId, itemId[0].items[0].personalBudgetCategoryItemId);
+            setIndividualAccountsAddTransactionPersonalBudgetCategoryId(individualAccount.accountId, itemId[0].items[0].personalBudgetCategoryId);
+        }
+
+
+        
+        if(individualAccount.addTransactionAmountError || individualAccount.addTransactionAmountError === 0 || individualAccount.addTransactionPersonalBudgetCategoryItemId) {
+            return;
+        } else {
+            fetch(
+                "http://"
+            )
+        }
+        
+    }
 
     const getAccountTypeName = () => {
         if(individualAccount.accountTypeId === 1) {
@@ -85,6 +150,19 @@ function IndividualAccount(props) {
 
     const classNoSelect = "h2 ph1 ph2-l flex justify-center items-center custom-gray br1 pointer bg-white-color-black";
     const classSelect = "h2 ph1 ph2-l flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
+
+    const handleSelectCategoryAndItem = (value) => {
+        console.log(value)
+        if(value === "") {
+            //setIndividualAccountsAddTransactionPersonalBudgetError(true);
+            return;
+        }
+        value = JSON.parse(value);
+        //setIndividualAccountAddTransactionPersonalBudgetError(false);
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId(individualAccount.accountId, value.personalBudgetCategoryItemId);
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryId(individualAccount.accountId, value.personalBudgetCategoryId);
+    }
+
 
     return(
         <div className="w-100" key={individualAccount.accountId}>    
@@ -225,14 +303,16 @@ function IndividualAccount(props) {
                             flex-column-l h4-l w-15-l
                             ">
                                 <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Amount</div>
-                                <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="number" placeholder="0.00"></input>
+                                <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="number" placeholder="0.00"
+                                onInput={(event) => setIndividualAccountsAddTransactionAmount(individualAccount.accountId, event.target.value)}
+                                ></input>
                             </div>
                             <div className="pl3 h3 flex flex-row items-center mt2
                             flex-column-l h4-l w-20-l
                             ">
                                 <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Transaction Type</div>
                                 <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
-
+                                    onChange={(event) => setIndividualAccountsAddTransactionTransactionTypeId(individualAccount.accountId, event.target.value)}
                                 >
                                     <option value="">--</option>
                                     <option value="1">Withdrawal</option>
@@ -244,14 +324,16 @@ function IndividualAccount(props) {
                             flex-column-l h4-l w-20-l
                             ">
                                 <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Memo Note</div>
-                                <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="text" placeholder="note"></input>
+                                <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="text" placeholder="note"
+                                    onInput={(event) => setIndividualAccountsAddTransactionMemoNote(individualAccount.accountId, event.target.value)}
+                                ></input>
                             </div>
                             <div className="pl3 h3 flex flex-row items-center mt2
                             flex-column-l h4-l w-25-l
                             ">
                                 <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Budget Category</div>
                                 <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
-                                
+                                    onChange={(event) => handleSelectCategoryAndItem(event.target.value)}
                                 >
                                     <option value="">--</option>
                                     {
@@ -261,7 +343,7 @@ function IndividualAccount(props) {
                                                 <optgroup key={category.categoryId} label={category.name}>
                                                     {
                                                         category.items.map(item => {
-                                                        return <option key={item.categoryItemId} value={item.personalBudgetCategoryItemId}>{item.name}</option>
+                                                        return <option key={item.categoryItemId} value={JSON.stringify(item)}>{item.name}</option>
                                                         })
                                                     }
                                                 </optgroup>
@@ -278,7 +360,9 @@ function IndividualAccount(props) {
                                 </div>
                                 <div className="flex flex-row w-100-l">
                                     
-                                    <div className="h2 w3 flex items-center justify-center mr3 ph1-l bg-money-color br2 white pointer grow">Add</div>
+                                    <div className="h2 w3 flex items-center justify-center mr3 ph1-l bg-money-color br2 white pointer grow"
+                                    onClick={() => submitAddTransaction()}
+                                    >Add</div>
                                     <div className="h2 w3 flex items-center justify-center ml3 ph1-l bg-red br2 white pointer grow">Clear</div>
                                 </div>
                             </div>

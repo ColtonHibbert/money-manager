@@ -34,7 +34,13 @@ import {
     setIndividualAccountsEditAccountLowAlertBalance,
     setIndividualAccountsEditAccountError,
     setIndividualAccountsEditAccountErrorMessage,
-    setIndividualAccountsUpdateAccount
+    setIndividualAccountsUpdateAccount,
+    setIndividualAccountsAddTransactionAmount,
+    setIndividualAccountsAddTransactionTransactionTypeId,
+    setIndividualAccountsAddTransactionMemoNote,
+    setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId,
+    setIndividualAccountsAddTransactionPersonalBudgetCategoryId,
+    setIndividualAccountsAddTransactionAmountError
 } from "../services/actions.js";
 
 
@@ -75,7 +81,13 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsEditAccountLowAlertBalance: (accountId, payload) => dispatch(setIndividualAccountsEditAccountLowAlertBalance(accountId, payload)),
         setIndividualAccountsEditAccountError: (accountId, payload) => dispatch(setIndividualAccountsEditAccountError(accountId, payload)),
         setIndividualAccountsEditAccountErrorMessage: (accountId, payload) => dispatch(setIndividualAccountsEditAccountErrorMessage(accountId, payload)),
-        setIndividualAccountsUpdateAccount: (accountId, payload) => dispatch(setIndividualAccountsUpdateAccount(accountId, payload))
+        setIndividualAccountsUpdateAccount: (accountId, payload) => dispatch(setIndividualAccountsUpdateAccount(accountId, payload)),
+        setIndividualAccountsAddTransactionAmount: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionAmount(accountId, payload)),
+        setIndividualAccountsAddTransactionTransactionTypeId: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionTransactionTypeId(accountId, payload)),
+        setIndividualAccountsAddTransactionMemoNote: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionMemoNote(accountId, payload)),
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId(accountId, payload)),
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryId: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionPersonalBudgetCategoryId(accountId, payload)),
+        setIndividualAccountsAddTransactionAmountError: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionAmountError(accountId, payload))
     }
 }
 

@@ -101,7 +101,9 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_MEMO_NOTE,
-    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR
 } from "./constants.js";
 
 const initialState = {
@@ -181,9 +183,11 @@ const initialState = {
             accountId: 0,
             accountName: "",
             addTransactionAmount: 0,
+            addTransactionAmountError: false,
             addTransactionTransactionTypeId: 0,
             addTransactionMemoNote: "",
             addTransactionPersonalBudgetCategoryItemId: 0, 
+            addTransactionPersonalBudgetCategoryId: 0,
             currentBalance: 0,
             lowAlertBalance: 0,
             userId: 0,
@@ -841,6 +845,7 @@ export const reducer = (state=initialState, action={}) => {
                     addTransactionTransactionTypeId: 0,
                     addTransactionMemoNote: "",
                     addTransactionPersonalBudgetCategoryItemId: 0,
+                    addTransactionPersonalBudgetCategoryId: 0,
                     currentBalance: account.currentBalance,
                     lowAlertBalance: account.lowAlertBalance,
                     userId: account.userId,
@@ -1533,7 +1538,7 @@ export const reducer = (state=initialState, action={}) => {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionAmountAccountId) {
-                        account.addTransactionAmount = action.setIndividualAccountsAddTransactionAmountPayload
+                        account.addTransactionAmount = Number(action.setIndividualAccountsAddTransactionAmountPayload)
                     }   
                 })
                     return accounts;
@@ -1547,7 +1552,7 @@ export const reducer = (state=initialState, action={}) => {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionTransactionTypeIdAccountId) {
-                        account.addTransactionTransactionTypeId = action.setIndividualAccountsAddTransactionTransactionTypeIdPayload
+                        account.addTransactionTransactionTypeId = Number(action.setIndividualAccountsAddTransactionTransactionTypeIdPayload)
                     }   
                 })
                     return accounts;
@@ -1575,7 +1580,35 @@ export const reducer = (state=initialState, action={}) => {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdAccountId) {
-                        account.addTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdPayload
+                        account.addTransactionPersonalBudgetCategoryItemId = Number(action.setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdPayload)
+                    }   
+                })
+                    return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetCategoryIdAccountId) {
+                        account.addTransactionPersonalBudgetCategoryId = action.setIndividualAccountsAddTransactionPersonalBudgetCategoryIdPayload
+                    }   
+                })
+                    return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsAddTransactionAmountErrorAccountId) {
+                        account.addTransactionAmountError = action.setIndividualAccountsAddTransactionAmountErrorPayload
                     }   
                 })
                     return accounts;

@@ -100,7 +100,10 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_MEMO_NOTE,
-    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_ERROR
 } from "./constants.js";
 
 
@@ -839,4 +842,21 @@ export const setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId = (
         setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdPayload: payload
     }
 }
+
+export const setIndividualAccountsAddTransactionPersonalBudgetCategoryId = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryIdAccountId: accountId, 
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryIdPayload: payload
+    }
+}
+
  
+export const setIndividualAccountsAddTransactionAmountError = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR,
+        setIndividualAccountsAddTransactionAmountErrorAccountId: accountId,
+        setIndividualAccountsAddTransactionAmountErrorPayload: payload
+    }
+}
+
