@@ -185,7 +185,7 @@ const initialState = {
             filterTransactionSelection: "all",
             currentPage: 0,
             totalPages: 0,
-            editAccount: true,
+            editAccount: false,
             editAccountName: "",
             editAccountTypeId: 0,
             editAccountLowAlertBalance: 0,
@@ -835,7 +835,7 @@ export const reducer = (state=initialState, action={}) => {
                     accountTypeId: account.accountTypeId,
                     userFirstName: account.userFirstName,
                     entries: individualAccountTransactionPagesRegularOrFilter.entries,
-                    editAccount: true,
+                    editAccount: false,
                     editAccountName: "",
                     editAccountTypeId: 0,
                     editAccountLowAlertBalance: 0,
@@ -1412,7 +1412,7 @@ export const reducer = (state=initialState, action={}) => {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsEditAccountTypeIdAccountId) {
-                        account.editAccountType = Number(action.setIndividualAccountsEditAccountTypeIdPayload)
+                        account.editAccountTypeId = Number(action.setIndividualAccountsEditAccountTypeIdPayload)
                     }   
                 })
                  return accounts;
@@ -1426,11 +1426,12 @@ export const reducer = (state=initialState, action={}) => {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsEditAccountLowAlertBalanceAccountId) {
-                        account.lowAlertBalance = Number(action.setIndividualAccountsEditAccountLowAlertBalancePayload)
+                        account.editAccountLowAlertBalance = Number(action.setIndividualAccountsEditAccountLowAlertBalancePayload)
                     }   
                 })
                  return accounts;
             }(state.individualAccounts) 
+
         }
     }
     if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR) {
@@ -1474,7 +1475,44 @@ export const reducer = (state=initialState, action={}) => {
                     }   
                 })
                  return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts),
+            accounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
+                        account.accountName = action.setIndividualAccountsUpdateAccountPayload.accountName
+                        account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
+                        account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
+                    }   
+                })
+                 return accounts;
+            }(state.accounts),
+            accountSummary: {
+                ...state.accountSummary,
+                accounts: function(accountsState) {
+                    const accounts = accountsState.slice();
+                    accounts.map(account => {
+                        if(account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
+                            account.accountName = action.setIndividualAccountsUpdateAccountPayload.accountName
+                            account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
+                            account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
+                        }   
+                    })
+                     return accounts;
+                }(state.accountSummary.accounts),
+                filteredAccounts: function(accountsState) {
+                    const accounts = accountsState.slice();
+                    accounts.map(account => {
+                        if(account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
+                            account.accountName = action.setIndividualAccountsUpdateAccountPayload.accountName
+                            account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
+                            account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
+                        }   
+                    })
+                     return accounts;
+                }(state.accountSummary.filteredAccounts),
+            }
+            
         }
     }
     return state;
