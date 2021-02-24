@@ -10,7 +10,6 @@ import EditAccount from "./EditAccount.js";
 import EditIcon from "./EditIcon.js";
 import TrashIcon from "./TrashIcon.js";
 import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter, handleFilterTransactionSelection }  from "../services/functions.js";
-import { setIndividualAccountsEditAccountErrorMessage } from "../services/actions.js";
 
 
 function IndividualAccount(props) {
@@ -31,14 +30,13 @@ function IndividualAccount(props) {
         setIndividualAccountsSearch,
         setIndividualAccountsEditAccount,
         setIndividualAccountsEditAccountName,
-        setIndividualAccountsEditAccountType,
+        setIndividualAccountsEditAccountTypeId,
         setIndividualAccountsEditAccountLowAlertBalance,
         setIndividualAccountsEditAccountError,
         setIndividualAccountsEditAccountErrorMessage,
         user
     } = props;
 
-    console.log(setIndividualAccountsEditAccountType)
     const getAccountTypeName = () => {
         if(individualAccount.accountTypeId === 1) {
             return "Checking";
@@ -114,10 +112,10 @@ function IndividualAccount(props) {
                         <EditAccount individualAccount={individualAccount} 
                         setIndividualAccountsEditAccount={setIndividualAccountsEditAccount}
                         setIndividualAccountsEditAccountName={setIndividualAccountsEditAccountName}
-                        setIndividualAccountsEditAccountType={setIndividualAccountsEditAccountType}
+                        setIndividualAccountsEditAccountTypeId={setIndividualAccountsEditAccountTypeId}
                         setIndividualAccountsEditAccountLowAlertBalance={setIndividualAccountsEditAccountLowAlertBalance}
-                        setIndividualAcountsEditAccountError={setIndividualAccountsEditAccountError}
-                        setIndividualAcountsEditAccountErrorMessage={setIndividualAccountsEditAccountErrorMessage}
+                        setIndividualAccountsEditAccountError={setIndividualAccountsEditAccountError}
+                        setIndividualAccountsEditAccountErrorMessage={setIndividualAccountsEditAccountErrorMessage}
                         user={user}
                         />
                     </div>

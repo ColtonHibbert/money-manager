@@ -7,7 +7,7 @@ function EditAccount(props) {
         individualAccount,
         setIndividualAccountsEditAccount,
         setIndividualAccountsEditAccountName,
-        setIndividualAccountsEditAccountType,
+        setIndividualAccountsEditAccountTypeId,
         setIndividualAccountsEditAccountLowAlertBalance,
         setIndividualAccountsEditAccountError,
         setIndividualAccountsEditAccountErrorMessage,
@@ -19,7 +19,7 @@ function EditAccount(props) {
         const accountPost = formatEditAccountData();
 
         fetch(
-            "http://localhost:3001/individualaccountseditaccount",
+            "http://localhost:3001/editindividualaccount",
             {
                 method: "POST",
                 headers: {
@@ -27,8 +27,9 @@ function EditAccount(props) {
                     "CSRF-Token":user.csrf
                 },
                 body: JSON.stringify({
+                    accountId: accountPost.accountId,
                     editAccountName: accountPost.editAccountName,
-                    editAccountType: accountPost.editAccountType,
+                    editAccountTypeId: accountPost.editAccountTypeId,
                     editAccountLowAlertBalance: accountPost.editAccountLowAlertBalance
                 }),
                 credentials:"include"
@@ -37,12 +38,12 @@ function EditAccount(props) {
         .then(res => res.json())
         .then(data => {
             if(data.error) {
-                setIndividualAccountsEditAccountError(true);
-                setIndividualAccountsEditAccountErrorMessage(data.error);
+                setIndividualAccountsEditAccountError(individualAccount.accountId, true);
+                setIndividualAccountsEditAccountErrorMessage(individualAccount.accountId, data.error);
             }
             if(!data.error) {
-                setIndividualAccountsEditAccountError(false);
-                setIndividualAccountsEditAccountErrorMessage("");
+                setIndividualAccountsEditAccountError(individualAccount.accountId, false);
+                setIndividualAccountsEditAccountErrorMessage(individualAccount.accountId, "");
                 toast.success("Account Updated.")
             }
 
@@ -58,18 +59,20 @@ function EditAccount(props) {
             editAccountData.editAccountName = individualAccount.accountName;
         }
 
-        if(individualAccount.accountType !== individualAccount.editAccountType && individualAccount.editAccountType !== 0) {
-            editAccountData.editAccountType = individualAccount.editAccountType
+        if(individualAccount.accountTypeId !== individualAccount.editAccountTypeId && individualAccount.editAccountTypeId !== 0) {
+            editAccountData.editAccountTypeId = individualAccount.editAccountTypeId;
         } else {
-            editAccountData.editAccountType = individualAccount.accountType;
+            editAccountData.editAccountTypeId = individualAccount.accountTypeId;
         }
 
         if(individualAccount.lowAlertBalance !== individualAccount.editAccountLowAlertBalance) {
-            editAccountData.editAccountLowAlertBalance = individualAccount.editAccountLowAlertBalance
+            editAccountData.editAccountLowAlertBalance = individualAccount.editAccountLowAlertBalance;
         } else {
-            editAccountData.editAccountLowAlertBalance = individualAccount.lowAlertBalance
+            editAccountData.editAccountLowAlertBalance = individualAccount.lowAlertBalance;
         }
+        editAccountData.accountId = individualAccount.accountId;
 
+        console.log(editAccountData)
         return editAccountData;
 
     }
@@ -99,7 +102,7 @@ function EditAccount(props) {
                 <div className="w-30 h2 f5 ">Account Type</div>
                 <select className="input-reset w-70 h2 mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b"
                 placeholder={individualAccount.accountTypeId}
-                onChange={(event) => setIndividualAccountsEditAccountType(individualAccount.accountId, event.target.value)}
+                onChange={(event) => setIndividualAccountsEditAccountTypeId(individualAccount.accountId, event.target.value)}
                 >
                     <option value="">--</option>
                     <option value="1">Checking</option>

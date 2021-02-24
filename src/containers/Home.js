@@ -30,7 +30,7 @@ import {
     setIndividualAccountsSearch,
     setIndividualAccountsEditAccount,
     setIndividualAccountsEditAccountName,
-    setIndividualAccountsEditAccountType,
+    setIndividualAccountsEditAccountTypeId,
     setIndividualAccountsEditAccountLowAlertBalance,
     setIndividualAccountsEditAccountError,
     setIndividualAccountsEditAccountErrorMessage
@@ -70,7 +70,7 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsSearch: (accountId, payload) => dispatch(setIndividualAccountsSearch(accountId, payload)),
         setIndividualAccountsEditAccount: (accountId, payload) => dispatch(setIndividualAccountsEditAccount(accountId, payload)),
         setIndividualAccountsEditAccountName: (accountId, payload) => dispatch(setIndividualAccountsEditAccountName(accountId, payload)),
-        setIndividualAccountsEditAccountType: (accountId, payload) => dispatch(setIndividualAccountsEditAccountType(accountId, payload)),
+        setIndividualAccountsEditAccountTypeId: (accountId, payload) => dispatch(setIndividualAccountsEditAccountTypeId(accountId, payload)),
         setIndividualAccountsEditAccountLowAlertBalance: (accountId, payload) => dispatch(setIndividualAccountsEditAccountLowAlertBalance(accountId, payload)),
         setIndividualAccountsEditAccountError: (accountId, payload) => dispatch(setIndividualAccountsEditAccountError(accountId, payload)),
         setIndividualAccountsEditAccountErrorMessage: (accountId, payload) => dispatch(setIndividualAccountsEditAccountErrorMessage(accountId, payload))

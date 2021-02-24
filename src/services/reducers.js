@@ -93,7 +93,7 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_SEARCH,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE_ID,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE
@@ -186,7 +186,7 @@ const initialState = {
             totalPages: 0,
             editAccount: true,
             editAccountName: "",
-            editAccountType: 0,
+            editAccountTypeId: 0,
             editAccountLowAlertBalance: 0,
             editAccountError: false,
             editAccountErrorMessage: "",
@@ -836,7 +836,7 @@ export const reducer = (state=initialState, action={}) => {
                     entries: individualAccountTransactionPagesRegularOrFilter.entries,
                     editAccount: true,
                     editAccountName: "",
-                    editAccountType: 0,
+                    editAccountTypeId: 0,
                     editAccountLowAlertBalance: 0,
                     editAccountError: false,
                     editAccountErrorMessage: "",
@@ -1404,14 +1404,14 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts) 
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE) {
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE_ID) {
         return {
             ...state,
             individualAccounts: function(accountsState) {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditAccountTypeAccountId) {
-                        account.editAccountType = Number(action.setIndividualAccountsEditAccountTypePayload)
+                    if(account.accountId === action.setIndividualAccountsEditAccountTypeIdAccountId) {
+                        account.editAccountType = Number(action.setIndividualAccountsEditAccountTypeIdPayload)
                     }   
                 })
                  return accounts;
