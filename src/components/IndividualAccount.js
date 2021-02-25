@@ -41,17 +41,29 @@ function IndividualAccount(props) {
         setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId,
         setIndividualAccountsAddTransactionPersonalBudgetCategoryId,
         setIndividualAccountsAddTransactionAmountError,
+        setIndividualAccountsAddTransactionPersonalBudgetError,
+        setIndividualAccountsAddTransactionTransactionTypeIdError,
         user
     } = props;
 
     const submitAddTransaction = () => {
+
+        //check amount
         if(individualAccount.addTransactionAmount < 0) {
-            setIndividualAccountsAddTransactionAmountError(true);
+            setIndividualAccountsAddTransactionAmountError(individualAccount.accountId, true);
         } 
         if(individualAccount.addTransactionAmount > 0) {
-            setIndividualAccountsAddTransactionAmountError(false);
+            setIndividualAccountsAddTransactionAmountError(individualAccount.accountId, false);
         }
 
+        //check transaction type
+        if(individualAccount.addTransactionTransactionTypeId !== 1 && individualAccount.addTransactionTransactionTypeId !== 2 && individualAccount.addTransactionTransactionTypeId !== 3) {
+            setIndividualAccountsAddTransactionTransactionTypeIdError(individualAccount.accountId, true);
+        } else {
+            setIndividualAccountsAddTransactionTransactionTypeIdError(individualAccount.accountId, false);
+        }
+
+        //auto convert deposit and transfer categories
         if(individualAccount.addTransactionTransactionTypeId === 2) {
             const itemId = categoriesAndItems.filter(category => {
 
@@ -69,7 +81,6 @@ function IndividualAccount(props) {
             console.log(itemId[0])
             setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId(individualAccount.accountId, itemId[0].items[0].personalBudgetCategoryItemId);
             setIndividualAccountsAddTransactionPersonalBudgetCategoryId(individualAccount.accountId, itemId[0].items[0].personalBudgetCategoryId);
-        
         }
 
         if(individualAccount.addTransactionTransactionTypeId === 3) {
@@ -90,17 +101,31 @@ function IndividualAccount(props) {
             setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId(individualAccount.accountId, itemId[0].items[0].personalBudgetCategoryItemId);
             setIndividualAccountsAddTransactionPersonalBudgetCategoryId(individualAccount.accountId, itemId[0].items[0].personalBudgetCategoryId);
         }
-
-
         
-        if(individualAccount.addTransactionAmountError || individualAccount.addTransactionAmountError === 0 || individualAccount.addTransactionPersonalBudgetCategoryItemId) {
+        //check all fields, request
+        if(individualAccount.addTransactionAmountError || individualAccount.addTransactionPersonalBudgetCategoryId === 0 || individualAccount.addTransactionPersonalBudgetCategoryItemId === 0 ||  individualAccount.addTransactionPersonalBudgetError || individualAccount.addTransactionTransactionTypeIdError ) {
             return;
         } else {
             fetch(
-                "http://"
+                "http://localhost:3001/addtransaction",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json",
+                        "CSRF-Token":user.csrf
+                    },
+                    body: JSON.stringify({
+                        addTransactionAmount: individualAccount.addTransactionAmoumt,
+                        addTransactionTransactionTypeId: individualAccount.addTransactionTransactionTypeId,
+                        addTransactionMemoNote: individualAccount.addTransactionMemoNote,
+                        addTransactionPersonalBudgetCategoryId: individualAccount.addTransactionPersonalBudgetCategoryId,
+                        addTransactionPersonalBudgetCategoryItemId: individualAccount.addTransactionPersonalBudgetCategoryItemId,
+
+                    }),
+                    credentials:"include"
+                }
             )
         }
-        
     }
 
     const getAccountTypeName = () => {
@@ -152,13 +177,13 @@ function IndividualAccount(props) {
     const classSelect = "h2 ph1 ph2-l flex justify-center items-center br1 pointer bg-white-color-black bg-white black";
 
     const handleSelectCategoryAndItem = (value) => {
-        console.log(value)
+        //console.log(value)
         if(value === "") {
-            //setIndividualAccountsAddTransactionPersonalBudgetError(true);
+            setIndividualAccountsAddTransactionPersonalBudgetError(individualAccount.accountId, true);
             return;
         }
         value = JSON.parse(value);
-        //setIndividualAccountAddTransactionPersonalBudgetError(false);
+        setIndividualAccountsAddTransactionPersonalBudgetError(individualAccount.accountId, false);
         setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId(individualAccount.accountId, value.personalBudgetCategoryItemId);
         setIndividualAccountsAddTransactionPersonalBudgetCategoryId(individualAccount.accountId, value.personalBudgetCategoryId);
     }
@@ -367,6 +392,14 @@ function IndividualAccount(props) {
                                 </div>
                             </div>
                         </div>
+                        {
+                            (individualAccount.addTransactionAmountError || individualAccount.addTransactionTransactionTypeIdError || individualAccount.addTransactionPersonalBudgetError) ? 
+                                <div className="red f5 pa1">
+                                    Amount must be greater than zero. Transaction Type and Budget Category must be selected.
+                                </div>
+                                : ""
+                            
+                        }
                     </div>
                 </div>
 
