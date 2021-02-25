@@ -120,7 +120,8 @@ function IndividualAccount(props) {
                         addTransactionMemoNote: individualAccount.addTransactionMemoNote,
                         addTransactionPersonalBudgetCategoryId: individualAccount.addTransactionPersonalBudgetCategoryId,
                         addTransactionPersonalBudgetCategoryItemId: individualAccount.addTransactionPersonalBudgetCategoryItemId,
-
+                        addTransactionUserId: user.userId,
+                        addTransactionAccountId: individualAccount.accountId
                     }),
                     credentials:"include"
                 }
