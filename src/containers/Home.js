@@ -40,7 +40,9 @@ import {
     setIndividualAccountsAddTransactionMemoNote,
     setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId,
     setIndividualAccountsAddTransactionPersonalBudgetCategoryId,
-    setIndividualAccountsAddTransactionAmountError
+    setIndividualAccountsAddTransactionAmountError,
+    setIndividualAccountsAddTransactionPersonalBudgetError,
+    setIndividualAccountsAddTransactionTransactionTypeIdError
 } from "../services/actions.js";
 
 
@@ -87,7 +89,9 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsAddTransactionMemoNote: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionMemoNote(accountId, payload)),
         setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId(accountId, payload)),
         setIndividualAccountsAddTransactionPersonalBudgetCategoryId: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionPersonalBudgetCategoryId(accountId, payload)),
-        setIndividualAccountsAddTransactionAmountError: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionAmountError(accountId, payload))
+        setIndividualAccountsAddTransactionAmountError: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionAmountError(accountId, payload)),
+        setIndividualAccountsAddTransactionPersonalBudgetError: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionPersonalBudgetError(accountId, payload)),
+        setIndividualAccountsAddTransactionTransactionTypeIdError: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionTransactionTypeIdError(accountId, payload))
     }
 }
 

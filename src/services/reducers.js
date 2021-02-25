@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 import {
     SET_ROUTE,
     SET_USER,
@@ -103,7 +102,9 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_MEMO_NOTE,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
-    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_ERROR, 
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID_ERROR
 } from "./constants.js";
 
 const initialState = {
@@ -185,6 +186,7 @@ const initialState = {
             addTransactionAmount: 0,
             addTransactionAmountError: false,
             addTransactionTransactionTypeId: 0,
+            addTransactionTransactionTypeIdError: false,
             addTransactionMemoNote: "",
             addTransactionPersonalBudgetCategoryItemId: 0, 
             addTransactionPersonalBudgetCategoryId: 0,
@@ -842,7 +844,9 @@ export const reducer = (state=initialState, action={}) => {
                     accountId: account.accountId,
                     accountName: account.accountName,
                     addTransactionAmount: 0,
+                    addTransactionAmountError: false,
                     addTransactionTransactionTypeId: 0,
+                    addTransactionTransactionTypeIdError: false,
                     addTransactionMemoNote: "",
                     addTransactionPersonalBudgetCategoryItemId: 0,
                     addTransactionPersonalBudgetCategoryId: 0,
@@ -1615,9 +1619,37 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts) 
         }
     }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_ERROR) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetErrorAccountId) {
+                        account.addTransactionPersonalBudgetError = action.setIndividualAccountsAddTransactionPersonalBudgetErrorPayload
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID_ERROR) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsAddTransactionTransactionTypeIdErrorAccountId) {
+                        console.log(action);
+                        account.addTransactionTransactionTypeIdError = action.setIndividualAccountsAddTransactionTransactionTypeIdErrorPayload
+                    }   
+                })
+            return accounts;
+            }(state.individualAccounts) 
+        }
+    }
     return state;
 }
-
 
 
 /*
