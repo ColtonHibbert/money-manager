@@ -115,12 +115,13 @@ function IndividualAccount(props) {
                         "CSRF-Token":user.csrf
                     },
                     body: JSON.stringify({
-                        addTransactionAmount: individualAccount.addTransactionAmoumt,
+                        addTransactionAmount: individualAccount.addTransactionAmount,
                         addTransactionTransactionTypeId: individualAccount.addTransactionTransactionTypeId,
                         addTransactionMemoNote: individualAccount.addTransactionMemoNote,
                         addTransactionPersonalBudgetCategoryId: individualAccount.addTransactionPersonalBudgetCategoryId,
                         addTransactionPersonalBudgetCategoryItemId: individualAccount.addTransactionPersonalBudgetCategoryItemId,
-
+                        addTransactionUserId: user.userId,
+                        addTransactionAccountId: individualAccount.accountId
                     }),
                     credentials:"include"
                 }
