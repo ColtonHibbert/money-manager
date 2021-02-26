@@ -126,6 +126,16 @@ function IndividualAccount(props) {
                     credentials:"include"
                 }
             )
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    //addTransactionError(individualAccount.accountId, true);
+                }
+                if(!data.error) {
+                    //addTransactionError(individualAccount.accountId, false);
+                    
+                }
+            })
         }
     }
 
