@@ -1668,4 +1668,28 @@ if(action.type === SET_INDIVIDUAL_ACCOUNTS_) {
     }
 }
 
+
+
+const date31DaysPrior = (Date.now() - (60000 * 60 * 24 * 31));
+if(Date.parse(transaction.date) > date31DaysPrior) {
+                transactionsMonthlyAllAccounts.push(transaction);
+            }
+            if(Date.parse(transaction.date) > date31DaysPrior) {
+                if(transaction.transactionTypeId === 1) {
+                    //withdrawal
+                    withdrawalsQuantity += 1;
+                    withdrawalsAmount += transaction.amount;
+                }
+                if(transaction.transactionTypeId === 2) {
+                    //deposit
+                    depositsQuantity += 1;
+                    depositsAmount += transaction.amount;
+                }
+                if(transaction.transactionTypeId === 3) {
+                    //transfer
+                    transferQuantity += 1;
+                    transferAmount += transaction.amount;
+                }
+                
+            }
 */
