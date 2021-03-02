@@ -104,8 +104,13 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_ERROR, 
-    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID_ERROR
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID_ERROR,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_ERROR,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA
 } from "./constants.js";
+import {
+    pagesArray
+} from "./functions.js";
 
 const initialState = {
     accounts: [
@@ -185,6 +190,7 @@ const initialState = {
             accountName: "",
             addTransactionAmount: 0,
             addTransactionAmountError: false,
+            addTransactionAddError: false,
             addTransactionTransactionTypeId: 0,
             addTransactionTransactionTypeIdError: false,
             addTransactionMemoNote: "",
@@ -797,7 +803,7 @@ export const reducer = (state=initialState, action={}) => {
     }
     if(action.type === SET_INITIAL_DATA) {
        
-        const configurePages = (value, passedAccounts) => {
+        const configurePagesInReducer = (value, passedAccounts) => {
             value = parseFloat(value);
             const numberOfPages = (Math.ceil(passedAccounts.length / value));
             const modifiedPages = pagesArray(value, passedAccounts, numberOfPages);
@@ -808,43 +814,22 @@ export const reducer = (state=initialState, action={}) => {
             }
             return pagesObject;
         }
-    
-        const pagesArray = (value, passedAccounts, numberOfPages) => {
-            let baseArray = [];
-            let start = 0;
-            let end = value;
-            for(let i = 0; i < numberOfPages; i++) {
-                let page = {
-                            pageNumber: i,
-                            startEntry: start,
-                            finishEntry: end
-                    };
-                baseArray.push(page);
-                
-                if(baseArray[baseArray.length -1 ].finishEntry >= passedAccounts.length) {
-                    baseArray[baseArray.length - 1].finishEntry = passedAccounts.length;
-                    continue
-                } 
-                start += value;
-                end += value;
-            }
-            return baseArray;
-        }
 
-        const summaryPagesRegularOrFilter = configurePages(state.accountSummary.entries, action.setInitialDataPayload.initialData.accountSummary);
+        const summaryPagesRegularOrFilter = configurePagesInReducer(state.accountSummary.entries, action.setInitialDataPayload.initialData.accountSummary);
 
         const formatStateForIndividualAccounts = () => {
             const formattedIndividualAccounts = [];
 
             action.setInitialDataPayload.initialData.individualAccounts.map(account => {
 
-                const individualAccountTransactionPagesRegularOrFilter = configurePages(3, account.transactions);
+                const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, account.transactions);
 
                 const accountObject = {
                     accountId: account.accountId,
                     accountName: account.accountName,
                     addTransactionAmount: 0,
                     addTransactionAmountError: false,
+                    addTransactionAddError: false,
                     addTransactionTransactionTypeId: 0,
                     addTransactionTransactionTypeIdError: false,
                     addTransactionMemoNote: "",
@@ -1648,6 +1633,36 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts) 
         }
     }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_ERROR) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsAddTransactionAddErrorAccountId) {
+                        account.addTransactionAddError = action.setIndividualAccountsAddTransactionAddErrorPayload
+                    }   
+                })
+                    return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsAddTransactionAddData) {
+                        //account. = 
+                        //action.setIndividualAccountsAddTransactionAddData
+                    }   
+                })
+                    return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    
     return state;
 }
 
