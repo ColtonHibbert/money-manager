@@ -1,3 +1,17 @@
+export const configurePagesInReducer = (value, passedAccounts) => {
+    value = parseFloat(value);
+    const numberOfPages = (Math.ceil(passedAccounts.length / value));
+    const modifiedPages = pagesArray(value, passedAccounts, numberOfPages);
+    const pagesObject = {
+        totalPages: numberOfPages,
+        pages: modifiedPages,
+        entries: value
+    }
+    return pagesObject;
+}
+
+
+
 export function configurePages(value, setEntries, setTotalPages, setCurrentPage, setPages, passedArray) {
     //console.log("setPages:", setPages);
     value = parseFloat(value);
