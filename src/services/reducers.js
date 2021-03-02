@@ -109,7 +109,8 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA
 } from "./constants.js";
 import {
-    pagesArray
+    pagesArray,
+    configurePagesInReducer
 } from "./functions.js";
 
 const initialState = {
@@ -802,18 +803,6 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     if(action.type === SET_INITIAL_DATA) {
-       
-        const configurePagesInReducer = (value, passedAccounts) => {
-            value = parseFloat(value);
-            const numberOfPages = (Math.ceil(passedAccounts.length / value));
-            const modifiedPages = pagesArray(value, passedAccounts, numberOfPages);
-            const pagesObject = {
-                totalPages: numberOfPages,
-                pages: modifiedPages,
-                entries: value
-            }
-            return pagesObject;
-        }
 
         const summaryPagesRegularOrFilter = configurePagesInReducer(state.accountSummary.entries, action.setInitialDataPayload.initialData.accountSummary);
 
@@ -1650,6 +1639,15 @@ export const reducer = (state=initialState, action={}) => {
     if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA) {
         return {
             ...state,
+            accounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
+                        account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload
+                    }
+                })
+                return accounts;
+            },
             individualAccounts: function(accountsState) {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
