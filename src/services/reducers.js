@@ -1643,10 +1643,31 @@ export const reducer = (state=initialState, action={}) => {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
-                        account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload
+                        account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
                     }
                 })
                 return accounts;
+            }(state.accounts),
+            accountSummary: {
+                ...state.accountSummary,
+                accounts: function(accountsState) {
+                    const accounts = accountsState.slice();
+                    accounts.map(account => {
+                        if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
+                            account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
+                        }
+                    })
+                    return accounts;
+                }(state.accountSummary.accounts),
+                filteredAccounts: function(accountsState) {
+                    const accounts = accountsState.slice();
+                    accounts.map(account => {
+                        if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
+                            account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
+                        }
+                    })
+                    return accounts;
+                }(state.accountSummary.accounts)
             },
             individualAccounts: function(accountsState) {
                 const accounts = accountsState.slice();
