@@ -130,11 +130,11 @@ function IndividualAccount(props) {
             .then(data => {
                 if(data.error) {
                     //addTransactionError(individualAccount.accountId, true);
-                    console.log(data);
+                    
                 }
                 if(!data.error) {
                     //addTransactionError(individualAccount.accountId, false);
-                    
+                    console.log(data);
                 }
             })
         }
