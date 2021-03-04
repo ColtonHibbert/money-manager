@@ -343,6 +343,7 @@ function IndividualAccount(props) {
                                 <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Amount</div>
                                 <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="number" placeholder="0.00"
                                 onInput={(event) => setIndividualAccountsAddTransactionAmount(individualAccount.accountId, event.target.value)}
+                                value={individualAccount.addTransactionAmount.toString()}
                                 ></input>
                             </div>
                             <div className="pl3 h3 flex flex-row items-center mt2
@@ -351,6 +352,7 @@ function IndividualAccount(props) {
                                 <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Transaction Type</div>
                                 <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
                                     onChange={(event) => setIndividualAccountsAddTransactionTransactionTypeId(individualAccount.accountId, event.target.value)}
+                                    value={individualAccount.addTransactionTransactionTypeId}
                                 >
                                     <option value="">--</option>
                                     <option value="1">Withdrawal</option>
@@ -364,6 +366,7 @@ function IndividualAccount(props) {
                                 <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Memo Note</div>
                                 <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="text" placeholder="note"
                                     onInput={(event) => setIndividualAccountsAddTransactionMemoNote(individualAccount.accountId, event.target.value)}
+                                    value={individualAccount.addTransactionMemoNote}
                                 ></input>
                             </div>
                             <div className="pl3 h3 flex flex-row items-center mt2
@@ -372,6 +375,7 @@ function IndividualAccount(props) {
                                 <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Budget Category</div>
                                 <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
                                     onChange={(event) => handleSelectCategoryAndItem(event.target.value)}
+                                    value={individualAccount.addTransactionPersonalBudgetCategoryItemId !== 0 ? : ""}
                                 >
                                     <option value="">--</option>
                                     {
