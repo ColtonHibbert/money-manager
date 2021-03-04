@@ -43,6 +43,8 @@ function IndividualAccount(props) {
         setIndividualAccountsAddTransactionAmountError,
         setIndividualAccountsAddTransactionPersonalBudgetError,
         setIndividualAccountsAddTransactionTransactionTypeIdError,
+        setIndividualAccountsAddTransactionAddError,
+        setIndividualAccountsAddTransactionAddData,
         user
     } = props;
 
@@ -129,12 +131,11 @@ function IndividualAccount(props) {
             .then(res => res.json())
             .then(data => {
                 if(data.error) {
-                    //addTransactionError(individualAccount.accountId, true);
-                    
+                    setIndividualAccountsAddTransactionAddError(individualAccount.accountId, true);
                 }
                 if(!data.error) {
-                    //addTransactionError(individualAccount.accountId, false);
-                    console.log(data);
+                    setIndividualAccountsAddTransactionAddError(individualAccount.accountId, false);
+                    setIndividualAccountsAddTransactionAddData(individualAccount.accountId, data);
                 }
             })
         }
@@ -410,7 +411,13 @@ function IndividualAccount(props) {
                                     Amount must be greater than zero. Transaction Type and Budget Category must be selected.
                                 </div>
                                 : ""
-                            
+                        }
+                        {
+                            (individualAccount.addTransactionAddError) ?
+                            <div className="red f5 pa1">
+                                There was an error submitting your transaction.
+                            </div>
+                            : ""
                         }
                     </div>
                 </div>
