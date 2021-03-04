@@ -189,7 +189,7 @@ const initialState = {
         {
             accountId: 0,
             accountName: "",
-            addTransactionAmount: 0,
+            addTransactionAmount: "",
             addTransactionAmountError: false,
             addTransactionAddError: false,
             addTransactionTransactionTypeId: 0,
@@ -816,7 +816,7 @@ export const reducer = (state=initialState, action={}) => {
                 const accountObject = {
                     accountId: account.accountId,
                     accountName: account.accountName,
-                    addTransactionAmount: 0,
+                    addTransactionAmount: "",
                     addTransactionAmountError: false,
                     addTransactionAddError: false,
                     addTransactionTransactionTypeId: 0,
@@ -1696,9 +1696,9 @@ export const reducer = (state=initialState, action={}) => {
 
                         const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, transactionsSlice);
                         
-                        account.addTransactionAmount = 0;
+                        account.addTransactionAmount = "";
                         account.addTransactionAmountError = false;
-                        account.addTransactionTransactionTypeId = 0;
+                        account.addTransactionTransactionTypeId = "";
                         account.addTransactionTransactionTypeIdError = false;
                         account.addTransactionMemoNote = "";
                         account.addTransactionPersonalBudgetCategoryItemId = 0;
