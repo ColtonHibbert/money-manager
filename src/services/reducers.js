@@ -1696,6 +1696,13 @@ export const reducer = (state=initialState, action={}) => {
 
                         const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, transactionsSlice);
                         
+                        account.addTransactionAmount = 0;
+                        account.addTransactionAmountError = false;
+                        account.addTransactionTransactionTypeId = 0;
+                        account.addTransactionTransactionTypeIdError = false;
+                        account.addTransactionMemoNote = "";
+                        account.addTransactionPersonalBudgetCategoryItemId = 0;
+                        account.addTransactionPersonalBudgetCategoryId = 0;
 
                         account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance;
                         account.currentPage = 0;
@@ -1745,7 +1752,7 @@ export const reducer = (state=initialState, action={}) => {
                     return amountState;
                 }
             }(state.transfersMonthlyAllAccountsAmount),
-            transferssMonthlyAllAccountsQuantity: function(quantityState) {
+            transfersMonthlyAllAccountsQuantity: function(quantityState) {
                 if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
                     return quantityState + 1;
                 } else {
