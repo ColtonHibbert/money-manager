@@ -1685,14 +1685,53 @@ export const reducer = (state=initialState, action={}) => {
             }(state.depositsMonthlyAllAccountsQuantity),
             individualAccounts: function(individualAccountsState) {
                 const individualAccounts = individualAccountsState.slice();
+                
                 individualAccounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId) {
-                        //account. = 
-                        //action.setIndividualAccountsAddTransactionAddDataPayload.
+                        const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, account.transactions);
+                        const transactionSlice = account.transactions.slice();
+                        transactionSlice.push
+                        const updatedTransactionsRegularOrFilter = 
+
+                        account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance;
+                        account.currentPage = 0;
+                        if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
+                            action.depositsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
+                            action.depositsMonthlyQuantity += 1;
+                        }
+                        
+                        
                     }   
                 })
                 return individualAccounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts),
+            filterCurrentapage: 0,
+            filterPages: ,
+
+
+            /* change filter as well to false, reset
+            //action.setIndividualAccountsAddTransactionAddDataPayload.
+            	individual account,
+                    current balance
+                    current page
+                    deposits monthly amount 
+                    deposits monthly quantity
+                    filterCurrentapage
+                    filterPages
+                    filterTotalPages
+                    filterTransactionSelection
+                    filteredTransactions
+                    pages
+                    totalPages
+                    transactions
+                    transactionsmonthly
+                    transactionsMonthlyQuantity
+                    transfersMonthlyAmount
+                    transfersMonthlyQuantity
+                    withdrawalsmonthlyamount
+                    withrawalsmonthlyquantity
+
+            */
         }
     }
     
