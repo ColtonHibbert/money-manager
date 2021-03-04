@@ -1688,10 +1688,12 @@ export const reducer = (state=initialState, action={}) => {
                 
                 individualAccounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId) {
-                        const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, account.transactions);
-                        const transactionSlice = account.transactions.slice();
-                        transactionSlice.push
-                        const updatedTransactionsRegularOrFilter = 
+                        
+                        const transactionsSlice = account.transactions.slice();
+                        transactionsSlice.push(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction);
+
+                        const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, transactionsSlice);
+                        
 
                         account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance;
                         account.currentPage = 0;
@@ -1699,15 +1701,15 @@ export const reducer = (state=initialState, action={}) => {
                             action.depositsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
                             action.depositsMonthlyQuantity += 1;
                         }
-                        
+                        account.filterCurrentPage = 0;
+                        account.filterPages = individualAccountTransactionPagesRegularOrFilter;
+                        account.filterTotalPages = 
+
                         
                     }   
                 })
                 return individualAccounts;
             }(state.individualAccounts),
-            filterCurrentapage: 0,
-            filterPages: ,
-
 
             /* change filter as well to false, reset
             //action.setIndividualAccountsAddTransactionAddDataPayload.
@@ -1716,7 +1718,7 @@ export const reducer = (state=initialState, action={}) => {
                     current page
                     deposits monthly amount 
                     deposits monthly quantity
-                    filterCurrentapage
+                    filterCurrentPage
                     filterPages
                     filterTotalPages
                     filterTransactionSelection
