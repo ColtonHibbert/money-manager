@@ -1673,19 +1673,25 @@ export const reducer = (state=initialState, action={}) => {
                 if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
                     return amountState + action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount
                 } else {
-                    return amountState
+                    return amountState;
                 }
             }(state.depositsMonthlyAllAccountsAmount),
-            depositsMonthlyAllAccountsQuantity: ,
+            depositsMonthlyAllAccountsQuantity: function(quantityState) {
+                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
+                    return quantityState + 1;
+                } else {
+                    return quantityState;
+                }
+            }(state.depositsMonthlyAllAccountsQuantity),
             individualAccounts: function(individualAccountsState) {
                 const individualAccounts = individualAccountsState.slice();
                 individualAccounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId) {
                         //account. = 
-                        //action.setIndividualAccountsAddTransactionAddData
+                        //action.setIndividualAccountsAddTransactionAddDataPayload.
                     }   
                 })
-                return accounts;
+                return individualAccounts;
             }(state.individualAccounts) 
         }
     }
