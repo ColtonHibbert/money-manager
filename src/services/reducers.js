@@ -1707,8 +1707,8 @@ export const reducer = (state=initialState, action={}) => {
                         account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance;
                         account.currentPage = 0;
                         if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
-                            action.depositsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
-                            action.depositsMonthlyQuantity += 1;
+                            account.depositsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
+                            account.depositsMonthlyQuantity += 1;
                         }
                         account.entries = individualAccountTransactionPagesRegularOrFilter.entries;
                         account.filter = false;
@@ -1723,12 +1723,12 @@ export const reducer = (state=initialState, action={}) => {
                         account.transactionsMonthly = transactionsMonthlySlice;
                         account.transactionsMonthlyQuantity += 1;
                         if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
-                            action.transfersMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
-                            action.transfersMonthlyQuantity += 1;
+                            account.transfersMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
+                            account.transfersMonthlyQuantity += 1;
                         }
                         if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 1) {
-                            action.withdrawalsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
-                            action.withdrawalsMonthlyQuantity += 1;
+                            account.withdrawalsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
+                            account.withdrawalsMonthlyQuantity += 1;
                         }
                     }   
                 })
