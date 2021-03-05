@@ -1779,17 +1779,27 @@ export const reducer = (state=initialState, action={}) => {
             }(state.withdrawalsMonthlyAllAccountsQuantity),
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_) {
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION) {
         return {
             ...state,
             individualAccounts: function(accountsState) {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccounts) {
-                        account.
+                    if(account.accountId === action.setIndividualAccountsEditTransactionAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
+                                transaction.edit = action.setIndividualAccountsEditTransactionPayload
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
+                                transaction.edit = action.setIndividualAccountsEditTransactionPayload
+                            }
+                        })
                     }   
                 })
-                    return accounts;
+                return accounts;
             }(state.individualAccounts) 
         }
     }

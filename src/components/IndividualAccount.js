@@ -55,6 +55,7 @@ function IndividualAccount(props) {
         setIndividualAccountsAddTransactionTransactionTypeIdError,
         setIndividualAccountsAddTransactionAddError,
         setIndividualAccountsAddTransactionAddData,
+        setIndividualAccountsEditTransaction,
         user
     } = props;
 
@@ -549,50 +550,51 @@ function IndividualAccount(props) {
                                 const transactionType = getTransactionTypeName(transaction);
                                 
                                 return(
-                                    <div key={transaction.transactionId}
-                                    className="w-100 flex flex-column mt3 mb2 pb3 ph3 bb b--black 
-                                    flex-row-l
-                                    ">
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
-                                            <div className="mr1 mr2-l">{transaction.amount.toFixed(2)}</div>
-                                        </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
-                                            <div className="mr1 mr2-l">{transactionDate}</div>
-                                            
-                                        </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
-                                            <div className="mr1 mr2-l">{transactionType}</div>
-                                            
-                                        </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
-                                            <div className="mr1 mr2-l">{transaction.memoNote}</div>
-                                            
-                                        </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
-                                            <div className="mr1 mr2-l">{transaction.categoryItemName}</div>
-                                            
-                                        </div>
-                                        <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
-                                            <div className="w1 h1 pointer grow">
-                                                <EditTransactionButton 
-                                                    individualAccount={individualAccount}
-                                                    transaction={transaction}
-                                                    setIndividualAccountsEditTransaction={setIndividualAccountsEditTransaction}
-                                                />
+                                    <div  key={transaction.transactionId} 
+                                    className="flex flex-column"
+                                    >
+                                        <div
+                                        className="w-100 flex flex-column mt3 mb2 pb3 ph3 bb b--black 
+                                        flex-row-l
+                                        ">
+                                            <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
+                                                <div className="mr1 mr2-l">{transaction.amount.toFixed(2)}</div>
                                             </div>
-                                            <div className="w1 h1 pointer ml3 grow">
-                                                <TrashIcon fillColor={"#ff4136"} />
+                                            <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
+                                                <div className="mr1 mr2-l">{transactionDate}</div>
+                                                
+                                            </div>
+                                            <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
+                                                <div className="mr1 mr2-l">{transactionType}</div>
+                                                
+                                            </div>
+                                            <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
+                                                <div className="mr1 mr2-l">{transaction.memoNote}</div>
+                                                
+                                            </div>
+                                            <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
+                                                <div className="mr1 mr2-l">{transaction.categoryItemName}</div>
+                                                
+                                            </div>
+                                            <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
+                                                <div className="w1 h1 pointer grow">
+                                                    <EditTransactionButton 
+                                                        individualAccount={individualAccount}
+                                                        transaction={transaction}
+                                                        setIndividualAccountsEditTransaction={setIndividualAccountsEditTransaction}
+                                                    />
+                                                </div>
+                                                <div className="w1 h1 pointer ml3 grow">
+                                                    <TrashIcon fillColor={"#ff4136"} />
+                                                </div>
                                             </div>
                                         </div>
                                         {
-                                            //edit will bring up another row
-                                            // editTransactionButton, pass in the transaction deets
-                                            // 
                                             (transaction.edit) ?
                                             <EditTransaction />
                                             : ""
                                         }
-                                       
+                                        
                                     </div>
                                 )
                             })
