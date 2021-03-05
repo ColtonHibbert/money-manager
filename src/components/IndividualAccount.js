@@ -551,10 +551,10 @@ function IndividualAccount(props) {
                                 
                                 return(
                                     <div  key={transaction.transactionId} 
-                                    className="flex flex-column"
+                                    className="flex flex-column mt3 mb2 pb3 ph3 bb b--black"
                                     >
                                         <div
-                                        className="w-100 flex flex-column mt3 mb2 pb3 ph3 bb b--black 
+                                        className="w-100 flex flex-column
                                         flex-row-l
                                         ">
                                             <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
@@ -591,7 +591,7 @@ function IndividualAccount(props) {
                                         </div>
                                         {
                                             (transaction.edit) ?
-                                            <EditTransaction />
+                                            <EditTransaction categoriesAndItems={categoriesAndItems}/>
                                             : ""
                                         }
                                         
