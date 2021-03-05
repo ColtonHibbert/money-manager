@@ -44,7 +44,8 @@ import {
     setIndividualAccountsAddTransactionPersonalBudgetError,
     setIndividualAccountsAddTransactionTransactionTypeIdError,
     setIndividualAccountsAddTransactionAddError,
-    setIndividualAccountsAddTransactionAddData
+    setIndividualAccountsAddTransactionAddData,
+    setIndividualAccountsEditTransaction
 } from "../services/actions.js";
 
 
@@ -95,7 +96,8 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsAddTransactionPersonalBudgetError: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionPersonalBudgetError(accountId, payload)),
         setIndividualAccountsAddTransactionTransactionTypeIdError: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionTransactionTypeIdError(accountId, payload)),
         setIndividualAccountsAddTransactionAddError: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionAddError(accountId, payload)),
-        setIndividualAccountsAddTransactionAddData: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionAddData(accountId, payload))
+        setIndividualAccountsAddTransactionAddData: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionAddData(accountId, payload)),
+        setIndividualAccountsEditTransaction: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransaction(accountId, transactionId, payload))
     }
 }
 
