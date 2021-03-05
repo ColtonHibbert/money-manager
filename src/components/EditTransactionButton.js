@@ -4,12 +4,15 @@ import EditIcon from "./EditIcon.js";
 function EditTransactionButton(props) {
     const {
         individualAccount,
+        transaction,
         setIndividualAccountsEditTransaction
     } = props;
 
+    //need edit on specific button, each transaction needs edit true false, we need account id and transaction id, so we can find the specific account and transaction
+    //will then display
     return (
-        <div className="w4 h2 flex flex-row items-center justify-center bg-money-color br2 white pointer grow"
-            onClick={() => setIndividualAccountsEditTransaction(individualAccount.accountId, true)}
+        <div
+            onClick={() => setIndividualAccountsEditTransaction(individualAccount.accountId, transaction.transactionId, true)}
         >
             <div className="w1 h1">
                 <EditIcon fillColor={"#2d3035"}/>
