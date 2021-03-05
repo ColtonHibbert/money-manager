@@ -9,7 +9,14 @@ import EditAccountButton from "./EditAccountButton.js";
 import EditAccount from "./EditAccount.js";
 import EditIcon from "./EditIcon.js";
 import TrashIcon from "./TrashIcon.js";
-import { pagesArray, configurePages, configureNestedArrayPages, handleTransactionFilter, handleFilterTransactionSelection }  from "../services/functions.js";
+import { toast } from "react-toastify";
+import { 
+    pagesArray, 
+    configurePages, 
+    configureNestedArrayPages, 
+    handleTransactionFilter, 
+    handleFilterTransactionSelection 
+} from "../services/functions.js";
 
 
 function IndividualAccount(props) {
@@ -132,10 +139,12 @@ function IndividualAccount(props) {
             .then(data => {
                 if(data.error) {
                     setIndividualAccountsAddTransactionAddError(individualAccount.accountId, true);
+                    toast.failure("Error adding transaction.")
                 }
                 if(!data.error) {
                     setIndividualAccountsAddTransactionAddError(individualAccount.accountId, false);
                     setIndividualAccountsAddTransactionAddData(individualAccount.accountId, data);
+                    toast.success("Transaction added successfully.")
                 }
             })
         }
@@ -376,7 +385,6 @@ function IndividualAccount(props) {
                                 <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
                                     onChange={(event) => handleSelectCategoryAndItem(event.target.value)}
                                     value={individualAccount.addTransactionPersonalBudgetCategoryItemId !== 0 ? console.log() : ""}
-                                   //value={JSON.stringify(individualAccount.addTransactionPersonalBudgetCategoryItemId)}
                                 >
                                     <option value="">--</option>
                                     {
@@ -563,7 +571,7 @@ function IndividualAccount(props) {
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="w1 h1 pointer grow">
-                                                <EditIcon fillColor={"#429244"}/>
+                                                <EditIcon fillColor={"#429244"} />
                                             </div>
                                             <div className="w1 h1 pointer ml3 grow">
                                                 <TrashIcon fillColor={"#ff4136"} />

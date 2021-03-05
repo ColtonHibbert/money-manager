@@ -1,19 +1,16 @@
 import React from "react";
 import EditIcon from "./EditIcon.js";
 
-function EditAccountButton(props) {
+function EditTransactionButton(props) {
     const {
         individualAccount,
-        setIndividualAccountsEditAccount  
+        setIndividualAccountsEditTransaction
     } = props;
 
     return (
         <div className="w4 h2 flex flex-row items-center justify-center bg-money-color br2 white pointer grow"
-            onClick={() => setIndividualAccountsEditAccount(individualAccount.accountId, true)}
+            onClick={() => setIndividualAccountsEditTransaction(individualAccount.accountId, true)}
         >
-            <div className="pr1">
-                Edit Account
-            </div>
             <div className="w1 h1">
                 <EditIcon fillColor={"#2d3035"}/>
             </div>
@@ -21,4 +18,4 @@ function EditAccountButton(props) {
     )
 }
 
-export default EditAccountButton;
+export default EditTransactionButton;
