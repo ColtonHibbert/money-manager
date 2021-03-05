@@ -1775,6 +1775,20 @@ export const reducer = (state=initialState, action={}) => {
             }(state.withdrawalsMonthlyAllAccountsQuantity),
         }
     }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccounts) {
+                        account.
+                    }   
+                })
+                    return accounts;
+            }(state.individualAccounts) 
+        }
+    }
     
 
     return state;

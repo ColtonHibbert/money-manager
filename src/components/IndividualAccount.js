@@ -579,6 +579,8 @@ function IndividualAccount(props) {
                                         </div>
                                         {
                                             //edit will bring up another row
+                                            // editTransactionButton, pass in the transaction deets
+                                            // 
                                         }
                                        
                                     </div>
