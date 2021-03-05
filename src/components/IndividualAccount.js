@@ -9,6 +9,7 @@ import EditAccountButton from "./EditAccountButton.js";
 import EditAccount from "./EditAccount.js";
 import EditIcon from "./EditIcon.js";
 import TrashIcon from "./TrashIcon.js";
+import EditTransaction from "./EditTransaction.js";
 import { toast } from "react-toastify";
 import { 
     pagesArray, 
@@ -17,6 +18,8 @@ import {
     handleTransactionFilter, 
     handleFilterTransactionSelection 
 } from "../services/functions.js";
+import EditTransactionButton from "./EditTransactionButton.js";
+import { setIndividualAccountsEditTransaction } from "../services/actions.js";
 
 
 function IndividualAccount(props) {
@@ -571,7 +574,11 @@ function IndividualAccount(props) {
                                         </div>
                                         <div className="w-15-l mt2 ph1 ph0-l custom-gray flex flex-row items-center ">
                                             <div className="w1 h1 pointer grow">
-                                                <EditIcon fillColor={"#429244"} />
+                                                <EditTransactionButton 
+                                                    individualAccount={individualAccount}
+                                                    transaction={transaction}
+                                                    setIndividualAccountsEditTransaction={setIndividualAccountsEditTransaction}
+                                                />
                                             </div>
                                             <div className="w1 h1 pointer ml3 grow">
                                                 <TrashIcon fillColor={"#ff4136"} />
@@ -581,6 +588,9 @@ function IndividualAccount(props) {
                                             //edit will bring up another row
                                             // editTransactionButton, pass in the transaction deets
                                             // 
+                                            (transaction.edit) ?
+                                            <EditTransaction />
+                                            : ""
                                         }
                                        
                                     </div>
