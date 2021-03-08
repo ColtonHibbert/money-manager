@@ -109,7 +109,6 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_CLEAR,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_AMOUNT,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_MEMO_NOTE,
@@ -1861,6 +1860,31 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts) 
         }
     }
+    //here
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_AMOUNT) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
+                                transaction.edit = action.setIndividualAccountsEditTransactionPayload
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
+                                transaction.edit = action.setIndividualAccountsEditTransactionPayload
+                            }
+                        })
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
     
 
     return state;
@@ -1868,7 +1892,7 @@ export const reducer = (state=initialState, action={}) => {
 
 
 /*
-if(action.type === SET_INDIVIDUAL_ACCOUNTS_) {
+if(action.type === SET_INDIVIDUAL_ACCOUNTS_AMOUNT) {
     return {
         ...state,
         individualAccounts: function(accountsState) {
@@ -1883,6 +1907,47 @@ if(action.type === SET_INDIVIDUAL_ACCOUNTS_) {
     }
 }
 
+if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION) {
+    return {
+        ...state,
+        individualAccounts: function(accountsState) {
+            const accounts = accountsState.slice();
+            accounts.map(account => {
+                if(account.accountId === action.setIndividualAccountsEditTransactionAccountId) {
+                    
+                    account.transactions.map(transaction => {
+                        if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
+                            transaction.edit = action.setIndividualAccountsEditTransactionPayload
+                        }
+                    })
+                    account.filteredTransactions.map(transaction => {
+                        if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
+                            transaction.edit = action.setIndividualAccountsEditTransactionPayload
+                        }
+                    })
+                }   
+            })
+            return accounts;
+        }(state.individualAccounts) 
+    }
+}
+
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_MEMO_NOTE,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_AMOUNT,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_MEMO_NOTE,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_CANCEL,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION
 
 
 const date31DaysPrior = (Date.now() - (60000 * 60 * 24 * 31));
