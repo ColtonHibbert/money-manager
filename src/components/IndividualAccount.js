@@ -594,13 +594,13 @@ function IndividualAccount(props) {
                                             (transaction.edit) ?
                                             <EditTransaction 
                                             categoriesAndItems={categoriesAndItems}
-                                            setEditAmount={}
-                                            setEditTransactionTypeId={}
-                                            setEditMemoNote={}
-                                            setEditPersonalBudgetCategoryId={}
-                                            setEditPersonalBudgetCategoryItemId={}
-                                            setEdit={}
-                                            setClear={}
+                                            //setEditAmount={}
+                                            //setEditTransactionTypeId={}
+                                            //setEditMemoNote={}
+                                            //setEditPersonalBudgetCategoryId={}
+                                            //setEditPersonalBudgetCategoryItemId={}
+                                            //setEdit={}
+                                           ///setClear={}
                                             />
                                             : ""
                                         }
@@ -660,13 +660,13 @@ function IndividualAccount(props) {
                                             (transaction.edit) ?
                                             <EditTransaction 
                                             categoriesAndItems={categoriesAndItems}
-                                            setEditAmount={}
-                                            setEditTransactionTypeId={}
-                                            setEditMemoNote={}
-                                            setEditPersonalBudgetCategoryId={}
-                                            setEditPersonalBudgetCategoryItemId={}
-                                            setEdit={}
-                                            setClear={}
+                                            //setEditAmount={}
+                                            //setEditTransactionTypeId={}
+                                            //setEditMemoNote={}
+                                            //setEditPersonalBudgetCategoryId={}
+                                            //setEditPersonalBudgetCategoryItemId={}
+                                            //setEdit={}
+                                            //setClear={}
                                             />
                                             : ""
                                         }
