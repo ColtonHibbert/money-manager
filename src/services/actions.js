@@ -108,7 +108,24 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_CLEAR,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_AMOUNT,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_MEMO_NOTE,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_AMOUNT,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_MEMO_NOTE,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_CANCEL,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION
 } from "./constants.js";
 
 
@@ -910,6 +927,156 @@ export const setIndividualAccountsEditTransaction = (accountId, transactionId, p
         setIndividualAccountsEditTransactionAccountId: accountId, 
         setIndividualAccountsEditTransactionTransactionId: transactionId,
         setIndividualAccountsEditTransactionPayload: payload
+    }
+}
+
+export const setIndividualAccountsEditTransactionAmount = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_AMOUNT,
+        setIndividualAccountsEditTransactionAmountAccountId: accountId, 
+        setIndividualAccountsEditTransactionAmountTransactionId: transactionId,
+        setIndividualAccountsEditTransactionAmountPayload: payload
+    }
+}
+
+export const setIndividualAccountsEditTransactionTransactionTypeId = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
+        setIndividualAccountsEditTransactionTransactionTypeIdAccountId: accountId, 
+        setIndividualAccountsEditTransactionTransactionTypeIdTransactionId: transactionId,
+        setIndividualAccountsEditTransactionTransactionTypeIdPayload: payload
+    }
+}
+
+export const setIndividualAccountsEditTransactionMemoNote = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_MEMO_NOTE,
+        setIndividualAccountsEditTransactionMemoNoteAccountId: accountId, 
+        setIndividualAccountsEditTransactionMemoNoteTransactionId: transactionId,
+        setIndividualAccountsEditTransactionMemoNotePayload: payload
+    }
+}
+
+export const setIndividualAccountsEditTransactionPersonalBudgetCategoryId = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryIdAccountId: accountId, 
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryIdTransactionId: transactionId,
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryIdPayload: payload
+    }
+}
+
+export const setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdAccountId: accountId, 
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdTransactionId: transactionId,
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdPayload: payload
+    }
+}
+
+export const setIndividualAccountsEditTransactionCancel = (accountId, transactionId ) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL,
+        setIndividualAccountsEditTransactionCancelAccountId: accountId, 
+        setIndividualAccountsEditTransactionCancelTransactionId: transactionId,
+    }
+}
+
+export const setIndividualAccountsEditTransactionDeleteDisplay = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY,
+        setIndividualAccountsEditTransactionDeleteDisplayAccountId: accountId, 
+        setIndividualAccountsEditTransactionDeleteDisplayTransactionId: transactionId,
+        setIndividualAccountsEditTransactionDeleteDisplayPayload: payload
+    }
+}
+
+export const setIndividualAccountsEditTransactionDeleteConfirmation = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION,
+        setIndividualAccountsEditTransactionDeleteConfirmationAccountId: accountId, 
+        setIndividualAccountsEditTransactionDeleteConfirmationTransactionId: transactionId,
+        setIndividualAccountsEditTransactionDeleteConfirmationPayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterEditTransaction = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION,
+        setIndividualAccountsFilterEditTransactionAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionTransactionId: transactionId,
+        setIndividualAccountsFilterEditTransactionPayload: payload
+    }
+}
+export const setIndividualAccountsFilterEditTransactionAmount = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_AMOUNT,
+        setIndividualAccountsFilterEditTransactionAmountAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionAmountTransactionId: transactionId,
+        setIndividualAccountsFilterEditTransactionAmountPayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterEditTransactionTransactionTypeId = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
+        setIndividualAccountsFilterEditTransactionTransactionTypeIdAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionTransactionTypeIdTransactionId: transactionId,
+        setIndividualAccountsFilterEditTransactionTransactionTypeIdPayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterEditTransactionMemoNote = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_MEMO_NOTE,
+        setIndividualAccountsFilterEditTransactionMemoNoteAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionMemoNoteTransactionId: transactionId,
+        setIndividualAccountsFilterEditTransactionMemoNotePayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryId = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
+        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdTransactionId: transactionId,
+        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdPayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemId = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
+        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdTransactionId: transactionId,
+        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdPayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterEditTransactionCancel = (accountId, transactionId ) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_CANCEL,
+        setIndividualAccountsFilterEditTransactionCancelAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionCancelTransactionId: transactionId,
+    }
+}
+
+export const setIndividualAccountsFilterEditTransactionDeleteDisplay = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
+        setIndividualAccountsFilterEditTransactionDeleteDisplayAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionDeleteDisplayTransactionId: transactionId,
+        setIndividualAccountsFilterEditTransactionDeleteDisplayPayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterEditTransactionDeleteConfirmation = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION,
+        setIndividualAccountsFilterEditTransactionDeleteConfirmationAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionDeleteConfirmationTransactionId: transactionId,
+        setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload: payload
     }
 }
 
