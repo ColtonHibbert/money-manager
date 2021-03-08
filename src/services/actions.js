@@ -897,10 +897,10 @@ export const setIndividualAccountsAddTransactionAddData = (accountId, payload) =
     }
 }
 
-export const setIndividuaAccountsAddTransactionClear = (accountId) => {
+export const setIndividualAccountsAddTransactionClear = (accountId) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_CLEAR,
-        setIndividuaAccountsAddTransactionClearAccountId: accountId
+        setIndividualAccountsAddTransactionClearAccountId: accountId
     }
 }
 

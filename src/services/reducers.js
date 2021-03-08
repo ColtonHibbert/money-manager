@@ -1787,11 +1787,11 @@ export const reducer = (state=initialState, action={}) => {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionClearAccountId) {
-                        account.amount = "";
-                        account.transactionTypeId = "";
-                        account.memoNote = "";
-                        account.personalBudgetCategoryId = 0;
-                        account.personalBudgetCategoryItemId = 0;
+                        account.addTransactionAmount = "";
+                        account.addTransactionTransactionTypeId = "";
+                        account.addTransactionMemoNote = "";
+                        account.addTransactionPersonalBudgetCategoryId = 0;
+                        account.addTransactionPersonalBudgetCategoryItemId = 0;
                     }   
                 })
             return accounts;
