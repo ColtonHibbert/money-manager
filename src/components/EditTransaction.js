@@ -2,14 +2,15 @@ import React from "react";
 
 function EditTransaction(props) {
     const {
-        categoriesAndItems
+        categoriesAndItems,
+        setEditAmount,
+        setEditTransactionTypeId,
+        setEditMemoNote,
+        setEditPersonalBudgetCategoryId,
+        setEditPersonalBudgetCategoryItemId,
+        setEdit
     } = props;
 
-    /*
-    <div className="w-90 flex flex-column mt3 bg-custom-darker-gray
-        w-100-l ph3-l
-        ">
-    */
     return (
         
             <div className="bg-custom-lighter-gray">
@@ -85,7 +86,7 @@ function EditTransaction(props) {
                             <div className="h2 w3 flex items-center justify-center mr3 ph1-l bg-money-color br2 white pointer grow"
                             //onClick={() => submitAddTransaction()}
                             >Add</div>
-                            <div className="h2 w3 flex items-center justify-center ml3 ph1-l bg-red br2 white pointer grow">Clear</div>
+                            <div className="h2 w3 flex items-center justify-center ml3 ph1-l bg-red br2 white pointer grow">Cancel</div>
                         </div>
                     </div>
                 </div>
