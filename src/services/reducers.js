@@ -107,6 +107,7 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_CLEAR,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION
 } from "./constants.js";
 import {
@@ -1777,6 +1778,24 @@ export const reducer = (state=initialState, action={}) => {
                     return quantityState;
                 }
             }(state.withdrawalsMonthlyAllAccountsQuantity),
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_CLEAR) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsAddTransactionClearAccountId) {
+                        account.amount = "";
+                        account.transactionTypeId = "";
+                        account.memoNote = "";
+                        account.personalBudgetCategoryId = 0;
+                        account.personalBudgetCategoryItemId = 0;
+                    }   
+                })
+            return accounts;
+            }(state.individualAccounts) 
         }
     }
     if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION) {
