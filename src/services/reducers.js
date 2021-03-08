@@ -237,7 +237,12 @@ const initialState = {
                   transactionTypeId: 0,
                   userId: 0,
                   accountId: 0,
-                  edit: false
+                  edit: false,
+                  editTransactionAmount: 0,
+                  editTransactionTransactionTypeId: 0,
+                  editTransactionMemoNote: 0,
+                  editTransactionPersonalBudgetCategoryId: 0,
+                  editTransactionPersonalBudgetCategoryItem: 0    
                 }
             ],
             filterTotalPages: 0,
@@ -265,7 +270,12 @@ const initialState = {
                 transactionTypeId: 0,
                 userId: 0,
                 accountId: 0,
-                edit: false
+                edit: false,
+                editTransactionAmount: 0,
+                editTransactionTransactionTypeId: 0,
+                editTransactionMemoNote: 0,
+                editTransactionPersonalBudgetCategoryId: 0,
+                editTransactionPersonalBudgetCategoryItem: 0
               }
             ],
             transactionsMonthly: [
@@ -392,6 +402,11 @@ const initialState = {
           userId: 0,
           accountId: 0,
           edit: false, 
+          editTransactionAmount: 0,
+          editTransactionTransactionTypeId: 0,
+          editTransactionMemoNote: 0,
+          editTransactionPersonalBudgetCategoryId: 0,
+          editTransactionPersonalBudgetCategoryItem: 0
         }
     ],
     transactionsMonthlyAllAccounts: [
