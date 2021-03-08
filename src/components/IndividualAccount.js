@@ -600,6 +600,7 @@ function IndividualAccount(props) {
                                             setEditPersonalBudgetCategoryId={}
                                             setEditPersonalBudgetCategoryItemId={}
                                             setEdit={}
+                                            setClear={}
                                             />
                                             : ""
                                         }
@@ -665,6 +666,7 @@ function IndividualAccount(props) {
                                             setEditPersonalBudgetCategoryId={}
                                             setEditPersonalBudgetCategoryItemId={}
                                             setEdit={}
+                                            setClear={}
                                             />
                                             : ""
                                         }

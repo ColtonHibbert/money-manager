@@ -8,7 +8,7 @@ function EditTransaction(props) {
         setEditMemoNote,
         setEditPersonalBudgetCategoryId,
         setEditPersonalBudgetCategoryItemId,
-        setEdit
+        setEditClear
     } = props;
 
     return (
