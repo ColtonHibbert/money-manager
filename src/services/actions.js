@@ -107,6 +107,7 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_CLEAR,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION
 } from "./constants.js";
 
@@ -893,6 +894,13 @@ export const setIndividualAccountsAddTransactionAddData = (accountId, payload) =
         type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA,
         setIndividualAccountsAddTransactionAddDataAccountId: accountId,
         setIndividualAccountsAddTransactionAddDataPayload: payload
+    }
+}
+
+export const setIndividuaAccountsAddTransactionClear = (accountId) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_CLEAR,
+        setIndividuaAccountsAddTransactionClearAccountId: accountId
     }
 }
 

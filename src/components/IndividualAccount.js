@@ -10,16 +10,14 @@ import EditAccount from "./EditAccount.js";
 import EditIcon from "./EditIcon.js";
 import TrashIcon from "./TrashIcon.js";
 import EditTransaction from "./EditTransaction.js";
+import EditTransactionButton from "./EditTransactionButton.js";
 import { toast } from "react-toastify";
 import { 
-    pagesArray, 
-    configurePages, 
     configureNestedArrayPages, 
     handleTransactionFilter, 
     handleFilterTransactionSelection 
 } from "../services/functions.js";
-import EditTransactionButton from "./EditTransactionButton.js";
-import { setIndividualAccountsEditTransaction } from "../services/actions.js";
+
 
 
 function IndividualAccount(props) {
