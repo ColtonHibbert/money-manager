@@ -49,7 +49,9 @@ import {
     setIndividualAccountsEditTransaction,
     setIndividualAccountsEditTransactionAmount,
     setIndividualAccountsEditTransactionTransactionTypeId,
-    setIndividualAccountsEditTransactionMemoNote
+    setIndividualAccountsEditTransactionMemoNote,
+    setIndividualAccountsEditTransactionPersonalBudgetCategoryId,
+    setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId
 } from "../services/actions.js";
 
 
@@ -105,7 +107,10 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsEditTransaction: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransaction(accountId, transactionId, payload)),
         setIndividualAccountsEditTransactionAmount: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionAmount(accountId, transactionId, payload)),
         setIndividualAccountsEditTransactionTransactionTypeId: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionTransactionTypeId(accountId, transactionId, payload)),
-        setIndividualAccountsEditTransactionMemoNote: (accountId, transactionId, payload ) => dispatch(setIndividualAccountsEditTransactionMemoNote(accountId, transactionId, payload ))
+        setIndividualAccountsEditTransactionMemoNote: (accountId, transactionId, payload ) => dispatch(setIndividualAccountsEditTransactionMemoNote(accountId, transactionId, payload )),
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryId: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionPersonalBudgetCategoryId(accountId, transactionId, payload)),
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId(accountId, transactionId, payload))
+
     }
 }
 

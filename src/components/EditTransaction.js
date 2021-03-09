@@ -1,4 +1,6 @@
 import React from "react";
+import { setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId } from "../services/actions.js";
+import { handleEditTransactionSelectCategoryAndItem }  from "../services/functions.js";
 
 function EditTransaction(props) {
     const {
@@ -57,8 +59,8 @@ function EditTransaction(props) {
                     ">
                         <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Budget Category</div>
                         <select className="h2 w4 w-100-l flex pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
-                            //onChange={(event) => handleSelectCategoryAndItem(event.target.value)}
-                            //value={individualAccount.addTransactionPersonalBudgetCategoryItemId !== 0 ? console.log() : ""}
+                            onChange={(event) => handleEditTransactionSelectCategoryAndItem(event.target.value, individualAccount, transaction, setEditPersonalBudgetCategoryId, setEditPersonalBudgetCategoryItemId)}
+                            value={transaction.editTransactionPersonalBudgetCategoryItemId !== 0 ? console.log() : ""}
                         >
                             <option value="">--</option>
                             {
