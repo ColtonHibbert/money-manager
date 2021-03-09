@@ -161,3 +161,15 @@ export const handleTransactionFilter = (value, accountId, setFilter, setTotalPag
                 return (searchRegex.test(entry.accountName) || searchRegex.test(entry.currentBalance) || searchRegex.test(entry.lowAlertBalance) || searchRegex.test(entry.firstName));
             }
 */
+
+export const handleEditTransactionSelectCategoryAndItem = (value, individualAccount, transaction, setCategory, setCategoryItem ) => {
+    //console.log(value)
+    if(value === "") {
+        //setError(individualAccount.accountId, transaction.transactionId, true);
+        return;
+    }
+    value = JSON.parse(value);
+    //setError(individualAccount.accountId, transaction.transactionId, false);      
+    setCategory(individualAccount.accountId, transaction.transactionId, value.personalBudgetCategoryId);
+    setCategoryItem(individualAccount.accountId, transaction.transactionId, value.personalBudgetCategoryItemId);
+}

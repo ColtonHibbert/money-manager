@@ -259,7 +259,7 @@ const initialState = {
                   editTransactionTransactionTypeId: 0,
                   editTransactionMemoNote: 0,
                   editTransactionPersonalBudgetCategoryId: 0,
-                  editTransactionPersonalBudgetCategoryItem: 0,
+                  editTransactionPersonalBudgetCategoryItemId: 0,
                   editTransactionDeleteDisplay: false, 
                   editTransactionDeleteConfirmation: false,   
                 }
@@ -294,7 +294,7 @@ const initialState = {
                 editTransactionTransactionTypeId: 0,
                 editTransactionMemoNote: 0,
                 editTransactionPersonalBudgetCategoryId: 0,
-                editTransactionPersonalBudgetCategoryItem: 0,
+                editTransactionPersonalBudgetCategoryItemId: 0,
                 editTransactionDeleteDisplay: false, 
                 editTransactionDeleteConfirmation: false,
               }
@@ -427,7 +427,7 @@ const initialState = {
             editTransactionTransactionTypeId: 0,
             editTransactionMemoNote: 0,
             editTransactionPersonalBudgetCategoryId: 0,
-            editTransactionPersonalBudgetCategoryItem: 0,
+            editTransactionPersonalBudgetCategoryItemId: 0,
             editTransactionDeleteDisplay: false, 
             editTransactionDeleteConfirmation: false,
         }
@@ -1932,7 +1932,55 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts) 
         }
     }
-
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID) { 
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdTransactionId) {
+                                transaction.editTransactionPersonalBudgetCategoryId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdPayload
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdTransactionId) {
+                                transaction.editTransactionPersonalBudgetCategoryId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdPayload
+                            }
+                        })
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID) { 
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
+                                transaction.editTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdPayload
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
+                                transaction.editTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdPayload
+                            }
+                        })
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }   
+    //here setediterror .. need const action etc, 
     return state;
 }
 
