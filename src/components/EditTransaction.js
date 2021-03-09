@@ -3,6 +3,8 @@ import React from "react";
 function EditTransaction(props) {
     const {
         categoriesAndItems,
+        individualAccount,
+        transaction,
         setEditAmount,
         setEditTransactionTypeId,
         setEditMemoNote,
@@ -23,7 +25,7 @@ function EditTransaction(props) {
                     ">
                         <div className="h2 w4 w-100-l h-50-l flex items-center pr2 f4 custom-gray ">Amount</div>
                         <input className="h2 w4 w-100-l input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1" type="number" placeholder="0.00"
-                        //onInput={(event) => setIndividualAccountsAddTransactionAmount(individualAccount.accountId, event.target.value)}
+                        onInput={(event) => setEditAmount(individualAccount.accountId, transaction.transactionId ,event.target.value)}
                         //value={individualAccount.addTransactionAmount.toString()}
                         ></input>
                     </div>
