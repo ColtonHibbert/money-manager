@@ -1860,7 +1860,6 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts) 
         }
     }
-    //here
     if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_AMOUNT) {
         return {
             ...state,
@@ -1871,12 +1870,12 @@ export const reducer = (state=initialState, action={}) => {
                         
                         account.transactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionAmountTransactionId) {
-                                transaction.editTransactionAmount = action.setIndividualAccountsEditTransactionAmountPayload
+                                transaction.editTransactionAmount = Number(action.setIndividualAccountsEditTransactionAmountPayload)
                             }
                         })
                         account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionAmountTransactionId) {
-                                transaction.editTransactionAmount = action.setIndividualAccountsEditTransactionAmountPayload
+                                transaction.editTransactionAmount = Number(action.setIndividualAccountsEditTransactionAmountPayload)
                             }
                         })
                     }   
@@ -1885,7 +1884,54 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts) 
         }
     }
-    
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_TRANSACTION_TYPE_ID) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionTransactionTypeIdAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionTypeIdTransactionId) {
+                                transaction.editTransactionTransactionTypeId = Number(action.setIndividualAccountsEditTransactionTransactionTypeIdPayload);
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionTypeIdTransactionId) {
+                                transaction.editTransactionTransactionTypeId = Number(action.setIndividualAccountsEditTransactionTransactionTypeIdPayload)
+                            }
+                        })
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_MEMO_NOTE) { 
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionMemoNoteAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionMemoNoteTransactionId) {
+                                transaction.editTransactionMemoNote = action.setIndividualAccountsEditTransactionMemoNotePayload
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionMemoNoteTransactionId) {
+                                transaction.editTransactionMemoNote = action.setIndividualAccountsEditTransactionMemoNotePayload
+                            }
+                        })
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
 
     return state;
 }
@@ -1932,7 +1978,6 @@ if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION) {
     }
 }
 
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_MEMO_NOTE,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
