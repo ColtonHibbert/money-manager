@@ -1867,16 +1867,16 @@ export const reducer = (state=initialState, action={}) => {
             individualAccounts: function(accountsState) {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionAccountId) {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionAmountAccountId) {
                         
                         account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
-                                transaction.edit = action.setIndividualAccountsEditTransactionPayload
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionAmountTransactionId) {
+                                transaction.editTransactionAmount = action.setIndividualAccountsEditTransactionAmountPayload
                             }
                         })
                         account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
-                                transaction.edit = action.setIndividualAccountsEditTransactionPayload
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionAmountTransactionId) {
+                                transaction.editTransactionAmount = action.setIndividualAccountsEditTransactionAmountPayload
                             }
                         })
                     }   
