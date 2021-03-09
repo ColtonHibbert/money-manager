@@ -56,6 +56,8 @@ function IndividualAccount(props) {
         setIndividualAccountsAddTransactionClear,
         setIndividualAccountsEditTransaction,
         setIndividualAccountsEditTransactionAmount,
+        setIndividualAccountsEditTransactionTransactionTypeId,
+        setIndividualAccountsEditTransactionMemoNote,
         user
     } = props;
 
@@ -598,8 +600,8 @@ function IndividualAccount(props) {
                                             individualAccount={individualAccount}
                                             transaction={transaction}
                                             setEditAmount={setIndividualAccountsEditTransactionAmount}
-                                            //setEditTransactionTypeId={}
-                                            //setEditMemoNote={}
+                                            setEditTransactionTypeId={setIndividualAccountsEditTransactionTransactionTypeId}
+                                            setEditMemoNote={setIndividualAccountsEditTransactionMemoNote}
                                             //setEditPersonalBudgetCategoryId={}
                                             //setEditPersonalBudgetCategoryItemId={}
                                             //setEdit={}

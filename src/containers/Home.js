@@ -47,7 +47,9 @@ import {
     setIndividualAccountsAddTransactionAddData,
     setIndividualAccountsAddTransactionClear,
     setIndividualAccountsEditTransaction,
-    setIndividualAccountsEditTransactionAmount
+    setIndividualAccountsEditTransactionAmount,
+    setIndividualAccountsEditTransactionTransactionTypeId,
+    setIndividualAccountsEditTransactionMemoNote
 } from "../services/actions.js";
 
 
@@ -101,7 +103,9 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsAddTransactionAddData: (accountId, payload) => dispatch(setIndividualAccountsAddTransactionAddData(accountId, payload)),
         setIndividualAccountsAddTransactionClear: (accountId) => dispatch(setIndividualAccountsAddTransactionClear(accountId)),
         setIndividualAccountsEditTransaction: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransaction(accountId, transactionId, payload)),
-        setIndividualAccountsEditTransactionAmount: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionAmount(accountId, transactionId, payload))
+        setIndividualAccountsEditTransactionAmount: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionAmount(accountId, transactionId, payload)),
+        setIndividualAccountsEditTransactionTransactionTypeId: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionTransactionTypeId(accountId, transactionId, payload)),
+        setIndividualAccountsEditTransactionMemoNote: (accountId, transactionId, payload ) => dispatch(setIndividualAccountsEditTransactionMemoNote(accountId, transactionId, payload ))
     }
 }
 
