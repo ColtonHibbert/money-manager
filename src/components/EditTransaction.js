@@ -1,5 +1,6 @@
 import React from "react";
 import { handleEditTransactionSelectCategoryAndItem }  from "../services/functions.js";
+import { toast } from 'react-toastify';
 // use toast error instead of permanent error, will not include error state for edit transaction
 
 function EditTransaction(props) {
@@ -16,7 +17,7 @@ function EditTransaction(props) {
         setEditCancel,
         setEditDeleteDisplay,
         setEditError,
-        //setEditData,
+        setEditData,
         setEditDeleteConfirmation
     } = props;
 
@@ -106,8 +107,8 @@ function EditTransaction(props) {
                 }
                 if(!data.error) {
                     console.log(data)
-                    //setEditData(individualAccount.accountId, transaction.transactionId, data);
-                    setEditCancel(individualAccount.accountId, transaction.transactionId );
+                    setEditData(data.accountId, data.transactionId, data);
+                    setEditCancel(data.accountId, data.transactionId );
                     toast.success("Transaction edited successfully.");
                 }
             })
@@ -196,7 +197,7 @@ function EditTransaction(props) {
                     </div>
                 </div>
                 {
-                    (individualAccount.editTransactionError) ? 
+                    (transaction.editTransactionError) ? 
                     <div className="red f5 pa1">
                         Amount must be greater than zero. Transaction Type and Budget Category must be selected.
                     </div>
