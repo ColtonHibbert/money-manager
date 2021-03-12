@@ -93,8 +93,7 @@ function EditTransaction(props) {
                         editTransactionMemoNote: transaction.editTransactionMemoNote,
                         editTransactionPersonalBudgetCategoryId: transaction.editTransactionPersonalBudgetCategoryId,
                         editTransactionPersonalBudgetCategoryItemId: transaction.editTransactionPersonalBudgetCategoryItemId,
-                        editTransactionUserId: user.userId,
-                        editTransactionAccountId: individualAccount.accountId
+                        editTransactionTransactionId: transaction.transactionId
                     }),
                     credentials:"include"
                 }
@@ -106,9 +105,10 @@ function EditTransaction(props) {
                     toast.failure("Error editing transaction, transaction was not updated.");
                 }
                 if(!data.error) {
+                    console.log(data)
                     //setEditData(individualAccount.accountId, transaction.transactionId, data);
                     setEditCancel(individualAccount.accountId, transaction.transactionId );
-                    toast.success("Transaction added successfully.");
+                    toast.success("Transaction edited successfully.");
                 }
             })
         }
