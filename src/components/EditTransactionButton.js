@@ -8,8 +8,6 @@ function EditTransactionButton(props) {
         setIndividualAccountsEditTransaction,
     } = props;
 
-    //need edit on specific button, each transaction needs edit true false, we need account id and transaction id, so we can find the specific account and transaction
-    //will then display
     return (
         <div
             onClick={() => setIndividualAccountsEditTransaction(individualAccount.accountId, transaction.transactionId, true)}

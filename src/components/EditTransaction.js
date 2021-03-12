@@ -14,10 +14,8 @@ function EditTransaction(props) {
         setEditPersonalBudgetCategoryId,
         setEditPersonalBudgetCategoryItemId,
         setEditCancel,
-        //setEditDeleteDisplay,
         setEditError,
         setEditData,
-        setEditDeleteConfirmation
     } = props;
 
     function submitEditTransaction() {
@@ -110,6 +108,9 @@ function EditTransaction(props) {
                     setEditCancel(data.accountId, data.transactionId );
                     toast.success("Transaction edited successfully.");
                 }
+            })
+            .catch(err => {
+                toast.failure("Error editing transaction.")
             })
         }
     }
