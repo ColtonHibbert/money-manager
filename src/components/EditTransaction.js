@@ -1,7 +1,6 @@
 import React from "react";
 import { handleEditTransactionSelectCategoryAndItem }  from "../services/functions.js";
 import { toast } from 'react-toastify';
-// use toast error instead of permanent error, will not include error state for edit transaction
 
 function EditTransaction(props) {
     const {
@@ -15,7 +14,7 @@ function EditTransaction(props) {
         setEditPersonalBudgetCategoryId,
         setEditPersonalBudgetCategoryItemId,
         setEditCancel,
-        setEditDeleteDisplay,
+        //setEditDeleteDisplay,
         setEditError,
         setEditData,
         setEditDeleteConfirmation

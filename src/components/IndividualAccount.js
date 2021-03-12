@@ -7,10 +7,9 @@ import Sort from "../components/Sort.js";
 import PaginationBar from "../components/PaginationBar.js";
 import EditAccountButton from "./EditAccountButton.js";
 import EditAccount from "./EditAccount.js";
-import EditIcon from "./EditIcon.js";
-import TrashIcon from "./TrashIcon.js";
 import EditTransaction from "./EditTransaction.js";
 import EditTransactionButton from "./EditTransactionButton.js";
+import DeleteTransactionButton from "./DeleteTransactionButton.js";
 import { toast } from "react-toastify";
 import { 
     configureNestedArrayPages, 
@@ -596,7 +595,11 @@ function IndividualAccount(props) {
                                                     />
                                                 </div>
                                                 <div className="w1 h1 pointer ml3 grow">
-                                                    <TrashIcon fillColor={"#ff4136"} />
+                                                    <DeleteTransactionButton 
+                                                        individualAccount={individualAccount}
+                                                        transaction={transaction}
+                                                        setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -613,7 +616,7 @@ function IndividualAccount(props) {
                                             setEditPersonalBudgetCategoryId={setIndividualAccountsEditTransactionPersonalBudgetCategoryId}
                                             setEditPersonalBudgetCategoryItemId={setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId}
                                             setEditCancel={setIndividualAccountsEditTransactionCancel}
-                                            setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
+                                            //setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
                                             setEditError={setIndividualAccountsEditTransactionError}
                                             setEditData={setIndividualAccountsEditTransactionData}
                                             setEditDeleteConfirmation={setIndividualAccountsEditTransactionDeleteConfirmation}
@@ -669,7 +672,11 @@ function IndividualAccount(props) {
                                                     />
                                                 </div>
                                                 <div className="w1 h1 pointer ml3 grow">
-                                                    <TrashIcon fillColor={"#ff4136"} />
+                                                    <DeleteTransactionButton 
+                                                        individualAccount={individualAccount}
+                                                        transaction={transaction}
+                                                        setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
