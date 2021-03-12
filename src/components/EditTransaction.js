@@ -1,9 +1,10 @@
 import React from "react";
-import { setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId } from "../services/actions.js";
 import { handleEditTransactionSelectCategoryAndItem }  from "../services/functions.js";
+// use toast error instead of permanent error, will not include error state for edit transaction
 
 function EditTransaction(props) {
     const {
+        user,
         categoriesAndItems,
         individualAccount,
         transaction,
@@ -12,8 +13,106 @@ function EditTransaction(props) {
         setEditMemoNote,
         setEditPersonalBudgetCategoryId,
         setEditPersonalBudgetCategoryItemId,
-        setEditClear
+        setEditCancel,
+        setEditDeleteDisplay,
+        setEditError,
+        //setEditData,
+        setEditDeleteConfirmation
     } = props;
+
+    function submitEditTransaction() {
+        //check amount
+        if(transaction.editTransactionAmount < 0) {
+            setEditError(individualAccount.accountId, transaction.transactionId, true);
+        } 
+        if(transaction.editTransactionAmount > 0) {
+            setEditError(individualAccount.accountId, transaction.transactionId, false);
+        }
+
+        //check transaction type
+        if(transaction.editTransactionTransactionTypeId !== 1 && transaction.editTransactionTransactionTypeId !== 2 && transaction.editTransactionTransactionTypeId !== 3) {
+            setEditError(individualAccount.accountId, transaction.transactionId, true);
+        } else {
+            setEditError(individualAccount.accountId, transaction.transactionId, false);
+        }
+
+        //auto convert deposit and transfer categories
+        if(transaction.editTransactionTransactionTypeId === 2) {
+            const itemId = categoriesAndItems.filter(category => {
+
+                const item = category.items.filter(item => {
+                    if(item.name === "deposit" ) {
+                        return item;
+                    }
+                })
+                if(item[0]) {
+                    if(item[0].name === "deposit") {
+                        return item[0];
+                    }
+                }
+            })
+            console.log(itemId[0])
+            setEditPersonalBudgetCategoryItemId(individualAccount.accountId, transaction.transactionId, itemId[0].items[0].personalBudgetCategoryItemId);
+            setEditPersonalBudgetCategoryId(individualAccount.accountId, transaction.transactionId, itemId[0].items[0].personalBudgetCategoryId);
+        }
+
+        if(transaction.editTransactionTransactionTypeId === 3) {
+            const itemId = categoriesAndItems.filter(category => {
+
+                const item = category.items.filter(item => {
+                    if(item.name === "transfer" ) {
+                        return item;
+                    }
+                })
+                if(item[0]) {
+                    if(item[0].name === "transfer") {
+                        return item[0];
+                    }
+                }
+            })
+            console.log(itemId[0])
+            setEditPersonalBudgetCategoryItemId(individualAccount.accountId, transaction.transactionId, itemId[0].items[0].personalBudgetCategoryItemId);
+            setEditPersonalBudgetCategoryId(individualAccount.accountId, transaction.transactionId, itemId[0].items[0].personalBudgetCategoryId);
+        }
+        
+        //check all fields, request
+        if(transaction.editTransactionError ) {
+            return;
+        } else {
+            fetch(
+                "http://localhost:3001/editindividualtransaction",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":"application/json",
+                        "CSRF-Token":user.csrf
+                    },
+                    body: JSON.stringify({
+                        editTransactionAmount: transaction.editTransactionAmount,
+                        editTransactionTransactionTypeId: transaction.editTransactionTransactionTypeId,
+                        editTransactionMemoNote: transaction.editTransactionMemoNote,
+                        editTransactionPersonalBudgetCategoryId: transaction.editTransactionPersonalBudgetCategoryId,
+                        editTransactionPersonalBudgetCategoryItemId: transaction.editTransactionPersonalBudgetCategoryItemId,
+                        editTransactionUserId: user.userId,
+                        editTransactionAccountId: individualAccount.accountId
+                    }),
+                    credentials:"include"
+                }
+            )
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    setEditCancel(individualAccount.accountId, transaction.transactionId );
+                    toast.failure("Error editing transaction, transaction was not updated.");
+                }
+                if(!data.error) {
+                    //setEditData(individualAccount.accountId, transaction.transactionId, data);
+                    setEditCancel(individualAccount.accountId, transaction.transactionId );
+                    toast.success("Transaction added successfully.");
+                }
+            })
+        }
+    }
 
     return (
         
@@ -88,25 +187,20 @@ function EditTransaction(props) {
                         <div className="flex flex-row w-100-l">
                             
                             <div className="h2 w3 flex items-center justify-center mr3 ph1-l bg-money-color br2 white pointer grow"
-                            //onClick={() => submitAddTransaction()}
+                            onClick={() => submitEditTransaction()}
                             >Add</div>
-                            <div className="h2 w3 flex items-center justify-center ml3 ph1-l bg-red br2 white pointer grow">Cancel</div>
+                            <div className="h2 w3 flex items-center justify-center ml3 ph1-l bg-red br2 white pointer grow"
+                            onClick={() => setEditCancel(individualAccount.accountId, transaction.transactionId )}
+                            >Cancel</div>
                         </div>
                     </div>
                 </div>
-                {/*
-                    (individualAccount.addTransactionAmountError || individualAccount.addTransactionTransactionTypeIdError || individualAccount.addTransactionPersonalBudgetError) ? 
-                        <div className="red f5 pa1">
-                            Amount must be greater than zero. Transaction Type and Budget Category must be selected.
-                        </div>
-                        : ""*/
-                }
-                {/*
-                    (individualAccount.addTransactionAddError) ?
+                {
+                    (individualAccount.editTransactionError) ? 
                     <div className="red f5 pa1">
-                        There was an error submitting your transaction.
+                        Amount must be greater than zero. Transaction Type and Budget Category must be selected.
                     </div>
-                    : ""*/
+                    : ""
                 }
             </div>
         

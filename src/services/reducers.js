@@ -116,6 +116,7 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_AMOUNT,
@@ -257,10 +258,11 @@ const initialState = {
                   edit: false,
                   editTransactionAmount: 0,
                   editTransactionTransactionTypeId: 0,
-                  editTransactionMemoNote: 0,
+                  editTransactionMemoNote: "",
                   editTransactionPersonalBudgetCategoryId: 0,
                   editTransactionPersonalBudgetCategoryItemId: 0,
                   editTransactionDeleteDisplay: false, 
+                  editTransactionError: false,
                   editTransactionDeleteConfirmation: false,   
                 }
             ],
@@ -292,10 +294,11 @@ const initialState = {
                 edit: false,
                 editTransactionAmount: 0,
                 editTransactionTransactionTypeId: 0,
-                editTransactionMemoNote: 0,
+                editTransactionMemoNote: "",
                 editTransactionPersonalBudgetCategoryId: 0,
                 editTransactionPersonalBudgetCategoryItemId: 0,
                 editTransactionDeleteDisplay: false, 
+                editTransactionError: false,
                 editTransactionDeleteConfirmation: false,
               }
             ],
@@ -425,10 +428,11 @@ const initialState = {
             edit: false, 
             editTransactionAmount: 0,
             editTransactionTransactionTypeId: 0,
-            editTransactionMemoNote: 0,
+            editTransactionMemoNote: "",
             editTransactionPersonalBudgetCategoryId: 0,
             editTransactionPersonalBudgetCategoryItemId: 0,
             editTransactionDeleteDisplay: false, 
+            editTransactionError: false,
             editTransactionDeleteConfirmation: false,
         }
     ],
@@ -1980,7 +1984,116 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts) 
         }
     }   
-    //here setediterror .. need const action etc, 
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL) { 
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionCancelAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionCancelTransactionId) {
+                                transaction.edit = false;
+                                transaction.editTransactionAmount = 0;
+                                transaction.editTransactionTransactionTypeId = 0;
+                                transaction.editTransactionMemoNote = "";
+                                transaction.editTransactionPersonalBudgetCategoryId = 0;
+                                transaction.editTransactionPersonalBudgetCategoryItemId = 0;
+                                transaction.editTransactionDeleteDisplay = false;
+                                transaction.editTransactionDeleteConfirmation = false;
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionCancelTransactionId) {
+                                transaction.edit = false;
+                                transaction.editTransactionAmount = 0;
+                                transaction.editTransactionTransactionTypeId = 0;
+                                transaction.editTransactionMemoNote = "";
+                                transaction.editTransactionPersonalBudgetCategoryId = 0;
+                                transaction.editTransactionPersonalBudgetCategoryItemId = 0;
+                                transaction.editTransactionDeleteDisplay = false;
+                                transaction.editTransactionDeleteConfirmation = false;
+                            }
+                        })
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY) { 
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionDeleteDisplayAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteDisplayTransactionId) {
+                                transaction.editTransactionDeleteDisplay = action.setIndividualAccountsEditTransactionDeleteDisplayPayload
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteDisplayTransactionId) {
+                                transaction.editTransactionDeleteDisplay = action.setIndividualAccountsEditTransactionDeleteDisplayPayload
+                            }
+                        })
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_ERROR) { 
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionErrorAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionErrorTransactionId) {
+                                transaction.editTransactionError = action.setIndividualAccountsEditTransactionErrorPayload
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionErrorTransactionId) {
+                                transaction.editTransactionError = action.setIndividualAccountsEditTransactionErrorPayload
+                            }
+                        })
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION) { 
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteConfirmationTransactionId) {
+                                transaction.editTransactionDeleteConfirmation = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteConfirmationTransactionId) {
+                                transaction.editTransactionDeleteConfirmation = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload
+                            }
+                        })
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
     return state;
 }
 
@@ -2026,12 +2139,7 @@ if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION) {
     }
 }
 
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_MEMO_NOTE,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY,
-    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION,
+ 
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_AMOUNT,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
