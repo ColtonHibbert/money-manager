@@ -117,6 +117,7 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_ERROR,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DATA,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_AMOUNT,
@@ -2062,6 +2063,36 @@ export const reducer = (state=initialState, action={}) => {
                         account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionErrorTransactionId) {
                                 transaction.editTransactionError = action.setIndividualAccountsEditTransactionErrorPayload
+                            }
+                        })
+                    }   
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DATA) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                const accounts = accountsState.slice();
+                accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionDataAccountId) {
+                        
+                        account.transactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId) {
+                                transaction.amount = action.setIndividualAccountsEditTransactionDataPayload.amount;
+                                transaction.memoNote = action.setIndividualAccountsEditTransactionDataPayload.memoNote;
+                                transaction.personalBudgetCategoryId = action.setIndividualAccountsEditTransactionDataPayload.personalBudgetCategoryId;
+                                transaction.personalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionDataPayload.personalBudgetCategoryItemId;
+                            }
+                        })
+                        account.filteredTransactions.map(transaction => {
+                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId) {
+                                transaction.amount = action.setIndividualAccountsEditTransactionDataPayload.amount;
+                                transaction.memoNote = action.setIndividualAccountsEditTransactionDataPayload.memoNote;
+                                transaction.personalBudgetCategoryId = action.setIndividualAccountsEditTransactionDataPayload.personalBudgetCategoryId;
+                                transaction.personalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionDataPayload.personalBudgetCategoryItemId;
                             }
                         })
                     }   

@@ -63,6 +63,7 @@ function IndividualAccount(props) {
         setIndividualAccountsEditTransactionCancel,
         setIndividualAccountsEditTransactionDeleteDisplay,
         setIndividualAccountsEditTransactionError,
+        setIndividualAccountsEditTransactionData,
         setIndividualAccountsEditTransactionDeleteConfirmation,
         user
     } = props;
@@ -614,6 +615,7 @@ function IndividualAccount(props) {
                                             setEditCancel={setIndividualAccountsEditTransactionCancel}
                                             setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
                                             setEditError={setIndividualAccountsEditTransactionError}
+                                            setEditData={setIndividualAccountsEditTransactionData}
                                             setEditDeleteConfirmation={setIndividualAccountsEditTransactionDeleteConfirmation}
                                            
                                             />
