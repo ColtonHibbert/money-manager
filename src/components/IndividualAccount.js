@@ -10,6 +10,7 @@ import EditAccount from "./EditAccount.js";
 import EditTransaction from "./EditTransaction.js";
 import EditTransactionButton from "./EditTransactionButton.js";
 import DeleteTransactionButton from "./DeleteTransactionButton.js";
+import DeleteTransaction from "./DeleteTransaction.js";
 import { toast } from "react-toastify";
 import { 
     configureNestedArrayPages, 
@@ -616,11 +617,21 @@ function IndividualAccount(props) {
                                             setEditPersonalBudgetCategoryId={setIndividualAccountsEditTransactionPersonalBudgetCategoryId}
                                             setEditPersonalBudgetCategoryItemId={setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId}
                                             setEditCancel={setIndividualAccountsEditTransactionCancel}
-                                            //setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
                                             setEditError={setIndividualAccountsEditTransactionError}
                                             setEditData={setIndividualAccountsEditTransactionData}
-                                            setEditDeleteConfirmation={setIndividualAccountsEditTransactionDeleteConfirmation}
+                                            
                                            
+                                            />
+                                            : ""
+                                        }
+                                        {
+                                            (transaction.editTransactionDeleteDisplay) ?
+                                            <DeleteTransaction 
+                                            user={user}
+                                            individualAccount={individualAccount}
+                                            transaction={transaction}
+                                            setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
+                                            setEditDeleteConfirmation={setIndividualAccountsEditTransactionDeleteConfirmation}
                                             />
                                             : ""
                                         }
@@ -691,6 +702,17 @@ function IndividualAccount(props) {
                                             //setEditPersonalBudgetCategoryItemId={}
                                             //setEdit={}
                                             //setClear={}
+                                            />
+                                            : ""
+                                        }
+                                        {
+                                            (transaction.editTransactionDeleteDisplay) ?
+                                            <DeleteTransaction 
+                                            user={user}
+                                            individualAccount={individualAccount}
+                                            transaction={transaction}
+                                            setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
+                                            setEditDeleteConfirmation={setIndividualAccountsEditTransactionDeleteConfirmation}
                                             />
                                             : ""
                                         }

@@ -2109,16 +2109,13 @@ export const reducer = (state=initialState, action={}) => {
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccountId) {
                         
-                        account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteConfirmationTransactionId) {
-                                transaction.editTransactionDeleteConfirmation = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload
-                            }
+                        account.transactions.filter(transaction => {
+                            return (!(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteConfirmationTransactionId));
                         })
-                        account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteConfirmationTransactionId) {
-                                transaction.editTransactionDeleteConfirmation = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload
-                            }
+                        account.filteredTransactions.filter(transaction => {
+                            return (!(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteConfirmationTransactionId));
                         })
+                        
                     }   
                 })
                 return accounts;
