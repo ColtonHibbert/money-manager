@@ -51,7 +51,11 @@ import {
     setIndividualAccountsEditTransactionTransactionTypeId,
     setIndividualAccountsEditTransactionMemoNote,
     setIndividualAccountsEditTransactionPersonalBudgetCategoryId,
-    setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId
+    setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId,
+    setIndividualAccountsEditTransactionCancel,
+    setIndividualAccountsEditTransactionDeleteDisplay,
+    setIndividualAccountsEditTransactionError,
+    setIndividualAccountsEditTransactionDeleteConfirmation,
 } from "../services/actions.js";
 
 
@@ -109,8 +113,11 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsEditTransactionTransactionTypeId: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionTransactionTypeId(accountId, transactionId, payload)),
         setIndividualAccountsEditTransactionMemoNote: (accountId, transactionId, payload ) => dispatch(setIndividualAccountsEditTransactionMemoNote(accountId, transactionId, payload )),
         setIndividualAccountsEditTransactionPersonalBudgetCategoryId: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionPersonalBudgetCategoryId(accountId, transactionId, payload)),
-        setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId(accountId, transactionId, payload))
-
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId(accountId, transactionId, payload)),
+        setIndividualAccountsEditTransactionCancel: (accountId, transactionId) => dispatch(setIndividualAccountsEditTransactionCancel(accountId, transactionId )),
+        setIndividualAccountsEditTransactionDeleteDisplay: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionDeleteDisplay(accountId, transactionId, payload)),
+        setIndividualAccountsEditTransactionError: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionError(accountId, transactionId, payload)),
+        setIndividualAccountsEditTransactionDeleteConfirmation: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionDeleteConfirmation(accountId, transactionId, payload))
     }
 }
 

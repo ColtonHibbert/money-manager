@@ -116,6 +116,7 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY,
+    SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_AMOUNT,
@@ -989,6 +990,15 @@ export const setIndividualAccountsEditTransactionDeleteDisplay = (accountId, tra
         setIndividualAccountsEditTransactionDeleteDisplayAccountId: accountId, 
         setIndividualAccountsEditTransactionDeleteDisplayTransactionId: transactionId,
         setIndividualAccountsEditTransactionDeleteDisplayPayload: payload
+    }
+}
+
+export const setIndividualAccountsEditTransactionError = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_ERROR,
+        setIndividualAccountsEditTransactionErrorAccountId: accountId,
+        setIndividualAccountsEditTransactionErrorTransactionId: transactionId,
+        setIndividualAccountsEditTransactionErrorPayload: payload
     }
 }
 

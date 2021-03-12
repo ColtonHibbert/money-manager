@@ -60,6 +60,10 @@ function IndividualAccount(props) {
         setIndividualAccountsEditTransactionMemoNote,
         setIndividualAccountsEditTransactionPersonalBudgetCategoryId,
         setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId,
+        setIndividualAccountsEditTransactionCancel,
+        setIndividualAccountsEditTransactionDeleteDisplay,
+        setIndividualAccountsEditTransactionError,
+        setIndividualAccountsEditTransactionDeleteConfirmation,
         user
     } = props;
 
@@ -598,6 +602,7 @@ function IndividualAccount(props) {
                                         {
                                             (transaction.edit) ?
                                             <EditTransaction 
+                                            user={user}
                                             categoriesAndItems={categoriesAndItems}
                                             individualAccount={individualAccount}
                                             transaction={transaction}
@@ -606,8 +611,11 @@ function IndividualAccount(props) {
                                             setEditMemoNote={setIndividualAccountsEditTransactionMemoNote}
                                             setEditPersonalBudgetCategoryId={setIndividualAccountsEditTransactionPersonalBudgetCategoryId}
                                             setEditPersonalBudgetCategoryItemId={setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId}
-                                            //setEdit={}
-                                           ///setClear={}
+                                            setEditCancel={setIndividualAccountsEditTransactionCancel}
+                                            setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
+                                            setEditError={setIndividualAccountsEditTransactionError}
+                                            setEditDeleteConfirmation={setIndividualAccountsEditTransactionDeleteConfirmation}
+                                           
                                             />
                                             : ""
                                         }
