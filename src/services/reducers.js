@@ -2109,15 +2109,21 @@ export const reducer = (state=initialState, action={}) => {
                 accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccountId) {
                         
-                        account.transactions.filter(transaction => {
-                            return (!(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteConfirmationTransactionId));
+                        account.transactions = account.transactions.filter(transaction => {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.transactionId) {
+                                console.log(transaction.transactionId, "here")
+                            }
+                            
+                            return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.transactionId);
                         })
-                        account.filteredTransactions.filter(transaction => {
-                            return (!(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteConfirmationTransactionId));
+
+                        account.filteredTransactions = account.filteredTransactions.filter(transaction => {
+                            return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.transactionId);
                         })
                         
                     }   
                 })
+                console.log(accounts);
                 return accounts;
             }(state.individualAccounts) 
         }
