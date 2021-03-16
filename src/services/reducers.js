@@ -2242,10 +2242,10 @@ export const reducer = (state=initialState, action={}) => {
                 const oldTransaction = account.transactions.filter(transaction => transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId)
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId && oldTransaction.transactionTypeId === 3) {
-                    return state.depositsMonthlyAllAccountsAmount - oldTransaction.amount;
+                    return state.transfersMonthlyAllAccountsAmount - oldTransaction.amount;
                 }
                 if(oldTransaction.transactionTypeId === action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId && oldTransaction.transactionTypeId === 3) {
-                    return state.depositsMonthlyAllAccountsAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
+                    return state.transfersMonthlyAllAccountsAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                 }
 
 
