@@ -31,7 +31,7 @@ function DeleteTransaction(props) {
         .then(data => {
             if(data.error) {
                 setEditDeleteDisplay(individualAccount.accountId, transaction.transactionId, false);
-                toast.failure("Error deleting transaction. The transaction was not deleted.");
+                toast.error("Error deleting transaction. The transaction was not deleted.");
             } 
             if(!data.error) {
                 setEditDeleteConfirmation(data.accountId, data.transactionId, data);
