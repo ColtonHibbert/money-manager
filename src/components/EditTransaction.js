@@ -100,7 +100,7 @@ function EditTransaction(props) {
             .then(data => {
                 if(data.error) {
                     setEditCancel(individualAccount.accountId, transaction.transactionId );
-                    toast.failure("Error editing transaction, transaction was not updated.");
+                    toast.error("Error editing transaction, transaction was not updated.");
                 }
                 if(!data.error) {
                     console.log(data)
@@ -110,7 +110,7 @@ function EditTransaction(props) {
                 }
             })
             .catch(err => {
-                toast.failure("Error editing transaction.")
+                toast.error("Error editing transaction.")
             })
         }
     }

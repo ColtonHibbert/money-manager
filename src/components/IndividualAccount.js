@@ -152,7 +152,7 @@ function IndividualAccount(props) {
             .then(data => {
                 if(data.error) {
                     setIndividualAccountsAddTransactionAddError(individualAccount.accountId, true);
-                    toast.failure("Error adding transaction.")
+                    toast.error("Error adding transaction.")
                 }
                 if(!data.error) {
                     setIndividualAccountsAddTransactionAddError(individualAccount.accountId, false);
