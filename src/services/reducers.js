@@ -2108,10 +2108,10 @@ export const reducer = (state=initialState, action={}) => {
                 // if new type is not same as old, and old type was 2, subtract old amount
                 const account = state.individualAccounts.filter(account =>{
                     return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
-                });
+                })[0];
                 const oldTransaction = account.transactions.filter(transaction => {
                    return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
-                })
+                })[0];
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsAmount - oldTransaction.amount;
@@ -2126,10 +2126,10 @@ export const reducer = (state=initialState, action={}) => {
             depositsMonthlyAllAccountsQuantity: function(state) {
                 const account = state.individualAccounts.filter(account => {
                     return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
-                });
+                })[0];
                 const oldTransaction = account.transactions.filter(transaction => {
                     return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
-                })
+                })[0];
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId  && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsQuantity - 1;
@@ -2146,19 +2146,23 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsEditTransactionDataAccountId) {
                         
                         const transactionsSlice = account.transactions.slice();
+                        console.log("transactionSlice", transactionsSlice)
                         
                         let oldTransaction = null;
+                        ///need old transaction
                         
                         const updatedTransactions = transactionsSlice.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId) {
-                                oldTransaction = transaction;
+                                oldTransaction = transaction
                                 transaction.amount = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                                 transaction.transactionTypeId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId;
                                 transaction.memoNote = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.memoNote;
                                 transaction.personalBudgetCategoryId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryId;
                                 transaction.personalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryItemId;
                             }
+                            return transaction;
                         })
+                        //console.log("updated transactions", updatedTransactions)
                         const transactionsMonthlySlice = account.transactionsMonthly.slice();
                       
                         const updatedMonthlyTransactions = transactionsMonthlySlice.map(transaction => {
@@ -2169,6 +2173,7 @@ export const reducer = (state=initialState, action={}) => {
                                 transaction.personalBudgetCategoryId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryId;
                                 transaction.personalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryItemId;
                             }
+                            return transaction;
                         })
 
                         const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, updatedTransactions);
@@ -2248,10 +2253,11 @@ export const reducer = (state=initialState, action={}) => {
                 
                 const account = state.individualAccounts.filter(account => {
                     return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
-                });
+                })[0];
                 const oldTransaction = account.transactions.filter(transaction => {
+                    console.log("account, here", account)
                     return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
-                })
+                })[0];
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsAmount - oldTransaction.amount;
@@ -2266,10 +2272,10 @@ export const reducer = (state=initialState, action={}) => {
                
                 const account = state.individualAccounts.filter(account => {
                     return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
-                });
+                })[0];
                 const oldTransaction = account.transactions.filter(transaction => {
                     return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
-                })
+                })[0];
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId  && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsQuantity - 1;
@@ -2283,10 +2289,10 @@ export const reducer = (state=initialState, action={}) => {
                 
                 const account = state.individualAccounts.filter(account => {
                     return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
-                });
+                })[0];
                 const oldTransaction = account.transactions.filter(transaction => {
                     return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
-                })
+                })[0];
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId && oldTransaction.transactionTypeId === 1) {
                     return state.withdrawalsMonthlyAllAccountsAmount - oldTransaction.amount;
@@ -2300,10 +2306,10 @@ export const reducer = (state=initialState, action={}) => {
                 
                 const account = state.individualAccounts.filter(account => {
                     return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
-                });
+                })[0];
                 const oldTransaction = account.transactions.filter(transaction => {
                     return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
-                })
+                })[0];
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId  && oldTransaction.transactionTypeId === 1) {
                     return state.withdrawalsMonthlyAllAccountsQuantity - 1;
