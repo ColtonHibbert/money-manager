@@ -98,14 +98,15 @@ function EditTransaction(props) {
             )
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 if(data.error) {
                     setEditCancel(individualAccount.accountId, transaction.transactionId );
                     toast.error("Error editing transaction, transaction was not updated.");
                 }
                 if(!data.error) {
                     console.log(data)
-                    setEditData(data.accountId, data.transactionId, data);
-                    setEditCancel(data.accountId, data.transactionId );
+                    setEditData(individualAccount.accountId, transaction.transactionId, data);
+                    setEditCancel(individualAccount.accountId, transaction.transactionId);
                     toast.success("Transaction edited successfully.");
                 }
             })

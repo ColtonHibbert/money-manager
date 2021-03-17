@@ -2106,8 +2106,12 @@ export const reducer = (state=initialState, action={}) => {
             },
             depositsMonthlyAllAccountsAmount: function(state) {
                 // if new type is not same as old, and old type was 2, subtract old amount
-                const account = state.individualAccounts.filter(account => account.accountId === action.setIndividualAccountsEditTransactionDataAccountId);
-                const oldTransaction = account.transactions.filter(transaction => transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId)
+                const account = state.individualAccounts.filter(account =>{
+                    return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
+                });
+                const oldTransaction = account.transactions.filter(transaction => {
+                   return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
+                })
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsAmount - oldTransaction.amount;
@@ -2120,8 +2124,12 @@ export const reducer = (state=initialState, action={}) => {
                 
             }(state),
             depositsMonthlyAllAccountsQuantity: function(state) {
-                const account = state.individualAccounts.filter(account => account.accountId === action.setIndividualAccountsEditTransactionDataAccountId);
-                const oldTransaction = account.transactions.filter(transaction => transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId)
+                const account = state.individualAccounts.filter(account => {
+                    return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
+                });
+                const oldTransaction = account.transactions.filter(transaction => {
+                    return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
+                })
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId  && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsQuantity - 1;
@@ -2238,8 +2246,12 @@ export const reducer = (state=initialState, action={}) => {
             }(state.transactionsMonthlyAllAccounts),
             transfersMonthlyAllAccountsAmount: function(state) {
                 
-                const account = state.individualAccounts.filter(account => account.accountId === action.setIndividualAccountsEditTransactionDataAccountId);
-                const oldTransaction = account.transactions.filter(transaction => transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId)
+                const account = state.individualAccounts.filter(account => {
+                    return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
+                });
+                const oldTransaction = account.transactions.filter(transaction => {
+                    return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
+                })
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsAmount - oldTransaction.amount;
@@ -2252,8 +2264,12 @@ export const reducer = (state=initialState, action={}) => {
             }(state),
             transfersMonthlyAllAccountsQuantity: function(state) {
                
-                const account = state.individualAccounts.filter(account => account.accountId === action.setIndividualAccountsEditTransactionDataAccountId);
-                const oldTransaction = account.transactions.filter(transaction => transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId)
+                const account = state.individualAccounts.filter(account => {
+                    return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
+                });
+                const oldTransaction = account.transactions.filter(transaction => {
+                    return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
+                })
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId  && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsQuantity - 1;
@@ -2265,8 +2281,12 @@ export const reducer = (state=initialState, action={}) => {
             }(state),
             withdrawalsMonthlyAllAccountsAmount: function(state) {
                 
-                const account = state.individualAccounts.filter(account => account.accountId === action.setIndividualAccountsEditTransactionDataAccountId);
-                const oldTransaction = account.transactions.filter(transaction => transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId)
+                const account = state.individualAccounts.filter(account => {
+                    return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
+                });
+                const oldTransaction = account.transactions.filter(transaction => {
+                    return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
+                })
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId && oldTransaction.transactionTypeId === 1) {
                     return state.withdrawalsMonthlyAllAccountsAmount - oldTransaction.amount;
@@ -2278,8 +2298,12 @@ export const reducer = (state=initialState, action={}) => {
             withdrawalsMonthlyAllAccountsQuantity: function(state) {
               
                 
-                const account = state.individualAccounts.filter(account => account.accountId === action.setIndividualAccountsEditTransactionDataAccountId);
-                const oldTransaction = account.transactions.filter(transaction => transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId)
+                const account = state.individualAccounts.filter(account => {
+                    return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
+                });
+                const oldTransaction = account.transactions.filter(transaction => {
+                    return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
+                })
                 
                 if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId  && oldTransaction.transactionTypeId === 1) {
                     return state.withdrawalsMonthlyAllAccountsQuantity - 1;
