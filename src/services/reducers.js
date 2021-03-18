@@ -2105,22 +2105,27 @@ export const reducer = (state=initialState, action={}) => {
                 }(state.accountSummary.accounts)
             },
             depositsMonthlyAllAccountsAmount: function(state) {
-                // if new type is not same as old, and old type was 2, subtract old amount
+              
                 const account = state.individualAccounts.filter(account =>{
                     return account.accountId === action.setIndividualAccountsEditTransactionDataAccountId
                 })[0];
+                console.log("depositsmonthly account", account)
                 const oldTransaction = account.transactions.filter(transaction => {
                    return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
                 })[0];
+                console.log("depositsmonthly, oldTransaction", oldTransaction)
                 
-                if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId && oldTransaction.transactionTypeId === 2) {
+                //new type is not deposit and old type was deposit, subtract old amount
+                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsAmount - oldTransaction.amount;
                 }
 
                 // if new type is same as old, and old type was 2, still subtract old amount but then add updated amount
-                if(oldTransaction.transactionTypeId === action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId && oldTransaction.transactionTypeId === 2) {
+                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                 }
+
+                return state.depositsMonthlyAllAccountsAmount;
                 
             }(state),
             depositsMonthlyAllAccountsQuantity: function(state) {
@@ -2131,13 +2136,15 @@ export const reducer = (state=initialState, action={}) => {
                     return transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransactionId
                 })[0];
                 
-                if(oldTransaction.transactionTypeId !== action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId  && oldTransaction.transactionTypeId === 2) {
+                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsQuantity - 1;
                 }
 
-                if(oldTransaction.transactionTypeId === action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId  && oldTransaction.transactionTypeId === 2) {
+                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2  && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsQuantity;
                 }
+
+                return state.depositsMonthlyAllAccountsQuantity;
             }(state),
             individualAccounts: function(individualAccountsState) {
                 const individualAccounts = individualAccountsState.slice();
