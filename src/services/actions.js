@@ -126,8 +126,8 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_CANCEL,
-    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
-    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION
+    //SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
+    //SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION
 } from "./constants.js";
 
 
@@ -1082,6 +1082,7 @@ export const setIndividualAccountsFilterEditTransactionCancel = (accountId, tran
     }
 }
 
+/*
 export const setIndividualAccountsFilterEditTransactionDeleteDisplay = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
@@ -1099,4 +1100,5 @@ export const IndividualAccountsFilterEditTransactionDeleteConfirmation = (accoun
         setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload: payload
     }
 }
+*/
 
