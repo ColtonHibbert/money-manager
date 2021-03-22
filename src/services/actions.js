@@ -1003,11 +1003,11 @@ export const setIndividualAccountsEditTransactionError = (accountId, transaction
     }
 }
 
-export const setIndividualAccountsEditTransactionData = (accountId, transactionId, payload) => {
+export const setIndividualAccountsEditTransactionData = (account, transaction, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DATA,
-        setIndividualAccountsEditTransactionDataAccountId: accountId,
-        setIndividualAccountsEditTransactionDataTransactionId: transactionId,
+        setIndividualAccountsEditTransactionDataAccount: account,
+        setIndividualAccountsEditTransactionDataTransaction: transaction,
         setIndividualAccountsEditTransactionDataPayload: payload
     }
 }
