@@ -105,7 +105,7 @@ function EditTransaction(props) {
                 }
                 if(!data.error) {
                     console.log(data)
-                    setEditData(individualAccount.accountId, transaction.transactionId, data);
+                    setEditData(individualAccount, transaction, data);
                     setEditCancel(individualAccount.accountId, transaction.transactionId);
                     toast.success("Transaction edited successfully.");
                 }
