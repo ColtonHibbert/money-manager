@@ -1012,11 +1012,11 @@ export const setIndividualAccountsEditTransactionData = (account, transaction, p
     }
 }
 
-export const setIndividualAccountsEditTransactionDeleteConfirmation = (accountId, transactionId, payload) => {
+export const setIndividualAccountsEditTransactionDeleteConfirmation = (account, transaction, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION,
-        setIndividualAccountsEditTransactionDeleteConfirmationAccountId: accountId, 
-        setIndividualAccountsEditTransactionDeleteConfirmationTransactionId: transactionId,
+        setIndividualAccountsEditTransactionDeleteConfirmationAccount: account, 
+        setIndividualAccountsEditTransactionDeleteConfirmationTransaction: transaction,
         setIndividualAccountsEditTransactionDeleteConfirmationPayload: payload
     }
 }
@@ -1091,7 +1091,7 @@ export const setIndividualAccountsFilterEditTransactionDeleteDisplay = (accountI
     }
 }
 
-export const IndividualAccountsFilterEditTrasetnsactionDeleteConfirmation = (accountId, transactionId, payload) => {
+export const IndividualAccountsFilterEditTransactionDeleteConfirmation = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION,
         setIndividualAccountsFilterEditTransactionDeleteConfirmationAccountId: accountId, 

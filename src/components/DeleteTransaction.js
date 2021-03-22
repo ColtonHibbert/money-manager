@@ -34,13 +34,13 @@ function DeleteTransaction(props) {
                 toast.error("Error deleting transaction. The transaction was not deleted.");
             } 
             if(!data.error) {
-                setEditDeleteConfirmation(data.accountId, data.transactionId, data);
-                setEditDeleteDisplay(data.accountId, data.transactionId, false);
+                setEditDeleteConfirmation(individualAccount, transaction, data);
+                setEditDeleteDisplay(data.configuredAccount.accountId, data.configuredTransaction.transactionId, false);
                 toast.success("Transaction was deleted successfully.");
             }
         })
         .catch(err => {
-
+            toast.error("Error deleting transaction. The transaction was not deleted.");
         })
     }
 

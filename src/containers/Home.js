@@ -118,8 +118,8 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsEditTransactionCancel: (accountId, transactionId) => dispatch(setIndividualAccountsEditTransactionCancel(accountId, transactionId )),
         setIndividualAccountsEditTransactionDeleteDisplay: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionDeleteDisplay(accountId, transactionId, payload)),
         setIndividualAccountsEditTransactionError: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionError(accountId, transactionId, payload)),
-        setIndividualAccountsEditTransactionData: (accountId, transactionId, payload) =>  dispatch(setIndividualAccountsEditTransactionData(accountId, transactionId, payload)),
-        setIndividualAccountsEditTransactionDeleteConfirmation: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionDeleteConfirmation(accountId, transactionId, payload))
+        setIndividualAccountsEditTransactionData: (account, transaction, payload) =>  dispatch(setIndividualAccountsEditTransactionData(account, transaction, payload)),
+        setIndividualAccountsEditTransactionDeleteConfirmation: (account, transaction, payload) => dispatch(setIndividualAccountsEditTransactionDeleteConfirmation(account, transaction, payload))
     }
 }
 

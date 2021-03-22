@@ -2285,15 +2285,14 @@ export const reducer = (state=initialState, action={}) => {
             }(state),
         }
     }
-    /////here
     if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION) { 
         return {
             ...state,
             accounts: function(accountsState) {
                 const accounts = accountsState.slice();
                 accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
-                        account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
+                    if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId ) {
+                        account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                     }
                 })
                 return accounts;
@@ -2303,8 +2302,8 @@ export const reducer = (state=initialState, action={}) => {
                 accounts: function(accountsState) {
                     const accounts = accountsState.slice();
                     accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
-                            account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
+                        if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId ) {
+                            account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                         }
                     })
                     return accounts;
@@ -2312,23 +2311,23 @@ export const reducer = (state=initialState, action={}) => {
                 filteredAccounts: function(accountsState) {
                     const accounts = accountsState.slice();
                     accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
-                            account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
+                        if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId ) {
+                            account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                         }
                     })
                     return accounts;
                 }(state.accountSummary.accounts)
             },
             depositsMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
-                    return amountState + action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount
+                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
+                    return amountState - action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.depositsMonthlyAllAccountsAmount),
             depositsMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
-                    return quantityState + 1;
+                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
+                    return quantityState - 1;
                 } else {
                     return quantityState;
                 }
@@ -2337,7 +2336,7 @@ export const reducer = (state=initialState, action={}) => {
                 const individualAccounts = individualAccountsState.slice();
                 
                 individualAccounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId) {
+                    if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId) {
                         
                         const transactionsSlice = account.transactions.slice();
                         transactionsSlice.push(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction);
