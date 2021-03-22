@@ -2338,26 +2338,24 @@ export const reducer = (state=initialState, action={}) => {
                 individualAccounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId) {
                         
-                        const transactionsSlice = account.transactions.slice();
-                        transactionsSlice.push(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction);
+                        let transactionsSlice = account.transactions.slice();
+                        transactionsSlice.filter(transaction => {
+                            return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationTransaction.transactionId)
+                        })
+                        
                         const transactionsMonthlySlice = account.transactionsMonthly.slice();
-                        transactionsMonthlySlice.push(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction);
+                        transactionsMonthlySlice.filter(transaction => {
+                            return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationTransaction.transactionId)
+                        })
 
                         const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, transactionsSlice);
                         
-                        account.addTransactionAmount = "";
-                        account.addTransactionAmountError = false;
-                        account.addTransactionTransactionTypeId = "";
-                        account.addTransactionTransactionTypeIdError = false;
-                        account.addTransactionMemoNote = "";
-                        account.addTransactionPersonalBudgetCategoryItemId = 0;
-                        account.addTransactionPersonalBudgetCategoryId = 0;
 
-                        account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance;
+                        account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance;
                         account.currentPage = 0;
-                        if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
-                            account.depositsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
-                            account.depositsMonthlyQuantity += 1;
+                        if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
+                            account.depositsMonthlyAmount -= action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount;
+                            account.depositsMonthlyQuantity -= 1;
                         }
                         account.entries = individualAccountTransactionPagesRegularOrFilter.entries;
                         account.filter = false;
@@ -2370,14 +2368,14 @@ export const reducer = (state=initialState, action={}) => {
                         account.totalPages = individualAccountTransactionPagesRegularOrFilter.totalPages;
                         account.transactions = transactionsSlice;
                         account.transactionsMonthly = transactionsMonthlySlice;
-                        account.transactionsMonthlyQuantity += 1;
-                        if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
-                            account.transfersMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
-                            account.transfersMonthlyQuantity += 1;
+                        account.transactionsMonthlyQuantity -= 1;
+                        if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
+                            account.transfersMonthlyAmount -= action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount;
+                            account.transfersMonthlyQuantity -= 1;
                         }
-                        if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 1) {
-                            account.withdrawalsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
-                            account.withdrawalsMonthlyQuantity += 1;
+                        if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
+                            account.withdrawalsMonthlyAmount -= action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount;
+                            account.withdrawalsMonthlyQuantity -= 1;
                         }
                     }   
                 })
@@ -2385,70 +2383,48 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts),
             transactionsAllAccounts: function(transactionsAllAccountsState) {
                 const transactionsAllSlice = transactionsAllAccountsState.slice();
-                transactionsAllSlice.push(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction);
+                transactionsAllSlice.filter(transaction => {
+                    return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationTransaction.transactionId)
+                });
                 return transactionsAllSlice;
             }(state.transactionsAllAccounts),
             transactionsMonthlyAllAccounts: function(transactionsMonthlyAllAccountsState) {
                 const transactionsMonthlyAllSlice = transactionsMonthlyAllAccountsState.slice();
-                transactionsMonthlyAllSlice.push(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction);
+                transactionsMonthlyAllSlice.filter(transaction => {
+                    return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationTransaction.transactionId)
+                });
                 return transactionsMonthlyAllSlice;
             }(state.transactionsMonthlyAllAccounts),
-            transactionsMonthlyAllAccountsQuantity: state.transactionsMonthlyAllAccountsQuantity + 1,
+            transactionsMonthlyAllAccountsQuantity: state.transactionsMonthlyAllAccountsQuantity - 1,
             transfersMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
-                    return amountState + action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount
+                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
+                    return amountState - action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.transfersMonthlyAllAccountsAmount),
             transfersMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
-                    return quantityState + 1;
+                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
+                    return quantityState - 1;
                 } else {
                     return quantityState;
                 }
             }(state.transfersMonthlyAllAccountsQuantity),
             withdrawalsMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 1) {
-                    return amountState + action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount
+                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
+                    return amountState - action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.withdrawalsMonthlyAllAccountsAmount),
             withdrawalsMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 1) {
-                    return quantityState + 1;
+                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
+                    return quantityState - 1;
                 } else {
                     return quantityState;
                 }
             }(state.withdrawalsMonthlyAllAccountsQuantity),
         }
-        /*
-        return {
-            ...state,
-            individualAccounts: function(accountsState) {
-                const accounts = accountsState.slice();
-                accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccountId) {
-                        
-                        account.transactions = account.transactions.filter(transaction => {
-                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.transactionId) {
-                                console.log(transaction.transactionId, "here")
-                            }
-                            
-                            return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.transactionId);
-                        })
-
-                        account.filteredTransactions = account.filteredTransactions.filter(transaction => {
-                            return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.transactionId);
-                        })
-                        
-                    }   
-                })
-                console.log(accounts);
-                return accounts;
-            }(state.individualAccounts) 
-        }*/
     }
     
 
