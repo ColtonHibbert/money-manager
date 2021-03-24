@@ -1082,6 +1082,15 @@ export const setIndividualAccountsFilterEditTransactionCancel = (accountId, tran
     }
 }
 
+
+//setEditAmount={setIndividualAccountsFilterEditTransactionAmount}
+                                            //setEditTransactionTypeId={setIndividualAccountsFilterEditTransactionTransactionTypeId}
+                                            //setEditMemoNote={setIndividualAccountsFilterEditTransactionMemoNote}
+                                            //setEditPersonalBudgetCategoryId={setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryId}
+                                            //setEditPersonalBudgetCategoryItemId={setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemId}
+                                            //setEditCancel={setIndividualAccountsFilterEditTransactionCancel}
+                                            //setEditError={setIndividualAccountsFilterEditTransactionError}
+                                            //setEditData={setIndividualAccountsFilterEditTransactionData}
 /*
 export const setIndividualAccountsFilterEditTransactionDeleteDisplay = (accountId, transactionId, payload) => {
     return {
