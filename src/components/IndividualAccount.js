@@ -618,9 +618,7 @@ function IndividualAccount(props) {
                                             setEditPersonalBudgetCategoryItemId={setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId}
                                             setEditCancel={setIndividualAccountsEditTransactionCancel}
                                             setEditError={setIndividualAccountsEditTransactionError}
-                                            setEditData={setIndividualAccountsEditTransactionData}
-                                            
-                                           
+                                            setEditData={setIndividualAccountsEditTransactionData}  
                                             />
                                             : ""
                                         }
@@ -695,13 +693,16 @@ function IndividualAccount(props) {
                                             (transaction.edit) ?
                                             <EditTransaction 
                                             categoriesAndItems={categoriesAndItems}
-                                            //setEditAmount={}
-                                            //setEditTransactionTypeId={}
-                                            //setEditMemoNote={}
-                                            //setEditPersonalBudgetCategoryId={}
-                                            //setEditPersonalBudgetCategoryItemId={}
-                                            //setEdit={}
-                                            //setClear={}
+                                            individualAccount={individualAccount}
+                                            transaction={transaction}
+                                            //setEditAmount={setIndividualAccountsFilterEditTransactionAmount}
+                                            //setEditTransactionTypeId={setIndividualAccountsFilterEditTransactionTransactionTypeId}
+                                            //setEditMemoNote={setIndividualAccountsFilterEditTransactionMemoNote}
+                                            //setEditPersonalBudgetCategoryId={setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryId}
+                                            //setEditPersonalBudgetCategoryItemId={setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemId}
+                                            //setEditCancel={setIndividualAccountsFilterEditTransactionCancel}
+                                            //setEditError={setIndividualAccountsFilterEditTransactionError}
+                                            //setEditData={setIndividualAccountsFilterEditTransactionData}
                                             />
                                             : ""
                                         }
