@@ -1111,7 +1111,7 @@ export const setIndividualAccountsFilterEditTransactionData = (account, transact
     }
 }
 
-export const IndividualAccountsFilterEditTransactionDeleteConfirmation = (account, transaction, payload) => {
+export const setIndividualAccountsFilterEditTransactionDeleteConfirmation = (account, transaction, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION,
         setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount: account, 
