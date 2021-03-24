@@ -65,6 +65,17 @@ function IndividualAccount(props) {
         setIndividualAccountsEditTransactionError,
         setIndividualAccountsEditTransactionData,
         setIndividualAccountsEditTransactionDeleteConfirmation,
+        setIndividualAccountsFilterEditTransaction,
+        setIndividualAccountsFilterEditTransactionAmount,
+        setIndividualAccountsFilterEditTransactionTransactionTypeId,
+        setIndividualAccountsFilterEditTransactionMemoNote,
+        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryId,
+        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemId,
+        setIndividualAccountsFilterEditTransactionCancel,
+        setIndividualAccountsFilterEditTransactionDeleteDisplay,
+        setIndividualAccountsFilterEditTransactionError,
+        setIndividualAccountsFilterEditTransactionData,
+        setIndividualAccountsFilterEditTransactionDeleteConfirmation,
         user
     } = props;
 
@@ -677,14 +688,14 @@ function IndividualAccount(props) {
                                                     <EditTransactionButton 
                                                         individualAccount={individualAccount}
                                                         transaction={transaction}
-                                                        setIndividualAccountsEditTransaction={setIndividualAccountsEditTransaction}
+                                                        setIndividualAccountsEditTransaction={setIndividualAccountsFilterEditTransaction}
                                                     />
                                                 </div>
                                                 <div className="w1 h1 pointer ml3 grow">
                                                     <DeleteTransactionButton 
                                                         individualAccount={individualAccount}
                                                         transaction={transaction}
-                                                        setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
+                                                        setEditDeleteDisplay={setIndividualAccountsFilterEditTransactionDeleteDisplay}
                                                     />
                                                 </div>
                                             </div>
@@ -695,14 +706,15 @@ function IndividualAccount(props) {
                                             categoriesAndItems={categoriesAndItems}
                                             individualAccount={individualAccount}
                                             transaction={transaction}
-                                            //setEditAmount={setIndividualAccountsFilterEditTransactionAmount}
-                                            //setEditTransactionTypeId={setIndividualAccountsFilterEditTransactionTransactionTypeId}
-                                            //setEditMemoNote={setIndividualAccountsFilterEditTransactionMemoNote}
-                                            //setEditPersonalBudgetCategoryId={setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryId}
-                                            //setEditPersonalBudgetCategoryItemId={setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemId}
-                                            //setEditCancel={setIndividualAccountsFilterEditTransactionCancel}
-                                            //setEditError={setIndividualAccountsFilterEditTransactionError}
-                                            //setEditData={setIndividualAccountsFilterEditTransactionData}
+                                            user={user}
+                                            setEditAmount={setIndividualAccountsFilterEditTransactionAmount}
+                                            setEditTransactionTypeId={setIndividualAccountsFilterEditTransactionTransactionTypeId}
+                                            setEditMemoNote={setIndividualAccountsFilterEditTransactionMemoNote}
+                                            setEditPersonalBudgetCategoryId={setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryId}
+                                            setEditPersonalBudgetCategoryItemId={setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemId}
+                                            setEditCancel={setIndividualAccountsFilterEditTransactionCancel}
+                                            setEditError={setIndividualAccountsFilterEditTransactionError}
+                                            setEditData={setIndividualAccountsFilterEditTransactionData}
                                             />
                                             : ""
                                         }
@@ -712,8 +724,8 @@ function IndividualAccount(props) {
                                             user={user}
                                             individualAccount={individualAccount}
                                             transaction={transaction}
-                                            setEditDeleteDisplay={setIndividualAccountsEditTransactionDeleteDisplay}
-                                            setEditDeleteConfirmation={setIndividualAccountsEditTransactionDeleteConfirmation}
+                                            setEditDeleteDisplay={setIndividualAccountsFilterEditTransactionDeleteDisplay}
+                                            setEditDeleteConfirmation={setIndividualAccountsFilterEditTransactionDeleteConfirmation}
                                             />
                                             : ""
                                         }
