@@ -120,7 +120,7 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsEditTransactionError: (accountId, transactionId, payload) => dispatch(setIndividualAccountsEditTransactionError(accountId, transactionId, payload)),
         setIndividualAccountsEditTransactionData: (account, transaction, payload) =>  dispatch(setIndividualAccountsEditTransactionData(account, transaction, payload)),
         setIndividualAccountsEditTransactionDeleteConfirmation: (account, transaction, payload) => dispatch(setIndividualAccountsEditTransactionDeleteConfirmation(account, transaction, payload)),
-        setIndividualAccounts
+        //setIndividualAccounts
     }
 }
 
