@@ -126,8 +126,10 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_CANCEL,
-    //SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
-    //SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_ERROR,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DATA,
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION
 } from "./constants.js";
 
 
@@ -1082,16 +1084,6 @@ export const setIndividualAccountsFilterEditTransactionCancel = (accountId, tran
     }
 }
 
-
-//setEditAmount={setIndividualAccountsFilterEditTransactionAmount}
-                                            //setEditTransactionTypeId={setIndividualAccountsFilterEditTransactionTransactionTypeId}
-                                            //setEditMemoNote={setIndividualAccountsFilterEditTransactionMemoNote}
-                                            //setEditPersonalBudgetCategoryId={setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryId}
-                                            //setEditPersonalBudgetCategoryItemId={setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemId}
-                                            //setEditCancel={setIndividualAccountsFilterEditTransactionCancel}
-                                            //setEditError={setIndividualAccountsFilterEditTransactionError}
-                                            //setEditData={setIndividualAccountsFilterEditTransactionData}
-/*
 export const setIndividualAccountsFilterEditTransactionDeleteDisplay = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
@@ -1101,13 +1093,31 @@ export const setIndividualAccountsFilterEditTransactionDeleteDisplay = (accountI
     }
 }
 
-export const IndividualAccountsFilterEditTransactionDeleteConfirmation = (accountId, transactionId, payload) => {
+export const setIndividualAccountsFilterEditTransactionError = (accountId, transactionId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_ERROR,
+        setIndividualAccountsFilterEditTransactionErrorAccountId: accountId,
+        setIndividualAccountsFilterEditTransactionErrorTransactionId: transactionId,
+        setIndividualAccountsFilterEditTransactionErrorPayload: payload
+    }
+}
+
+export const setIndividualAccountsFilterEditTransactionData = (account, transaction, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DATA,
+        setIndividualAccountsFilterEditTransactionDataAccount: account,
+        setIndividualAccountsFilterEditTransactionDataTransaction: transaction,
+        setIndividualAccountsFilterEditTransactionDataPayload: payload
+    }
+}
+
+export const IndividualAccountsFilterEditTransactionDeleteConfirmation = (account, transaction, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION,
-        setIndividualAccountsFilterEditTransactionDeleteConfirmationAccountId: accountId, 
-        setIndividualAccountsFilterEditTransactionDeleteConfirmationTransactionId: transactionId,
+        setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount: account, 
+        setIndividualAccountsFilterEditTransactionDeleteConfirmationTransaction: transaction,
         setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload: payload
     }
 }
-*/
+
 
