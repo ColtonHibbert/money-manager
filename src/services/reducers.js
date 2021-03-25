@@ -129,7 +129,10 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DATA,
-    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION,
+    SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_DISPLAY,
+    SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_TEXT_VALIDATE,
+    SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION
 } from "./constants.js";
 import {
     pagesArray,
@@ -221,6 +224,8 @@ const initialState = {
             addTransactionPersonalBudgetCategoryItemId: 0, 
             addTransactionPersonalBudgetCategoryId: 0,
             currentBalance: 0,
+            deleteAccountDisplay: false, 
+            deleteAccountTextValidate: "",
             lowAlertBalance: 0,
             userId: 0,
             accountTypeId: 0,
@@ -3125,6 +3130,22 @@ export const reducer = (state=initialState, action={}) => {
                     return quantityState;
                 }
             }(state.withdrawalsMonthlyAllAccountsQuantity),
+        }
+    }
+    //here... add deletestate to all applicable reducers, backend responses, , do just for delete first and same for addAccount... account name, balance, account type, low alert balance, owner
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_DISPLAY) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                let accounts = accountsState.slice();
+                accounts = accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsEditAccountNameAccountId) {
+                        account.editAccountName = action.setIndividualAccountsEditAccountNamePayload
+                    }   
+                    return account;
+                })
+                 return accounts;
+            }(state.individualAccounts) 
         }
     }
 

@@ -129,7 +129,10 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DATA,
-    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION
+    SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION,
+    SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_DISPLAY,
+    SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_TEXT_VALIDATE,
+    SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION
 } from "./constants.js";
 
 
@@ -1120,4 +1123,27 @@ export const setIndividualAccountsFilterEditTransactionDeleteConfirmation = (acc
     }
 }
 
+export const setIndividualAccountsDeleteAccountDisplay = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_DISPLAY,
+        setIndividualAccountsDeleteAccountDisplayAccountId: accountId,
+        setIndividualAccountsDeleteAccountDisplayPayload: payload
+    }
+}
+
+export const setIndividualAccountsDeleteAccountTextValidate = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_TEXT_VALIDATE,
+        setIndividualAccountsDeleteAccountTextValidateAccountId: accountId,
+        setIndividualAccountsDeleteAccountTextValidatePayload: payload
+    }
+}
+
+export const setIndividualAccountsDeleteAccountConfirmation = (accountId, payload) => {
+    return {
+        SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION,
+        setIndividualAccountsDeleteAccountConfirmationAccountId: accountId,
+        setIndividualAccountsDeleteAccountConfirmationPayload: payload
+    }
+}
 
