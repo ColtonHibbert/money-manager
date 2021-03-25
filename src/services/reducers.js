@@ -1457,6 +1457,7 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsEditAccountNameAccountId) {
                         account.editAccountName = action.setIndividualAccountsEditAccountNamePayload
                     }   
+                    return account;
                 })
                  return accounts;
             }(state.individualAccounts) 
@@ -1471,6 +1472,7 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsEditAccountTypeIdAccountId) {
                         account.editAccountTypeId = Number(action.setIndividualAccountsEditAccountTypeIdPayload)
                     }   
+                    return account;
                 })
                  return accounts;
             }(state.individualAccounts) 
@@ -1485,6 +1487,7 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsEditAccountLowAlertBalanceAccountId) {
                         account.editAccountLowAlertBalance = Number(action.setIndividualAccountsEditAccountLowAlertBalancePayload)
                     }   
+                    return account;
                 })
                  return accounts;
             }(state.individualAccounts) 
@@ -1499,7 +1502,8 @@ export const reducer = (state=initialState, action={}) => {
                 accounts = accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsEditAccountErrorAccountId) {
                         account.editAccountError = action.setIndividualAccountsEditAccountErrorPayload
-                    }   
+                    }  
+                    return account; 
                 })
                  return accounts;
             }(state.individualAccounts) 
@@ -1514,6 +1518,7 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsEditAccountErrorMessageAccountId) {
                         account.editAccountErrorMessage = action.setIndividualAccountsEditAccountErrorMessagePayload
                     }   
+                    return account;
                 })
                  return accounts;
             }(state.individualAccounts) 
@@ -1530,6 +1535,7 @@ export const reducer = (state=initialState, action={}) => {
                         account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
                         account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
                     }   
+                    return account;
                 })
                  return accounts;
             }(state.individualAccounts),
@@ -1541,6 +1547,7 @@ export const reducer = (state=initialState, action={}) => {
                         account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
                         account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
                     }   
+                    return account;
                 })
                  return accounts;
             }(state.accounts),
@@ -1553,7 +1560,8 @@ export const reducer = (state=initialState, action={}) => {
                             account.accountName = action.setIndividualAccountsUpdateAccountPayload.accountName
                             account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
                             account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
-                        }   
+                        }  
+                        return account; 
                     })
                      return accounts;
                 }(state.accountSummary.accounts),
@@ -1565,6 +1573,7 @@ export const reducer = (state=initialState, action={}) => {
                             account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
                             account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
                         }   
+                        return account;
                     })
                      return accounts;
                 }(state.accountSummary.filteredAccounts),
@@ -1580,8 +1589,9 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionAmountAccountId) {
                         account.addTransactionAmount = Number(action.setIndividualAccountsAddTransactionAmountPayload)
                     }   
+                    return account;
                 })
-                    return accounts;
+                return accounts;
             }(state.individualAccounts) 
         }
     }
@@ -1593,9 +1603,10 @@ export const reducer = (state=initialState, action={}) => {
                 accounts = accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionTransactionTypeIdAccountId) {
                         account.addTransactionTransactionTypeId = Number(action.setIndividualAccountsAddTransactionTransactionTypeIdPayload)
-                    }   
+                    }  
+                    return account; 
                 })
-                    return accounts;
+                return accounts;
             }(state.individualAccounts) 
         }
     }
@@ -1608,8 +1619,9 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionMemoNoteAccountId) {
                         account.addTransactionMemoNote = action.setIndividualAccountsAddTransactionMemoNotePayload
                     }   
+                    return account;
                 })
-                    return accounts;
+                return accounts;
             }(state.individualAccounts) 
         }
     }
@@ -1622,6 +1634,7 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdAccountId) {
                         account.addTransactionPersonalBudgetCategoryItemId = Number(action.setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdPayload)
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -1636,8 +1649,9 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetCategoryIdAccountId) {
                         account.addTransactionPersonalBudgetCategoryId = action.setIndividualAccountsAddTransactionPersonalBudgetCategoryIdPayload
                     }   
+                    return account;
                 })
-                    return accounts;
+                return accounts;
             }(state.individualAccounts) 
         }
     }
@@ -1649,9 +1663,10 @@ export const reducer = (state=initialState, action={}) => {
                 accounts = accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionAmountErrorAccountId) {
                         account.addTransactionAmountError = action.setIndividualAccountsAddTransactionAmountErrorPayload
-                    }   
+                    } 
+                    return account;  
                 })
-                    return accounts;
+                return accounts;
             }(state.individualAccounts) 
         }
     }
@@ -1663,7 +1678,8 @@ export const reducer = (state=initialState, action={}) => {
                 accounts = accounts.map(account => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetErrorAccountId) {
                         account.addTransactionPersonalBudgetError = action.setIndividualAccountsAddTransactionPersonalBudgetErrorPayload
-                    }   
+                    } 
+                    return account;  
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -1679,6 +1695,7 @@ export const reducer = (state=initialState, action={}) => {
                         console.log(action);
                         account.addTransactionTransactionTypeIdError = action.setIndividualAccountsAddTransactionTransactionTypeIdErrorPayload
                     }   
+                    return account;
                 })
             return accounts;
             }(state.individualAccounts) 
@@ -1693,8 +1710,9 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionAddErrorAccountId) {
                         account.addTransactionAddError = action.setIndividualAccountsAddTransactionAddErrorPayload
                     }   
+                    return account;
                 })
-                    return accounts;
+                return accounts;
             }(state.individualAccounts) 
         }
     }
@@ -1707,6 +1725,7 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
                         account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
                     }
+                    return account;
                 })
                 return accounts;
             }(state.accounts),
@@ -1718,6 +1737,7 @@ export const reducer = (state=initialState, action={}) => {
                         if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
                             account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
                         }
+                        return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
@@ -1727,6 +1747,7 @@ export const reducer = (state=initialState, action={}) => {
                         if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
                             account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
                         }
+                        return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts)
@@ -1793,7 +1814,8 @@ export const reducer = (state=initialState, action={}) => {
                             account.withdrawalsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
                             account.withdrawalsMonthlyQuantity += 1;
                         }
-                    }   
+                    }
+                    return account;   
                 })
                 return individualAccounts;
             }(state.individualAccounts),
@@ -1850,7 +1872,8 @@ export const reducer = (state=initialState, action={}) => {
                         account.addTransactionMemoNote = "";
                         account.addTransactionPersonalBudgetCategoryId = 0;
                         account.addTransactionPersonalBudgetCategoryItemId = 0;
-                    }   
+                    }  
+                    return account; 
                 })
             return accounts;
             }(state.individualAccounts) 
@@ -1868,13 +1891,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
                                 transaction.edit = action.setIndividualAccountsEditTransactionPayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
                                 transaction.edit = action.setIndividualAccountsEditTransactionPayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -1892,13 +1918,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionAmountTransactionId) {
                                 transaction.editTransactionAmount = Number(action.setIndividualAccountsEditTransactionAmountPayload)
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionAmountTransactionId) {
                                 transaction.editTransactionAmount = Number(action.setIndividualAccountsEditTransactionAmountPayload)
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -1916,13 +1945,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionTypeIdTransactionId) {
                                 transaction.editTransactionTransactionTypeId = Number(action.setIndividualAccountsEditTransactionTransactionTypeIdPayload);
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionTypeIdTransactionId) {
                                 transaction.editTransactionTransactionTypeId = Number(action.setIndividualAccountsEditTransactionTransactionTypeIdPayload)
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -1940,13 +1972,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionMemoNoteTransactionId) {
                                 transaction.editTransactionMemoNote = action.setIndividualAccountsEditTransactionMemoNotePayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionMemoNoteTransactionId) {
                                 transaction.editTransactionMemoNote = action.setIndividualAccountsEditTransactionMemoNotePayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -1964,13 +1999,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdPayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdPayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -1988,13 +2026,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdPayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdPayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2019,6 +2060,7 @@ export const reducer = (state=initialState, action={}) => {
                                 transaction.editTransactionDeleteDisplay = false;
                                 transaction.editTransactionDeleteConfirmation = false;
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionCancelTransactionId) {
@@ -2031,8 +2073,10 @@ export const reducer = (state=initialState, action={}) => {
                                 transaction.editTransactionDeleteDisplay = false;
                                 transaction.editTransactionDeleteConfirmation = false;
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2050,13 +2094,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteDisplayTransactionId) {
                                 transaction.editTransactionDeleteDisplay = action.setIndividualAccountsEditTransactionDeleteDisplayPayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteDisplayTransactionId) {
                                 transaction.editTransactionDeleteDisplay = action.setIndividualAccountsEditTransactionDeleteDisplayPayload
                             }
+                            return transaction;
                         })
-                    }   
+                    }  
+                    return account; 
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2074,13 +2121,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionErrorTransactionId) {
                                 transaction.editTransactionError = action.setIndividualAccountsEditTransactionErrorPayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsEditTransactionErrorTransactionId) {
                                 transaction.editTransactionError = action.setIndividualAccountsEditTransactionErrorPayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2096,6 +2146,7 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId ) {
                         account.currentBalance = action.setIndividualAccountsEditTransactionDataPayload.configuredAccount.currentBalance
                     }
+                    return account;
                 })
                 return accounts;
             }(state.accounts),
@@ -2107,6 +2158,7 @@ export const reducer = (state=initialState, action={}) => {
                         if(account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId ) {
                             account.currentBalance = action.setIndividualAccountsEditTransactionDataPayload.configuredAccount.currentBalance
                         }
+                        return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
@@ -2116,6 +2168,7 @@ export const reducer = (state=initialState, action={}) => {
                         if(account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId ) {
                             account.currentBalance = action.setIndividualAccountsEditTransactionDataPayload.configuredAccount.currentBalance
                         }
+                        return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts)
@@ -2222,7 +2275,8 @@ export const reducer = (state=initialState, action={}) => {
                             account.withdrawalsMonthlyAmount = account.withdrawalsMonthlyAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                         }
 
-                    }   
+                    }
+                    return account;   
                 })
                 return individualAccounts;
             }(state.individualAccounts),
@@ -2236,6 +2290,7 @@ export const reducer = (state=initialState, action={}) => {
                         transaction.personalBudgetCategoryId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryId;
                         transaction.personalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryItemId;
                     }
+                    return transaction;
                 })
                 return transactionsAllSlice;
             }(state.transactionsAllAccounts),
@@ -2249,6 +2304,7 @@ export const reducer = (state=initialState, action={}) => {
                         transaction.personalBudgetCategoryId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryId;
                         transaction.personalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryItemId;
                     }
+                    return transaction;
                 })
                 return transactionsMonthlyAllSlice;
             }(state.transactionsMonthlyAllAccounts),
@@ -2309,6 +2365,7 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId ) {
                         account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                     }
+                    return account;
                 })
                 return accounts;
             }(state.accounts),
@@ -2320,6 +2377,7 @@ export const reducer = (state=initialState, action={}) => {
                         if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId ) {
                             account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                         }
+                        return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
@@ -2329,6 +2387,7 @@ export const reducer = (state=initialState, action={}) => {
                         if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId ) {
                             account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                         }
+                        return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts)
@@ -2396,6 +2455,7 @@ export const reducer = (state=initialState, action={}) => {
                             account.withdrawalsMonthlyQuantity -= 1;
                         }
                     }   
+                    return account;
                 })
                 return individualAccounts;
             }(state.individualAccounts),
@@ -2457,13 +2517,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionId) {
                                 transaction.edit = action.setIndividualAccountsFilterEditTransactionPayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionId) {
                                 transaction.edit = action.setIndividualAccountsFilterEditTransactionPayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2481,13 +2544,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionAmountTransactionId) {
                                 transaction.editTransactionAmount = Number(action.setIndividualAccountsFilterEditTransactionAmountPayload)
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionAmountTransactionId) {
                                 transaction.editTransactionAmount = Number(action.setIndividualAccountsFilterEditTransactionAmountPayload)
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2505,13 +2571,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionTypeIdTransactionId) {
                                 transaction.editTransactionTransactionTypeId = Number(action.setIndividualAccountsFilterEditTransactionTransactionTypeIdPayload);
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionTypeIdTransactionId) {
                                 transaction.editTransactionTransactionTypeId = Number(action.setIndividualAccountsFilterEditTransactionTransactionTypeIdPayload)
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2529,13 +2598,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionMemoNoteTransactionId) {
                                 transaction.editTransactionMemoNote = action.setIndividualAccountsFilterEditTransactionMemoNotePayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionMemoNoteTransactionId) {
                                 transaction.editTransactionMemoNote = action.setIndividualAccountsFilterEditTransactionMemoNotePayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2553,13 +2625,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryId = action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdPayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryId = action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdPayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2577,13 +2652,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdPayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdPayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2608,6 +2686,7 @@ export const reducer = (state=initialState, action={}) => {
                                 transaction.editTransactionDeleteDisplay = false;
                                 transaction.editTransactionDeleteConfirmation = false;
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionCancelTransactionId) {
@@ -2620,8 +2699,10 @@ export const reducer = (state=initialState, action={}) => {
                                 transaction.editTransactionDeleteDisplay = false;
                                 transaction.editTransactionDeleteConfirmation = false;
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2639,13 +2720,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDeleteDisplayTransactionId) {
                                 transaction.editTransactionDeleteDisplay = action.setIndividualAccountsFilterEditTransactionDeleteDisplayPayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDeleteDisplayTransactionId) {
                                 transaction.editTransactionDeleteDisplay = action.setIndividualAccountsFilterEditTransactionDeleteDisplayPayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2663,13 +2747,16 @@ export const reducer = (state=initialState, action={}) => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionErrorTransactionId) {
                                 transaction.editTransactionError = action.setIndividualAccountsFilterEditTransactionErrorPayload
                             }
+                            return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
                             if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionErrorTransactionId) {
                                 transaction.editTransactionError = action.setIndividualAccountsFilterEditTransactionErrorPayload
                             }
+                            return transaction;
                         })
                     }   
+                    return account;
                 })
                 return accounts;
             }(state.individualAccounts) 
@@ -2685,6 +2772,7 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId ) {
                         account.currentBalance = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredAccount.currentBalance
                     }
+                    return account;
                 })
                 return accounts;
             }(state.accounts),
@@ -2696,6 +2784,7 @@ export const reducer = (state=initialState, action={}) => {
                         if(account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId ) {
                             account.currentBalance = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredAccount.currentBalance
                         }
+                        return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
@@ -2705,6 +2794,7 @@ export const reducer = (state=initialState, action={}) => {
                         if(account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId ) {
                             account.currentBalance = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredAccount.currentBalance
                         }
+                        return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts)
@@ -2812,6 +2902,7 @@ export const reducer = (state=initialState, action={}) => {
                         }
 
                     }   
+                    return account;
                 })
                 return individualAccounts;
             }(state.individualAccounts),
@@ -2825,6 +2916,7 @@ export const reducer = (state=initialState, action={}) => {
                         transaction.personalBudgetCategoryId = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryId;
                         transaction.personalBudgetCategoryItemId = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryItemId;
                     }
+                    return transaction;
                 })
                 return transactionsAllSlice;
             }(state.transactionsAllAccounts),
@@ -2838,6 +2930,7 @@ export const reducer = (state=initialState, action={}) => {
                         transaction.personalBudgetCategoryId = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryId;
                         transaction.personalBudgetCategoryItemId = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.personalBudgetCategoryItemId;
                     }
+                    return transaction;
                 })
                 return transactionsMonthlyAllSlice;
             }(state.transactionsMonthlyAllAccounts),
@@ -2898,6 +2991,7 @@ export const reducer = (state=initialState, action={}) => {
                     if(account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId ) {
                         account.currentBalance = action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                     }
+                    return account;
                 })
                 return accounts;
             }(state.accounts),
@@ -2909,6 +3003,7 @@ export const reducer = (state=initialState, action={}) => {
                         if(account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId ) {
                             account.currentBalance = action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                         }
+                        return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
@@ -2918,6 +3013,7 @@ export const reducer = (state=initialState, action={}) => {
                         if(account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId ) {
                             account.currentBalance = action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                         }
+                        return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts)
@@ -2981,7 +3077,8 @@ export const reducer = (state=initialState, action={}) => {
                             account.withdrawalsMonthlyAmount -= action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.amount;
                             account.withdrawalsMonthlyQuantity -= 1;
                         }
-                    }   
+                    } 
+                    return account;  
                 })
                 return individualAccounts;
             }(state.individualAccounts),
