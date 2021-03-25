@@ -46,9 +46,13 @@ function Menu(props) {
                     </g>
                     </svg>
                 </MenuCategory>
+                {
+                /*
                 <MenuCategory {...props} name="Transactions" >
                     <svg className="w2 h2 fill-custom-gray" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs></defs><title>x</title><polygon points="3.232 70.519 3.503 70.712 18.64 81.663 18.782 81.766 18.975 81.908 66.615 116.356 66.615 97.354 115.363 97.354 124.768 97.354 124.768 70.519 3.232 70.519"/><polygon points="124.768 57.481 124.497 57.288 109.36 46.337 109.218 46.234 109.025 46.092 61.385 11.644 61.385 30.646 12.637 30.646 3.232 30.646 3.232 57.481 124.768 57.481"/></svg>
                 </MenuCategory>
+                */
+                }
                 <MenuCategory {...props} name="Lobby" >
                 <svg viewBox="0 0 48 48" className="w2 h2 fill-custom-gray" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" >
                     <path fill="*#8a8d93" id="i-414" d="M26,22h-4v-4h4V22z M26,12h-4v4h4V12z M32,30h-4v4h4V30z M32,12h-4v4h4V12z M32,24h-4v4h4V24z M32,6h-4v4h4V6z M32,18h-4v4 h4V18z M26,6h-4v4h4V6z M20,18h-4v4h4V18z M20,30h-4v4h4V30z M20,24h-4v4h4V24z M36.2,4v42H39v2h-2.8H29H19h-7.2H9v-2h2.8V4H9V2h2.8 h2.8V0H33.4v2h2.8H39v2H36.2z M27,41c0-1.654-1.346-3-3-3s-3,1.346-3,3v5h6V41z M34.2,4H13.8v42H19v-5c0-2.758,2.243-5,5-5 s5,2.242,5,5v5h5.2V4z M26,30h-4v4h4V30z M26,24h-4v4h4V24z M20,12h-4v4h4V12z M20,6h-4v4h4V6z"/> 
