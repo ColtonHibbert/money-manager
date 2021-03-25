@@ -28,7 +28,7 @@ function MenuCategory(props) {
                 {...(name === "Accounts" && { onClick: setNavigationAccountSelected } )}
                 {...(name === "Profile" && { onClick: () => handleSelect("profile") } )}
                 {...(name === "Dashboard" && { onClick: () => handleSelect("dashboard")} )}
-                {...(name === "Transactions" && {onClick: () => handleSelect("transactions")} )}
+                //{...(name === "Transactions" && {onClick: () => handleSelect("transactions")} )}
                 {...(name === "Lobby" && {onClick: () => handleSelect("lobby")} )}
             >
                 <div>

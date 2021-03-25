@@ -190,7 +190,7 @@ function EditTransaction(props) {
                             
                             <div className="h2 w3 flex items-center justify-center mr3 ph1-l bg-money-color br2 white pointer grow"
                             onClick={() => submitEditTransaction()}
-                            >Add</div>
+                            >Update</div>
                             <div className="h2 w3 flex items-center justify-center ml3 ph1-l bg-red br2 white pointer grow"
                             onClick={() => setEditCancel(individualAccount.accountId, transaction.transactionId )}
                             >Cancel</div>

@@ -7,7 +7,7 @@ import Dashboard from "./Dashboard.js";
 import Profile from "./Profile.js";
 import AccountSummary from "./AccountSummary.js";
 import IndividualAccount from "../components/IndividualAccount.js";
-import Transactions from "./Transactions.js";
+//import Transactions from "./Transactions.js";
 import Lobby from "./Lobby.js";
 import {
     setMobileMenu, 
@@ -184,9 +184,11 @@ function Home(props) {
                     }))
                 }
                 {
+                    /*
                     (routeHome === "transactions") ? 
                     <Transactions {...props} />
                     : ""
+                    */
                 }
                 {
                     (routeHome === "lobby") ?
