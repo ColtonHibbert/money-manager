@@ -1814,7 +1814,8 @@ export const reducer = (state=initialState, action={}) => {
                             account.withdrawalsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
                             account.withdrawalsMonthlyQuantity += 1;
                         }
-                    }   
+                    }
+                    return account;   
                 })
                 return individualAccounts;
             }(state.individualAccounts),
@@ -2274,7 +2275,8 @@ export const reducer = (state=initialState, action={}) => {
                             account.withdrawalsMonthlyAmount = account.withdrawalsMonthlyAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                         }
 
-                    }   
+                    }
+                    return account;   
                 })
                 return individualAccounts;
             }(state.individualAccounts),
@@ -2900,6 +2902,7 @@ export const reducer = (state=initialState, action={}) => {
                         }
 
                     }   
+                    return account;
                 })
                 return individualAccounts;
             }(state.individualAccounts),
