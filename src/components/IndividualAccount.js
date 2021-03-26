@@ -5,6 +5,8 @@ import DepositIcon from "../components/DepositIcon.js";
 import TransactionIcon from "../components/TransactionIcon.js";
 import Sort from "../components/Sort.js";
 import PaginationBar from "../components/PaginationBar.js";
+import DeleteAccount from "../components/DeleteAccount.js";
+import DeleteAccountButton from "../components/DeleteAccountButton.js";
 import EditAccountButton from "./EditAccountButton.js";
 import EditAccount from "./EditAccount.js";
 import EditTransaction from "./EditTransaction.js";
@@ -76,6 +78,9 @@ function IndividualAccount(props) {
         setIndividualAccountsFilterEditTransactionError,
         setIndividualAccountsFilterEditTransactionData,
         setIndividualAccountsFilterEditTransactionDeleteConfirmation,
+        setIndividualAccountsDeleteAccountDisplay,
+        setIndividualAccountsDeleteAccountTextValidate,
+        setIndividualAccountsDeleteAccountConfirmation,
         user
     } = props;
 
@@ -249,29 +254,44 @@ function IndividualAccount(props) {
                         "
                     >{individualAccount.accountName} - {accountTypeName}
                 </div>
-                {
-                    (individualAccount.editAccount === false) ?
-                    <div className="w-90 flex justify-start mv2 w-100-l pl3-l ">
-                        <EditAccountButton individualAccount={individualAccount} setIndividualAccountsEditAccount={setIndividualAccountsEditAccount}/>
-                    </div>
-                    : 
-                    <div className="w-100 flex justify-center mv2
-                    justify-center-m 
-                    justify-start-l
-                    ">
-                        <EditAccount individualAccount={individualAccount} 
-                        setIndividualAccountsEditAccount={setIndividualAccountsEditAccount}
-                        setIndividualAccountsEditAccountName={setIndividualAccountsEditAccountName}
-                        setIndividualAccountsEditAccountTypeId={setIndividualAccountsEditAccountTypeId}
-                        setIndividualAccountsEditAccountLowAlertBalance={setIndividualAccountsEditAccountLowAlertBalance}
-                        setIndividualAccountsEditAccountError={setIndividualAccountsEditAccountError}
-                        setIndividualAccountsEditAccountErrorMessage={setIndividualAccountsEditAccountErrorMessage}
-                        setIndividualAccountsUpdateAccount={setIndividualAccountsUpdateAccount}
-                        user={user}
-                        />
-                    </div>
-                }
-              
+                
+                    {
+                        (individualAccount.editAccount === false && individualAccount.deleteAccountDisplay === false) ?
+                        <div className="w-90 flex justify-start mv2 w-100-l pl3-l ">
+                            <EditAccountButton individualAccount={individualAccount} setIndividualAccountsEditAccount={setIndividualAccountsEditAccount}/>
+                            <DeleteAccountButton individualAccount={individualAccount} setIndividualAccountsDeleteAccountDisplay={setIndividualAccountsDeleteAccountDisplay}/>
+                        </div>
+                        : (individualAccount.editAccount) ?
+                        <div className="w-100 flex justify-center mv2
+                        justify-center-m 
+                        justify-start-l
+                        ">
+                            <EditAccount individualAccount={individualAccount} 
+                            setIndividualAccountsEditAccount={setIndividualAccountsEditAccount}
+                            setIndividualAccountsEditAccountName={setIndividualAccountsEditAccountName}
+                            setIndividualAccountsEditAccountTypeId={setIndividualAccountsEditAccountTypeId}
+                            setIndividualAccountsEditAccountLowAlertBalance={setIndividualAccountsEditAccountLowAlertBalance}
+                            setIndividualAccountsEditAccountError={setIndividualAccountsEditAccountError}
+                            setIndividualAccountsEditAccountErrorMessage={setIndividualAccountsEditAccountErrorMessage}
+                            setIndividualAccountsUpdateAccount={setIndividualAccountsUpdateAccount}
+                            user={user}
+                            />
+                        </div>
+                        : (individualAccount.deleteAccountDisplay) ?
+                        <div className="w-100 flex justify-center mv2
+                        justify-center-m 
+                        justify-start-l
+                        ">
+                            <DeleteAccount
+                            individualAccount={individualAccount} 
+                            setIndividualAccountsDeleteAccountDisplay={setIndividualAccountsDeleteAccountDisplay}
+                            setIndividualAccountsDeleteAccountTextValidate={setIndividualAccountsDeleteAccountTextValidate}
+                            setIndividualAccountsDeleteAccountConfirmation={setIndividualAccountsDeleteAccountConfirmation}
+                            user={user}
+                            />
+                        </div>
+                        : ""
+                    }
                 <div 
                 className="w-100 flex flex-column items-center
                 flex-s flex-column-s

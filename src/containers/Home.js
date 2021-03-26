@@ -68,6 +68,9 @@ import {
     setIndividualAccountsFilterEditTransactionError,
     setIndividualAccountsFilterEditTransactionData,
     setIndividualAccountsFilterEditTransactionDeleteConfirmation,
+    setIndividualAccountsDeleteAccountDisplay,
+    setIndividualAccountsDeleteAccountTextValidate,
+    setIndividualAccountsDeleteAccountConfirmation
 } from "../services/actions.js";
 
 
@@ -142,6 +145,9 @@ const mapDispatchToProps = (dispatch) => {
         setIndividualAccountsFilterEditTransactionError: (accountId, transactionId, payload) => dispatch(setIndividualAccountsFilterEditTransactionError(accountId, transactionId, payload)),
         setIndividualAccountsFilterEditTransactionData: (account, transaction, payload) =>  dispatch(setIndividualAccountsFilterEditTransactionData(account, transaction, payload)),
         setIndividualAccountsFilterEditTransactionDeleteConfirmation: (account, transaction, payload) => dispatch(setIndividualAccountsFilterEditTransactionDeleteConfirmation(account, transaction, payload)),
+        setIndividualAccountsDeleteAccountDisplay: (accountId, payload) => dispatch(setIndividualAccountsDeleteAccountDisplay(accountId, payload)),
+        setIndividualAccountsDeleteAccountTextValidate: (accountId, payload) => dispatch(setIndividualAccountsDeleteAccountTextValidate(accountId, payload)),
+        setIndividualAccountsDeleteAccountConfirmation: (accountId) => dispatch(setIndividualAccountsDeleteAccountConfirmation(accountId))
     }
 }
 
