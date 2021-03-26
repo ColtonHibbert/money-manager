@@ -880,6 +880,8 @@ export const reducer = (state=initialState, action={}) => {
                     addTransactionPersonalBudgetCategoryItemId: 0,
                     addTransactionPersonalBudgetCategoryId: 0,
                     currentBalance: account.currentBalance,
+                    deleteAccountDisplay: false,
+                    deleteAccountTextValidate: "",
                     lowAlertBalance: account.lowAlertBalance,
                     userId: account.userId,
                     accountTypeId: account.accountTypeId,
@@ -3139,14 +3141,65 @@ export const reducer = (state=initialState, action={}) => {
             individualAccounts: function(accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditAccountNameAccountId) {
-                        account.editAccountName = action.setIndividualAccountsEditAccountNamePayload
+                    if(account.accountId === action.setIndividualAccountsDeleteAccountDisplayAccountId) {
+                        account.deleteAccountDisplay = action.setIndividualAccountsDeleteAccountDisplayPayload
                     }   
                     return account;
                 })
-                 return accounts;
+                return accounts;
             }(state.individualAccounts) 
         }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_TEXT_VALIDATE) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                let accounts = accountsState.slice();
+                accounts = accounts.map(account => {
+                    if(account.accountId === action.setIndividualAccountsDeleteAccountTextValidateAccountId) {
+                        account.deleteAccountTextValidate = action.setIndividualAccountsDeleteAccountTextValidatePayload
+                    }   
+                    return account;
+                })
+                return accounts;
+            }(state.individualAccounts) 
+        }
+    }
+    if(action.type === SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION) {
+        return {
+            ...state,
+            individualAccounts: function(accountsState) {
+                let accounts = accountsState.slice();
+                accounts = accounts.filter(account => {
+                    return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
+                })
+                return accounts;
+            }(state.individualAccounts),
+            accounts: function(accountsState) {
+                let accounts = accountsState.slice();
+                accounts = accounts.filter(account => {
+                    return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
+                })
+                return accounts;
+            }(state.accounts),
+            accountSummary: {
+                ...state.accountSummary,
+                accounts: function(accountsState) {
+                    let accounts = accountsState.slice();
+                    accounts = accounts.filter(account => {
+                        return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
+                    })
+                    return accounts;
+                }(state.accountSummary.accounts),
+                filteredAccounts: function(accountsState) {
+                    let accounts = accountsState.slice();
+                    accounts = accounts.filter(account => {
+                        return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
+                    })
+                    return accounts;
+                }(state.accountSummary.filteredAccounts),
+            }
+        } 
     }
 
     return state;
