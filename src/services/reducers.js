@@ -132,7 +132,13 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION,
     SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_DISPLAY,
     SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_TEXT_VALIDATE,
-    SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION
+    SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION,
+    SET_ADD_ACCOUNT_ACCOUNT_NAME,
+    SET_ADD_ACCOUNT_ACCOUNT_TYPE_ID,
+    SET_ADD_ACCOUNT_CURRENT_BALANCE,
+    SET_ADD_ACCOUNT_LOW_ALERT_BALANCE,
+    SET_ADD_ACCOUNT_ERROR,
+    SET_ADD_ACCOUNT_CONFIRMATION
 } from "./constants.js";
 import {
     pagesArray,
@@ -193,6 +199,11 @@ const initialState = {
         ],
         search: ""
     },
+    addAccountName: "",
+    addAccountAccountTypeId: 0,
+    addAccountCurrentBalance: 0,
+    addAccountLowAlertBalance: 0,
+    addAccountError: false,
     categoriesAndItems: [
         {
             personalBudgetCategoryId: 0,
@@ -3201,6 +3212,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         } 
     }
+    if(action.type === )
 
     return state;
 }
