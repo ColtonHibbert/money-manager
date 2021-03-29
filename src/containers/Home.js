@@ -88,7 +88,12 @@ const mapStateToProps = (state) => {
         routeHome: state.routeHome,
         individualAccounts: state.individualAccounts,
         categoriesAndItems: state.categoriesAndItems,
-        transactions: state.transactions
+        transactions: state.transactions,
+        addAccountAccountName: state.addAccountAccountName,
+        addAccountAccountTypeId: state.addAccountAccountTypeId,
+        addAccountCurrentBalance: state.addAccountCurrentBalance,
+        addAccountLowAlertBalance: state.addAccountLowAlertBalance,
+        addAccountError: state.addAccountError
     }
 }
 
