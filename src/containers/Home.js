@@ -7,6 +7,7 @@ import Dashboard from "./Dashboard.js";
 import Profile from "./Profile.js";
 import AccountSummary from "./AccountSummary.js";
 import IndividualAccount from "../components/IndividualAccount.js";
+import AddAccount from "../components/AddAccount.js";
 //import Transactions from "./Transactions.js";
 import Lobby from "./Lobby.js";
 import {
@@ -184,10 +185,14 @@ function Home(props) {
                     (individualAccounts.map(individualAccount => {
                         if (routeHome === individualAccount.accountId.toString()) {
                             return <IndividualAccount {...props} individualAccount={individualAccount} key={individualAccount.accountId}/>
-                        } else {
-                            return ""
-                        }
+                        } 
+                        return "";
                     }))
+                }
+                {
+                    (routeHome === "addaccount") ?
+                    <AddAccount {...props} />
+                    : ""
                 }
                 {
                     /*

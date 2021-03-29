@@ -13,7 +13,7 @@ function DeleteAccount(props) {
 
     const submitDeleteAccount = () => {
          
-        if(individualAccount.deleteAccounttextValidate !== "CONFIRM") {
+        if(individualAccount.deleteAccountTextValidate !== "CONFIRM") {
             return;
         }
         
