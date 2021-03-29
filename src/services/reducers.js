@@ -3212,7 +3212,36 @@ export const reducer = (state=initialState, action={}) => {
             }
         } 
     }
-    if(action.type === )
+    if(action.type === SET_ADD_ACCOUNT_ACCOUNT_NAME) {
+        return {
+            ...state,
+            addAccountName: action.setAddAccountAccountNamePayload
+        }
+    }
+    if(action.type === SET_ADD_ACCOUNT_ACCOUNT_TYPE_ID) {
+        return {
+            ...state,
+            addAccountAccountTypeId: action.setAddAccountAccountTypeId
+        }
+    }
+    if(action.type === SET_ADD_ACCOUNT_CURRENT_BALANCE) {
+        return {
+            ...state,
+            addAccountCurrentBalance: action.setAddAccountCurrentBalance
+        }
+    }
+    if(action.type === SET_ADD_ACCOUNT_LOW_ALERT_BALANCE) {
+        return {
+            ...state,
+            addAccountLowAlertBalance: action.setAddAccountLowAlertBalancePayload
+        }
+    }
+    if(action.type === SET_ADD_ACCOUNT_ERROR) {
+        return {
+            ...state,
+            addAccountError: action.setAddAccountErrorPayload
+        }
+    }
 
     return state;
 }
