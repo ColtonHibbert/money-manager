@@ -1180,14 +1180,14 @@ export const setAddAccountLowAlertBalance = (payload) => {
     }
 }
 
-export const setAddAccountAccountError = (payload) => {
+export const setAddAccountError = (payload) => {
     return {
         type: SET_ADD_ACCOUNT_ERROR,
-        setAddAccountAccountErrorPayload: payload
+        setAddAccountErrorPayload: payload
     }
 }
 
-export const setAddAccountConfirmation = (payload) {
+export const setAddAccountConfirmation = (payload) => {
     return {
         type: SET_ADD_ACCOUNT_CONFIRMATION,
         setAddAccountConfirmationPayload: payload
