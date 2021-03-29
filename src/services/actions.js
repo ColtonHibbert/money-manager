@@ -1141,7 +1141,7 @@ export const setIndividualAccountsDeleteAccountTextValidate = (accountId, payloa
 
 export const setIndividualAccountsDeleteAccountConfirmation = (accountId) => {
     return {
-        SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION,
+        type: SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION,
         setIndividualAccountsDeleteAccountConfirmationAccountId: accountId,
     }
 }

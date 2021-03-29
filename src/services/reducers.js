@@ -399,7 +399,7 @@ const initialState = {
         emailConfirmationErrorMessage: ""
     },
     route: "loading",
-    routeHome: "1",
+    routeHome: "addaccount",
     signUp: {
         signUpFirstName: "",
         signUpLastName: "",

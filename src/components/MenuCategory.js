@@ -5,6 +5,7 @@ import CheckingIcon from "./CheckingIcon.js";
 import DebtIcon from "./DebtIcon.js";
 import UpIcon from "./UpIcon.js";
 import DownIcon from "./DownIcon.js";
+import AddIcon from "./AddIcon.js";
 import AccountSummaryIcon from "./AccountSummaryIcon.js";
 
 function MenuCategory(props) {
@@ -91,6 +92,20 @@ function MenuCategory(props) {
                             )
                         })
                     }
+                    <div 
+                    onClick={() => handleSelect("addaccount")}
+                    >
+                        <div 
+                            className="
+                            f4 flex flex-row items-center pl4 bg-custom-lighter-gray custom-gray pointer money-hover darker-gray-hover 
+                            h2point25-m
+                            h2point25p-l
+                            "
+                        >
+                            <AddIcon />
+                            <div className="pl2">Add Account</div>
+                        </div>
+                    </div>
                 </div>
                 : ""
             }
