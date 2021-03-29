@@ -132,7 +132,13 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION,
     SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_DISPLAY,
     SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_TEXT_VALIDATE,
-    SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION
+    SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_ACCOUNT_NAME,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_ACCOUNT_TYPE_ID,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_CURRENT_BALANCE,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_LOW_ALERT_BALANCE,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_ERROR,
+    SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_CONFIRMATION
 } from "./constants.js";
 
 
@@ -1146,3 +1152,28 @@ export const setIndividualAccountsDeleteAccountConfirmation = (accountId) => {
     }
 }
 
+export const setIndividualAccountsAddAccountAccountName = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_ACCOUNT_NAME,
+        setIndividualAccountsAddAccountAccountNameAccountId: accountId,
+        setIndividualAccountsAddAccountAccountNamePayload: payload
+    }
+}
+
+export const setIndividualAccountsAddAccountAccountTypeId = (accountId, payload) => {
+    return {
+        type: SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_ACCOUNT_TYPE_ID,
+        setIndividualAccountsAddAccountAccountTypeIdAccountId: accountId,
+        setIndividualAccountsAddAccountAccountTypeIdPayload: payload
+    }
+}
+
+export const setIndividualAccountsAddAccountCurrentBalance = (accountId, payload) => {
+
+}
+
+
+SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_CURRENT_BALANCE,
+SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_LOW_ALERT_BALANCE,
+SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_ERROR,
+SET_INDIVIDUAL_ACCOUNTS_ADD_ACCOUNT_CONFIRMATION
