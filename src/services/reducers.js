@@ -3221,25 +3221,70 @@ export const reducer = (state=initialState, action={}) => {
     if(action.type === SET_ADD_ACCOUNT_ACCOUNT_TYPE_ID) {
         return {
             ...state,
-            addAccountAccountTypeId: action.setAddAccountAccountTypeId
+            addAccountAccountTypeId: Number(action.setAddAccountAccountTypeIdPayload)
         }
     }
     if(action.type === SET_ADD_ACCOUNT_CURRENT_BALANCE) {
         return {
             ...state,
-            addAccountCurrentBalance: action.setAddAccountCurrentBalance
+            addAccountCurrentBalance: Number(action.setAddAccountCurrentBalancePayload)
         }
     }
     if(action.type === SET_ADD_ACCOUNT_LOW_ALERT_BALANCE) {
         return {
             ...state,
-            addAccountLowAlertBalance: action.setAddAccountLowAlertBalancePayload
+            addAccountLowAlertBalance: Number(action.setAddAccountLowAlertBalancePayload)
         }
     }
     if(action.type === SET_ADD_ACCOUNT_ERROR) {
         return {
             ...state,
             addAccountError: action.setAddAccountErrorPayload
+        }
+    }
+    if(action.type === SET_ADD_ACCOUNT_CONFIRMATION) {
+
+        const accountObject = {
+
+        }
+
+        return {
+            ...state,
+            addAccountAccountName: "",
+            addAccountAccountTypeId: 0,
+            addAccountCurrentBalance: 0,
+            addAccountLowAlertBalance: 0,
+            /*
+            individualAccounts: function(accountsState) {
+                let accounts = accountsState.slice();
+                accounts.push()
+                return accounts;
+            }(state.individualAccounts),
+            accounts: function(accountsState) {
+                let accounts = accountsState.slice();
+                accounts = accounts.filter(account => {
+                    return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
+                })
+                return accounts;
+            }(state.accounts),
+            accountSummary: {
+                ...state.accountSummary,
+                accounts: function(accountsState) {
+                    let accounts = accountsState.slice();
+                    accounts = accounts.filter(account => {
+                        return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
+                    })
+                    return accounts;
+                }(state.accountSummary.accounts),
+                filteredAccounts: function(accountsState) {
+                    let accounts = accountsState.slice();
+                    accounts = accounts.filter(account => {
+                        return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
+                    })
+                    return accounts;
+                }(state.accountSummary.filteredAccounts),
+            }
+            */
         }
     }
 
