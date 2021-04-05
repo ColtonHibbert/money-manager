@@ -939,7 +939,7 @@ export const reducer = (state=initialState, action={}) => {
                 pages: summaryPagesRegularOrFilter.pages,
                 filteredAccounts: action.setInitialDataPayload.initialData.accountSummary,
                 filterTotalPages: summaryPagesRegularOrFilter.totalPages,
-                filterPages: summaryPagesRegularOrFilter.pagesArray
+                filterPages: summaryPagesRegularOrFilter.pages
             },
             categoriesAndItems: action.setInitialDataPayload.initialData.categoriesAndItems,
             individualAccounts: formatStateForIndividualAccounts(),
@@ -3283,7 +3283,7 @@ export const reducer = (state=initialState, action={}) => {
                     return accounts;
                 }(state.accountSummary.accounts),
                 filterTotalPages: summaryPagesRegularOrFilter.totalPages,
-                filterPages: summaryPagesRegularOrFilter.pagesArray,
+                filterPages: summaryPagesRegularOrFilter.pages,
                 filter: false,
                 pages: summaryPagesRegularOrFilter.pages,
                 search: "",
@@ -3309,7 +3309,7 @@ export const reducer = (state=initialState, action={}) => {
                     lowAlertBalance: accountObject.lowAlertBalance,
                     userId: accountObject.userId,
                     accountTypeId: accountObject.accountTypeId,
-                    userFirstName: "",
+                    userFirstName: state.user.firstName,
                     entries: 3,
                     filterTransactionSelection: "all",
                     currentPage: 0,
