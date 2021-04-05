@@ -3177,6 +3177,14 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     if(action.type === SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION) {
+
+
+        let accountsArray = state.accounts.filter(account => {
+            return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
+        })
+
+        const summaryPagesRegularOrFilter = configurePagesInReducer(state.accountSummary.entries, accountsArray);
+
         return {
             ...state,
             individualAccounts: function(accountsState) {
@@ -3202,6 +3210,7 @@ export const reducer = (state=initialState, action={}) => {
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
+                currentPage: 0,
                 filteredAccounts: function(accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.filter(account => {
@@ -3209,6 +3218,12 @@ export const reducer = (state=initialState, action={}) => {
                     })
                     return accounts;
                 }(state.accountSummary.filteredAccounts),
+                filterTotalPages: summaryPagesRegularOrFilter.totalPages,
+                filterPages: summaryPagesRegularOrFilter.pages,
+                filter: false,
+                pages: summaryPagesRegularOrFilter.pages,
+                search: "",
+                totalPages: summaryPagesRegularOrFilter.totalPages
             }
         } 
     }
@@ -3255,7 +3270,7 @@ export const reducer = (state=initialState, action={}) => {
 
         let accounts = state.accounts.slice();
         accounts = accounts.push(accountObject);
-//
+
         const summaryPagesRegularOrFilter = configurePagesInReducer(state.accountSummary.entries, action.setInitialDataPayload.initialData.accountSummary);
 
         return {
@@ -3313,88 +3328,34 @@ export const reducer = (state=initialState, action={}) => {
                     entries: 3,
                     filterTransactionSelection: "all",
                     currentPage: 0,
-                    totalPages: summaryPagesRegularOrFilter.totalPages,
+                    totalPages: 0,
                     editAccount: false,
                     editAccountName: "",
                     editAccountTypeId: 0,
                     editAccountLowAlertBalance: 0,
                     editAccountError: false,
                     editAccountErrorMessage: "",
-                    pages: summaryPagesRegularOrFilter.pagesArray,
+                    pages: [
+                        {
+                            pageNumber: 0,
+                            startEntry: 0,
+                            finishEntry: 0,
+                        }
+                    ],
                     filter: false,
-                    filteredTransactions: [
-                        {
-                        transactionId: 0,
-                        amount: 0,
-                        date: "",
-                        memoNote: "",
-                        categoryName: "",
-                        categoryItemName: "",
-                        personalBudgetCategoryId: 0,
-                        personalBudgetCategoryItemId: 0,
-                        householdBudgetCategoryId: 0,
-                        householdBudgetCategoryItemId: 0,
-                        transactionTypeId: 0,
-                        userId: 0,
-                        accountId: 0,
-                        edit: false,
-                        editTransactionAmount: 0,
-                        editTransactionTransactionTypeId: 0,
-                        editTransactionMemoNote: "",
-                        editTransactionPersonalBudgetCategoryId: 0,
-                        editTransactionPersonalBudgetCategoryItemId: 0,
-                        editTransactionDeleteDisplay: false, 
-                        editTransactionError: false,
-                        editTransactionDeleteConfirmation: false,   
-                        }
-                    ],
-                    filterTotalPages: summaryPagesRegularOrFilter.totalPages,
+                    filteredTransactions: [],
+                    filterTotalPages: 0,
                     filterCurrentPage: 0,
-                    filterPages: summaryPagesRegularOrFilter.pagesArray,
-                    search: "",
-                    transactions: [
-                    {
-                        transactionId: 0,
-                        amount: 0,
-                        date: "",
-                        memoNote: "",
-                        categoryName: "",
-                        categoryItemName: "",
-                        personalBudgetCategoryId: 0,
-                        personalBudgetCategoryItemId: 0,
-                        householdBudgetCategoryId: 0,
-                        householdBudgetCategoryItemId: 0,
-                        transactionTypeId: 0,
-                        userId: 0,
-                        accountId: 0,
-                        edit: false,
-                        editTransactionAmount: 0,
-                        editTransactionTransactionTypeId: 0,
-                        editTransactionMemoNote: "",
-                        editTransactionPersonalBudgetCategoryId: 0,
-                        editTransactionPersonalBudgetCategoryItemId: 0,
-                        editTransactionDeleteDisplay: false, 
-                        editTransactionError: false,
-                        editTransactionDeleteConfirmation: false,
-                    }
-                    ],
-                    transactionsMonthly: [
+                    filterPages: [
                         {
-                        transactionId: 0,
-                        amount: 0,
-                        date: "",
-                        memoNote: "",
-                        categoryName: "",
-                        categoryItemName: "",
-                        personalBudgetCategoryId: 0,
-                        personalBudgetCategoryItemId: 0,
-                        householdBudgetCategoryId: 0,
-                        householdBudgetCategoryItemId: 0,
-                        transactionTypeId: 0,
-                        userId: 0,
-                        accountId: 0
+                            pageNumber: 0,
+                            startEntry: 0,
+                            finishEntry: 0,
                         }
                     ],
+                    search: "",
+                    transactions: [],
+                    transactionsMonthly: [],
                     transactionsMonthlyQuantity: 0,
                     depositsMonthlyQuantity: 0,
                     depositsMonthlyAmount: 0,
@@ -3407,133 +3368,6 @@ export const reducer = (state=initialState, action={}) => {
                 accounts.push(individualAccount);
                 return accounts;
             }(state.individualAccounts),
-/*
-        individualAccounts: [
-        {
-            accountId: 0,
-            accountName: "",
-            addTransactionAmount: "",
-            addTransactionAmountError: false,
-            addTransactionAddError: false,
-            addTransactionTransactionTypeId: 0,
-            addTransactionTransactionTypeIdError: false,
-            addTransactionMemoNote: "",
-            addTransactionPersonalBudgetCategoryItemId: 0, 
-            addTransactionPersonalBudgetCategoryId: 0,
-            currentBalance: 0,
-            deleteAccountDisplay: false, 
-            deleteAccountTextValidate: "",
-            lowAlertBalance: 0,
-            userId: 0,
-            accountTypeId: 0,
-            userFirstName: "",
-            entries: 3,
-            filterTransactionSelection: "all",
-            currentPage: 0,
-            totalPages: 0,
-            editAccount: false,
-            editAccountName: "",
-            editAccountTypeId: 0,
-            editAccountLowAlertBalance: 0,
-            editAccountError: false,
-            editAccountErrorMessage: "",
-            pages: [
-                {
-                    pageNumber: 0,
-                    startEntry: 0,
-                    finishEntry: 0,
-                }
-            ],
-            filter: false,
-            filteredTransactions: [
-                {
-                  transactionId: 0,
-                  amount: 0,
-                  date: "",
-                  memoNote: "",
-                  categoryName: "",
-                  categoryItemName: "",
-                  personalBudgetCategoryId: 0,
-                  personalBudgetCategoryItemId: 0,
-                  householdBudgetCategoryId: 0,
-                  householdBudgetCategoryItemId: 0,
-                  transactionTypeId: 0,
-                  userId: 0,
-                  accountId: 0,
-                  edit: false,
-                  editTransactionAmount: 0,
-                  editTransactionTransactionTypeId: 0,
-                  editTransactionMemoNote: "",
-                  editTransactionPersonalBudgetCategoryId: 0,
-                  editTransactionPersonalBudgetCategoryItemId: 0,
-                  editTransactionDeleteDisplay: false, 
-                  editTransactionError: false,
-                  editTransactionDeleteConfirmation: false,   
-                }
-            ],
-            filterTotalPages: 0,
-            filterCurrentPage: 0,
-            filterPages: [
-                {
-                    pageNumber: 0,
-                    startEntry: 0,
-                    finishEntry: 0
-                }
-            ],
-            search: "",
-            transactions: [
-              {
-                transactionId: 0,
-                amount: 0,
-                date: "",
-                memoNote: "",
-                categoryName: "",
-                categoryItemName: "",
-                personalBudgetCategoryId: 0,
-                personalBudgetCategoryItemId: 0,
-                householdBudgetCategoryId: 0,
-                householdBudgetCategoryItemId: 0,
-                transactionTypeId: 0,
-                userId: 0,
-                accountId: 0,
-                edit: false,
-                editTransactionAmount: 0,
-                editTransactionTransactionTypeId: 0,
-                editTransactionMemoNote: "",
-                editTransactionPersonalBudgetCategoryId: 0,
-                editTransactionPersonalBudgetCategoryItemId: 0,
-                editTransactionDeleteDisplay: false, 
-                editTransactionError: false,
-                editTransactionDeleteConfirmation: false,
-              }
-            ],
-            transactionsMonthly: [
-                {
-                  transactionId: 0,
-                  amount: 0,
-                  date: "",
-                  memoNote: "",
-                  categoryName: "",
-                  categoryItemName: "",
-                  personalBudgetCategoryId: 0,
-                  personalBudgetCategoryItemId: 0,
-                  householdBudgetCategoryId: 0,
-                  householdBudgetCategoryItemId: 0,
-                  transactionTypeId: 0,
-                  userId: 0,
-                  accountId: 0
-                }
-              ],
-              transactionsMonthlyQuantity: 0,
-              depositsMonthlyQuantity: 0,
-              depositsMonthlyAmount: 0,
-              withdrawalsMonthlyQuantity: 0,
-              withdrawalsMonthlyAmount: 0,
-              transfersMonthlyQuantity: 0,
-              transfersMonthlyAmount: 0
-        }
-    ]
-            */
         }
     }
 
