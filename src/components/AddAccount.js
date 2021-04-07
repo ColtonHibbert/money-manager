@@ -84,12 +84,14 @@ function AddAccount(props) {
                                 className="input-reset w-70 h2 mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
                                 "
                                 onInput={(event) => setAddAccountAccountName(event.target.value)}
+                                value={addAccountAccountName}
                                 ></input>
                             </div>
                             <div className="w-100 flex flex-row items-center ph3 pv1 mv1 bb-thin-gray">
                                 <div className="w-30 h2 f5 ">Account Type</div>
                                 <select className="input-reset w-70 h2 mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b"
                                 onChange={(event) => setAddAccountAccountTypeId(event.target.value)}
+                                value={addAccountAccountTypeId}
                                 >
                                     <option value="0">--</option>
                                     <option value="1">Checking</option>
@@ -103,6 +105,7 @@ function AddAccount(props) {
                                 className="w-70 h2 input-reset mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
                                 "
                                 onInput={(event) => setAddAccountCurrentBalance(event.target.value)}
+                                value={addAccountCurrentBalance.toString()}
                                 ></input>
                             </div>
                             <div className="w-100 flex flex-row items-center ph3 pv1 mv1 bb-thin-gray">
@@ -111,6 +114,7 @@ function AddAccount(props) {
                                 className="w-70 h2 input-reset mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
                                 "
                                 onInput={(event) => setAddAccountLowAlertBalance(event.target.value)}
+                                value={addAccountLowAlertBalance.toString()}
                                 ></input>
                             </div>
                             {
