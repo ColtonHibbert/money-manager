@@ -199,7 +199,7 @@ const initialState = {
         ],
         search: ""
     },
-    addAccountName: "",
+    addAccountAccountName: "",
     addAccountAccountTypeId: 0,
     addAccountCurrentBalance: 0,
     addAccountLowAlertBalance: 0,
@@ -3187,13 +3187,6 @@ export const reducer = (state=initialState, action={}) => {
 
         return {
             ...state,
-            individualAccounts: function(accountsState) {
-                let accounts = accountsState.slice();
-                accounts = accounts.filter(account => {
-                    return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
-                })
-                return accounts;
-            }(state.individualAccounts),
             accounts: function(accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.filter(account => {
@@ -3224,13 +3217,20 @@ export const reducer = (state=initialState, action={}) => {
                 pages: summaryPagesRegularOrFilter.pages,
                 search: "",
                 totalPages: summaryPagesRegularOrFilter.totalPages
-            }
+            },
+            individualAccounts: function(accountsState) {
+                let accounts = accountsState.slice();
+                accounts = accounts.filter(account => {
+                    return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
+                })
+                return accounts;
+            }(state.individualAccounts)
         } 
     }
     if(action.type === SET_ADD_ACCOUNT_ACCOUNT_NAME) {
         return {
             ...state,
-            addAccountName: action.setAddAccountAccountNamePayload
+            addAccountAccountName: action.setAddAccountAccountNamePayload
         }
     }
     if(action.type === SET_ADD_ACCOUNT_ACCOUNT_TYPE_ID) {
@@ -3268,10 +3268,10 @@ export const reducer = (state=initialState, action={}) => {
             userId: action.setAddAccountConfirmationPayload.userId
         }
 
-        let accounts = state.accounts.slice();
-        accounts = accounts.push(accountObject);
+        const accountsArray = state.accounts.slice();
+        accountsArray.push(accountObject);
 
-        const summaryPagesRegularOrFilter = configurePagesInReducer(state.accountSummary.entries, action.setInitialDataPayload.initialData.accountSummary);
+        const summaryPagesRegularOrFilter = configurePagesInReducer(state.accountSummary.entries, accountsArray);
 
         return {
             ...state,
@@ -3281,20 +3281,20 @@ export const reducer = (state=initialState, action={}) => {
             addAccountLowAlertBalance: 0,
             accounts: function(accountsState) {
                 let accounts = accountsState.slice();
-                accounts = accounts.push(accountObject);
+                accounts.push(accountObject);
                 return accounts;
             }(state.accounts),
             accountSummary: {
                 ...state.accountSummary,
                 accounts: function(accountsState) {
                     let accounts = accountsState.slice();
-                    accounts = accounts.push(accountObject);
+                    accounts.push(accountObject);
                     return accounts;
                 }(state.accountSummary.accounts),
                 currentPage: 0,
                 filteredAccounts: function(accountsState) {
                     let accounts = accountsState.slice();
-                    accounts = accounts.push(accountObject);
+                    accounts.push(accountObject);
                     return accounts;
                 }(state.accountSummary.accounts),
                 filterTotalPages: summaryPagesRegularOrFilter.totalPages,

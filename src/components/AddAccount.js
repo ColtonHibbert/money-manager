@@ -120,7 +120,7 @@ function AddAccount(props) {
                             }
                             <div className="flex justify-end pr4">
                                 <div className="w3 h2 flex flex-row items-center justify-center mv2 bg-money-color br2 white pointer grow"
-                                //onClick={() => submitAddAccount()}
+                                onClick={() => submitAddAccount()}
                                 >
                                     Add
                                 </div>
