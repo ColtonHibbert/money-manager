@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import CreateBudgetButton from "../components/CreateBudgetButton.js";
 import CreateBudgetCard from "../components/CreateBudgetCard.js";
 import {
-    setAddAccountAccountName,
     setDashboardDisplayBudgetCard
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
     return {
-        dashboardDisplayBudgetCard: state.dashboardDisplayBudgetCard
+        dashboard: state.dashboard
     }
 }
 
@@ -22,8 +21,9 @@ const mapDispatchToProps = (dispatch) => {
 function Dashboard(props) {
 
    const {
-       dashboardDisplayBudgetCard,
-       setDashboardDisplayBudgetCard
+       dashboard,
+       setDashboardDisplayBudgetCard,
+       categoriesAndItems
    } = props;
 
     return (
@@ -40,15 +40,20 @@ function Dashboard(props) {
                 >Dashboard
             </div>
             <div className="w-100 flex justify-start">
-                <CreateBudgetButton setDashboardDisplayBudgetCard={setDashboardDisplayBudgetCard} dashboardDisplayBudgetCard={dashboardDisplayBudgetCard}/>
+                <CreateBudgetButton setDashboardDisplayBudgetCard={setDashboardDisplayBudgetCard} />
             </div>
-            <div className="w-100 pl3 mt3">
-                <CreateBudgetCard 
-                categoriesAndItems={props.categoriesAndItems}
-                setDashboardDisplayBudgetCard={setDashboardDisplayBudgetCard} 
-                dashboardDisplayBudgetCard={dashboardDisplayBudgetCard}
-                />
-            </div>
+            {
+                (dashboard.displayBudgetCard === true) ? 
+                <div className="w-100 pl3 mt3">
+                    <CreateBudgetCard 
+                    categoriesAndItems={categoriesAndItems}
+                    setDashboardDisplayBudgetCard={setDashboardDisplayBudgetCard} 
+                    displayBudgetCard={dashboard.displayBudgetCard}
+                    />
+                </div>
+                : ""
+            }
+           
             
             
 
