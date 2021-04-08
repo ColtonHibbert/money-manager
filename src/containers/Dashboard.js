@@ -69,6 +69,7 @@ function Dashboard(props) {
                     displayBudgetCard={dashboard.displayBudgetCard}
                     categoryName={dashboard.categoryName}
                     budgetAmount={dashboard.budgetAmount} 
+                    createCategoryError={dashboard.createCategoryError}
                     setDashboardBudgetCardCategoryName={setDashboardBudgetCardCategoryName}
                     setDashboardBudgetCardBudgetAmount={setDashboardBudgetCardBudgetAmount}
                     setDashboardBudgetCardCreateCategoryError={setDashboardBudgetCardCreateCategoryError}
@@ -78,6 +79,7 @@ function Dashboard(props) {
                     setDashboardBudgetCardSelectedCategory={setDashboardBudgetCardSelectedCategory}
                     setDashboardBudgetCardItemName={setDashboardBudgetCardItemName}
                     setDashboardBudgetCardCreateItemError={setDashboardBudgetCardCreateItemError}
+                    user={props.user}
                     />
                 </div>
                 : ""
