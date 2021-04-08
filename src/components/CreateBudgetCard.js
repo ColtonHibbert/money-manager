@@ -4,8 +4,13 @@ function CreateBudgetCard(props) {
 
     const {
         categoriesAndItems,
-        displayBudgetCard,
-        setDashboardDisplayBudgetCard
+        setDashboardDisplayBudgetCard,
+        categoryName,
+        budgetAmount,
+        setDashboardBudgetCardCategoryName,
+        setDashboardBudgetCardBudgetAmount,
+        setDashboardBudgetCardCreateCategoryError,
+        
     } = props;
 
 
@@ -40,12 +45,9 @@ function CreateBudgetCard(props) {
                                     Category Name:
                                 </div>
                                 <input type="text" 
-                                className="h2 input-reset mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
-                            
-                                "
-                                //placeholder={user.lastName}
-                                //onInput={(event) => setProfileLastName(event.target.value)}
-                                //value={}
+                                className="h2 input-reset mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b"
+                                onInput={(event) => setDashboardBudgetCardCategoryName(event.target.value)}
+                                value={categoryName}
                                 >
                                 </input>
                             </div>
@@ -56,9 +58,8 @@ function CreateBudgetCard(props) {
                                 <input type="text" 
                                 className="h2 input-reset mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
                                 "
-                                //placeholder={user.lastName}
-                                //onInput={(event) => setProfileLastName(event.target.value)}
-                                //value={}
+                                onInput={(event) => setDashboardBudgetCardBudgetAmount(event.target.value)}
+                                value={budgetAmount.toString()}
                                 >
                                 </input>
                             </div>  

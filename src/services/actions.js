@@ -141,7 +141,8 @@ import {
     SET_ADD_ACCOUNT_CONFIRMATION,
     SET_DASHBOARD_DISPLAY_BUDGET_CARD,
     SET_DASHBOARD_BUDGET_CARD_CATEGORY_NAME,
-    SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT
+    SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT,
+    SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR
 } from "./constants.js";
 
 
@@ -1218,3 +1219,9 @@ export const setDashboardBudgetCardBudgetAmount = (payload) => {
     }
 }
 
+export const setDashboardBudgetCardCreateCategoryError = (payload) => {
+    return {
+        type: SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR,
+        setDashboardBudgetCardCreateCategoryErrorPayload: payload
+    }
+}

@@ -141,7 +141,8 @@ import {
     SET_ADD_ACCOUNT_CONFIRMATION,
     SET_DASHBOARD_DISPLAY_BUDGET_CARD,
     SET_DASHBOARD_BUDGET_CARD_CATEGORY_NAME,
-    SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT
+    SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT,
+    SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR
 } from "./constants.js";
 import {
     pagesArray,
@@ -226,9 +227,10 @@ const initialState = {
         }
     ],
     dashboard: {
-        displayBudgetCard: false,
+        budgetAmount: 0,
         categoryName: "",
-        budgetAmount: 0
+        createCategoryError: false,
+        displayBudgetCard: false
     },
     individualAccounts: [
         {
@@ -3409,12 +3411,22 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             dashboard: {
                 ...state.dashboard,
-                budgetAmount: action.setDashboardBudgetCardBudgetAmountPayload
+                budgetAmount: Number(action.setDashboardBudgetCardBudgetAmountPayload)
             }
         }
     }
-
+    if(action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR) {
+        return {
+            ...state,
+            dashboard: {
+                ...state.dashboard,
+                createCategoryError: action.setDashboardBudgetCardCreateCategoryErrorPayload
+            }
+        }
+    }
     
+
+
     return state;
 }
 
