@@ -139,7 +139,9 @@ import {
     SET_ADD_ACCOUNT_LOW_ALERT_BALANCE,
     SET_ADD_ACCOUNT_ERROR,
     SET_ADD_ACCOUNT_CONFIRMATION,
-    SET_DASHBOARD_DISPLAY_BUDGET_CARD
+    SET_DASHBOARD_DISPLAY_BUDGET_CARD,
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_NAME,
+    SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT
 } from "./constants.js";
 import {
     pagesArray,
@@ -223,7 +225,11 @@ const initialState = {
             ]
         }
     ],
-    dashboardDisplayBudgetCard: false,
+    dashboard: {
+        displayBudgetCard: false,
+        categoryName: "",
+        budgetAmount: 0
+    },
     individualAccounts: [
         {
             accountId: 0,
@@ -3373,12 +3379,42 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     if(action.type === SET_DASHBOARD_DISPLAY_BUDGET_CARD) {
+        const value = function convertPayload() {
+            if(action.setDashboardDisplayBudgetCardPayload === "toggle") {
+                return !state.dashboardDisplayBudgetCard
+            }
+            if(action.setDashboardDisplayBudgetCardPayload === "false") {
+                return false;
+            }
+        }();
         return {
             ...state,
-            dashboardDisplayBudgetCard: action.dashboardDisplayBudgetCardPayload
+            dashboard: {
+                ...state.dashboard,
+                displayBudgetCard: value
+            }
+        }
+    }
+    if(action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_NAME) {
+        return {
+            ...state,
+            dashboard: {
+                ...state.dashboard,
+                categoryName: action.setDashboardBudgetCardCategoryNamePayload
+            }
+        }
+    }
+    if(action.type === SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT) {
+        return {
+            ...state,
+            dashboard: {
+                ...state.dashboard,
+                budgetAmount: action.setDashboardBudgetCardBudgetAmountPayload
+            }
         }
     }
 
+    
     return state;
 }
 

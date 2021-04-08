@@ -4,7 +4,7 @@ function CreateBudgetCard(props) {
 
     const {
         categoriesAndItems,
-        dashboardDisplayBudgetCard,
+        displayBudgetCard,
         setDashboardDisplayBudgetCard
     } = props;
 
@@ -16,7 +16,9 @@ function CreateBudgetCard(props) {
         ">
             <div className="w-100">
                 <div className="w-100 flex flex-row justify-end">
-                    <div className="f4 ma2 custom-gray pointer">
+                    <div className="f4 ma2 custom-gray pointer"
+                    onClick={() => setDashboardDisplayBudgetCard("false")}
+                    >
                     {String.fromCharCode('0x2716')}
                     </div>
                 </div>

@@ -139,7 +139,9 @@ import {
     SET_ADD_ACCOUNT_LOW_ALERT_BALANCE,
     SET_ADD_ACCOUNT_ERROR,
     SET_ADD_ACCOUNT_CONFIRMATION,
-    SET_DASHBOARD_DISPLAY_BUDGET_CARD
+    SET_DASHBOARD_DISPLAY_BUDGET_CARD,
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_NAME,
+    SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT
 } from "./constants.js";
 
 
@@ -1198,8 +1200,21 @@ export const setAddAccountConfirmation = (payload) => {
 export const setDashboardDisplayBudgetCard = (payload) => {
     return {
         type: SET_DASHBOARD_DISPLAY_BUDGET_CARD,
-        setDashboardDisplayBudgetCardPaylod: payload
+        setDashboardDisplayBudgetCardPayload: payload
     }
 }
 
+export const setDashboardBudgetCardCategoryName = (payload) => {
+    return {
+        type: SET_DASHBOARD_BUDGET_CARD_CATEGORY_NAME,
+        setDashboardBudgetCardCategoryNamePayload: payload
+    }
+}
+
+export const setDashboardBudgetCardBudgetAmount = (payload) => {
+    return {
+        type: SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT,
+        setDashboardBudgetCardBudgetAmountPayload: payload
+    }
+}
 
