@@ -6,7 +6,10 @@ import {
     setDashboardDisplayBudgetCard,
     setDashboardBudgetCardCategoryName,
     setDashboardBudgetCardBudgetAmount,
-    setDashboardBudgetCardCreateCategoryError
+    setDashboardBudgetCardCreateCategoryError,
+    setDashboardBudgetCardSelectedCategory,
+    setDashboardBudgetCardItemName,
+    setDashboardBudgetCardCreateItemError
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -20,7 +23,10 @@ const mapDispatchToProps = (dispatch) => {
         setDashboardDisplayBudgetCard: (payload) => dispatch(setDashboardDisplayBudgetCard(payload)),
         setDashboardBudgetCardCategoryName: (payload) => dispatch(setDashboardBudgetCardCategoryName(payload)),
         setDashboardBudgetCardBudgetAmount: (payload) => dispatch(setDashboardBudgetCardBudgetAmount(payload)),
-        setDashboardBudgetCardCreateCategoryError: (payload) => dispatch(setDashboardBudgetCardCreateCategoryError(payload))
+        setDashboardBudgetCardCreateCategoryError: (payload) => dispatch(setDashboardBudgetCardCreateCategoryError(payload)),
+        setDashboardBudgetCardSelectedCategory: (payload => dispatch(setDashboardBudgetCardSelectedCategory(payload))),
+        setDashboardBudgetCardItemName: (payload) => dispatch(setDashboardBudgetCardItemName(payload)),
+        setDashboardBudgetCardCreateItemError: (payload) => dispatch(setDashboardBudgetCardCreateItemError(payload))
     }
 }
 
@@ -32,7 +38,10 @@ function Dashboard(props) {
        categoriesAndItems,
        setDashboardBudgetCardCategoryName,
        setDashboardBudgetCardBudgetAmount,
-       setDashboardBudgetCardCreateCategoryError
+       setDashboardBudgetCardCreateCategoryError,
+       setDashboardBudgetCardSelectedCategory,
+       setDashboardBudgetCardItemName,
+       setDashboardBudgetCardCreateItemError
    } = props;
 
     return (
@@ -63,6 +72,12 @@ function Dashboard(props) {
                     setDashboardBudgetCardCategoryName={setDashboardBudgetCardCategoryName}
                     setDashboardBudgetCardBudgetAmount={setDashboardBudgetCardBudgetAmount}
                     setDashboardBudgetCardCreateCategoryError={setDashboardBudgetCardCreateCategoryError}
+                    selectedCategory={dashboard.selectedCategory}
+                    itemName={dashboard.itemName}
+                    createItemError={dashboard.createItemError}
+                    setDashboardBudgetCardSelectedCategory={setDashboardBudgetCardSelectedCategory}
+                    setDashboardBudgetCardItemName={setDashboardBudgetCardItemName}
+                    setDashboardBudgetCardCreateItemError={setDashboardBudgetCardCreateItemError}
                     />
                 </div>
                 : ""

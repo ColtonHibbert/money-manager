@@ -142,7 +142,10 @@ import {
     SET_DASHBOARD_DISPLAY_BUDGET_CARD,
     SET_DASHBOARD_BUDGET_CARD_CATEGORY_NAME,
     SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT,
-    SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR
+    SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR,
+    SET_DASHBOARD_BUDGET_CARD_SELECTED_CATEGORY,
+    SET_DASHBOARD_BUDGET_CARD_ITEM_NAME,
+    SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR
 } from "./constants.js";
 
 
@@ -1223,5 +1226,26 @@ export const setDashboardBudgetCardCreateCategoryError = (payload) => {
     return {
         type: SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR,
         setDashboardBudgetCardCreateCategoryErrorPayload: payload
+    }
+}
+
+export const setDashboardBudgetCardSelectedCategory = (payload) => {
+    return {
+        type: SET_DASHBOARD_BUDGET_CARD_SELECTED_CATEGORY,
+        setDashboardBudgetCardSelectedCategoryPayload: payload
+    }
+}
+
+export const setDashboardBudgetCardItemName = (payload) => {
+    return {
+        type: SET_DASHBOARD_BUDGET_CARD_ITEM_NAME,
+        setDashboardBudgetCardItemNamePayload: payload
+    }
+}
+
+export const setDashboardBudgetCardCreateItemError = (payload) => {
+    return {
+        type: SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR,
+        setDashboardBudgetCardCreateItemErrorPayload: payload
     }
 }

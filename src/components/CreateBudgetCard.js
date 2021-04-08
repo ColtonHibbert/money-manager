@@ -10,8 +10,21 @@ function CreateBudgetCard(props) {
         setDashboardBudgetCardCategoryName,
         setDashboardBudgetCardBudgetAmount,
         setDashboardBudgetCardCreateCategoryError,
-        
+        selectedCategory,
+        itemName,
+        createItemError,
+        setDashboardBudgetCardSelectedCategory,
+        setDashboardBudgetCardItemName,
+        setDashboardBudgetCardCreateItemError
     } = props;
+
+    const handleSelectCategory = (value) => {
+        if(value === "") {
+            return;
+        }
+        value = JSON.parse(value);
+        setDashboardBudgetCardSelectedCategory(value.personalBudgetCategoryId)
+    }
 
 
     return(
@@ -79,8 +92,8 @@ function CreateBudgetCard(props) {
                             {
                                 (Array.isArray(categoriesAndItems)) ?
                                 <select className="h2 flex mh3 pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
-                                //onChange={(event) => handleSelectCategoryAndItem(event.target.value)}
-                                //value={individualAccount.addTransactionPersonalBudgetCategoryItemId !== 0 ? console.log() : ""}
+                                onChange={(event) => handleSelectCategory(event.target.value)}
+                                value={selectedCategory !== 0 ? console.log() : ""}
                                 >
                                     <option value="">--</option>
                                     {
@@ -101,9 +114,8 @@ function CreateBudgetCard(props) {
                                 <input type="text" 
                                 className="h2 input-reset mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
                                 "
-                                //placeholder={user.lastName}
-                                //onInput={(event) => setProfileLastName(event.target.value)}
-                                //value={}
+                                onInput={(event) => setDashboardBudgetCardItemName(event.target.value)}
+                                value={itemName}
                                 >
                                 </input>
                                 <div className="w4 flex justify-center items-center f5 mv3 mh3 pa1 bg-money-color white br1 pointer grow"

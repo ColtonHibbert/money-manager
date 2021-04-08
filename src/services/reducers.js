@@ -142,7 +142,10 @@ import {
     SET_DASHBOARD_DISPLAY_BUDGET_CARD,
     SET_DASHBOARD_BUDGET_CARD_CATEGORY_NAME,
     SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT,
-    SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR
+    SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR,
+    SET_DASHBOARD_BUDGET_CARD_SELECTED_CATEGORY,
+    SET_DASHBOARD_BUDGET_CARD_ITEM_NAME,
+    SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR
 } from "./constants.js";
 import {
     pagesArray,
@@ -230,7 +233,10 @@ const initialState = {
         budgetAmount: 0,
         categoryName: "",
         createCategoryError: false,
-        displayBudgetCard: false
+        createItemError: false,
+        displayBudgetCard: false,
+        itemName: "",
+        selectedCategory: 0,
     },
     individualAccounts: [
         {
@@ -3424,7 +3430,34 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    
+    if(action.type === SET_DASHBOARD_BUDGET_CARD_SELECTED_CATEGORY) {
+        return {
+            ...state,
+            dashboard: {
+                ...state.dashboard,
+                selectedCategory: action.setDashboardBudgetCardSelectedCategoryPayload
+            }
+        }
+    }
+    if(action.type === SET_DASHBOARD_BUDGET_CARD_ITEM_NAME) {
+        return {
+            ...state,
+            dashboard: {
+                ...state.dashboard,
+                itemName: action.setDashboardBudgetCardItemNamePayload
+            }
+        }
+    }
+    if(action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR) {
+        return {
+            ...state,
+            dashboard: {
+                ...state.dashboard,
+                createItemError: action.setDashboardBudgetCardCreateItemErrorPayload
+            }
+        }
+    }
+
 
 
     return state;
