@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import CreateBudgetButton from "../components/CreateBudgetButton.js";
 import CreateBudgetCard from "../components/CreateBudgetCard.js";
 import {
-    setDashboardDisplayBudgetCard
+    setDashboardDisplayBudgetCard,
+    setDashboardBudgetCardCategoryName,
+    setDashboardBudgetCardBudgetAmount,
+    setDashboardBudgetCardCreateCategoryError
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -14,7 +17,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setDashboardDisplayBudgetCard: (payload) => dispatch(setDashboardDisplayBudgetCard(payload))
+        setDashboardDisplayBudgetCard: (payload) => dispatch(setDashboardDisplayBudgetCard(payload)),
+        setDashboardBudgetCardCategoryName: (payload) => dispatch(setDashboardBudgetCardCategoryName(payload)),
+        setDashboardBudgetCardBudgetAmount: (payload) => dispatch(setDashboardBudgetCardBudgetAmount(payload)),
+        setDashboardBudgetCardCreateCategoryError: (payload) => dispatch(setDashboardBudgetCardCreateCategoryError(payload))
     }
 }
 
@@ -23,7 +29,10 @@ function Dashboard(props) {
    const {
        dashboard,
        setDashboardDisplayBudgetCard,
-       categoriesAndItems
+       categoriesAndItems,
+       setDashboardBudgetCardCategoryName,
+       setDashboardBudgetCardBudgetAmount,
+       setDashboardBudgetCardCreateCategoryError
    } = props;
 
     return (
@@ -49,6 +58,11 @@ function Dashboard(props) {
                     categoriesAndItems={categoriesAndItems}
                     setDashboardDisplayBudgetCard={setDashboardDisplayBudgetCard} 
                     displayBudgetCard={dashboard.displayBudgetCard}
+                    categoryName={dashboard.categoryName}
+                    budgetAmount={dashboard.budgetAmount} 
+                    setDashboardBudgetCardCategoryName={setDashboardBudgetCardCategoryName}
+                    setDashboardBudgetCardBudgetAmount={setDashboardBudgetCardBudgetAmount}
+                    setDashboardBudgetCardCreateCategoryError={setDashboardBudgetCardCreateCategoryError}
                     />
                 </div>
                 : ""
