@@ -3,7 +3,9 @@ import React from "react";
 function CreateBudgetCard(props) {
 
     const {
-        categoriesAndItems
+        categoriesAndItems,
+        dashboardDisplayBudgetCard,
+        setDashboardDisplayBudgetCard
     } = props;
 
 

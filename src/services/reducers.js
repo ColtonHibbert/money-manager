@@ -138,7 +138,8 @@ import {
     SET_ADD_ACCOUNT_CURRENT_BALANCE,
     SET_ADD_ACCOUNT_LOW_ALERT_BALANCE,
     SET_ADD_ACCOUNT_ERROR,
-    SET_ADD_ACCOUNT_CONFIRMATION
+    SET_ADD_ACCOUNT_CONFIRMATION,
+    SET_DASHBOARD_DISPLAY_BUDGET_CARD
 } from "./constants.js";
 import {
     pagesArray,
@@ -222,6 +223,7 @@ const initialState = {
             ]
         }
     ],
+    dashboardDisplayBudgetCard: false,
     individualAccounts: [
         {
             accountId: 0,
@@ -3368,6 +3370,12 @@ export const reducer = (state=initialState, action={}) => {
                 accounts.push(individualAccount);
                 return accounts;
             }(state.individualAccounts),
+        }
+    }
+    if(action.type === SET_DASHBOARD_DISPLAY_BUDGET_CARD) {
+        return {
+            ...state,
+            dashboardDisplayBudgetCard: action.dashboardDisplayBudgetCardPayload
         }
     }
 

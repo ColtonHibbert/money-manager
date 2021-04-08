@@ -138,7 +138,8 @@ import {
     SET_ADD_ACCOUNT_CURRENT_BALANCE,
     SET_ADD_ACCOUNT_LOW_ALERT_BALANCE,
     SET_ADD_ACCOUNT_ERROR,
-    SET_ADD_ACCOUNT_CONFIRMATION
+    SET_ADD_ACCOUNT_CONFIRMATION,
+    SET_DASHBOARD_DISPLAY_BUDGET_CARD
 } from "./constants.js";
 
 
@@ -1193,4 +1194,12 @@ export const setAddAccountConfirmation = (payload) => {
         setAddAccountConfirmationPayload: payload
     }
 }
+
+export const setDashboardDisplayBudgetCard = (payload) => {
+    return {
+        type: SET_DASHBOARD_DISPLAY_BUDGET_CARD,
+        setDashboardDisplayBudgetCardPaylod: payload
+    }
+}
+
 
