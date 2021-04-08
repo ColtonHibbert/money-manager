@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 function CreateBudgetCard(props) {
 
@@ -7,6 +8,7 @@ function CreateBudgetCard(props) {
         setDashboardDisplayBudgetCard,
         categoryName,
         budgetAmount,
+        createCategoryError,
         setDashboardBudgetCardCategoryName,
         setDashboardBudgetCardBudgetAmount,
         setDashboardBudgetCardCreateCategoryError,
@@ -15,7 +17,8 @@ function CreateBudgetCard(props) {
         createItemError,
         setDashboardBudgetCardSelectedCategory,
         setDashboardBudgetCardItemName,
-        setDashboardBudgetCardCreateItemError
+        setDashboardBudgetCardCreateItemError,
+        user
     } = props;
 
     const handleSelectCategory = (value) => {
@@ -24,6 +27,38 @@ function CreateBudgetCard(props) {
         }
         value = JSON.parse(value);
         setDashboardBudgetCardSelectedCategory(value.personalBudgetCategoryId)
+    }
+
+    function submitCreateCategory() {
+        if(categoryName === "" || budgetAmount < 0) {
+            setDashboardBudgetCardCreateCategoryError(true);
+            return;
+        }
+        setDashboardBudgetCardCreateCategoryError(false);
+
+        fetch("http://localhost:3001/addpersonalbudgetcategory", {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json",
+                "CSRF-Token":user.csrf
+            },
+            body: JSON.stringify({
+                userId: user.userId,
+                categoryName: categoryName,
+                budgetAmount: budgetAmount
+            }),
+            credentials: "include"
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.error) {
+                toast.error("There was an error creating a category.")
+            }
+            if(!data.error) {
+
+                toast.success("Successfully created a category.")
+            }
+        })
     }
 
 
@@ -77,9 +112,17 @@ function CreateBudgetCard(props) {
                                 </input>
                             </div>  
                             <div className="w4 flex justify-center items-center f5 mv3 mh3 pa1 bg-money-color white br1 pointer grow"
+                            onClick={() => submitCreateCategory()}
                             >
                                 Create Category
                             </div>
+                            {
+                                (createCategoryError) ?
+                                <div className="red f5 pa1">
+                                    You must add a budget amount greater than zero and a category name.
+                                </div>
+                                : ""
+                            }
                         </div>
                         <div className="flex-flex-column">
                             <div className="ml3 f4 custom-gray">

@@ -234,7 +234,7 @@ const initialState = {
         categoryName: "",
         createCategoryError: false,
         createItemError: false,
-        displayBudgetCard: false,
+        displayBudgetCard: true,
         itemName: "",
         selectedCategory: 0,
     },
@@ -3444,7 +3444,7 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             dashboard: {
                 ...state.dashboard,
-                itemName: action.setDashboardBudgetCardItemNamePayload
+                itemName: action.setDashboardBudgetCardItemNamePayload.toLower()
             }
         }
     }
