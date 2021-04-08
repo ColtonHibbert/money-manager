@@ -1,8 +1,31 @@
 import React from "react";
+import { connect } from "react-redux";
 import CreateBudgetButton from "../components/CreateBudgetButton.js";
 import CreateBudgetCard from "../components/CreateBudgetCard.js";
+import {
+    setAddAccountAccountName,
+    setDashboardDisplayBudgetCard
+} from "../services/actions.js";
+
+const mapStateToProps = (state) => {
+    return {
+        dashboardDisplayBudgetCard: state.dashboardDisplayBudgetCard
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setDashboardDisplayBudgetCard: (payload) => dispatch(setDashboardDisplayBudgetCard(payload))
+    }
+}
 
 function Dashboard(props) {
+
+   const {
+       dashboardDisplayBudgetCard,
+       setDashboardDisplayBudgetCard
+   } = props;
+
     return (
         <div className="flex flex-column w-100 items-center bg-custom-darker-gray">
             <div 
@@ -17,10 +40,14 @@ function Dashboard(props) {
                 >Dashboard
             </div>
             <div className="w-100 flex justify-start">
-                <CreateBudgetButton />
+                <CreateBudgetButton setDashboardDisplayBudgetCard={setDashboardDisplayBudgetCard} dashboardDisplayBudgetCard={dashboardDisplayBudgetCard}/>
             </div>
             <div className="w-100 pl3 mt3">
-                <CreateBudgetCard categoriesAndItems={props.categoriesAndItems} />
+                <CreateBudgetCard 
+                categoriesAndItems={props.categoriesAndItems}
+                setDashboardDisplayBudgetCard={setDashboardDisplayBudgetCard} 
+                dashboardDisplayBudgetCard={dashboardDisplayBudgetCard}
+                />
             </div>
             
             
@@ -29,4 +56,4 @@ function Dashboard(props) {
     )
 }
 
-export default Dashboard;
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
