@@ -66,6 +66,13 @@ function CreateBudgetCard(props) {
     }
 
     function submitCreateItem() {
+
+        if(selectedCategory === 0 || itemName === "" || selectedCategory === "") {
+            setDashboardBudgetCardCreateItemError(true);
+            return;
+        }
+        setDashboardBudgetCardCreateItemError(false);
+
         fetch("http://localhost:3001/addpersonalbudgetcategoryitem",{
             method: "POST",
             headers: {
@@ -195,9 +202,17 @@ function CreateBudgetCard(props) {
                                 >
                                 </input>
                                 <div className="w4 flex justify-center items-center f5 mv3 mh3 pa1 bg-money-color white br1 pointer grow"
+                                onClick={() => submitCreateItem()}
                                 >
                                 Create Item
                                 </div>
+                                {
+                                (createItemError) ?
+                                <div className="red f5 pa1">
+                                    You must select a category and add an item name.
+                                </div>
+                                : ""
+                            }
                             </div>
                         </div>
                     </div>
