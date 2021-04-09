@@ -19,6 +19,7 @@ function CreateBudgetCard(props) {
         setDashboardBudgetCardItemName,
         setDashboardBudgetCardCreateItemError,
         setDashboardBudgetCardCreateCategoryData,
+        setDashboardBudgetCardCreateItemData,
         user
     } = props;
 
@@ -95,7 +96,7 @@ function CreateBudgetCard(props) {
                 toast.error("This item already exists in the specified category.");
             }
             if(!data.error && !data.exists) {
-                //setDashboardBudgetCardCreateItemData(data);
+                setDashboardBudgetCardCreateItemData(data);
                 toast.success("Item successfully created.");
             }
         })
