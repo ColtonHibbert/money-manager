@@ -66,7 +66,7 @@ function CreateBudgetCard(props) {
     }
 
     function submitCreateItem() {
-        fetch("http://localhost:3001/addpersonalbudgetitem",{
+        fetch("http://localhost:3001/addpersonalbudgetcategoryitem",{
             method: "POST",
             headers: {
                 "Content-Type":"application/json",
@@ -78,10 +78,6 @@ function CreateBudgetCard(props) {
                 personalBudgetCategoryId: selectedCategory
             }),
             credentials: "include"
-            //backend check lower
-            //check general items, insert if doesn't exist
-            //check personal items, insert if doesn't exist
-
         })
         .then(res => res.json())
         .then(data => {
@@ -92,7 +88,7 @@ function CreateBudgetCard(props) {
                 toast.error("This item already exists in the specified category.");
             }
             if(!data.error && !data.exists) {
-                //setDashboard
+                //setDashboardBudgetCardCreateItemData(data);
                 toast.success("Item successfully created.");
             }
         })
