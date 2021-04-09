@@ -3511,6 +3511,7 @@ export const reducer = (state=initialState, action={}) => {
                     }
                     return category;
                 })
+                return categoriesAndItems;
             }(state.categoriesAndItems)
         }
     }
