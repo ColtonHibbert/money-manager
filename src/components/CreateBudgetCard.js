@@ -18,7 +18,7 @@ function CreateBudgetCard(props) {
         setDashboardBudgetCardSelectedCategory,
         setDashboardBudgetCardItemName,
         setDashboardBudgetCardCreateItemError,
-        setDashboardBudgetCardData,
+        setDashboardBudgetCardCreateCategoryData,
         user
     } = props;
 
@@ -59,9 +59,42 @@ function CreateBudgetCard(props) {
                 toast.error("This category already exists.");
             }
             if(!data.error && !data.exists) {
-                setDashboardBudgetCardData(data);
+                setDashboardBudgetCardCreateCategoryData(data);
                 toast.success("Successfully created a category.");
             }   
+        })
+    }
+
+    function submitCreateItem() {
+        fetch("http://localhost:3001/addpersonalbudgetitem",{
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json",
+                "CSRF-Token":user.csrf
+            },
+            body: JSON.stringify({
+                userId: user.userId,
+                itemName: itemName, 
+                personalBudgetCategoryId: selectedCategory
+            }),
+            credentials: "include"
+            //backend check lower
+            //check general items, insert if doesn't exist
+            //check personal items, insert if doesn't exist
+
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.error) {
+                toast.error("There was an error creating an item.");
+            }
+            if(data.exists) {
+                toast.error("This item already exists in the specified category.");
+            }
+            if(!data.error && !data.exists) {
+                //setDashboard
+                toast.success("Item successfully created.");
+            }
         })
     }
 

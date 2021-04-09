@@ -146,7 +146,7 @@ import {
     SET_DASHBOARD_BUDGET_CARD_SELECTED_CATEGORY,
     SET_DASHBOARD_BUDGET_CARD_ITEM_NAME,
     SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR,
-    SET_DASHBOARD_BUDGET_CARD_DATA
+    SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_DATA
 } from "./constants.js";
 import {
     pagesArray,
@@ -3458,7 +3458,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_DATA) {
+    if(action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_DATA) {
         return {
             ...state,
             dashboard: {
