@@ -3485,10 +3485,35 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     if(action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA) {
+        return {
+            ...state,
+            dashboard: {
+                ...state.dashboard,
+                itemName: "",
+                selectedCategory: 0,
+            },
+            categoriesAndItems: function(categoriesAndItemsState) {
+                let categoriesAndItems = categoriesAndItemsState.slice();
 
+                categoriesAndItems = categoriesAndItems.map(category => {
+                    if(category.personalBudgetCategoryId === action.setDashboardBudgetCardCreateItemDataPayload.personalBudgetCategoryId) {
+                        let items = category.items.slice();
+                        const itemObject = {
+                            personalBudgetCategoryItemId: action.setDashboardBudgetCardCreateItemDataPayload.personalBudgetCategoryItemId,
+                            personalBudgetCategoryId: action.setDashboardBudgetCardCreateItemDataPayload.personalBudgetCategoryId,
+                            categoryItemId: action.setDashboardBudgetCardCreateItemDataPayload.categoryItemId,
+                            userId: action.setDashboardBudgetCardCreateItemDataPayload.userId,
+                            name: action.setDashboardBudgetCardCreateItemDataPayload.itemName
+                        }
+                        items.push(itemObject);
+
+                        category.items = items;
+                    }
+                    return category;
+                })
+            }(state.categoriesAndItems)
+        }
     }
-
-
 
     return state;
 }
