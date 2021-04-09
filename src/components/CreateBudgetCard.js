@@ -55,7 +55,7 @@ function CreateBudgetCard(props) {
                 toast.error("There was an error creating a category.")
             }
             if(!data.error) {
-
+                // make endpoint now, do checks, regular category, personal category, and to lower checks, 
                 toast.success("Successfully created a category.")
             }
         })
