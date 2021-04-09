@@ -1261,7 +1261,7 @@ export const setDashboardBudgetCardCreateCategoryData = (payload) => {
 
 export const setDashboardBudgetCardCreateItemData = (payload) => {
     return {
-        SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA,
+        type: SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA,
         setDashboardBudgetCardCreateItemDataPayload: payload
     }
 }
