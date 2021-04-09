@@ -18,6 +18,7 @@ function CreateBudgetCard(props) {
         setDashboardBudgetCardSelectedCategory,
         setDashboardBudgetCardItemName,
         setDashboardBudgetCardCreateItemError,
+        setDashboardBudgetCardData,
         user
     } = props;
 
@@ -52,12 +53,15 @@ function CreateBudgetCard(props) {
         .then(res => res.json())
         .then(data => {
             if(data.error) {
-                toast.error("There was an error creating a category.")
+                toast.error("There was an error creating a category.");
             }
-            if(!data.error) {
-                // make endpoint now, do checks, regular category, personal category, and to lower checks, 
-                toast.success("Successfully created a category.")
+            if(data.exists) {
+                toast.error("This category already exists.");
             }
+            if(!data.error && !data.exists) {
+                setDashboardBudgetCardData(data);
+                toast.success("Successfully created a category.");
+            }   
         })
     }
 
@@ -103,7 +107,7 @@ function CreateBudgetCard(props) {
                                 <div className="pl3 f5 custom-gray mt2">
                                     Budget Amount:
                                 </div>
-                                <input type="text" 
+                                <input type="number" 
                                 className="h2 input-reset mh3 bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b
                                 "
                                 onInput={(event) => setDashboardBudgetCardBudgetAmount(event.target.value)}
@@ -119,7 +123,7 @@ function CreateBudgetCard(props) {
                             {
                                 (createCategoryError) ?
                                 <div className="red f5 pa1">
-                                    You must add a budget amount greater than zero and a category name.
+                                    You must add a budget amount of zero or greater and a category name.
                                 </div>
                                 : ""
                             }

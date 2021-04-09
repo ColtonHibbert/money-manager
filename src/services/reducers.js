@@ -145,7 +145,8 @@ import {
     SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR,
     SET_DASHBOARD_BUDGET_CARD_SELECTED_CATEGORY,
     SET_DASHBOARD_BUDGET_CARD_ITEM_NAME,
-    SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR
+    SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR,
+    SET_DASHBOARD_BUDGET_CARD_DATA
 } from "./constants.js";
 import {
     pagesArray,
@@ -3408,7 +3409,7 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             dashboard: {
                 ...state.dashboard,
-                categoryName: action.setDashboardBudgetCardCategoryNamePayload
+                categoryName: action.setDashboardBudgetCardCategoryNamePayload.toLowerCase()
             }
         }
     }
@@ -3444,7 +3445,7 @@ export const reducer = (state=initialState, action={}) => {
             ...state,
             dashboard: {
                 ...state.dashboard,
-                itemName: action.setDashboardBudgetCardItemNamePayload.toLower()
+                itemName: action.setDashboardBudgetCardItemNamePayload.toLowerCase()
             }
         }
     }
@@ -3455,6 +3456,33 @@ export const reducer = (state=initialState, action={}) => {
                 ...state.dashboard,
                 createItemError: action.setDashboardBudgetCardCreateItemErrorPayload
             }
+        }
+    }
+    if(action.type === SET_DASHBOARD_BUDGET_CARD_DATA) {
+        return {
+            ...state,
+            dashboard: {
+                budgetAmount: 0,
+                categoryName: "",
+                createCategoryError: false,
+                createItemError: false,
+                displayBudgetCard: true,
+                itemName: "",
+                selectedCategory: 0,
+            },
+            categoriesAndItems: function(categoriesAndItemsState) {
+                const categoriesAndItems = categoriesAndItemsState.slice();
+                const categoryObject = {
+                    personalBudgetCategoryId: action.setDashboardBudgetCardDataPayload.personalBudgetCategoryId,
+                    budgetAmount: action.setDashboardBudgetCardDataPayload.budgetAmount,
+                    categoryId: action.setDashboardBudgetCardDataPayload.categoryId,
+                    userId: action.setDashboardBudgetCardDataPayload.userId,
+                    name: action.setDashboardBudgetCardDataPayload.categoryName,
+                    items: []
+                }
+                categoriesAndItems.push(categoryObject);
+                return categoriesAndItems;
+            }(state.categoriesAndItems)
         }
     }
 
