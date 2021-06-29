@@ -11,7 +11,8 @@ import {
     setDashboardBudgetCardItemName,
     setDashboardBudgetCardCreateItemError,
     setDashboardBudgetCardCreateCategoryData,
-    setDashboardBudgetCardCreateItemData
+    setDashboardBudgetCardCreateItemData,
+    setDashboardBudgetCardCategoryToDelete
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -30,7 +31,8 @@ const mapDispatchToProps = (dispatch) => {
         setDashboardBudgetCardItemName: (payload) => dispatch(setDashboardBudgetCardItemName(payload)),
         setDashboardBudgetCardCreateItemError: (payload) => dispatch(setDashboardBudgetCardCreateItemError(payload)),
         setDashboardBudgetCardCreateCategoryData: (payload) => dispatch(setDashboardBudgetCardCreateCategoryData(payload)),
-        setDashboardBudgetCardCreateItemData: (payload) => dispatch(setDashboardBudgetCardCreateItemData(payload))
+        setDashboardBudgetCardCreateItemData: (payload) => dispatch(setDashboardBudgetCardCreateItemData(payload)),
+        setDashboardBudgetCardCategoryToDelete: (payload) => dispatch(setDashboardBudgetCardCategoryToDelete(payload))
     }
 }
 
@@ -47,7 +49,8 @@ function Dashboard(props) {
        setDashboardBudgetCardItemName,
        setDashboardBudgetCardCreateItemError,
        setDashboardBudgetCardCreateCategoryData,
-       setDashboardBudgetCardCreateItemData
+       setDashboardBudgetCardCreateItemData,
+       setDashboardBudgetCardCategoryToDelete
    } = props;
 
     return (
@@ -87,6 +90,8 @@ function Dashboard(props) {
                     setDashboardBudgetCardCreateItemError={setDashboardBudgetCardCreateItemError}
                     setDashboardBudgetCardCreateCategoryData={setDashboardBudgetCardCreateCategoryData}
                     setDashboardBudgetCardCreateItemData={setDashboardBudgetCardCreateItemData}
+                    setDashboardBudgetCardCategoryToDelete={setDashboardBudgetCardCategoryToDelete}
+                    categoryToDelete={dashboard.categoryToDelete}
                     user={props.user}
                     />
                 </div>
