@@ -20,6 +20,8 @@ function CreateBudgetCard(props) {
         setDashboardBudgetCardCreateItemError,
         setDashboardBudgetCardCreateCategoryData,
         setDashboardBudgetCardCreateItemData,
+        setDashboardBudgetCardCategoryToDelete,
+        categoryToDelete,
         user
     } = props;
 
@@ -29,6 +31,14 @@ function CreateBudgetCard(props) {
         }
         value = JSON.parse(value);
         setDashboardBudgetCardSelectedCategory(value.personalBudgetCategoryId)
+    }
+    
+    const handleSelectCategoryToDelete = (value) => {
+        if(value === "") {
+            return;
+        }
+        value = JSON.parse(value);
+        setDashboardBudgetCardCategoryToDelete(value.personalBudgetCategoryId)
     }
 
     function submitCreateCategory() {
@@ -98,6 +108,36 @@ function CreateBudgetCard(props) {
             if(!data.error && !data.exists) {
                 setDashboardBudgetCardCreateItemData(data);
                 toast.success("Item successfully created.");
+            }
+        })
+    }
+
+    function deleteCategory() {
+        
+        //setDashboardBudgetCardCreateItemError(false); error
+        //  delete happens, why is response blank? then update state with reducer
+
+        fetch("http://localhost:3001/deletepersonalbudgetcategory",{
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json",
+                "CSRF-Token":user.csrf
+            },
+            body: JSON.stringify({
+                userId: user.userId,
+                itemName: itemName, 
+                personalBudgetCategoryId: categoryToDelete
+            }),
+            credentials: "include"
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.error) {
+                toast.error("There was an error deleting the category.");
+            }
+            if(!data.error && !data.exists) {
+                //setDashboardBudgetCardCreateItemData(data); reset category list state and take out deleted category
+                toast.success("Category successfully deleted.");
             }
         })
     }
@@ -177,7 +217,7 @@ function CreateBudgetCard(props) {
                                 (Array.isArray(categoriesAndItems)) ?
                                 <select className="h2 flex mh3 pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
                                 onChange={(event) => handleSelectCategory(event.target.value)}
-                                value={selectedCategory !== 0 ? console.log() : ""}
+                                value={selectedCategory !== 0 ? () => {} : ""}
                                 >
                                     <option value="">--</option>
                                     {
@@ -231,8 +271,8 @@ function CreateBudgetCard(props) {
                             {
                                 (Array.isArray(categoriesAndItems)) ?
                                 <select className="h2 flex mh3 pl1 input-reset bg-custom-lighter-gray custom-gray border-custom-gray form-line-active b bw1"
-                                //onChange={(event) => handleSelectCategoryAndItem(event.target.value)}
-                                //value={individualAccount.addTransactionPersonalBudgetCategoryItemId !== 0 ? console.log() : ""}
+                                onChange={(event) => handleSelectCategoryToDelete(event.target.value)} 
+                                //value={individualAccount.addTransactionPersonalBudgetCategoryItemId !== 0 ? () => {} : ""}
                                 >
                                     <option value="">--</option>
                                     {
@@ -246,6 +286,7 @@ function CreateBudgetCard(props) {
                                 : ""
                             }
                             <div className="w4 flex justify-center items-center f5 mv3 mh3 pa1 bg-red white br1 pointer grow"
+                            onClick={() => deleteCategory()}
                                 >
                                 Delete Category
                             </div>

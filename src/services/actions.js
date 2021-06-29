@@ -147,7 +147,8 @@ import {
     SET_DASHBOARD_BUDGET_CARD_ITEM_NAME,
     SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR,
     SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_DATA,
-    SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA
+    SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA,
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE
 } from "./constants.js";
 
 
@@ -1265,3 +1266,11 @@ export const setDashboardBudgetCardCreateItemData = (payload) => {
         setDashboardBudgetCardCreateItemDataPayload: payload
     }
 }
+
+export const setDashboardBudgetCardCategoryToDelete = (payload) => {
+    return {
+        type: SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE,
+        setDashboardBudgetCardCategoryToDeletePayload: payload
+    }
+}
+

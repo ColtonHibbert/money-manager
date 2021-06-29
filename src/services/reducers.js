@@ -147,7 +147,8 @@ import {
     SET_DASHBOARD_BUDGET_CARD_ITEM_NAME,
     SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR,
     SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_DATA,
-    SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA
+    SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA,
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE
 } from "./constants.js";
 import {
     pagesArray,
@@ -239,6 +240,7 @@ const initialState = {
         displayBudgetCard: true,
         itemName: "",
         selectedCategory: 0,
+        categoryToDelete: 0
     },
     individualAccounts: [
         {
@@ -3515,6 +3517,16 @@ export const reducer = (state=initialState, action={}) => {
             }(state.categoriesAndItems)
         }
     }
+    if(action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE) {
+        return {
+            ...state,
+            dashboard: {
+                ...state.dashboard,
+                categoryToDelete: action.setDashboardBudgetCardCategoryToDeletePayload
+            }
+        }
+    }
+
 
     return state;
 }
