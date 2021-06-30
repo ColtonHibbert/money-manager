@@ -148,7 +148,8 @@ import {
     SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR,
     SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_DATA,
     SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA,
-    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE,
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA
 } from "./constants.js";
 import {
     pagesArray,
@@ -3526,7 +3527,18 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-
+    if(action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA) {
+        return {
+            ...state, 
+            categoriesAndItems: function(categoriesAndItemsState) {
+                let categoriesAndItems = categoriesAndItemsState.slice();
+                categoriesAndItems = categoriesAndItems.filter(category => {
+                    return category.personalBudgetCategoryId !== action.setDashboardBudgetCardCategoryToDeleteDataPayload
+                })
+                return categoriesAndItems;
+            }(state.categoriesAndItems)
+        }
+    }
 
     return state;
 }

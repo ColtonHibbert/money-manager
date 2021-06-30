@@ -12,7 +12,8 @@ import {
     setDashboardBudgetCardCreateItemError,
     setDashboardBudgetCardCreateCategoryData,
     setDashboardBudgetCardCreateItemData,
-    setDashboardBudgetCardCategoryToDelete
+    setDashboardBudgetCardCategoryToDelete,
+    setDashboardBudgetCardCategoryToDeleteData
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -32,7 +33,8 @@ const mapDispatchToProps = (dispatch) => {
         setDashboardBudgetCardCreateItemError: (payload) => dispatch(setDashboardBudgetCardCreateItemError(payload)),
         setDashboardBudgetCardCreateCategoryData: (payload) => dispatch(setDashboardBudgetCardCreateCategoryData(payload)),
         setDashboardBudgetCardCreateItemData: (payload) => dispatch(setDashboardBudgetCardCreateItemData(payload)),
-        setDashboardBudgetCardCategoryToDelete: (payload) => dispatch(setDashboardBudgetCardCategoryToDelete(payload))
+        setDashboardBudgetCardCategoryToDelete: (payload) => dispatch(setDashboardBudgetCardCategoryToDelete(payload)),
+        setDashboardBudgetCardCategoryToDeleteData: (payload) => dispatch(setDashboardBudgetCardCategoryToDeleteData(payload))
     }
 }
 
@@ -50,7 +52,8 @@ function Dashboard(props) {
        setDashboardBudgetCardCreateItemError,
        setDashboardBudgetCardCreateCategoryData,
        setDashboardBudgetCardCreateItemData,
-       setDashboardBudgetCardCategoryToDelete
+       setDashboardBudgetCardCategoryToDelete,
+       setDashboardBudgetCardCategoryToDeleteData
    } = props;
 
     return (
@@ -92,6 +95,7 @@ function Dashboard(props) {
                     setDashboardBudgetCardCreateItemData={setDashboardBudgetCardCreateItemData}
                     setDashboardBudgetCardCategoryToDelete={setDashboardBudgetCardCategoryToDelete}
                     categoryToDelete={dashboard.categoryToDelete}
+                    setDashboardBudgetCardCategoryToDeleteData={setDashboardBudgetCardCategoryToDeleteData}
                     user={props.user}
                     />
                 </div>

@@ -1,19 +1,19 @@
 import {
     SET_ROUTE,
-    SET_USER, 
+    SET_USER,
     SET_LOGIN_EMAIL,
     SET_LOGIN_PASSWORD,
     SET_SIGNUP_FIRST_NAME,
     SET_SIGNUP_LAST_NAME,
     SET_SIGNUP_EMAIL,
     SET_SIGNUP_PASSWORD,
-    SET_SIGNUP_CONFIRM_PASSWORD, 
+    SET_SIGNUP_CONFIRM_PASSWORD,
     SET_ACCOUNTS,
     SET_TRANSACTIONS,
     SET_SIGNUP_ERROR,
     SET_SIGNUP_ERROR_MESSAGE,
-    SET_LOGIN_ERROR, 
-    SET_LOGIN_ERROR_MESSAGE, 
+    SET_LOGIN_ERROR,
+    SET_LOGIN_ERROR_MESSAGE,
     SET_CSRF,
     RESET_STATE,
     SET_LOGIN_REMEMBER_ME,
@@ -35,33 +35,33 @@ import {
     SET_PASSWORD_RESET_CONFIRM_PASSWORD,
     SET_PASSWORD_RESET_TOKEN,
     SET_PASSWORD_RESET_PASSWORD_ERROR,
-    SET_PASSWORD_RESET_CONFIRM_PASSWORD_ERROR, 
+    SET_PASSWORD_RESET_CONFIRM_PASSWORD_ERROR,
     SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR,
     SET_PASSWORD_RESET_ERROR,
     SET_PASSWORD_RESET_ERROR_MESSAGE,
     SET_NAVIGATION_ACCOUNT_SELECTED,
     SET_MOBILE_MENU,
-    TOGGLE_MOBILE_MENU, 
+    TOGGLE_MOBILE_MENU,
     SET_INITIAL_DATA,
     SET_ROUTE_HOME,
     SET_NAVIGATION_EDIT_PROFILE,
-    SET_NAVIGATION_EDIT_EMAIL, 
+    SET_NAVIGATION_EDIT_EMAIL,
     SET_NAVIGATION_EDIT_PASSWORD,
     SET_PROFILE_FIRST_NAME,
     SET_PROFILE_LAST_NAME,
-    SET_PROFILE_ADDRESS, 
-    SET_PROFILE_PHONE, 
+    SET_PROFILE_ADDRESS,
+    SET_PROFILE_PHONE,
     SET_PROFILE_ABOUT,
-    SET_PROFILE_EMAIL, 
-    SET_PROFILE_PASSWORD, 
-    SET_PROFILE_CONFIRM_PASSWORD, 
-    SET_PROFILE_ERRORS_ERROR, 
-    SET_PROFILE_ERRORS_ERROR_MESSAGE, 
-    SET_PROFILE_ERRORS_EMAIL_ERROR, 
-    SET_PROFILE_ERRORS_PASSWORD_ERROR, 
-    SET_PROFILE_ERRORS_CONFIRM_PASSWORD_ERROR, 
-    SET_PROFILE_ERRORS_PASSWORDS_MATCH_ERROR, 
-    SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR, 
+    SET_PROFILE_EMAIL,
+    SET_PROFILE_PASSWORD,
+    SET_PROFILE_CONFIRM_PASSWORD,
+    SET_PROFILE_ERRORS_ERROR,
+    SET_PROFILE_ERRORS_ERROR_MESSAGE,
+    SET_PROFILE_ERRORS_EMAIL_ERROR,
+    SET_PROFILE_ERRORS_PASSWORD_ERROR,
+    SET_PROFILE_ERRORS_CONFIRM_PASSWORD_ERROR,
+    SET_PROFILE_ERRORS_PASSWORDS_MATCH_ERROR,
+    SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR,
     SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE,
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR,
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE,
@@ -76,7 +76,7 @@ import {
     SET_ACCOUNT_SUMMARY_FILTER_TOTAL_PAGES,
     SET_ACCOUNT_SUMMARY_FILTER_CURRENT_PAGE,
     SET_ACCOUNT_SUMMARY_FILTER_PAGES,
-    SET_ACCOUNT_SUMMARY_ACCOUNTS, 
+    SET_ACCOUNT_SUMMARY_ACCOUNTS,
     SET_ACCOUNT_SUMMARY_SEARCH,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION,
     SET_INDIVIDUAL_ACCOUNTS_ENTRIES,
@@ -88,7 +88,7 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_FILTER_TOTAL_PAGES,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE,
     SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES,
-    SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS, 
+    SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS,
     SET_INDIVIDUAL_ACCOUNTS_SEARCH,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT,
     SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME,
@@ -148,7 +148,8 @@ import {
     SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR,
     SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_DATA,
     SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA,
-    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE,
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA
 } from "./constants.js";
 
 
@@ -175,7 +176,7 @@ export const setLoginEmail = (payload) => {
 
 export const setLoginPassword = (payload) => {
     return {
-        type: SET_LOGIN_PASSWORD, 
+        type: SET_LOGIN_PASSWORD,
         setLoginPasswordPayload: payload
     }
 }
@@ -530,7 +531,7 @@ export const setProfileEmail = (payload) => {
 
 export const setProfilePassword = (payload) => {
     return {
-        type: SET_PROFILE_PASSWORD, 
+        type: SET_PROFILE_PASSWORD,
         setProfilePasswordPayload: payload
     }
 }
@@ -593,7 +594,7 @@ export const setProfileErrorsPasswordConfirmationError = (payload) => {
 
 export const setProfileErrorsPasswordConfirmationErrorMessage = (payload) => {
     return {
-        type: SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE, 
+        type: SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE,
         setProfileErrorsPasswordConfirmationErrorMessagePayload: payload
     }
 }
@@ -891,12 +892,12 @@ export const setIndividualAccountsAddTransactionPersonalBudgetCategoryItemId = (
 export const setIndividualAccountsAddTransactionPersonalBudgetCategoryId = (accountId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
-        setIndividualAccountsAddTransactionPersonalBudgetCategoryIdAccountId: accountId, 
+        setIndividualAccountsAddTransactionPersonalBudgetCategoryIdAccountId: accountId,
         setIndividualAccountsAddTransactionPersonalBudgetCategoryIdPayload: payload
     }
 }
 
- 
+
 export const setIndividualAccountsAddTransactionAmountError = (accountId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR,
@@ -916,7 +917,7 @@ export const setIndividualAccountsAddTransactionPersonalBudgetError = (accountId
 export const setIndividualAccountsAddTransactionTransactionTypeIdError = (accountId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID_ERROR,
-        setIndividualAccountsAddTransactionTransactionTypeIdErrorAccountId: accountId, 
+        setIndividualAccountsAddTransactionTransactionTypeIdErrorAccountId: accountId,
         setIndividualAccountsAddTransactionTransactionTypeIdErrorPayload: payload
     }
 }
@@ -924,7 +925,7 @@ export const setIndividualAccountsAddTransactionTransactionTypeIdError = (accoun
 export const setIndividualAccountsAddTransactionAddError = (accountId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_ERROR,
-        setIndividualAccountsAddTransactionAddErrorAccountId: accountId, 
+        setIndividualAccountsAddTransactionAddErrorAccountId: accountId,
         setIndividualAccountsAddTransactionAddErrorPayload: payload
     }
 }
@@ -947,7 +948,7 @@ export const setIndividualAccountsAddTransactionClear = (accountId) => {
 export const setIndividualAccountsEditTransaction = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION,
-        setIndividualAccountsEditTransactionAccountId: accountId, 
+        setIndividualAccountsEditTransactionAccountId: accountId,
         setIndividualAccountsEditTransactionTransactionId: transactionId,
         setIndividualAccountsEditTransactionPayload: payload
     }
@@ -956,7 +957,7 @@ export const setIndividualAccountsEditTransaction = (accountId, transactionId, p
 export const setIndividualAccountsEditTransactionAmount = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_AMOUNT,
-        setIndividualAccountsEditTransactionAmountAccountId: accountId, 
+        setIndividualAccountsEditTransactionAmountAccountId: accountId,
         setIndividualAccountsEditTransactionAmountTransactionId: transactionId,
         setIndividualAccountsEditTransactionAmountPayload: payload
     }
@@ -965,7 +966,7 @@ export const setIndividualAccountsEditTransactionAmount = (accountId, transactio
 export const setIndividualAccountsEditTransactionTransactionTypeId = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
-        setIndividualAccountsEditTransactionTransactionTypeIdAccountId: accountId, 
+        setIndividualAccountsEditTransactionTransactionTypeIdAccountId: accountId,
         setIndividualAccountsEditTransactionTransactionTypeIdTransactionId: transactionId,
         setIndividualAccountsEditTransactionTransactionTypeIdPayload: payload
     }
@@ -974,7 +975,7 @@ export const setIndividualAccountsEditTransactionTransactionTypeId = (accountId,
 export const setIndividualAccountsEditTransactionMemoNote = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_MEMO_NOTE,
-        setIndividualAccountsEditTransactionMemoNoteAccountId: accountId, 
+        setIndividualAccountsEditTransactionMemoNoteAccountId: accountId,
         setIndividualAccountsEditTransactionMemoNoteTransactionId: transactionId,
         setIndividualAccountsEditTransactionMemoNotePayload: payload
     }
@@ -983,7 +984,7 @@ export const setIndividualAccountsEditTransactionMemoNote = (accountId, transact
 export const setIndividualAccountsEditTransactionPersonalBudgetCategoryId = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
-        setIndividualAccountsEditTransactionPersonalBudgetCategoryIdAccountId: accountId, 
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryIdAccountId: accountId,
         setIndividualAccountsEditTransactionPersonalBudgetCategoryIdTransactionId: transactionId,
         setIndividualAccountsEditTransactionPersonalBudgetCategoryIdPayload: payload
     }
@@ -992,16 +993,16 @@ export const setIndividualAccountsEditTransactionPersonalBudgetCategoryId = (acc
 export const setIndividualAccountsEditTransactionPersonalBudgetCategoryItemId = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
-        setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdAccountId: accountId, 
+        setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdAccountId: accountId,
         setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdTransactionId: transactionId,
         setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdPayload: payload
     }
 }
 
-export const setIndividualAccountsEditTransactionCancel = (accountId, transactionId ) => {
+export const setIndividualAccountsEditTransactionCancel = (accountId, transactionId) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL,
-        setIndividualAccountsEditTransactionCancelAccountId: accountId, 
+        setIndividualAccountsEditTransactionCancelAccountId: accountId,
         setIndividualAccountsEditTransactionCancelTransactionId: transactionId,
     }
 }
@@ -1009,7 +1010,7 @@ export const setIndividualAccountsEditTransactionCancel = (accountId, transactio
 export const setIndividualAccountsEditTransactionDeleteDisplay = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY,
-        setIndividualAccountsEditTransactionDeleteDisplayAccountId: accountId, 
+        setIndividualAccountsEditTransactionDeleteDisplayAccountId: accountId,
         setIndividualAccountsEditTransactionDeleteDisplayTransactionId: transactionId,
         setIndividualAccountsEditTransactionDeleteDisplayPayload: payload
     }
@@ -1036,7 +1037,7 @@ export const setIndividualAccountsEditTransactionData = (account, transaction, p
 export const setIndividualAccountsEditTransactionDeleteConfirmation = (account, transaction, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION,
-        setIndividualAccountsEditTransactionDeleteConfirmationAccount: account, 
+        setIndividualAccountsEditTransactionDeleteConfirmationAccount: account,
         setIndividualAccountsEditTransactionDeleteConfirmationTransaction: transaction,
         setIndividualAccountsEditTransactionDeleteConfirmationPayload: payload
     }
@@ -1045,7 +1046,7 @@ export const setIndividualAccountsEditTransactionDeleteConfirmation = (account, 
 export const setIndividualAccountsFilterEditTransaction = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION,
-        setIndividualAccountsFilterEditTransactionAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionAccountId: accountId,
         setIndividualAccountsFilterEditTransactionTransactionId: transactionId,
         setIndividualAccountsFilterEditTransactionPayload: payload
     }
@@ -1053,7 +1054,7 @@ export const setIndividualAccountsFilterEditTransaction = (accountId, transactio
 export const setIndividualAccountsFilterEditTransactionAmount = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_AMOUNT,
-        setIndividualAccountsFilterEditTransactionAmountAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionAmountAccountId: accountId,
         setIndividualAccountsFilterEditTransactionAmountTransactionId: transactionId,
         setIndividualAccountsFilterEditTransactionAmountPayload: payload
     }
@@ -1062,7 +1063,7 @@ export const setIndividualAccountsFilterEditTransactionAmount = (accountId, tran
 export const setIndividualAccountsFilterEditTransactionTransactionTypeId = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_TRANSACTION_TYPE_ID,
-        setIndividualAccountsFilterEditTransactionTransactionTypeIdAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionTransactionTypeIdAccountId: accountId,
         setIndividualAccountsFilterEditTransactionTransactionTypeIdTransactionId: transactionId,
         setIndividualAccountsFilterEditTransactionTransactionTypeIdPayload: payload
     }
@@ -1071,7 +1072,7 @@ export const setIndividualAccountsFilterEditTransactionTransactionTypeId = (acco
 export const setIndividualAccountsFilterEditTransactionMemoNote = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_MEMO_NOTE,
-        setIndividualAccountsFilterEditTransactionMemoNoteAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionMemoNoteAccountId: accountId,
         setIndividualAccountsFilterEditTransactionMemoNoteTransactionId: transactionId,
         setIndividualAccountsFilterEditTransactionMemoNotePayload: payload
     }
@@ -1080,7 +1081,7 @@ export const setIndividualAccountsFilterEditTransactionMemoNote = (accountId, tr
 export const setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryId = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
-        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdAccountId: accountId,
         setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdTransactionId: transactionId,
         setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdPayload: payload
     }
@@ -1089,16 +1090,16 @@ export const setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryId 
 export const setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemId = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
-        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdAccountId: accountId,
         setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdTransactionId: transactionId,
         setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdPayload: payload
     }
 }
 
-export const setIndividualAccountsFilterEditTransactionCancel = (accountId, transactionId ) => {
+export const setIndividualAccountsFilterEditTransactionCancel = (accountId, transactionId) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_CANCEL,
-        setIndividualAccountsFilterEditTransactionCancelAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionCancelAccountId: accountId,
         setIndividualAccountsFilterEditTransactionCancelTransactionId: transactionId,
     }
 }
@@ -1106,7 +1107,7 @@ export const setIndividualAccountsFilterEditTransactionCancel = (accountId, tran
 export const setIndividualAccountsFilterEditTransactionDeleteDisplay = (accountId, transactionId, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY,
-        setIndividualAccountsFilterEditTransactionDeleteDisplayAccountId: accountId, 
+        setIndividualAccountsFilterEditTransactionDeleteDisplayAccountId: accountId,
         setIndividualAccountsFilterEditTransactionDeleteDisplayTransactionId: transactionId,
         setIndividualAccountsFilterEditTransactionDeleteDisplayPayload: payload
     }
@@ -1133,7 +1134,7 @@ export const setIndividualAccountsFilterEditTransactionData = (account, transact
 export const setIndividualAccountsFilterEditTransactionDeleteConfirmation = (account, transaction, payload) => {
     return {
         type: SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION,
-        setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount: account, 
+        setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount: account,
         setIndividualAccountsFilterEditTransactionDeleteConfirmationTransaction: transaction,
         setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload: payload
     }
@@ -1271,6 +1272,13 @@ export const setDashboardBudgetCardCategoryToDelete = (payload) => {
     return {
         type: SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE,
         setDashboardBudgetCardCategoryToDeletePayload: payload
+    }
+}
+
+export const setDashboardBudgetCardCategoryToDeleteData = (payload) => {
+    return {
+        type: SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA,
+        setDashboardBudgetCardCategoryToDeleteDataPayload: payload
     }
 }
 
