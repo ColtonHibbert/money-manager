@@ -22,6 +22,7 @@ function CreateBudgetCard(props) {
         setDashboardBudgetCardCreateItemData,
         setDashboardBudgetCardCategoryToDelete,
         categoryToDelete,
+        setDashboardBudgetCardCategoryToDeleteData,
         user
     } = props;
 
@@ -114,8 +115,7 @@ function CreateBudgetCard(props) {
 
     function deleteCategory() {
         
-        //setDashboardBudgetCardCreateItemError(false); error
-        //  delete happens, why is response blank? then update state with reducer
+        // error handling here if I choose to add
 
         fetch("http://localhost:3001/deletepersonalbudgetcategory",{
             method: "POST",
@@ -136,7 +136,7 @@ function CreateBudgetCard(props) {
                 toast.error("There was an error deleting the category.");
             }
             if(!data.error && !data.exists) {
-                //setDashboardBudgetCardCreateItemData(data); reset category list state and take out deleted category
+                setDashboardBudgetCardCategoryToDeleteData(data); 
                 toast.success("Category successfully deleted.");
             }
         })
