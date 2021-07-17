@@ -40,28 +40,28 @@ import {
     SET_PASSWORD_RESET_ERROR,
     SET_PASSWORD_RESET_ERROR_MESSAGE,
     SET_NAVIGATION_ACCOUNT_SELECTED,
-    SET_MOBILE_MENU, 
+    SET_MOBILE_MENU,
     TOGGLE_MOBILE_MENU,
     SET_INITIAL_DATA,
     SET_ROUTE_HOME,
     SET_NAVIGATION_EDIT_PROFILE,
-    SET_NAVIGATION_EDIT_EMAIL, 
+    SET_NAVIGATION_EDIT_EMAIL,
     SET_NAVIGATION_EDIT_PASSWORD,
     SET_PROFILE_FIRST_NAME,
     SET_PROFILE_LAST_NAME,
-    SET_PROFILE_ADDRESS, 
-    SET_PROFILE_PHONE, 
+    SET_PROFILE_ADDRESS,
+    SET_PROFILE_PHONE,
     SET_PROFILE_ABOUT,
-    SET_PROFILE_EMAIL, 
-    SET_PROFILE_PASSWORD, 
-    SET_PROFILE_CONFIRM_PASSWORD, 
-    SET_PROFILE_ERRORS_ERROR, 
-    SET_PROFILE_ERRORS_ERROR_MESSAGE, 
-    SET_PROFILE_ERRORS_EMAIL_ERROR, 
-    SET_PROFILE_ERRORS_PASSWORD_ERROR, 
-    SET_PROFILE_ERRORS_CONFIRM_PASSWORD_ERROR, 
-    SET_PROFILE_ERRORS_PASSWORDS_MATCH_ERROR, 
-    SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR, 
+    SET_PROFILE_EMAIL,
+    SET_PROFILE_PASSWORD,
+    SET_PROFILE_CONFIRM_PASSWORD,
+    SET_PROFILE_ERRORS_ERROR,
+    SET_PROFILE_ERRORS_ERROR_MESSAGE,
+    SET_PROFILE_ERRORS_EMAIL_ERROR,
+    SET_PROFILE_ERRORS_PASSWORD_ERROR,
+    SET_PROFILE_ERRORS_CONFIRM_PASSWORD_ERROR,
+    SET_PROFILE_ERRORS_PASSWORDS_MATCH_ERROR,
+    SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR,
     SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE,
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR,
     SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE,
@@ -70,7 +70,7 @@ import {
     SET_ACCOUNT_SUMMARY_ENTRIES,
     SET_ACCOUNT_SUMMARY_TOTAL_PAGES,
     SET_ACCOUNT_SUMMARY_PAGES,
-    SET_ACCOUNT_SUMMARY_CURRENT_PAGE, 
+    SET_ACCOUNT_SUMMARY_CURRENT_PAGE,
     SET_ACCOUNT_SUMMARY_FILTER,
     SET_ACCOUNT_SUMMARY_FILTERED_ACCOUNTS,
     SET_ACCOUNT_SUMMARY_FILTER_TOTAL_PAGES,
@@ -103,7 +103,7 @@ import {
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR,
-    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_ERROR, 
+    SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_ERROR,
     SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA,
@@ -149,7 +149,9 @@ import {
     SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_DATA,
     SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA,
     SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE,
-    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA,
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_ITEM_TO_DELETE,
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_ITEM_TO_DELETE_DATA
 } from "./constants.js";
 import {
     pagesArray,
@@ -241,7 +243,11 @@ const initialState = {
         displayBudgetCard: true,
         itemName: "",
         selectedCategory: 0,
-        categoryToDelete: 0
+        categoryToDelete: 0,
+        categoryItemToDeleteData: {
+            personalBudgetCategoryId: 0,
+            personalBudgetCategoryItemId: 0,
+        }
     },
     individualAccounts: [
         {
@@ -253,10 +259,10 @@ const initialState = {
             addTransactionTransactionTypeId: 0,
             addTransactionTransactionTypeIdError: false,
             addTransactionMemoNote: "",
-            addTransactionPersonalBudgetCategoryItemId: 0, 
+            addTransactionPersonalBudgetCategoryItemId: 0,
             addTransactionPersonalBudgetCategoryId: 0,
             currentBalance: 0,
-            deleteAccountDisplay: false, 
+            deleteAccountDisplay: false,
             deleteAccountTextValidate: "",
             lowAlertBalance: 0,
             userId: 0,
@@ -282,28 +288,28 @@ const initialState = {
             filter: false,
             filteredTransactions: [
                 {
-                  transactionId: 0,
-                  amount: 0,
-                  date: "",
-                  memoNote: "",
-                  categoryName: "",
-                  categoryItemName: "",
-                  personalBudgetCategoryId: 0,
-                  personalBudgetCategoryItemId: 0,
-                  householdBudgetCategoryId: 0,
-                  householdBudgetCategoryItemId: 0,
-                  transactionTypeId: 0,
-                  userId: 0,
-                  accountId: 0,
-                  edit: false,
-                  editTransactionAmount: 0,
-                  editTransactionTransactionTypeId: 0,
-                  editTransactionMemoNote: "",
-                  editTransactionPersonalBudgetCategoryId: 0,
-                  editTransactionPersonalBudgetCategoryItemId: 0,
-                  editTransactionDeleteDisplay: false, 
-                  editTransactionError: false,
-                  editTransactionDeleteConfirmation: false,   
+                    transactionId: 0,
+                    amount: 0,
+                    date: "",
+                    memoNote: "",
+                    categoryName: "",
+                    categoryItemName: "",
+                    personalBudgetCategoryId: 0,
+                    personalBudgetCategoryItemId: 0,
+                    householdBudgetCategoryId: 0,
+                    householdBudgetCategoryItemId: 0,
+                    transactionTypeId: 0,
+                    userId: 0,
+                    accountId: 0,
+                    edit: false,
+                    editTransactionAmount: 0,
+                    editTransactionTransactionTypeId: 0,
+                    editTransactionMemoNote: "",
+                    editTransactionPersonalBudgetCategoryId: 0,
+                    editTransactionPersonalBudgetCategoryItemId: 0,
+                    editTransactionDeleteDisplay: false,
+                    editTransactionError: false,
+                    editTransactionDeleteConfirmation: false,
                 }
             ],
             filterTotalPages: 0,
@@ -317,55 +323,55 @@ const initialState = {
             ],
             search: "",
             transactions: [
-              {
-                transactionId: 0,
-                amount: 0,
-                date: "",
-                memoNote: "",
-                categoryName: "",
-                categoryItemName: "",
-                personalBudgetCategoryId: 0,
-                personalBudgetCategoryItemId: 0,
-                householdBudgetCategoryId: 0,
-                householdBudgetCategoryItemId: 0,
-                transactionTypeId: 0,
-                userId: 0,
-                accountId: 0,
-                edit: false,
-                editTransactionAmount: 0,
-                editTransactionTransactionTypeId: 0,
-                editTransactionMemoNote: "",
-                editTransactionPersonalBudgetCategoryId: 0,
-                editTransactionPersonalBudgetCategoryItemId: 0,
-                editTransactionDeleteDisplay: false, 
-                editTransactionError: false,
-                editTransactionDeleteConfirmation: false,
-              }
+                {
+                    transactionId: 0,
+                    amount: 0,
+                    date: "",
+                    memoNote: "",
+                    categoryName: "",
+                    categoryItemName: "",
+                    personalBudgetCategoryId: 0,
+                    personalBudgetCategoryItemId: 0,
+                    householdBudgetCategoryId: 0,
+                    householdBudgetCategoryItemId: 0,
+                    transactionTypeId: 0,
+                    userId: 0,
+                    accountId: 0,
+                    edit: false,
+                    editTransactionAmount: 0,
+                    editTransactionTransactionTypeId: 0,
+                    editTransactionMemoNote: "",
+                    editTransactionPersonalBudgetCategoryId: 0,
+                    editTransactionPersonalBudgetCategoryItemId: 0,
+                    editTransactionDeleteDisplay: false,
+                    editTransactionError: false,
+                    editTransactionDeleteConfirmation: false,
+                }
             ],
             transactionsMonthly: [
                 {
-                  transactionId: 0,
-                  amount: 0,
-                  date: "",
-                  memoNote: "",
-                  categoryName: "",
-                  categoryItemName: "",
-                  personalBudgetCategoryId: 0,
-                  personalBudgetCategoryItemId: 0,
-                  householdBudgetCategoryId: 0,
-                  householdBudgetCategoryItemId: 0,
-                  transactionTypeId: 0,
-                  userId: 0,
-                  accountId: 0
+                    transactionId: 0,
+                    amount: 0,
+                    date: "",
+                    memoNote: "",
+                    categoryName: "",
+                    categoryItemName: "",
+                    personalBudgetCategoryId: 0,
+                    personalBudgetCategoryItemId: 0,
+                    householdBudgetCategoryId: 0,
+                    householdBudgetCategoryItemId: 0,
+                    transactionTypeId: 0,
+                    userId: 0,
+                    accountId: 0
                 }
-              ],
-              transactionsMonthlyQuantity: 0,
-              depositsMonthlyQuantity: 0,
-              depositsMonthlyAmount: 0,
-              withdrawalsMonthlyQuantity: 0,
-              withdrawalsMonthlyAmount: 0,
-              transfersMonthlyQuantity: 0,
-              transfersMonthlyAmount: 0
+            ],
+            transactionsMonthlyQuantity: 0,
+            depositsMonthlyQuantity: 0,
+            depositsMonthlyAmount: 0,
+            withdrawalsMonthlyQuantity: 0,
+            withdrawalsMonthlyAmount: 0,
+            transfersMonthlyQuantity: 0,
+            transfersMonthlyAmount: 0
         }
     ],
     forgotPassword: {
@@ -381,7 +387,7 @@ const initialState = {
         loginEmail: "",
         loginPassword: "",
         loginRememberMe: false,
-     },
+    },
     loginErrors: {
         loginError: false,
         loginErrorMessage: "",
@@ -465,32 +471,32 @@ const initialState = {
             transactionTypeId: 0,
             userId: 0,
             accountId: 0,
-            edit: false, 
+            edit: false,
             editTransactionAmount: 0,
             editTransactionTransactionTypeId: 0,
             editTransactionMemoNote: "",
             editTransactionPersonalBudgetCategoryId: 0,
             editTransactionPersonalBudgetCategoryItemId: 0,
-            editTransactionDeleteDisplay: false, 
+            editTransactionDeleteDisplay: false,
             editTransactionError: false,
             editTransactionDeleteConfirmation: false,
         }
     ],
     transactionsMonthlyAllAccounts: [
         {
-          transactionId: 0,
-          amount: 0,
-          date: "",
-          memoNote: "",
-          categoryName: "",
-          categoryItemName: "",
-          personalBudgetCategoryId: 0,
-          personalBudgetCategoryItemId: 0,
-          householdBudgetCategoryId: 0,
-          householdBudgetCategoryItemId: 0,
-          transactionTypeId: 0,
-          userId: 0,
-          accountId: 0
+            transactionId: 0,
+            amount: 0,
+            date: "",
+            memoNote: "",
+            categoryName: "",
+            categoryItemName: "",
+            personalBudgetCategoryId: 0,
+            personalBudgetCategoryItemId: 0,
+            householdBudgetCategoryId: 0,
+            householdBudgetCategoryItemId: 0,
+            transactionTypeId: 0,
+            userId: 0,
+            accountId: 0
         }
     ],
     transactionsMonthlyAllAccountsQuantity: 0,
@@ -514,33 +520,33 @@ const initialState = {
         roleId: 0,
         csrf: "",
     }
-    
+
 }
 
-export const reducer = (state=initialState, action={}) => {
-    if(action.type === SET_ROUTE ) {
+export const reducer = (state = initialState, action = {}) => {
+    if (action.type === SET_ROUTE) {
         return {
             ...state,
             route: action.setRoutePayload
         }
     }
-    if(action.type === SET_USER) {
+    if (action.type === SET_USER) {
         return {
             ...state,
             user: action.setUserPayload
         }
     }
-    if(action.type === SET_LOGIN_EMAIL ) {
+    if (action.type === SET_LOGIN_EMAIL) {
         return {
             ...state,
             login: {
                 ...state.login,
                 loginEmail: action.setLoginEmailPayload
-               
+
             }
         }
     }
-    if(action.type === SET_LOGIN_PASSWORD ) {
+    if (action.type === SET_LOGIN_PASSWORD) {
         return {
             ...state,
             login: {
@@ -549,7 +555,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_FIRST_NAME) {
+    if (action.type === SET_SIGNUP_FIRST_NAME) {
         return {
             ...state,
             signUp: {
@@ -558,7 +564,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_LAST_NAME ) {
+    if (action.type === SET_SIGNUP_LAST_NAME) {
         return {
             ...state,
             signUp: {
@@ -567,7 +573,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_EMAIL) {
+    if (action.type === SET_SIGNUP_EMAIL) {
         return {
             ...state,
             signUp: {
@@ -576,7 +582,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_PASSWORD) {
+    if (action.type === SET_SIGNUP_PASSWORD) {
         return {
             ...state,
             signUp: {
@@ -585,7 +591,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_CONFIRM_PASSWORD ) {
+    if (action.type === SET_SIGNUP_CONFIRM_PASSWORD) {
         return {
             ...state,
             signUp: {
@@ -594,7 +600,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_ERROR ) {
+    if (action.type === SET_SIGNUP_ERROR) {
         return {
             ...state,
             signUpErrors: {
@@ -603,7 +609,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_ERROR_MESSAGE ) {
+    if (action.type === SET_SIGNUP_ERROR_MESSAGE) {
         return {
             ...state,
             signUpErrors: {
@@ -612,7 +618,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_LOGIN_ERROR) {
+    if (action.type === SET_LOGIN_ERROR) {
         return {
             ...state,
             loginErrors: {
@@ -621,7 +627,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_LOGIN_ERROR_MESSAGE) {
+    if (action.type === SET_LOGIN_ERROR_MESSAGE) {
         return {
             ...state,
             loginErrors: {
@@ -630,7 +636,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_CSRF) {
+    if (action.type === SET_CSRF) {
         return {
             ...state,
             user: {
@@ -639,22 +645,22 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNTS) {
+    if (action.type === SET_ACCOUNTS) {
         return {
             ...state,
             accounts: action.setAccountsPayload
         }
     }
-    if(action.type === SET_TRANSACTIONS ) {
+    if (action.type === SET_TRANSACTIONS) {
         return {
             ...state,
             transactions: action.setTransactionsPayload
         }
     }
-    if(action.type === RESET_STATE) {
+    if (action.type === RESET_STATE) {
         return initialState;
     }
-    if(action.type === SET_LOGIN_REMEMBER_ME ) {
+    if (action.type === SET_LOGIN_REMEMBER_ME) {
         return {
             ...state,
             login: {
@@ -663,7 +669,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_REMEMBER_ME) {
+    if (action.type === SET_SIGNUP_REMEMBER_ME) {
         return {
             ...state,
             signUp: {
@@ -672,7 +678,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_LOGIN_EMAIL_ERROR ) {
+    if (action.type === SET_LOGIN_EMAIL_ERROR) {
         return {
             ...state,
             loginErrors: {
@@ -681,7 +687,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_LOGIN_PASSWORD_ERROR ) {
+    if (action.type === SET_LOGIN_PASSWORD_ERROR) {
         return {
             ...state,
             loginErrors: {
@@ -690,7 +696,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_FIRST_NAME_ERROR) {
+    if (action.type === SET_SIGNUP_FIRST_NAME_ERROR) {
         return {
             ...state,
             signUpErrors: {
@@ -699,7 +705,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_LAST_NAME_ERROR) {
+    if (action.type === SET_SIGNUP_LAST_NAME_ERROR) {
         return {
             ...state,
             signUpErrors: {
@@ -708,7 +714,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_EMAIL_ERROR) {
+    if (action.type === SET_SIGNUP_EMAIL_ERROR) {
         return {
             ...state,
             signUpErrors: {
@@ -717,7 +723,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_PASSWORD_ERROR) {
+    if (action.type === SET_SIGNUP_PASSWORD_ERROR) {
         return {
             ...state,
             signUpErrors: {
@@ -726,7 +732,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_CONFIRM_PASSWORD_ERROR) {
+    if (action.type === SET_SIGNUP_CONFIRM_PASSWORD_ERROR) {
         return {
             ...state,
             signUpErrors: {
@@ -735,7 +741,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_SIGNUP_PASSWORDS_MATCH_ERROR) {
+    if (action.type === SET_SIGNUP_PASSWORDS_MATCH_ERROR) {
         return {
             ...state,
             signUpErrors: {
@@ -744,7 +750,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_FORGOT_PASSWORD_EMAIL) {
+    if (action.type === SET_FORGOT_PASSWORD_EMAIL) {
         return {
             ...state,
             forgotPassword: {
@@ -753,7 +759,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_FORGOT_PASSWORD_ERROR) {
+    if (action.type === SET_FORGOT_PASSWORD_ERROR) {
         return {
             ...state,
             forgotPasswordErrors: {
@@ -762,7 +768,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_FORGOT_PASSWORD_ERROR_MESSAGE) {
+    if (action.type === SET_FORGOT_PASSWORD_ERROR_MESSAGE) {
         return {
             ...state,
             forgotPasswordErrors: {
@@ -771,7 +777,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_FORGOT_PASSWORD_EMAIL_ERROR) {
+    if (action.type === SET_FORGOT_PASSWORD_EMAIL_ERROR) {
         return {
             ...state,
             forgotPasswordErrors: {
@@ -780,8 +786,8 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
- 
-    if(action.type === SET_FORGOT_PASSWORD_EMAIL_SENT) {
+
+    if (action.type === SET_FORGOT_PASSWORD_EMAIL_SENT) {
         return {
             ...state,
             forgotPassword: {
@@ -790,16 +796,16 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PASSWORD_RESET_PASSWORD) {
+    if (action.type === SET_PASSWORD_RESET_PASSWORD) {
         return {
-            ...state, 
+            ...state,
             passwordReset: {
                 ...state.passwordReset,
                 passwordResetPassword: action.setPasswordResetPasswordPayload
             }
         }
     }
-    if(action.type === SET_PASSWORD_RESET_CONFIRM_PASSWORD) {
+    if (action.type === SET_PASSWORD_RESET_CONFIRM_PASSWORD) {
         return {
             ...state,
             passwordReset: {
@@ -808,7 +814,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PASSWORD_RESET_TOKEN) {
+    if (action.type === SET_PASSWORD_RESET_TOKEN) {
         return {
             ...state,
             passwordReset: {
@@ -817,7 +823,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PASSWORD_RESET_PASSWORD_ERROR) {
+    if (action.type === SET_PASSWORD_RESET_PASSWORD_ERROR) {
         return {
             ...state,
             passwordResetErrors: {
@@ -826,16 +832,16 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PASSWORD_RESET_CONFIRM_PASSWORD_ERROR) {
+    if (action.type === SET_PASSWORD_RESET_CONFIRM_PASSWORD_ERROR) {
         return {
-            ...state, 
+            ...state,
             passwordResetErrors: {
                 ...state.passwordResetErrors,
                 passwordResetConfirmPasswordError: action.setPasswordResetConfirmPasswordErrorPayload
             }
         }
     }
-    if(action.type === SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR) {
+    if (action.type === SET_PASSWORD_RESET_PASSWORDS_MATCH_ERROR) {
         return {
             ...state,
             passwordResetErrors: {
@@ -844,7 +850,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PASSWORD_RESET_ERROR) {
+    if (action.type === SET_PASSWORD_RESET_ERROR) {
         return {
             ...state,
             passwordResetErrors: {
@@ -853,16 +859,16 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PASSWORD_RESET_ERROR_MESSAGE) {
+    if (action.type === SET_PASSWORD_RESET_ERROR_MESSAGE) {
         return {
-            ...state, 
+            ...state,
             passwordResetErrors: {
                 ...state.passwordResetErrors,
                 passwordResetErrorMessage: action.setPasswordResetErrorMessagePayload
             }
         }
     }
-    if(action.type === SET_MOBILE_MENU) {
+    if (action.type === SET_MOBILE_MENU) {
         return {
             ...state,
             navigation: {
@@ -871,16 +877,16 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === TOGGLE_MOBILE_MENU) {
+    if (action.type === TOGGLE_MOBILE_MENU) {
         return {
-            ...state, 
+            ...state,
             navigation: {
                 ...state.navigation,
                 mobileMenu: !state.navigation.mobileMenu
             }
         }
     }
-    if(action.type === SET_NAVIGATION_ACCOUNT_SELECTED ) {
+    if (action.type === SET_NAVIGATION_ACCOUNT_SELECTED) {
         return {
             ...state,
             navigation: {
@@ -889,7 +895,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_INITIAL_DATA) {
+    if (action.type === SET_INITIAL_DATA) {
 
         const summaryPagesRegularOrFilter = configurePagesInReducer(state.accountSummary.entries, action.setInitialDataPayload.initialData.accountSummary);
 
@@ -976,13 +982,13 @@ export const reducer = (state=initialState, action={}) => {
             user: action.setInitialDataPayload.initialData.user,
         }
     }
-    if(action.type === SET_ROUTE_HOME) {
+    if (action.type === SET_ROUTE_HOME) {
         return {
             ...state,
             routeHome: action.setRouteHomePayload
         }
     }
-    if(action.type === SET_NAVIGATION_EDIT_PROFILE) {
+    if (action.type === SET_NAVIGATION_EDIT_PROFILE) {
         return {
             ...state,
             navigation: {
@@ -991,7 +997,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_NAVIGATION_EDIT_EMAIL) {
+    if (action.type === SET_NAVIGATION_EDIT_EMAIL) {
         return {
             ...state,
             navigation: {
@@ -1000,7 +1006,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_NAVIGATION_EDIT_PASSWORD) {
+    if (action.type === SET_NAVIGATION_EDIT_PASSWORD) {
         return {
             ...state,
             navigation: {
@@ -1009,7 +1015,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_FIRST_NAME) {
+    if (action.type === SET_PROFILE_FIRST_NAME) {
         return {
             ...state,
             profile: {
@@ -1018,7 +1024,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_LAST_NAME) {
+    if (action.type === SET_PROFILE_LAST_NAME) {
         return {
             ...state,
             profile: {
@@ -1027,7 +1033,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ADDRESS) {
+    if (action.type === SET_PROFILE_ADDRESS) {
         return {
             ...state,
             profile: {
@@ -1036,7 +1042,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_PHONE) {
+    if (action.type === SET_PROFILE_PHONE) {
         return {
             ...state,
             profile: {
@@ -1045,7 +1051,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ABOUT) {
+    if (action.type === SET_PROFILE_ABOUT) {
         return {
             ...state,
             profile: {
@@ -1054,7 +1060,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_EMAIL) {
+    if (action.type === SET_PROFILE_EMAIL) {
         return {
             ...state,
             profile: {
@@ -1063,7 +1069,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_PASSWORD) {
+    if (action.type === SET_PROFILE_PASSWORD) {
         return {
             ...state,
             profile: {
@@ -1072,7 +1078,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_CONFIRM_PASSWORD) {
+    if (action.type === SET_PROFILE_CONFIRM_PASSWORD) {
         return {
             ...state,
             profile: {
@@ -1081,7 +1087,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ERRORS_ERROR) {
+    if (action.type === SET_PROFILE_ERRORS_ERROR) {
         return {
             ...state,
             profileErrors: {
@@ -1090,7 +1096,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ERRORS_ERROR_MESSAGE) {
+    if (action.type === SET_PROFILE_ERRORS_ERROR_MESSAGE) {
         return {
             ...state,
             profileErrors: {
@@ -1099,16 +1105,16 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ERRORS_EMAIL_ERROR) {
+    if (action.type === SET_PROFILE_ERRORS_EMAIL_ERROR) {
         return {
-            ...state, 
+            ...state,
             profileErrors: {
                 ...state.profileErrors,
                 emailError: action.setProfileErrorsEmailErrorPayload
             }
         }
     }
-    if(action.type === SET_PROFILE_ERRORS_PASSWORD_ERROR) {
+    if (action.type === SET_PROFILE_ERRORS_PASSWORD_ERROR) {
         return {
             ...state,
             profileErrors: {
@@ -1117,7 +1123,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ERRORS_CONFIRM_PASSWORD_ERROR) {
+    if (action.type === SET_PROFILE_ERRORS_CONFIRM_PASSWORD_ERROR) {
         return {
             ...state,
             profileErrors: {
@@ -1126,7 +1132,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ERRORS_PASSWORDS_MATCH_ERROR) {
+    if (action.type === SET_PROFILE_ERRORS_PASSWORDS_MATCH_ERROR) {
         return {
             ...state,
             profileErrors: {
@@ -1135,7 +1141,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR) {
+    if (action.type === SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR) {
         return {
             ...state,
             profileErrors: {
@@ -1144,7 +1150,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE) {
+    if (action.type === SET_PROFILE_ERRORS_PASSWORD_CONFIRMATION_ERROR_MESSAGE) {
         return {
             ...state,
             profileErrors: {
@@ -1153,7 +1159,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR) {
+    if (action.type === SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR) {
         return {
             ...state,
             profileErrors: {
@@ -1162,7 +1168,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE) {
+    if (action.type === SET_PROFILE_ERRORS_EMAIL_CONFIRMATION_ERROR_MESSAGE) {
         return {
             ...state,
             profileErrors: {
@@ -1171,7 +1177,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_USER_PROFILE_DATA) {
+    if (action.type === SET_USER_PROFILE_DATA) {
         return {
             ...state,
             user: {
@@ -1184,7 +1190,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_USER_PROFILE_EMAIL) {
+    if (action.type === SET_USER_PROFILE_EMAIL) {
         return {
             ...state,
             user: {
@@ -1193,7 +1199,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_ENTRIES) {
+    if (action.type === SET_ACCOUNT_SUMMARY_ENTRIES) {
         return {
             ...state,
             accountSummary: {
@@ -1202,7 +1208,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_TOTAL_PAGES) {
+    if (action.type === SET_ACCOUNT_SUMMARY_TOTAL_PAGES) {
         return {
             ...state,
             accountSummary: {
@@ -1211,7 +1217,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_PAGES) {
+    if (action.type === SET_ACCOUNT_SUMMARY_PAGES) {
         return {
             ...state,
             accountSummary: {
@@ -1220,7 +1226,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_CURRENT_PAGE) {
+    if (action.type === SET_ACCOUNT_SUMMARY_CURRENT_PAGE) {
         return {
             ...state,
             accountSummary: {
@@ -1229,7 +1235,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_FILTER) {
+    if (action.type === SET_ACCOUNT_SUMMARY_FILTER) {
         return {
             ...state,
             accountSummary: {
@@ -1238,7 +1244,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_FILTERED_ACCOUNTS) {
+    if (action.type === SET_ACCOUNT_SUMMARY_FILTERED_ACCOUNTS) {
         return {
             ...state,
             accountSummary: {
@@ -1247,7 +1253,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_FILTER_TOTAL_PAGES) {
+    if (action.type === SET_ACCOUNT_SUMMARY_FILTER_TOTAL_PAGES) {
         return {
             ...state,
             accountSummary: {
@@ -1256,7 +1262,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_FILTER_CURRENT_PAGE) {
+    if (action.type === SET_ACCOUNT_SUMMARY_FILTER_CURRENT_PAGE) {
         return {
             ...state,
             accountSummary: {
@@ -1265,7 +1271,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_FILTER_PAGES) {
+    if (action.type === SET_ACCOUNT_SUMMARY_FILTER_PAGES) {
         return {
             ...state,
             accountSummary: {
@@ -1274,7 +1280,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_ACCOUNTS) {
+    if (action.type === SET_ACCOUNT_SUMMARY_ACCOUNTS) {
         return {
             ...state,
             accountSummary: {
@@ -1283,7 +1289,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_ACCOUNT_SUMMARY_SEARCH) {
+    if (action.type === SET_ACCOUNT_SUMMARY_SEARCH) {
         return {
             ...state,
             accountSummary: {
@@ -1292,13 +1298,13 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_TRANSACTION_SELECTION) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterTransactionSelectionAccountId) {
+                    if (account.accountId === action.setIndividualAccountsFilterTransactionSelectionAccountId) {
                         account.filterTransactionSelection = action.setIndividualAccountsFilterTransactionSelectionPayload
                     }
                     return account;
@@ -1307,178 +1313,178 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ENTRIES) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ENTRIES) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEntriesAccountId) {
+                    if (account.accountId === action.setIndividualAccountsEntriesAccountId) {
                         account.entries = action.setIndividualAccountsEntriesPayload
-                    }  
-                    return account; 
+                    }
+                    return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_TOTAL_PAGES) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_TOTAL_PAGES) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsTotalPagesAccountId) {
+                    if (account.accountId === action.setIndividualAccountsTotalPagesAccountId) {
                         account.totalPages = action.setIndividualAccountsTotalPagesPayload
-                    }   
-                    return account;
-                })
-                 return accounts;
-            }(state.individualAccounts) 
-        }
-    }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_PAGES) {
-        return {
-            ...state,
-            individualAccounts: function(accountsState) {
-                let accounts = accountsState.slice();
-                accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsPagesAccountId) {
-                        account.pages = action.setIndividualAccountsPagesPayload
-                    }   
-                    return account;
-                })
-                 return accounts;
-            }(state.individualAccounts) 
-        }
-    }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_CURRENT_PAGE) {
-        return {
-            ...state,
-            individualAccounts: function(accountsState) {
-                let accounts = accountsState.slice();
-                accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsCurrentPageAccountId) {
-                        account.currentPage = action.setIndividualAccountsCurrentPagePayload
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_PAGES) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterAccountId) {
+                    if (account.accountId === action.setIndividualAccountsPagesAccountId) {
+                        account.pages = action.setIndividualAccountsPagesPayload
+                    }
+                    return account;
+                })
+                return accounts;
+            }(state.individualAccounts)
+        }
+    }
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_CURRENT_PAGE) {
+        return {
+            ...state,
+            individualAccounts: function (accountsState) {
+                let accounts = accountsState.slice();
+                accounts = accounts.map(account => {
+                    if (account.accountId === action.setIndividualAccountsCurrentPageAccountId) {
+                        account.currentPage = action.setIndividualAccountsCurrentPagePayload
+                    }
+                    return account;
+                })
+                return accounts;
+            }(state.individualAccounts)
+        }
+    }
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER) {
+        return {
+            ...state,
+            individualAccounts: function (accountsState) {
+                let accounts = accountsState.slice();
+                accounts = accounts.map(account => {
+                    if (account.accountId === action.setIndividualAccountsFilterAccountId) {
                         account.filter = action.setIndividualAccountsFilterPayload
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTERED_TRANSACTIONS) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTERED_TRANSACTIONS) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilteredTransactionsAccountId) {
+                    if (account.accountId === action.setIndividualAccountsFilteredTransactionsAccountId) {
                         account.filteredTransactions = action.setIndividualAccountsFilteredTransactionsPayload
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_TOTAL_PAGES) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_TOTAL_PAGES) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterTotalPagesAccountId) {
+                    if (account.accountId === action.setIndividualAccountsFilterTotalPagesAccountId) {
                         account.filterTotalPages = action.setIndividualAccountsFilterTotalPagesPayload
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_CURRENT_PAGE) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterCurrentPageAccountId) {
+                    if (account.accountId === action.setIndividualAccountsFilterCurrentPageAccountId) {
                         account.filterCurrentPage = action.setIndividualAccountsFilterCurrentPagePayload
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_PAGES) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterPagesAccountId) {
+                    if (account.accountId === action.setIndividualAccountsFilterPagesAccountId) {
                         account.filterPages = action.setIndividualAccountsFilterPagesPayload
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_TRANSACTIONS) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsTransactionsAccountId) {
+                    if (account.accountId === action.setIndividualAccountsTransactionsAccountId) {
                         account.transactions = action.setIndividualAccountsTransactionsPayload
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_SEARCH) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_SEARCH) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsSearchAccountId) {
+                    if (account.accountId === action.setIndividualAccountsSearchAccountId) {
                         account.search = action.setIndividualAccountsSearchPayload
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditAccountAccountId) {
+                    if (account.accountId === action.setIndividualAccountsEditAccountAccountId) {
                         account.editAccount = action.setIndividualAccountsEditAccountPayload
                     }
                     return account;
@@ -1487,281 +1493,281 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_NAME) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditAccountNameAccountId) {
+                    if (account.accountId === action.setIndividualAccountsEditAccountNameAccountId) {
                         account.editAccountName = action.setIndividualAccountsEditAccountNamePayload
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE_ID) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_TYPE_ID) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditAccountTypeIdAccountId) {
+                    if (account.accountId === action.setIndividualAccountsEditAccountTypeIdAccountId) {
                         account.editAccountTypeId = Number(action.setIndividualAccountsEditAccountTypeIdPayload)
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_LOW_ALERT_BALANCE) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditAccountLowAlertBalanceAccountId) {
+                    if (account.accountId === action.setIndividualAccountsEditAccountLowAlertBalanceAccountId) {
                         account.editAccountLowAlertBalance = Number(action.setIndividualAccountsEditAccountLowAlertBalancePayload)
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
 
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditAccountErrorAccountId) {
+                    if (account.accountId === action.setIndividualAccountsEditAccountErrorAccountId) {
                         account.editAccountError = action.setIndividualAccountsEditAccountErrorPayload
-                    }  
-                    return account; 
+                    }
+                    return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_ACCOUNT_ERROR_MESSAGE) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditAccountErrorMessageAccountId) {
+                    if (account.accountId === action.setIndividualAccountsEditAccountErrorMessageAccountId) {
                         account.editAccountErrorMessage = action.setIndividualAccountsEditAccountErrorMessagePayload
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_UPDATE_ACCOUNT) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_UPDATE_ACCOUNT) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
+                    if (account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
                         account.accountName = action.setIndividualAccountsUpdateAccountPayload.accountName
                         account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
                         account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
+                return accounts;
             }(state.individualAccounts),
-            accounts: function(accountsState) {
+            accounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
+                    if (account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
                         account.accountName = action.setIndividualAccountsUpdateAccountPayload.accountName
                         account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
                         account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
-                    }   
+                    }
                     return account;
                 })
-                 return accounts;
+                return accounts;
             }(state.accounts),
             accountSummary: {
                 ...state.accountSummary,
-                accounts: function(accountsState) {
+                accounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
+                        if (account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
                             account.accountName = action.setIndividualAccountsUpdateAccountPayload.accountName
                             account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
                             account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
-                        }  
-                        return account; 
-                    })
-                     return accounts;
-                }(state.accountSummary.accounts),
-                filteredAccounts: function(accountsState) {
-                    let accounts = accountsState.slice();
-                    accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
-                            account.accountName = action.setIndividualAccountsUpdateAccountPayload.accountName
-                            account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
-                            account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
-                        }   
+                        }
                         return account;
                     })
-                     return accounts;
+                    return accounts;
+                }(state.accountSummary.accounts),
+                filteredAccounts: function (accountsState) {
+                    let accounts = accountsState.slice();
+                    accounts = accounts.map(account => {
+                        if (account.accountId === action.setIndividualAccountsUpdateAccountAccountId) {
+                            account.accountName = action.setIndividualAccountsUpdateAccountPayload.accountName
+                            account.accountTypeId = action.setIndividualAccountsUpdateAccountPayload.accountTypeId
+                            account.lowAlertBalance = action.setIndividualAccountsUpdateAccountPayload.lowAlertBalance
+                        }
+                        return account;
+                    })
+                    return accounts;
                 }(state.accountSummary.filteredAccounts),
             }
-        } 
+        }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionAmountAccountId) {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionAmountAccountId) {
                         account.addTransactionAmount = Number(action.setIndividualAccountsAddTransactionAmountPayload)
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionTransactionTypeIdAccountId) {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionTransactionTypeIdAccountId) {
                         account.addTransactionTransactionTypeId = Number(action.setIndividualAccountsAddTransactionTransactionTypeIdPayload)
-                    }  
-                    return account; 
+                    }
+                    return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_MEMO_NOTE) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_MEMO_NOTE) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionMemoNoteAccountId) {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionMemoNoteAccountId) {
                         account.addTransactionMemoNote = action.setIndividualAccountsAddTransactionMemoNotePayload
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdAccountId) {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdAccountId) {
                         account.addTransactionPersonalBudgetCategoryItemId = Number(action.setIndividualAccountsAddTransactionPersonalBudgetCategoryItemIdPayload)
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetCategoryIdAccountId) {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetCategoryIdAccountId) {
                         account.addTransactionPersonalBudgetCategoryId = action.setIndividualAccountsAddTransactionPersonalBudgetCategoryIdPayload
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_AMOUNT_ERROR) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionAmountErrorAccountId) {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionAmountErrorAccountId) {
                         account.addTransactionAmountError = action.setIndividualAccountsAddTransactionAmountErrorPayload
-                    } 
-                    return account;  
+                    }
+                    return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_ERROR) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_PERSONAL_BUDGET_ERROR) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetErrorAccountId) {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionPersonalBudgetErrorAccountId) {
                         account.addTransactionPersonalBudgetError = action.setIndividualAccountsAddTransactionPersonalBudgetErrorPayload
-                    } 
-                    return account;  
+                    }
+                    return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID_ERROR) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_TRANSACTION_TYPE_ID_ERROR) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionTransactionTypeIdErrorAccountId) {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionTransactionTypeIdErrorAccountId) {
                         console.log(action);
                         account.addTransactionTransactionTypeIdError = action.setIndividualAccountsAddTransactionTransactionTypeIdErrorPayload
-                    }   
-                    return account;
-                })
-            return accounts;
-            }(state.individualAccounts) 
-        }
-    }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_ERROR) {
-        return {
-            ...state,
-            individualAccounts: function(accountsState) {
-                let accounts = accountsState.slice();
-                accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionAddErrorAccountId) {
-                        account.addTransactionAddError = action.setIndividualAccountsAddTransactionAddErrorPayload
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_ERROR) {
         return {
             ...state,
-            accounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionAddErrorAccountId) {
+                        account.addTransactionAddError = action.setIndividualAccountsAddTransactionAddErrorPayload
+                    }
+                    return account;
+                })
+                return accounts;
+            }(state.individualAccounts)
+        }
+    }
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_ADD_DATA) {
+        return {
+            ...state,
+            accounts: function (accountsState) {
+                let accounts = accountsState.slice();
+                accounts = accounts.map(account => {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId) {
                         account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
                     }
                     return account;
@@ -1770,20 +1776,20 @@ export const reducer = (state=initialState, action={}) => {
             }(state.accounts),
             accountSummary: {
                 ...state.accountSummary,
-                accounts: function(accountsState) {
+                accounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
+                        if (account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId) {
                             account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
                         }
                         return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
-                filteredAccounts: function(accountsState) {
+                filteredAccounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId ) {
+                        if (account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId) {
                             account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance
                         }
                         return account;
@@ -1791,34 +1797,34 @@ export const reducer = (state=initialState, action={}) => {
                     return accounts;
                 }(state.accountSummary.accounts)
             },
-            depositsMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
+            depositsMonthlyAllAccountsAmount: function (amountState) {
+                if (action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
                     return amountState + action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.depositsMonthlyAllAccountsAmount),
-            depositsMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
+            depositsMonthlyAllAccountsQuantity: function (quantityState) {
+                if (action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
                     return quantityState + 1;
                 } else {
                     return quantityState;
                 }
             }(state.depositsMonthlyAllAccountsQuantity),
-            individualAccounts: function(individualAccountsState) {
-            
+            individualAccounts: function (individualAccountsState) {
+
                 let individualAccounts = individualAccountsState.slice();
-                
+
                 individualAccounts = individualAccounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsAddTransactionAddDataAccountId) {
+
                         let transactionsSlice = account.transactions.slice();
                         transactionsSlice.push(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction);
                         let transactionsMonthlySlice = account.transactionsMonthly.slice();
                         transactionsMonthlySlice.push(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction);
 
                         const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, transactionsSlice);
-                        
+
                         account.addTransactionAmount = "";
                         account.addTransactionAmountError = false;
                         account.addTransactionTransactionTypeId = "";
@@ -1829,7 +1835,7 @@ export const reducer = (state=initialState, action={}) => {
 
                         account.currentBalance = action.setIndividualAccountsAddTransactionAddDataPayload.configuredAccount.currentBalance;
                         account.currentPage = 0;
-                        if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
+                        if (action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 2) {
                             account.depositsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
                             account.depositsMonthlyQuantity += 1;
                         }
@@ -1845,53 +1851,53 @@ export const reducer = (state=initialState, action={}) => {
                         account.transactions = transactionsSlice;
                         account.transactionsMonthly = transactionsMonthlySlice;
                         account.transactionsMonthlyQuantity += 1;
-                        if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
+                        if (action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
                             account.transfersMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
                             account.transfersMonthlyQuantity += 1;
                         }
-                        if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 1) {
+                        if (action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 1) {
                             account.withdrawalsMonthlyAmount += action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount;
                             account.withdrawalsMonthlyQuantity += 1;
                         }
                     }
-                    return account;   
+                    return account;
                 })
                 return individualAccounts;
             }(state.individualAccounts),
-            transactionsAllAccounts: function(transactionsAllAccountsState) {
+            transactionsAllAccounts: function (transactionsAllAccountsState) {
                 let transactionsAllSlice = transactionsAllAccountsState.slice();
                 transactionsAllSlice.push(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction);
                 return transactionsAllSlice;
             }(state.transactionsAllAccounts),
-            transactionsMonthlyAllAccounts: function(transactionsMonthlyAllAccountsState) {
+            transactionsMonthlyAllAccounts: function (transactionsMonthlyAllAccountsState) {
                 let transactionsMonthlyAllSlice = transactionsMonthlyAllAccountsState.slice();
                 transactionsMonthlyAllSlice.push(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction);
                 return transactionsMonthlyAllSlice;
             }(state.transactionsMonthlyAllAccounts),
             transactionsMonthlyAllAccountsQuantity: state.transactionsMonthlyAllAccountsQuantity + 1,
-            transfersMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
+            transfersMonthlyAllAccountsAmount: function (amountState) {
+                if (action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
                     return amountState + action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.transfersMonthlyAllAccountsAmount),
-            transfersMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
+            transfersMonthlyAllAccountsQuantity: function (quantityState) {
+                if (action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 3) {
                     return quantityState + 1;
                 } else {
                     return quantityState;
                 }
             }(state.transfersMonthlyAllAccountsQuantity),
-            withdrawalsMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 1) {
+            withdrawalsMonthlyAllAccountsAmount: function (amountState) {
+                if (action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 1) {
                     return amountState + action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.withdrawalsMonthlyAllAccountsAmount),
-            withdrawalsMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 1) {
+            withdrawalsMonthlyAllAccountsQuantity: function (quantityState) {
+                if (action.setIndividualAccountsAddTransactionAddDataPayload.configuredTransaction.transactionTypeId === 1) {
                     return quantityState + 1;
                 } else {
                     return quantityState;
@@ -1899,197 +1905,197 @@ export const reducer = (state=initialState, action={}) => {
             }(state.withdrawalsMonthlyAllAccountsQuantity),
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_CLEAR) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_ADD_TRANSACTION_CLEAR) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsAddTransactionClearAccountId) {
+                    if (account.accountId === action.setIndividualAccountsAddTransactionClearAccountId) {
                         account.addTransactionAmount = "";
                         account.addTransactionTransactionTypeId = "";
                         account.addTransactionMemoNote = "";
                         account.addTransactionPersonalBudgetCategoryId = 0;
                         account.addTransactionPersonalBudgetCategoryItemId = 0;
-                    }  
-                    return account; 
+                    }
+                    return account;
                 })
-            return accounts;
-            }(state.individualAccounts) 
+                return accounts;
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
                                 transaction.edit = action.setIndividualAccountsEditTransactionPayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
                                 transaction.edit = action.setIndividualAccountsEditTransactionPayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_AMOUNT) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_AMOUNT) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionAmountAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionAmountAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionAmountTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionAmountTransactionId) {
                                 transaction.editTransactionAmount = Number(action.setIndividualAccountsEditTransactionAmountPayload)
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionAmountTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionAmountTransactionId) {
                                 transaction.editTransactionAmount = Number(action.setIndividualAccountsEditTransactionAmountPayload)
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_TRANSACTION_TYPE_ID) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_TRANSACTION_TYPE_ID) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionTransactionTypeIdAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionTransactionTypeIdAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionTypeIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionTypeIdTransactionId) {
                                 transaction.editTransactionTransactionTypeId = Number(action.setIndividualAccountsEditTransactionTransactionTypeIdPayload);
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionTypeIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionTypeIdTransactionId) {
                                 transaction.editTransactionTransactionTypeId = Number(action.setIndividualAccountsEditTransactionTransactionTypeIdPayload)
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_MEMO_NOTE) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_MEMO_NOTE) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionMemoNoteAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionMemoNoteAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionMemoNoteTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionMemoNoteTransactionId) {
                                 transaction.editTransactionMemoNote = action.setIndividualAccountsEditTransactionMemoNotePayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionMemoNoteTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionMemoNoteTransactionId) {
                                 transaction.editTransactionMemoNote = action.setIndividualAccountsEditTransactionMemoNotePayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdPayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryIdPayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdPayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsEditTransactionPersonalBudgetCategoryItemIdPayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
-    }   
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL) { 
+    }
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_CANCEL) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionCancelAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionCancelAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionCancelTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionCancelTransactionId) {
                                 transaction.edit = false;
                                 transaction.editTransactionAmount = 0;
                                 transaction.editTransactionTransactionTypeId = 0;
@@ -2102,7 +2108,7 @@ export const reducer = (state=initialState, action={}) => {
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionCancelTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionCancelTransactionId) {
                                 transaction.edit = false;
                                 transaction.editTransactionAmount = 0;
                                 transaction.editTransactionTransactionTypeId = 0;
@@ -2114,75 +2120,75 @@ export const reducer = (state=initialState, action={}) => {
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_DISPLAY) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionDeleteDisplayAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionDeleteDisplayAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteDisplayTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteDisplayTransactionId) {
                                 transaction.editTransactionDeleteDisplay = action.setIndividualAccountsEditTransactionDeleteDisplayPayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteDisplayTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionDeleteDisplayTransactionId) {
                                 transaction.editTransactionDeleteDisplay = action.setIndividualAccountsEditTransactionDeleteDisplayPayload
                             }
                             return transaction;
                         })
-                    }  
-                    return account; 
+                    }
+                    return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_ERROR) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_ERROR) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionErrorAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionErrorAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionErrorTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionErrorTransactionId) {
                                 transaction.editTransactionError = action.setIndividualAccountsEditTransactionErrorPayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionErrorTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionErrorTransactionId) {
                                 transaction.editTransactionError = action.setIndividualAccountsEditTransactionErrorPayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DATA) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DATA) {
         const oldTransaction = JSON.parse(JSON.stringify(action.setIndividualAccountsEditTransactionDataTransaction));
         return {
             ...state,
-            accounts: function(accountsState) {
+            accounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId ) {
+                    if (account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId) {
                         account.currentBalance = action.setIndividualAccountsEditTransactionDataPayload.configuredAccount.currentBalance
                     }
                     return account;
@@ -2191,20 +2197,20 @@ export const reducer = (state=initialState, action={}) => {
             }(state.accounts),
             accountSummary: {
                 ...state.accountSummary,
-                accounts: function(accountsState) {
+                accounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId ) {
+                        if (account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId) {
                             account.currentBalance = action.setIndividualAccountsEditTransactionDataPayload.configuredAccount.currentBalance
                         }
                         return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
-                filteredAccounts: function(accountsState) {
+                filteredAccounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId ) {
+                        if (account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId) {
                             account.currentBalance = action.setIndividualAccountsEditTransactionDataPayload.configuredAccount.currentBalance
                         }
                         return account;
@@ -2212,43 +2218,43 @@ export const reducer = (state=initialState, action={}) => {
                     return accounts;
                 }(state.accountSummary.accounts)
             },
-            depositsMonthlyAllAccountsAmount: function(state) {
-                
+            depositsMonthlyAllAccountsAmount: function (state) {
+
                 //new type is not deposit and old type was deposit, subtract old amount
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsAmount - oldTransaction.amount;
                 }
 
                 // if new type is same as old, and old type was 2, still subtract old amount but then add updated amount
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                 }
 
                 return state.depositsMonthlyAllAccountsAmount;
-                
+
             }(state),
-            depositsMonthlyAllAccountsQuantity: function(state) {
-              
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
+            depositsMonthlyAllAccountsQuantity: function (state) {
+
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsQuantity - 1;
                 }
 
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2  && oldTransaction.transactionTypeId === 2) {
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsQuantity;
                 }
 
                 return state.depositsMonthlyAllAccountsQuantity;
             }(state),
-            individualAccounts: function(individualAccountsState) {
+            individualAccounts: function (individualAccountsState) {
                 let individualAccounts = individualAccountsState.slice();
-                
+
                 individualAccounts = individualAccounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionDataAccount.accountId) {
+
                         const transactionsSlice = account.transactions.slice();
-                        
+
                         const updatedTransactions = transactionsSlice.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransaction.transactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransaction.transactionId) {
                                 transaction.amount = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                                 transaction.transactionTypeId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId;
                                 transaction.memoNote = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.memoNote;
@@ -2259,9 +2265,9 @@ export const reducer = (state=initialState, action={}) => {
                         })
                         //console.log("updated transactions", updatedTransactions)
                         const transactionsMonthlySlice = account.transactionsMonthly.slice();
-                      
+
                         const updatedMonthlyTransactions = transactionsMonthlySlice.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransaction.transactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransaction.transactionId) {
                                 transaction.amount = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                                 transaction.transactionTypeId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId;
                                 transaction.memoNote = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.memoNote;
@@ -2272,16 +2278,16 @@ export const reducer = (state=initialState, action={}) => {
                         })
 
                         const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, updatedTransactions);
-                        
+
 
                         account.currentBalance = action.setIndividualAccountsEditTransactionDataPayload.configuredAccount.currentBalance;
                         account.currentPage = 0;
-                        
-                        if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
+
+                        if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
                             account.depositsMonthlyAmount = account.depositsMonthlyAmount - oldTransaction.amount;
                             account.depositsMonthlyQuantity -= 1;
                         }
-                        if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
+                        if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
                             account.depositsMonthlyAmount = account.depositsMonthlyAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                         }
 
@@ -2297,32 +2303,32 @@ export const reducer = (state=initialState, action={}) => {
                         account.transactions = updatedTransactions;
                         account.transactionsMonthly = updatedMonthlyTransactions;
 
-                        if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3 && oldTransaction.transactionTypeId === 3) {
+                        if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3 && oldTransaction.transactionTypeId === 3) {
                             account.transfersMonthlyAmount = account.transfersMonthlyAmount - oldTransaction.amount;
                             account.transfersMonthlyQuantity -= 1;
                         }
-                        if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3 && oldTransaction.transactionTypeId === 3) {
+                        if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3 && oldTransaction.transactionTypeId === 3) {
                             account.transfersMonthlyAmount = account.transfersMonthlyAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                         }
-                        
-                    
-                        if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
+
+
+                        if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
                             account.withdrawalsMonthlyAmount = account.withdrawalsMonthlyAmount - oldTransaction.amount;
                             account.withdrawalsMonthlyQuantity -= 1;
                         }
-                        if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
+                        if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
                             account.withdrawalsMonthlyAmount = account.withdrawalsMonthlyAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                         }
 
                     }
-                    return account;   
+                    return account;
                 })
                 return individualAccounts;
             }(state.individualAccounts),
-            transactionsAllAccounts: function(transactionsAllAccountsState) {
+            transactionsAllAccounts: function (transactionsAllAccountsState) {
                 let transactionsAllSlice = transactionsAllAccountsState.slice();
                 transactionsAllSlice = transactionsAllSlice.map(transaction => {
-                    if(transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransaction.transactionId) {
+                    if (transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransaction.transactionId) {
                         transaction.amount = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                         transaction.transactionTypeId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId;
                         transaction.memoNote = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.memoNote;
@@ -2333,10 +2339,10 @@ export const reducer = (state=initialState, action={}) => {
                 })
                 return transactionsAllSlice;
             }(state.transactionsAllAccounts),
-            transactionsMonthlyAllAccounts: function(transactionsMonthlyAllAccountsState) {
+            transactionsMonthlyAllAccounts: function (transactionsMonthlyAllAccountsState) {
                 let transactionsMonthlyAllSlice = transactionsMonthlyAllAccountsState.slice();
                 transactionsMonthlyAllSlice = transactionsMonthlyAllSlice.map(transaction => {
-                    if(transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransaction.transactionId) {
+                    if (transaction.transactionId === action.setIndividualAccountsEditTransactionDataTransaction.transactionId) {
                         transaction.amount = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                         transaction.transactionTypeId = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId;
                         transaction.memoNote = action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.memoNote;
@@ -2347,61 +2353,61 @@ export const reducer = (state=initialState, action={}) => {
                 })
                 return transactionsMonthlyAllSlice;
             }(state.transactionsMonthlyAllAccounts),
-            transfersMonthlyAllAccountsAmount: function(state) {
-                
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3 && oldTransaction.transactionTypeId === 3) {
+            transfersMonthlyAllAccountsAmount: function (state) {
+
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3 && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsAmount - oldTransaction.amount;
                 }
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3 && oldTransaction.transactionTypeId === 3) {
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3 && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                 }
 
                 return state.transfersMonthlyAllAccountsAmount;
 
             }(state),
-            transfersMonthlyAllAccountsQuantity: function(state) {
-              
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3  && oldTransaction.transactionTypeId === 3) {
+            transfersMonthlyAllAccountsQuantity: function (state) {
+
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3 && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsQuantity - 1;
                 }
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3  && oldTransaction.transactionTypeId === 3) {
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3 && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsQuantity;
                 }
 
                 return state.transfersMonthlyAllAccountsQuantity;
 
             }(state),
-            withdrawalsMonthlyAllAccountsAmount: function(state) {
-                
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
+            withdrawalsMonthlyAllAccountsAmount: function (state) {
+
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
                     return state.withdrawalsMonthlyAllAccountsAmount - oldTransaction.amount;
                 }
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
-                    console.log("state amount,- old transaction amount , + action amount, ",state.withdrawalsMonthlyAllAccountsAmount, oldTransaction.amount, action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount)
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
+                    console.log("state amount,- old transaction amount , + action amount, ", state.withdrawalsMonthlyAllAccountsAmount, oldTransaction.amount, action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount)
                     return state.withdrawalsMonthlyAllAccountsAmount - oldTransaction.amount + action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.amount;
                 }
                 return state.withdrawalsMonthlyAllAccountsAmount;
             }(state),
-            withdrawalsMonthlyAllAccountsQuantity: function(state) {
+            withdrawalsMonthlyAllAccountsQuantity: function (state) {
 
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
                     return state.withdrawalsMonthlyAllAccountsQuantity - 1;
                 }
 
-                if(action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
+                if (action.setIndividualAccountsEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
                     return state.withdrawalsMonthlyAllAccountsQuantity;
                 }
                 return state.withdrawalsMonthlyAllAccountsQuantity;
             }(state),
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION_DELETE_CONFIRMATION) {
         return {
             ...state,
-            accounts: function(accountsState) {
+            accounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId ) {
+                    if (account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId) {
                         account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                     }
                     return account;
@@ -2410,20 +2416,20 @@ export const reducer = (state=initialState, action={}) => {
             }(state.accounts),
             accountSummary: {
                 ...state.accountSummary,
-                accounts: function(accountsState) {
+                accounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId ) {
+                        if (account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId) {
                             account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                         }
                         return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
-                filteredAccounts: function(accountsState) {
+                filteredAccounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId ) {
+                        if (account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId) {
                             account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                         }
                         return account;
@@ -2431,26 +2437,26 @@ export const reducer = (state=initialState, action={}) => {
                     return accounts;
                 }(state.accountSummary.accounts)
             },
-            depositsMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
+            depositsMonthlyAllAccountsAmount: function (amountState) {
+                if (action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
                     return amountState - action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.depositsMonthlyAllAccountsAmount),
-            depositsMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
+            depositsMonthlyAllAccountsQuantity: function (quantityState) {
+                if (action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
                     return quantityState - 1;
                 } else {
                     return quantityState;
                 }
             }(state.depositsMonthlyAllAccountsQuantity),
-            individualAccounts: function(individualAccountsState) {
+            individualAccounts: function (individualAccountsState) {
                 let individualAccounts = individualAccountsState.slice();
-                
+
                 individualAccounts = individualAccounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsEditTransactionDeleteConfirmationAccount.accountId) {
+
                         let transactionsSlice = account.transactions.slice();
                         transactionsSlice = transactionsSlice.filter(transaction => {
                             console.log(action.setIndividualAccountsEditTransactionDeleteConfirmationTransaction)
@@ -2458,18 +2464,18 @@ export const reducer = (state=initialState, action={}) => {
                             return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationTransaction.transactionId)
                         })
                         console.log("transactionSlice in delete confirmation", transactionsSlice)
-                        
+
                         let transactionsMonthlySlice = account.transactionsMonthly.slice();
                         transactionsMonthlySlice = transactionsMonthlySlice.filter(transaction => {
                             return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationTransaction.transactionId)
                         })
 
                         const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, transactionsSlice);
-                        
+
 
                         account.currentBalance = action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance;
                         account.currentPage = 0;
-                        if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
+                        if (action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
                             account.depositsMonthlyAmount -= action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount;
                             account.depositsMonthlyQuantity -= 1;
                         }
@@ -2485,27 +2491,27 @@ export const reducer = (state=initialState, action={}) => {
                         account.transactions = transactionsSlice;
                         account.transactionsMonthly = transactionsMonthlySlice;
                         account.transactionsMonthlyQuantity -= 1;
-                        if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
+                        if (action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
                             account.transfersMonthlyAmount -= action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount;
                             account.transfersMonthlyQuantity -= 1;
                         }
-                        if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
+                        if (action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
                             account.withdrawalsMonthlyAmount -= action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount;
                             account.withdrawalsMonthlyQuantity -= 1;
                         }
-                    }   
+                    }
                     return account;
                 })
                 return individualAccounts;
             }(state.individualAccounts),
-            transactionsAllAccounts: function(transactionsAllAccountsState) {
+            transactionsAllAccounts: function (transactionsAllAccountsState) {
                 let transactionsAllSlice = transactionsAllAccountsState.slice();
                 transactionsAllSlice = transactionsAllSlice.filter(transaction => {
                     return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationTransaction.transactionId)
                 });
                 return transactionsAllSlice;
             }(state.transactionsAllAccounts),
-            transactionsMonthlyAllAccounts: function(transactionsMonthlyAllAccountsState) {
+            transactionsMonthlyAllAccounts: function (transactionsMonthlyAllAccountsState) {
                 let transactionsMonthlyAllSlice = transactionsMonthlyAllAccountsState.slice();
                 transactionsMonthlyAllSlice = transactionsMonthlyAllSlice.filter(transaction => {
                     return (transaction.transactionId !== action.setIndividualAccountsEditTransactionDeleteConfirmationTransaction.transactionId)
@@ -2513,29 +2519,29 @@ export const reducer = (state=initialState, action={}) => {
                 return transactionsMonthlyAllSlice;
             }(state.transactionsMonthlyAllAccounts),
             transactionsMonthlyAllAccountsQuantity: state.transactionsMonthlyAllAccountsQuantity - 1,
-            transfersMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
+            transfersMonthlyAllAccountsAmount: function (amountState) {
+                if (action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
                     return amountState - action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.transfersMonthlyAllAccountsAmount),
-            transfersMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
+            transfersMonthlyAllAccountsQuantity: function (quantityState) {
+                if (action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
                     return quantityState - 1;
                 } else {
                     return quantityState;
                 }
             }(state.transfersMonthlyAllAccountsQuantity),
-            withdrawalsMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
+            withdrawalsMonthlyAllAccountsAmount: function (amountState) {
+                if (action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
                     return amountState - action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.withdrawalsMonthlyAllAccountsAmount),
-            withdrawalsMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
+            withdrawalsMonthlyAllAccountsQuantity: function (quantityState) {
+                if (action.setIndividualAccountsEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
                     return quantityState - 1;
                 } else {
                     return quantityState;
@@ -2544,178 +2550,178 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     //
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionId) {
                                 transaction.edit = action.setIndividualAccountsFilterEditTransactionPayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionId) {
                                 transaction.edit = action.setIndividualAccountsFilterEditTransactionPayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_AMOUNT) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_AMOUNT) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionAmountAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionAmountAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionAmountTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionAmountTransactionId) {
                                 transaction.editTransactionAmount = Number(action.setIndividualAccountsFilterEditTransactionAmountPayload)
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionAmountTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionAmountTransactionId) {
                                 transaction.editTransactionAmount = Number(action.setIndividualAccountsFilterEditTransactionAmountPayload)
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_TRANSACTION_TYPE_ID) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_TRANSACTION_TYPE_ID) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionTransactionTypeIdAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionTransactionTypeIdAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionTypeIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionTypeIdTransactionId) {
                                 transaction.editTransactionTransactionTypeId = Number(action.setIndividualAccountsFilterEditTransactionTransactionTypeIdPayload);
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionTypeIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionTransactionTypeIdTransactionId) {
                                 transaction.editTransactionTransactionTypeId = Number(action.setIndividualAccountsFilterEditTransactionTransactionTypeIdPayload)
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_MEMO_NOTE) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_MEMO_NOTE) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionMemoNoteAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionMemoNoteAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionMemoNoteTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionMemoNoteTransactionId) {
                                 transaction.editTransactionMemoNote = action.setIndividualAccountsFilterEditTransactionMemoNotePayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionMemoNoteTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionMemoNoteTransactionId) {
                                 transaction.editTransactionMemoNote = action.setIndividualAccountsFilterEditTransactionMemoNotePayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ID) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryId = action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdPayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryId = action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryIdPayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_PERSONAL_BUDGET_CATEGORY_ITEM_ID) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdPayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdTransactionId) {
                                 transaction.editTransactionPersonalBudgetCategoryItemId = action.setIndividualAccountsFilterEditTransactionPersonalBudgetCategoryItemIdPayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
-    }   
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_CANCEL) { 
+    }
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_CANCEL) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionCancelAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionCancelAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionCancelTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionCancelTransactionId) {
                                 transaction.edit = false;
                                 transaction.editTransactionAmount = 0;
                                 transaction.editTransactionTransactionTypeId = 0;
@@ -2728,7 +2734,7 @@ export const reducer = (state=initialState, action={}) => {
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionCancelTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionCancelTransactionId) {
                                 transaction.edit = false;
                                 transaction.editTransactionAmount = 0;
                                 transaction.editTransactionTransactionTypeId = 0;
@@ -2740,75 +2746,75 @@ export const reducer = (state=initialState, action={}) => {
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_DISPLAY) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteDisplayAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteDisplayAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDeleteDisplayTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDeleteDisplayTransactionId) {
                                 transaction.editTransactionDeleteDisplay = action.setIndividualAccountsFilterEditTransactionDeleteDisplayPayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDeleteDisplayTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDeleteDisplayTransactionId) {
                                 transaction.editTransactionDeleteDisplay = action.setIndividualAccountsFilterEditTransactionDeleteDisplayPayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_ERROR) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_ERROR) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionErrorAccountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionErrorAccountId) {
+
                         account.transactions = account.transactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionErrorTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionErrorTransactionId) {
                                 transaction.editTransactionError = action.setIndividualAccountsFilterEditTransactionErrorPayload
                             }
                             return transaction;
                         })
                         account.filteredTransactions = account.filteredTransactions.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionErrorTransactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionErrorTransactionId) {
                                 transaction.editTransactionError = action.setIndividualAccountsFilterEditTransactionErrorPayload
                             }
                             return transaction;
                         })
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DATA) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DATA) {
         const oldTransaction = JSON.parse(JSON.stringify(action.setIndividualAccountsFilterEditTransactionDataTransaction));
         return {
             ...state,
-            accounts: function(accountsState) {
+            accounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId ) {
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId) {
                         account.currentBalance = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredAccount.currentBalance
                     }
                     return account;
@@ -2817,20 +2823,20 @@ export const reducer = (state=initialState, action={}) => {
             }(state.accounts),
             accountSummary: {
                 ...state.accountSummary,
-                accounts: function(accountsState) {
+                accounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId ) {
+                        if (account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId) {
                             account.currentBalance = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredAccount.currentBalance
                         }
                         return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
-                filteredAccounts: function(accountsState) {
+                filteredAccounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId ) {
+                        if (account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId) {
                             account.currentBalance = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredAccount.currentBalance
                         }
                         return account;
@@ -2838,43 +2844,43 @@ export const reducer = (state=initialState, action={}) => {
                     return accounts;
                 }(state.accountSummary.accounts)
             },
-            depositsMonthlyAllAccountsAmount: function(state) {
-                
+            depositsMonthlyAllAccountsAmount: function (state) {
+
                 //new type is not deposit and old type was deposit, subtract old amount
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsAmount - oldTransaction.amount;
                 }
 
                 // if new type is same as old, and old type was 2, still subtract old amount but then add updated amount
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsAmount - oldTransaction.amount + action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount;
                 }
 
                 return state.depositsMonthlyAllAccountsAmount;
-                
+
             }(state),
-            depositsMonthlyAllAccountsQuantity: function(state) {
-              
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
+            depositsMonthlyAllAccountsQuantity: function (state) {
+
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsQuantity - 1;
                 }
 
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2  && oldTransaction.transactionTypeId === 2) {
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
                     return state.depositsMonthlyAllAccountsQuantity;
                 }
 
                 return state.depositsMonthlyAllAccountsQuantity;
             }(state),
-            individualAccounts: function(individualAccountsState) {
+            individualAccounts: function (individualAccountsState) {
                 let individualAccounts = individualAccountsState.slice();
-                
+
                 individualAccounts = individualAccounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionDataAccount.accountId) {
+
                         const transactionsSlice = account.transactions.slice();
-                        
+
                         const updatedTransactions = transactionsSlice.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDataTransaction.transactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDataTransaction.transactionId) {
                                 transaction.amount = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount;
                                 transaction.transactionTypeId = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId;
                                 transaction.memoNote = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.memoNote;
@@ -2885,9 +2891,9 @@ export const reducer = (state=initialState, action={}) => {
                         })
                         //console.log("updated transactions", updatedTransactions)
                         const transactionsMonthlySlice = account.transactionsMonthly.slice();
-                      
+
                         const updatedMonthlyTransactions = transactionsMonthlySlice.map(transaction => {
-                            if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDataTransaction.transactionId) {
+                            if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDataTransaction.transactionId) {
                                 transaction.amount = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount;
                                 transaction.transactionTypeId = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId;
                                 transaction.memoNote = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.memoNote;
@@ -2898,16 +2904,16 @@ export const reducer = (state=initialState, action={}) => {
                         })
 
                         const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, updatedTransactions);
-                        
+
 
                         account.currentBalance = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredAccount.currentBalance;
                         account.currentPage = 0;
-                        
-                        if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
+
+                        if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 2 && oldTransaction.transactionTypeId === 2) {
                             account.depositsMonthlyAmount = account.depositsMonthlyAmount - oldTransaction.amount;
                             account.depositsMonthlyQuantity -= 1;
                         }
-                        if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
+                        if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 2 && oldTransaction.transactionTypeId === 2) {
                             account.depositsMonthlyAmount = account.depositsMonthlyAmount - oldTransaction.amount + action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount;
                         }
 
@@ -2923,32 +2929,32 @@ export const reducer = (state=initialState, action={}) => {
                         account.transactions = updatedTransactions;
                         account.transactionsMonthly = updatedMonthlyTransactions;
 
-                        if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3 && oldTransaction.transactionTypeId === 3) {
+                        if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3 && oldTransaction.transactionTypeId === 3) {
                             account.transfersMonthlyAmount = account.transfersMonthlyAmount - oldTransaction.amount;
                             account.transfersMonthlyQuantity -= 1;
                         }
-                        if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3 && oldTransaction.transactionTypeId === 3) {
+                        if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3 && oldTransaction.transactionTypeId === 3) {
                             account.transfersMonthlyAmount = account.transfersMonthlyAmount - oldTransaction.amount + action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount;
                         }
-                        
-                    
-                        if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
+
+
+                        if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
                             account.withdrawalsMonthlyAmount = account.withdrawalsMonthlyAmount - oldTransaction.amount;
                             account.withdrawalsMonthlyQuantity -= 1;
                         }
-                        if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
+                        if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
                             account.withdrawalsMonthlyAmount = account.withdrawalsMonthlyAmount - oldTransaction.amount + action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount;
                         }
 
-                    }   
+                    }
                     return account;
                 })
                 return individualAccounts;
             }(state.individualAccounts),
-            transactionsAllAccounts: function(transactionsAllAccountsState) {
+            transactionsAllAccounts: function (transactionsAllAccountsState) {
                 let transactionsAllSlice = transactionsAllAccountsState.slice();
                 transactionsAllSlice = transactionsAllSlice.map(transaction => {
-                    if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDataTransaction.transactionId) {
+                    if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDataTransaction.transactionId) {
                         transaction.amount = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount;
                         transaction.transactionTypeId = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId;
                         transaction.memoNote = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.memoNote;
@@ -2959,10 +2965,10 @@ export const reducer = (state=initialState, action={}) => {
                 })
                 return transactionsAllSlice;
             }(state.transactionsAllAccounts),
-            transactionsMonthlyAllAccounts: function(transactionsMonthlyAllAccountsState) {
+            transactionsMonthlyAllAccounts: function (transactionsMonthlyAllAccountsState) {
                 let transactionsMonthlyAllSlice = transactionsMonthlyAllAccountsState.slice();
                 transactionsMonthlyAllSlice = transactionsMonthlyAllSlice.map(transaction => {
-                    if(transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDataTransaction.transactionId) {
+                    if (transaction.transactionId === action.setIndividualAccountsFilterEditTransactionDataTransaction.transactionId) {
                         transaction.amount = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount;
                         transaction.transactionTypeId = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId;
                         transaction.memoNote = action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.memoNote;
@@ -2973,61 +2979,61 @@ export const reducer = (state=initialState, action={}) => {
                 })
                 return transactionsMonthlyAllSlice;
             }(state.transactionsMonthlyAllAccounts),
-            transfersMonthlyAllAccountsAmount: function(state) {
-                
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3 && oldTransaction.transactionTypeId === 3) {
+            transfersMonthlyAllAccountsAmount: function (state) {
+
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3 && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsAmount - oldTransaction.amount;
                 }
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3 && oldTransaction.transactionTypeId === 3) {
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3 && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsAmount - oldTransaction.amount + action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount;
                 }
 
                 return state.transfersMonthlyAllAccountsAmount;
 
             }(state),
-            transfersMonthlyAllAccountsQuantity: function(state) {
-              
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3  && oldTransaction.transactionTypeId === 3) {
+            transfersMonthlyAllAccountsQuantity: function (state) {
+
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 3 && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsQuantity - 1;
                 }
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3  && oldTransaction.transactionTypeId === 3) {
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 3 && oldTransaction.transactionTypeId === 3) {
                     return state.transfersMonthlyAllAccountsQuantity;
                 }
 
                 return state.transfersMonthlyAllAccountsQuantity;
 
             }(state),
-            withdrawalsMonthlyAllAccountsAmount: function(state) {
-                
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
+            withdrawalsMonthlyAllAccountsAmount: function (state) {
+
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
                     return state.withdrawalsMonthlyAllAccountsAmount - oldTransaction.amount;
                 }
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
-                    console.log("state amount,- old transaction amount , + action amount, ",state.withdrawalsMonthlyAllAccountsAmount, oldTransaction.amount, action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount)
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
+                    console.log("state amount,- old transaction amount , + action amount, ", state.withdrawalsMonthlyAllAccountsAmount, oldTransaction.amount, action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount)
                     return state.withdrawalsMonthlyAllAccountsAmount - oldTransaction.amount + action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.amount;
                 }
                 return state.withdrawalsMonthlyAllAccountsAmount;
             }(state),
-            withdrawalsMonthlyAllAccountsQuantity: function(state) {
+            withdrawalsMonthlyAllAccountsQuantity: function (state) {
 
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId !== 1 && oldTransaction.transactionTypeId === 1) {
                     return state.withdrawalsMonthlyAllAccountsQuantity - 1;
                 }
 
-                if(action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
+                if (action.setIndividualAccountsFilterEditTransactionDataPayload.configuredTransaction.transactionTypeId === 1 && oldTransaction.transactionTypeId === 1) {
                     return state.withdrawalsMonthlyAllAccountsQuantity;
                 }
                 return state.withdrawalsMonthlyAllAccountsQuantity;
             }(state),
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION) { 
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_FILTER_EDIT_TRANSACTION_DELETE_CONFIRMATION) {
         return {
             ...state,
-            accounts: function(accountsState) {
+            accounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId ) {
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId) {
                         account.currentBalance = action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                     }
                     return account;
@@ -3036,20 +3042,20 @@ export const reducer = (state=initialState, action={}) => {
             }(state.accounts),
             accountSummary: {
                 ...state.accountSummary,
-                accounts: function(accountsState) {
+                accounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId ) {
+                        if (account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId) {
                             account.currentBalance = action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                         }
                         return account;
                     })
                     return accounts;
                 }(state.accountSummary.accounts),
-                filteredAccounts: function(accountsState) {
+                filteredAccounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.map(account => {
-                        if(account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId ) {
+                        if (account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId) {
                             account.currentBalance = action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance
                         }
                         return account;
@@ -3057,42 +3063,42 @@ export const reducer = (state=initialState, action={}) => {
                     return accounts;
                 }(state.accountSummary.accounts)
             },
-            depositsMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
+            depositsMonthlyAllAccountsAmount: function (amountState) {
+                if (action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
                     return amountState - action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.depositsMonthlyAllAccountsAmount),
-            depositsMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
+            depositsMonthlyAllAccountsQuantity: function (quantityState) {
+                if (action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
                     return quantityState - 1;
                 } else {
                     return quantityState;
                 }
             }(state.depositsMonthlyAllAccountsQuantity),
-            individualAccounts: function(individualAccountsState) {
+            individualAccounts: function (individualAccountsState) {
                 let individualAccounts = individualAccountsState.slice();
-                
+
                 individualAccounts = individualAccounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId) {
-                        
+                    if (account.accountId === action.setIndividualAccountsFilterEditTransactionDeleteConfirmationAccount.accountId) {
+
                         let transactionsSlice = account.transactions.slice();
                         transactionsSlice = transactionsSlice.filter(transaction => {
                             return (transaction.transactionId !== action.setIndividualAccountsFilterEditTransactionDeleteConfirmationTransaction.transactionId)
                         })
-                        
+
                         let transactionsMonthlySlice = account.transactionsMonthly.slice();
                         transactionsMonthlySlice = transactionsMonthlySlice.filter(transaction => {
                             return (transaction.transactionId !== action.setIndividualAccountsFilterEditTransactionDeleteConfirmationTransaction.transactionId)
                         })
 
                         const individualAccountTransactionPagesRegularOrFilter = configurePagesInReducer(3, transactionsSlice);
-                        
+
 
                         account.currentBalance = action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredAccount.currentBalance;
                         account.currentPage = 0;
-                        if(action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
+                        if (action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 2) {
                             account.depositsMonthlyAmount -= action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.amount;
                             account.depositsMonthlyQuantity -= 1;
                         }
@@ -3108,27 +3114,27 @@ export const reducer = (state=initialState, action={}) => {
                         account.transactions = transactionsSlice;
                         account.transactionsMonthly = transactionsMonthlySlice;
                         account.transactionsMonthlyQuantity -= 1;
-                        if(action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
+                        if (action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
                             account.transfersMonthlyAmount -= action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.amount;
                             account.transfersMonthlyQuantity -= 1;
                         }
-                        if(action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
+                        if (action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
                             account.withdrawalsMonthlyAmount -= action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.amount;
                             account.withdrawalsMonthlyQuantity -= 1;
                         }
-                    } 
-                    return account;  
+                    }
+                    return account;
                 })
                 return individualAccounts;
             }(state.individualAccounts),
-            transactionsAllAccounts: function(transactionsAllAccountsState) {
+            transactionsAllAccounts: function (transactionsAllAccountsState) {
                 let transactionsAllSlice = transactionsAllAccountsState.slice();
                 transactionsAllSlice = transactionsAllSlice.filter(transaction => {
                     return (transaction.transactionId !== action.setIndividualAccountsFilterEditTransactionDeleteConfirmationTransaction.transactionId)
                 });
                 return transactionsAllSlice;
             }(state.transactionsAllAccounts),
-            transactionsMonthlyAllAccounts: function(transactionsMonthlyAllAccountsState) {
+            transactionsMonthlyAllAccounts: function (transactionsMonthlyAllAccountsState) {
                 let transactionsMonthlyAllSlice = transactionsMonthlyAllAccountsState.slice();
                 transactionsMonthlyAllSlice = transactionsMonthlyAllSlice.filter(transaction => {
                     return (transaction.transactionId !== action.setIndividualAccountsFilterEditTransactionDeleteConfirmationTransaction.transactionId)
@@ -3136,29 +3142,29 @@ export const reducer = (state=initialState, action={}) => {
                 return transactionsMonthlyAllSlice;
             }(state.transactionsMonthlyAllAccounts),
             transactionsMonthlyAllAccountsQuantity: state.transactionsMonthlyAllAccountsQuantity - 1,
-            transfersMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
+            transfersMonthlyAllAccountsAmount: function (amountState) {
+                if (action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
                     return amountState - action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.transfersMonthlyAllAccountsAmount),
-            transfersMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
+            transfersMonthlyAllAccountsQuantity: function (quantityState) {
+                if (action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 3) {
                     return quantityState - 1;
                 } else {
                     return quantityState;
                 }
             }(state.transfersMonthlyAllAccountsQuantity),
-            withdrawalsMonthlyAllAccountsAmount: function(amountState) {
-                if(action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
+            withdrawalsMonthlyAllAccountsAmount: function (amountState) {
+                if (action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
                     return amountState - action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.amount
                 } else {
                     return amountState;
                 }
             }(state.withdrawalsMonthlyAllAccountsAmount),
-            withdrawalsMonthlyAllAccountsQuantity: function(quantityState) {
-                if(action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
+            withdrawalsMonthlyAllAccountsQuantity: function (quantityState) {
+                if (action.setIndividualAccountsFilterEditTransactionDeleteConfirmationPayload.configuredTransaction.transactionTypeId === 1) {
                     return quantityState - 1;
                 } else {
                     return quantityState;
@@ -3167,37 +3173,37 @@ export const reducer = (state=initialState, action={}) => {
         }
     }
     //here... add deletestate to all applicable reducers, backend responses, , do just for delete first and same for addAccount... account name, balance, account type, low alert balance, owner
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_DISPLAY) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_DISPLAY) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsDeleteAccountDisplayAccountId) {
+                    if (account.accountId === action.setIndividualAccountsDeleteAccountDisplayAccountId) {
                         account.deleteAccountDisplay = action.setIndividualAccountsDeleteAccountDisplayPayload
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_TEXT_VALIDATE) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_TEXT_VALIDATE) {
         return {
             ...state,
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.map(account => {
-                    if(account.accountId === action.setIndividualAccountsDeleteAccountTextValidateAccountId) {
+                    if (account.accountId === action.setIndividualAccountsDeleteAccountTextValidateAccountId) {
                         account.deleteAccountTextValidate = action.setIndividualAccountsDeleteAccountTextValidatePayload
-                    }   
+                    }
                     return account;
                 })
                 return accounts;
-            }(state.individualAccounts) 
+            }(state.individualAccounts)
         }
     }
-    if(action.type === SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION) {
+    if (action.type === SET_INDIVIDUAL_ACCOUNTS_DELETE_ACCOUNT_CONFIRMATION) {
 
 
         let accountsArray = state.accounts.filter(account => {
@@ -3208,7 +3214,7 @@ export const reducer = (state=initialState, action={}) => {
 
         return {
             ...state,
-            accounts: function(accountsState) {
+            accounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.filter(account => {
                     return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
@@ -3217,7 +3223,7 @@ export const reducer = (state=initialState, action={}) => {
             }(state.accounts),
             accountSummary: {
                 ...state.accountSummary,
-                accounts: function(accountsState) {
+                accounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.filter(account => {
                         return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
@@ -3225,7 +3231,7 @@ export const reducer = (state=initialState, action={}) => {
                     return accounts;
                 }(state.accountSummary.accounts),
                 currentPage: 0,
-                filteredAccounts: function(accountsState) {
+                filteredAccounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts = accounts.filter(account => {
                         return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
@@ -3239,46 +3245,46 @@ export const reducer = (state=initialState, action={}) => {
                 search: "",
                 totalPages: summaryPagesRegularOrFilter.totalPages
             },
-            individualAccounts: function(accountsState) {
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts = accounts.filter(account => {
                     return (account.accountId !== action.setIndividualAccountsDeleteAccountConfirmationAccountId);
                 })
                 return accounts;
             }(state.individualAccounts)
-        } 
+        }
     }
-    if(action.type === SET_ADD_ACCOUNT_ACCOUNT_NAME) {
+    if (action.type === SET_ADD_ACCOUNT_ACCOUNT_NAME) {
         return {
             ...state,
             addAccountAccountName: action.setAddAccountAccountNamePayload
         }
     }
-    if(action.type === SET_ADD_ACCOUNT_ACCOUNT_TYPE_ID) {
+    if (action.type === SET_ADD_ACCOUNT_ACCOUNT_TYPE_ID) {
         return {
             ...state,
             addAccountAccountTypeId: Number(action.setAddAccountAccountTypeIdPayload)
         }
     }
-    if(action.type === SET_ADD_ACCOUNT_CURRENT_BALANCE) {
+    if (action.type === SET_ADD_ACCOUNT_CURRENT_BALANCE) {
         return {
             ...state,
             addAccountCurrentBalance: Number(action.setAddAccountCurrentBalancePayload)
         }
     }
-    if(action.type === SET_ADD_ACCOUNT_LOW_ALERT_BALANCE) {
+    if (action.type === SET_ADD_ACCOUNT_LOW_ALERT_BALANCE) {
         return {
             ...state,
             addAccountLowAlertBalance: Number(action.setAddAccountLowAlertBalancePayload)
         }
     }
-    if(action.type === SET_ADD_ACCOUNT_ERROR) {
+    if (action.type === SET_ADD_ACCOUNT_ERROR) {
         return {
             ...state,
             addAccountError: action.setAddAccountErrorPayload
         }
     }
-    if(action.type === SET_ADD_ACCOUNT_CONFIRMATION) {
+    if (action.type === SET_ADD_ACCOUNT_CONFIRMATION) {
 
         const accountObject = {
             accountId: action.setAddAccountConfirmationPayload.accountId,
@@ -3300,20 +3306,20 @@ export const reducer = (state=initialState, action={}) => {
             addAccountAccountTypeId: 0,
             addAccountCurrentBalance: 0,
             addAccountLowAlertBalance: 0,
-            accounts: function(accountsState) {
+            accounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 accounts.push(accountObject);
                 return accounts;
             }(state.accounts),
             accountSummary: {
                 ...state.accountSummary,
-                accounts: function(accountsState) {
+                accounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts.push(accountObject);
                     return accounts;
                 }(state.accountSummary.accounts),
                 currentPage: 0,
-                filteredAccounts: function(accountsState) {
+                filteredAccounts: function (accountsState) {
                     let accounts = accountsState.slice();
                     accounts.push(accountObject);
                     return accounts;
@@ -3325,8 +3331,8 @@ export const reducer = (state=initialState, action={}) => {
                 search: "",
                 totalPages: summaryPagesRegularOrFilter.totalPages
             },
-            
-            individualAccounts: function(accountsState) {
+
+            individualAccounts: function (accountsState) {
                 let accounts = accountsState.slice();
                 let individualAccount = {
                     accountId: accountObject.accountId,
@@ -3337,10 +3343,10 @@ export const reducer = (state=initialState, action={}) => {
                     addTransactionTransactionTypeId: 0,
                     addTransactionTransactionTypeIdError: false,
                     addTransactionMemoNote: "",
-                    addTransactionPersonalBudgetCategoryItemId: 0, 
+                    addTransactionPersonalBudgetCategoryItemId: 0,
                     addTransactionPersonalBudgetCategoryId: 0,
                     currentBalance: accountObject.currentBalance,
-                    deleteAccountDisplay: false, 
+                    deleteAccountDisplay: false,
                     deleteAccountTextValidate: "",
                     lowAlertBalance: accountObject.lowAlertBalance,
                     userId: accountObject.userId,
@@ -3391,12 +3397,12 @@ export const reducer = (state=initialState, action={}) => {
             }(state.individualAccounts),
         }
     }
-    if(action.type === SET_DASHBOARD_DISPLAY_BUDGET_CARD) {
+    if (action.type === SET_DASHBOARD_DISPLAY_BUDGET_CARD) {
         const value = function convertPayload() {
-            if(action.setDashboardDisplayBudgetCardPayload === "toggle") {
+            if (action.setDashboardDisplayBudgetCardPayload === "toggle") {
                 return !state.dashboardDisplayBudgetCard
             }
-            if(action.setDashboardDisplayBudgetCardPayload === "false") {
+            if (action.setDashboardDisplayBudgetCardPayload === "false") {
                 return false;
             }
         }();
@@ -3408,7 +3414,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_NAME) {
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_NAME) {
         return {
             ...state,
             dashboard: {
@@ -3417,7 +3423,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT) {
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_BUDGET_AMOUNT) {
         return {
             ...state,
             dashboard: {
@@ -3426,7 +3432,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR) {
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_ERROR) {
         return {
             ...state,
             dashboard: {
@@ -3435,7 +3441,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_SELECTED_CATEGORY) {
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_SELECTED_CATEGORY) {
         return {
             ...state,
             dashboard: {
@@ -3444,7 +3450,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_ITEM_NAME) {
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_ITEM_NAME) {
         return {
             ...state,
             dashboard: {
@@ -3453,7 +3459,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR) {
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_ERROR) {
         return {
             ...state,
             dashboard: {
@@ -3462,7 +3468,7 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_DATA) {
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_DATA) {
         return {
             ...state,
             dashboard: {
@@ -3472,7 +3478,7 @@ export const reducer = (state=initialState, action={}) => {
                 createCategoryError: false,
                 createItemError: false
             },
-            categoriesAndItems: function(categoriesAndItemsState) {
+            categoriesAndItems: function (categoriesAndItemsState) {
                 const categoriesAndItems = categoriesAndItemsState.slice();
                 const categoryObject = {
                     personalBudgetCategoryId: action.setDashboardBudgetCardCreateCategoryDataPayload.personalBudgetCategoryId,
@@ -3487,7 +3493,7 @@ export const reducer = (state=initialState, action={}) => {
             }(state.categoriesAndItems)
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA) {
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA) {
         return {
             ...state,
             dashboard: {
@@ -3495,11 +3501,11 @@ export const reducer = (state=initialState, action={}) => {
                 itemName: "",
                 selectedCategory: 0,
             },
-            categoriesAndItems: function(categoriesAndItemsState) {
+            categoriesAndItems: function (categoriesAndItemsState) {
                 let categoriesAndItems = categoriesAndItemsState.slice();
 
                 categoriesAndItems = categoriesAndItems.map(category => {
-                    if(category.personalBudgetCategoryId === action.setDashboardBudgetCardCreateItemDataPayload.personalBudgetCategoryId) {
+                    if (category.personalBudgetCategoryId === action.setDashboardBudgetCardCreateItemDataPayload.personalBudgetCategoryId) {
                         let items = category.items.slice();
                         const itemObject = {
                             personalBudgetCategoryItemId: action.setDashboardBudgetCardCreateItemDataPayload.personalBudgetCategoryItemId,
@@ -3518,7 +3524,7 @@ export const reducer = (state=initialState, action={}) => {
             }(state.categoriesAndItems)
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE) {
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE) {
         return {
             ...state,
             dashboard: {
@@ -3527,13 +3533,45 @@ export const reducer = (state=initialState, action={}) => {
             }
         }
     }
-    if(action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA) {
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA) {
         return {
-            ...state, 
-            categoriesAndItems: function(categoriesAndItemsState) {
+            ...state,
+            categoriesAndItems: function (categoriesAndItemsState) {
                 let categoriesAndItems = categoriesAndItemsState.slice();
                 categoriesAndItems = categoriesAndItems.filter(category => {
                     return category.personalBudgetCategoryId !== action.setDashboardBudgetCardCategoryToDeleteDataPayload
+                })
+                return categoriesAndItems;
+            }(state.categoriesAndItems)
+        }
+    }
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_ITEM_TO_DELETE) {
+        return {
+            ...state,
+            dashboard: {
+                ...state.dashboard,
+                categoryItemToDeleteData: {
+                    personalBudgetCategoryId: action.setDashboardBudgetCardCategoryItemToDeletePayload.personalBudgetCategoryId,
+                    personalBudgetCategoryItemId: action.setDashboardBudgetCardCategoryItemToDeletePayload.personalBudgetCategoryItemId
+                }
+            }
+        }
+    }
+    if (action.type === SET_DASHBOARD_BUDGET_CARD_CATEGORY_ITEM_TO_DELETE_DATA) {
+        return {
+            ...state,
+            categoriesAndItems: function (categoriesAndItemsState) {
+                let categoriesAndItems = categoriesAndItemsState.slice();
+                categoriesAndItems = categoriesAndItems.filter(category => {
+                    return category.personalBudgetCategoryId !== action.setDashboardBudgetCardCategoryToDeleteDataPayload
+                })
+                categoriesAndItems = categoriesAndItems.map(category => {
+                    if (category.personalBudgetCategoryId === action.setDashboardBudgetCardCategoryItemToDeleteDataPayload.personalBudgetCategoryId) {
+                        let items = category.items.slice()
+                        items = items.filter(item => item.personalBudgetCategoryItemId === action.setDashboardBudgetCardCategoryItemToDeleteDataPayload.personalBudgetCategoryItemId)
+                        category.items = items
+                    }
+                    return category
                 })
                 return categoriesAndItems;
             }(state.categoriesAndItems)
@@ -3553,10 +3591,10 @@ if(action.type === SET_INDIVIDUAL_ACCOUNTS_AMOUNT) {
             accounts.map(account => {
                 if(account.accountId === action.setIndividualAccounts) {
                     account.
-                }   
+                }
             })
                 return accounts;
-        }(state.individualAccounts) 
+        }(state.individualAccounts)
     }
 }
 
@@ -3567,7 +3605,7 @@ if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION) {
             const accounts = accountsState.slice();
             accounts.map(account => {
                 if(account.accountId === action.setIndividualAccountsEditTransactionAccountId) {
-                    
+
                     account.transactions.map(transaction => {
                         if(transaction.transactionId === action.setIndividualAccountsEditTransactionTransactionId) {
                             transaction.edit = action.setIndividualAccountsEditTransactionPayload
@@ -3578,10 +3616,10 @@ if(action.type === SET_INDIVIDUAL_ACCOUNTS_EDIT_TRANSACTION) {
                             transaction.edit = action.setIndividualAccountsEditTransactionPayload
                         }
                     })
-                }   
+                }
             })
             return accounts;
-        }(state.individualAccounts) 
+        }(state.individualAccounts)
     }
 }
 
@@ -3606,6 +3644,6 @@ if(Date.parse(transaction.date) > date31DaysPrior) {
                     transferQuantity += 1;
                     transferAmount += transaction.amount;
                 }
-                
+
             }
 */
