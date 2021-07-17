@@ -13,7 +13,9 @@ import {
     setDashboardBudgetCardCreateCategoryData,
     setDashboardBudgetCardCreateItemData,
     setDashboardBudgetCardCategoryToDelete,
-    setDashboardBudgetCardCategoryToDeleteData
+    setDashboardBudgetCardCategoryToDeleteData,
+    setDashboardBudgetCardCategoryItemToDelete,
+    setDashboardBudgetCardCategoryItemToDeleteData
 } from "../services/actions.js";
 
 const mapStateToProps = (state) => {
@@ -34,31 +36,35 @@ const mapDispatchToProps = (dispatch) => {
         setDashboardBudgetCardCreateCategoryData: (payload) => dispatch(setDashboardBudgetCardCreateCategoryData(payload)),
         setDashboardBudgetCardCreateItemData: (payload) => dispatch(setDashboardBudgetCardCreateItemData(payload)),
         setDashboardBudgetCardCategoryToDelete: (payload) => dispatch(setDashboardBudgetCardCategoryToDelete(payload)),
-        setDashboardBudgetCardCategoryToDeleteData: (payload) => dispatch(setDashboardBudgetCardCategoryToDeleteData(payload))
+        setDashboardBudgetCardCategoryToDeleteData: (payload) => dispatch(setDashboardBudgetCardCategoryToDeleteData(payload)),
+        setDashboardBudgetCardCategoryItemToDelete: (payload) => dispatch(setDashboardBudgetCardCategoryItemToDelete(payload)),
+        setDashboardBudgetCardCategoryItemToDeleteData: (payload) => dispatch(setDashboardBudgetCardCategoryItemToDelete(payload))
     }
 }
 
 function Dashboard(props) {
 
-   const {
-       dashboard,
-       setDashboardDisplayBudgetCard,
-       categoriesAndItems,
-       setDashboardBudgetCardCategoryName,
-       setDashboardBudgetCardBudgetAmount,
-       setDashboardBudgetCardCreateCategoryError,
-       setDashboardBudgetCardSelectedCategory,
-       setDashboardBudgetCardItemName,
-       setDashboardBudgetCardCreateItemError,
-       setDashboardBudgetCardCreateCategoryData,
-       setDashboardBudgetCardCreateItemData,
-       setDashboardBudgetCardCategoryToDelete,
-       setDashboardBudgetCardCategoryToDeleteData
-   } = props;
+    const {
+        dashboard,
+        setDashboardDisplayBudgetCard,
+        categoriesAndItems,
+        setDashboardBudgetCardCategoryName,
+        setDashboardBudgetCardBudgetAmount,
+        setDashboardBudgetCardCreateCategoryError,
+        setDashboardBudgetCardSelectedCategory,
+        setDashboardBudgetCardItemName,
+        setDashboardBudgetCardCreateItemError,
+        setDashboardBudgetCardCreateCategoryData,
+        setDashboardBudgetCardCreateItemData,
+        setDashboardBudgetCardCategoryToDelete,
+        setDashboardBudgetCardCategoryToDeleteData,
+        setDashboardBudgetCardCategoryItemToDelete,
+        setDashboardBudgetCardCategoryItemToDeleteData
+    } = props;
 
     return (
         <div className="flex flex-column w-100 items-center bg-custom-darker-gray">
-            <div 
+            <div
                 className="
                     w-100 flex justify-center items-center bg-custom-lighter-gray money-color border-thin-gray 
                     h2 f4 pt1
@@ -67,43 +73,46 @@ function Dashboard(props) {
                     h3-m f3-m
                     h3-l f3-l
                     "
-                >Dashboard
+            >Dashboard
             </div>
             <div className="w-100 flex justify-start">
                 <CreateBudgetButton setDashboardDisplayBudgetCard={setDashboardDisplayBudgetCard} />
             </div>
             {
-                (dashboard.displayBudgetCard === true) ? 
-                <div className="w-100 pl3 mt3">
-                    <CreateBudgetCard 
-                    categoriesAndItems={categoriesAndItems}
-                    setDashboardDisplayBudgetCard={setDashboardDisplayBudgetCard} 
-                    displayBudgetCard={dashboard.displayBudgetCard}
-                    categoryName={dashboard.categoryName}
-                    budgetAmount={dashboard.budgetAmount} 
-                    createCategoryError={dashboard.createCategoryError}
-                    setDashboardBudgetCardCategoryName={setDashboardBudgetCardCategoryName}
-                    setDashboardBudgetCardBudgetAmount={setDashboardBudgetCardBudgetAmount}
-                    setDashboardBudgetCardCreateCategoryError={setDashboardBudgetCardCreateCategoryError}
-                    selectedCategory={dashboard.selectedCategory}
-                    itemName={dashboard.itemName}
-                    createItemError={dashboard.createItemError}
-                    setDashboardBudgetCardSelectedCategory={setDashboardBudgetCardSelectedCategory}
-                    setDashboardBudgetCardItemName={setDashboardBudgetCardItemName}
-                    setDashboardBudgetCardCreateItemError={setDashboardBudgetCardCreateItemError}
-                    setDashboardBudgetCardCreateCategoryData={setDashboardBudgetCardCreateCategoryData}
-                    setDashboardBudgetCardCreateItemData={setDashboardBudgetCardCreateItemData}
-                    setDashboardBudgetCardCategoryToDelete={setDashboardBudgetCardCategoryToDelete}
-                    categoryToDelete={dashboard.categoryToDelete}
-                    setDashboardBudgetCardCategoryToDeleteData={setDashboardBudgetCardCategoryToDeleteData}
-                    user={props.user}
-                    />
-                </div>
-                : ""
+                (dashboard.displayBudgetCard === true) ?
+                    <div className="w-100 pl3 mt3">
+                        <CreateBudgetCard
+                            categoriesAndItems={categoriesAndItems}
+                            setDashboardDisplayBudgetCard={setDashboardDisplayBudgetCard}
+                            displayBudgetCard={dashboard.displayBudgetCard}
+                            categoryName={dashboard.categoryName}
+                            budgetAmount={dashboard.budgetAmount}
+                            createCategoryError={dashboard.createCategoryError}
+                            setDashboardBudgetCardCategoryName={setDashboardBudgetCardCategoryName}
+                            setDashboardBudgetCardBudgetAmount={setDashboardBudgetCardBudgetAmount}
+                            setDashboardBudgetCardCreateCategoryError={setDashboardBudgetCardCreateCategoryError}
+                            selectedCategory={dashboard.selectedCategory}
+                            itemName={dashboard.itemName}
+                            createItemError={dashboard.createItemError}
+                            setDashboardBudgetCardSelectedCategory={setDashboardBudgetCardSelectedCategory}
+                            setDashboardBudgetCardItemName={setDashboardBudgetCardItemName}
+                            setDashboardBudgetCardCreateItemError={setDashboardBudgetCardCreateItemError}
+                            setDashboardBudgetCardCreateCategoryData={setDashboardBudgetCardCreateCategoryData}
+                            setDashboardBudgetCardCreateItemData={setDashboardBudgetCardCreateItemData}
+                            setDashboardBudgetCardCategoryToDelete={setDashboardBudgetCardCategoryToDelete}
+                            categoryToDelete={dashboard.categoryToDelete}
+                            setDashboardBudgetCardCategoryToDeleteData={setDashboardBudgetCardCategoryToDeleteData}
+                            setDashboardBudgetCardCategoryItemToDelete={setDashboardBudgetCardCategoryItemToDelete}
+                            setDashboardBudgetCardCategoryItemToDeleteData={setDashboardBudgetCardCategoryItemToDeleteData}
+                            categoryItemToDeleteData={dashboard.categoryItemToDeleteData}
+                            user={props.user}
+                        />
+                    </div>
+                    : ""
             }
-           
-            
-            
+
+
+
 
         </div>
     )

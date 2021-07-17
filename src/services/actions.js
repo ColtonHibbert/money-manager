@@ -149,7 +149,9 @@ import {
     SET_DASHBOARD_BUDGET_CARD_CREATE_CATEGORY_DATA,
     SET_DASHBOARD_BUDGET_CARD_CREATE_ITEM_DATA,
     SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE,
-    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA,
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_ITEM_TO_DELETE,
+    SET_DASHBOARD_BUDGET_CARD_CATEGORY_ITEM_TO_DELETE_DATA
 } from "./constants.js";
 
 
@@ -1279,6 +1281,20 @@ export const setDashboardBudgetCardCategoryToDeleteData = (payload) => {
     return {
         type: SET_DASHBOARD_BUDGET_CARD_CATEGORY_TO_DELETE_DATA,
         setDashboardBudgetCardCategoryToDeleteDataPayload: payload
+    }
+}
+
+export const setDashboardBudgetCardCategoryItemToDelete = (payload) => {
+    return {
+        type: SET_DASHBOARD_BUDGET_CARD_CATEGORY_ITEM_TO_DELETE,
+        setDashboardBudgetCardCategoryItemToDeletePayload: payload
+    }
+}
+
+export const setDashboardBudgetCardCategoryItemToDeleteData = (payload) => {
+    return {
+        type: SET_DASHBOARD_BUDGET_CARD_CATEGORY_ITEM_TO_DELETE_DATA,
+        setDashboardBudgetCardCategoryItemToDeleteDataPayload: payload
     }
 }
 
